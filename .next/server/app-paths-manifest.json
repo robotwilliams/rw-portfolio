@@ -2,6 +2,7 @@
   "/_not-found/page": "app/_not-found/page.js",
   "/api/content/about/route": "app/api/content/about/route.js",
   "/api/content/contact/route": "app/api/content/contact/route.js",
+  "/api/content/markdown/route": "app/api/content/markdown/route.js",
   "/api/content/projects/route": "app/api/content/projects/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
   "/page": "app/page.js"

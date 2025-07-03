@@ -8,7 +8,6 @@ import "./globals.css";
 import RetroDesktop from "@/components/RetroDesktop";
 import PageLoadWrapper from "@/components/PageLoadWrapper";
 import {
-  ProjectWindowProvider,
   ProjectWindowContextProvider,
 } from "@/components/ProjectWindowContext";
 
@@ -110,7 +109,6 @@ export default function RootLayout() {
           <ProjectWindowContextProvider>
             <RetroDesktop />
           </ProjectWindowContextProvider>
-          <ProjectWindowProvider />
         </PageLoadWrapper>
       </body>
     </html>

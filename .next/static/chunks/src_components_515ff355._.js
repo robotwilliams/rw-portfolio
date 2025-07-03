@@ -439,11 +439,9 @@ var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_
 });
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2d$dom$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react-dom/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$PixelIcon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/PixelIcon.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
-;
 ;
 ;
 function ProjectWindow({ project, onClose, isActive = false, onActivate, position: externalPosition, onMove }) {
@@ -490,9 +488,9 @@ function ProjectWindow({ project, onClose, isActive = false, onActivate, positio
             const baseY = Math.max(0, (window.innerHeight - windowSize.height) / 2) - 50;
             const x = baseX + cascadeOffset;
             const y = baseY + cascadeOffset;
-            // Ensure window doesn't go off-screen (leave space for taskbar)
+            // Ensure window doesn't go off-screen (leave more space for taskbar)
             const maxX = Math.max(0, window.innerWidth - windowSize.width - 20);
-            const maxY = Math.max(0, window.innerHeight - windowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
+            const maxY = Math.max(0, window.innerHeight - windowSize.height - 120); // Increased from 80 to 120
             return {
                 x: Math.min(Math.max(0, x), maxX),
                 y: Math.min(Math.max(0, y), maxY)
@@ -575,7 +573,7 @@ function ProjectWindow({ project, onClose, isActive = false, onActivate, positio
                     const y = baseY + cascadeOffset;
                     // Ensure window doesn't go off-screen with proper margins (leave space for taskbar)
                     const maxX = Math.max(0, window.innerWidth - newWindowSize.width - 20);
-                    const maxY = Math.max(0, window.innerHeight - newWindowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
+                    const maxY = Math.max(0, window.innerHeight - newWindowSize.height - 120); // Increased from 80 to 120
                     setPosition({
                         x: Math.min(Math.max(0, x), maxX),
                         y: Math.min(Math.max(0, y), maxY)
@@ -597,7 +595,7 @@ function ProjectWindow({ project, onClose, isActive = false, onActivate, positio
                         const newY = e.clientY - dragOffset.y;
                         // Constrain to viewport bounds (leave space for taskbar)
                         const maxX = Math.max(0, window.innerWidth - windowSize.width - 20);
-                        const maxY = Math.max(0, window.innerHeight - windowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
+                        const maxY = Math.max(0, window.innerHeight - windowSize.height - 120); // Increased from 80 to 120
                         const constrainedPosition = {
                             x: Math.min(Math.max(0, newX), maxX),
                             y: Math.min(Math.max(0, newY), maxY)
@@ -615,7 +613,7 @@ function ProjectWindow({ project, onClose, isActive = false, onActivate, positio
                         const newHeight = Math.max(minHeight, resizeStart.height + deltaY);
                         // Constrain maximum size to viewport (leave space for taskbar)
                         const maxWidth = window.innerWidth - 40;
-                        const maxHeight = window.innerHeight - 100; // Taskbar height is ~52px, so leave 100px margin
+                        const maxHeight = window.innerHeight - 160; // Extra space for taskbar
                         const constrainedWidth = Math.min(newWidth, maxWidth);
                         const constrainedHeight = Math.min(newHeight, maxHeight);
                         setWindowSize({
@@ -1088,9 +1086,9 @@ function ProjectWindow({ project, onClose, isActive = false, onActivate, positio
         }, this)
     }, void 0, false);
     if (!mounted) return null;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2d$dom$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createPortal"])(windowContent, document.body);
+    return windowContent;
 }
-_s(ProjectWindow, "2XYXJHlx5ISEeavK3QxPZwsxt6c=");
+_s(ProjectWindow, "DypXY3zm+VCVgVDDjO15nV5kJCc=");
 _c = ProjectWindow;
 /**
  * Get Project Icon
@@ -1895,6 +1893,113 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
+"[project]/src/components/ProjectWindowContext.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
+"use strict";
+
+var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
+{
+__turbopack_context__.s({
+    "ProjectWindowContextProvider": (()=>ProjectWindowContextProvider),
+    "ProjectWindowProvider": (()=>ProjectWindowProvider),
+    "useProjectWindows": (()=>useProjectWindows)
+});
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ProjectWindow.tsx [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
+"use client";
+;
+;
+const ProjectWindowContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])(undefined);
+function ProjectWindowProvider() {
+    _s();
+    const [openWindows, setOpenWindows] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
+    const closeProjectWindow = (windowId)=>{
+        setOpenWindows((prev)=>{
+            const newWindows = {
+                ...prev
+            };
+            delete newWindows[windowId];
+            return newWindows;
+        });
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+        children: Object.entries(openWindows).map(([windowId, windowData])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                project: windowData.project,
+                onClose: ()=>closeProjectWindow(windowId)
+            }, windowId, false, {
+                fileName: "[project]/src/components/ProjectWindowContext.tsx",
+                lineNumber: 49,
+                columnNumber: 9
+            }, this))
+    }, void 0, false);
+}
+_s(ProjectWindowProvider, "61LE2tC/ITY5ywfL+AYV6pLSuQ4=");
+_c = ProjectWindowProvider;
+function ProjectWindowContextProvider({ children }) {
+    _s1();
+    const [openWindows, setOpenWindows] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
+    const openProjectWindow = (project)=>{
+        const windowId = `project-${project.slug}`;
+        setOpenWindows((prev)=>({
+                ...prev,
+                [windowId]: {
+                    project,
+                    isActive: true
+                }
+            }));
+    };
+    const closeProjectWindow = (windowId)=>{
+        setOpenWindows((prev)=>{
+            const newWindows = {
+                ...prev
+            };
+            delete newWindows[windowId];
+            return newWindows;
+        });
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProjectWindowContext.Provider, {
+        value: {
+            openProjectWindow,
+            closeProjectWindow,
+            openWindows
+        },
+        children: [
+            children,
+            Object.entries(openWindows).map(([windowId, windowData])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                    project: windowData.project,
+                    onClose: ()=>closeProjectWindow(windowId)
+                }, windowId, false, {
+                    fileName: "[project]/src/components/ProjectWindowContext.tsx",
+                    lineNumber: 91,
+                    columnNumber: 9
+                }, this))
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ProjectWindowContext.tsx",
+        lineNumber: 85,
+        columnNumber: 5
+    }, this);
+}
+_s1(ProjectWindowContextProvider, "61LE2tC/ITY5ywfL+AYV6pLSuQ4=");
+_c1 = ProjectWindowContextProvider;
+function useProjectWindows() {
+    _s2();
+    const context = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"])(ProjectWindowContext);
+    if (context === undefined) {
+        throw new Error("useProjectWindows must be used within a ProjectWindowProvider");
+    }
+    return context;
+}
+_s2(useProjectWindows, "b9L3QQ+jgeyIrH0NfHrJ8nn7VMU=");
+var _c, _c1;
+__turbopack_context__.k.register(_c, "ProjectWindowProvider");
+__turbopack_context__.k.register(_c1, "ProjectWindowContextProvider");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
+}
+}}),
 "[project]/src/components/RetroDesktop.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
 "use strict";
 
@@ -1915,9 +2020,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$imag
 // import ContactPage from "@/app/contact/page";
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$WindowContent$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/WindowContent.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$WindowLoader$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/WindowLoader.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindowContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ProjectWindowContext.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -1934,34 +2041,35 @@ var _s = __turbopack_context__.k.signature();
         page: "home"
     }, void 0, false, {
         fileName: "[project]/src/components/RetroDesktop.tsx",
-        lineNumber: 38,
+        lineNumber: 40,
         columnNumber: 8
     }, this),
     "/about": /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$WindowContent$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
         page: "about"
     }, void 0, false, {
         fileName: "[project]/src/components/RetroDesktop.tsx",
-        lineNumber: 39,
+        lineNumber: 41,
         columnNumber: 13
     }, this),
     "/work": /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$WindowContent$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
         page: "work"
     }, void 0, false, {
         fileName: "[project]/src/components/RetroDesktop.tsx",
-        lineNumber: 40,
+        lineNumber: 42,
         columnNumber: 12
     }, this),
     "/contact": /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$WindowContent$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
         page: "contact"
     }, void 0, false, {
         fileName: "[project]/src/components/RetroDesktop.tsx",
-        lineNumber: 41,
+        lineNumber: 43,
         columnNumber: 15
     }, this)
 };
 function RetroDesktop() {
     _s();
     const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
+    const { openWindows, closeProjectWindow } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindowContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useProjectWindows"])();
     // Window management state
     const [windows, setWindows] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [activeWindow, setActiveWindow] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -2490,21 +2598,6 @@ function RetroDesktop() {
                             className: "desktop-cloud"
                         }, void 0, false, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                            lineNumber: 605,
-                            columnNumber: 11
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/RetroDesktop.tsx",
-                        lineNumber: 604,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "desktop-cloud-layer",
-                        "data-depth": "0.5",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "desktop-cloud-two"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/RetroDesktop.tsx",
                             lineNumber: 608,
                             columnNumber: 11
                         }, this)
@@ -2515,9 +2608,9 @@ function RetroDesktop() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "desktop-cloud-layer",
-                        "data-depth": "0.4",
+                        "data-depth": "0.5",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "desktop-cloud-three"
+                            className: "desktop-cloud-two"
                         }, void 0, false, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
                             lineNumber: 611,
@@ -2530,9 +2623,9 @@ function RetroDesktop() {
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "desktop-cloud-layer",
-                        "data-depth": "0.2",
+                        "data-depth": "0.4",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "desktop-cloud-four"
+                            className: "desktop-cloud-three"
                         }, void 0, false, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
                             lineNumber: 614,
@@ -2542,11 +2635,26 @@ function RetroDesktop() {
                         fileName: "[project]/src/components/RetroDesktop.tsx",
                         lineNumber: 613,
                         columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "desktop-cloud-layer",
+                        "data-depth": "0.2",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            className: "desktop-cloud-four"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/RetroDesktop.tsx",
+                            lineNumber: 617,
+                            columnNumber: 11
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/RetroDesktop.tsx",
+                        lineNumber: 616,
+                        columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                lineNumber: 603,
+                lineNumber: 606,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2571,7 +2679,7 @@ function RetroDesktop() {
                                     height: 46
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 641,
+                                    lineNumber: 644,
                                     columnNumber: 17
                                 }, this) : item.name === "Contact" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     src: "/images/rw-site-icon-folder-closed-contact.png",
@@ -2580,19 +2688,19 @@ function RetroDesktop() {
                                     height: 46
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 648,
+                                    lineNumber: 651,
                                     columnNumber: 17
                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$PixelIcon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                     icon: item.icon,
                                     size: 46
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 655,
+                                    lineNumber: 658,
                                     columnNumber: 17
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                                lineNumber: 639,
+                                lineNumber: 642,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2603,18 +2711,18 @@ function RetroDesktop() {
                                 children: item.name
                             }, void 0, false, {
                                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                                lineNumber: 658,
+                                lineNumber: 661,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, item.name, true, {
                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                        lineNumber: 626,
+                        lineNumber: 629,
                         columnNumber: 11
                     }, this))
             }, void 0, false, {
                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                lineNumber: 624,
+                lineNumber: 627,
                 columnNumber: 7
             }, this),
             windows.map((window1)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2638,12 +2746,12 @@ function RetroDesktop() {
                                         children: window1.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 693,
+                                        lineNumber: 696,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 692,
+                                    lineNumber: 695,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2662,7 +2770,7 @@ function RetroDesktop() {
                                             children: "−"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                                            lineNumber: 697,
+                                            lineNumber: 700,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -2678,19 +2786,19 @@ function RetroDesktop() {
                                             children: "×"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                                            lineNumber: 712,
+                                            lineNumber: 715,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 695,
+                                    lineNumber: 698,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                            lineNumber: 688,
+                            lineNumber: 691,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2701,7 +2809,7 @@ function RetroDesktop() {
                                     isLoading: windowLoading[window1.id] || false
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 734,
+                                    lineNumber: 737,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2722,19 +2830,19 @@ function RetroDesktop() {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 737,
+                                    lineNumber: 740,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                            lineNumber: 730,
+                            lineNumber: 733,
                             columnNumber: 11
                         }, this)
                     ]
                 }, window1.id, true, {
                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                    lineNumber: 674,
+                    lineNumber: 677,
                     columnNumber: 9
                 }, this)),
             startMenuOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2754,12 +2862,12 @@ function RetroDesktop() {
                                         height: 36
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 768,
+                                        lineNumber: 771,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 767,
+                                    lineNumber: 770,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2767,13 +2875,13 @@ function RetroDesktop() {
                                     children: "robotOS"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 775,
+                                    lineNumber: 778,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                            lineNumber: 766,
+                            lineNumber: 769,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2792,7 +2900,7 @@ function RetroDesktop() {
                                             height: 18
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                                            lineNumber: 788,
+                                            lineNumber: 791,
                                             columnNumber: 21
                                         }, this) : item.name === "Contact" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             src: "/images/rw-site-icon-folder-closed-contact.png",
@@ -2801,14 +2909,14 @@ function RetroDesktop() {
                                             height: 18
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                                            lineNumber: 795,
+                                            lineNumber: 798,
                                             columnNumber: 21
                                         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$PixelIcon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                             icon: item.icon,
                                             size: 18
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                                            lineNumber: 802,
+                                            lineNumber: 805,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2816,29 +2924,29 @@ function RetroDesktop() {
                                             children: item.name
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                                            lineNumber: 804,
+                                            lineNumber: 807,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, item.name, true, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 779,
+                                    lineNumber: 782,
                                     columnNumber: 17
                                 }, this))
                         }, void 0, false, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                            lineNumber: 777,
+                            lineNumber: 780,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                    lineNumber: 765,
+                    lineNumber: 768,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                lineNumber: 764,
+                lineNumber: 767,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2861,7 +2969,7 @@ function RetroDesktop() {
                                         height: 27
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 826,
+                                        lineNumber: 829,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2869,13 +2977,13 @@ function RetroDesktop() {
                                         children: "Start"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 832,
+                                        lineNumber: 835,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                                lineNumber: 820,
+                                lineNumber: 823,
                                 columnNumber: 11
                             }, this),
                             navigation.map((item)=>{
@@ -2896,7 +3004,7 @@ function RetroDesktop() {
                                         height: 32
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 852,
+                                        lineNumber: 855,
                                         columnNumber: 19
                                     }, this) : item.name === "Contact" ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         src: "/images/rw-site-icon-folder-closed-contact.png",
@@ -2905,26 +3013,26 @@ function RetroDesktop() {
                                         height: 32
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 859,
+                                        lineNumber: 862,
                                         columnNumber: 19
                                     }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$PixelIcon$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
                                         icon: item.icon,
                                         size: 32
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 866,
+                                        lineNumber: 869,
                                         columnNumber: 19
                                     }, this)
                                 }, item.name, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 839,
+                                    lineNumber: 842,
                                     columnNumber: 15
                                 }, this);
                             })
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                        lineNumber: 818,
+                        lineNumber: 821,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2948,12 +3056,12 @@ function RetroDesktop() {
                                         className: "hourglass"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                                        lineNumber: 890,
+                                        lineNumber: 893,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 889,
+                                    lineNumber: 892,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2961,24 +3069,24 @@ function RetroDesktop() {
                                     children: currentTime.toLocaleTimeString()
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/RetroDesktop.tsx",
-                                    lineNumber: 892,
+                                    lineNumber: 895,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/RetroDesktop.tsx",
-                            lineNumber: 876,
+                            lineNumber: 879,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/RetroDesktop.tsx",
-                        lineNumber: 874,
+                        lineNumber: 877,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                lineNumber: 817,
+                lineNumber: 820,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -2989,19 +3097,20 @@ function RetroDesktop() {
                 }
             }, void 0, false, {
                 fileName: "[project]/src/components/RetroDesktop.tsx",
-                lineNumber: 906,
+                lineNumber: 909,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/components/RetroDesktop.tsx",
-        lineNumber: 591,
+        lineNumber: 594,
         columnNumber: 5
     }, this);
 }
-_s(RetroDesktop, "SN1IdE3tT0Y9xrRFmATKr4jUtHI=", false, function() {
+_s(RetroDesktop, "/eN8kamtGxA1VEbVc9PCyl81Flo=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindowContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useProjectWindows"]
     ];
 });
 _c = RetroDesktop;
@@ -3227,113 +3336,6 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
 }
 }}),
-"[project]/src/components/ProjectWindowContext.tsx [app-client] (ecmascript)": ((__turbopack_context__) => {
-"use strict";
-
-var { g: global, __dirname, k: __turbopack_refresh__, m: module } = __turbopack_context__;
-{
-__turbopack_context__.s({
-    "ProjectWindowContextProvider": (()=>ProjectWindowContextProvider),
-    "ProjectWindowProvider": (()=>ProjectWindowProvider),
-    "useProjectWindows": (()=>useProjectWindows)
-});
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ProjectWindow.tsx [app-client] (ecmascript)");
-;
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
-"use client";
-;
-;
-const ProjectWindowContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])(undefined);
-function ProjectWindowProvider() {
-    _s();
-    const [openWindows, setOpenWindows] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
-    const closeProjectWindow = (windowId)=>{
-        setOpenWindows((prev)=>{
-            const newWindows = {
-                ...prev
-            };
-            delete newWindows[windowId];
-            return newWindows;
-        });
-    };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
-        children: Object.entries(openWindows).map(([windowId, windowData])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                project: windowData.project,
-                onClose: ()=>closeProjectWindow(windowId)
-            }, windowId, false, {
-                fileName: "[project]/src/components/ProjectWindowContext.tsx",
-                lineNumber: 49,
-                columnNumber: 9
-            }, this))
-    }, void 0, false);
-}
-_s(ProjectWindowProvider, "61LE2tC/ITY5ywfL+AYV6pLSuQ4=");
-_c = ProjectWindowProvider;
-function ProjectWindowContextProvider({ children }) {
-    _s1();
-    const [openWindows, setOpenWindows] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
-    const openProjectWindow = (project)=>{
-        const windowId = `project-${project.slug}`;
-        setOpenWindows((prev)=>({
-                ...prev,
-                [windowId]: {
-                    project,
-                    isActive: true
-                }
-            }));
-    };
-    const closeProjectWindow = (windowId)=>{
-        setOpenWindows((prev)=>{
-            const newWindows = {
-                ...prev
-            };
-            delete newWindows[windowId];
-            return newWindows;
-        });
-    };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ProjectWindowContext.Provider, {
-        value: {
-            openProjectWindow,
-            closeProjectWindow,
-            openWindows
-        },
-        children: [
-            children,
-            Object.entries(openWindows).map(([windowId, windowData])=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ProjectWindow$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                    project: windowData.project,
-                    onClose: ()=>closeProjectWindow(windowId)
-                }, windowId, false, {
-                    fileName: "[project]/src/components/ProjectWindowContext.tsx",
-                    lineNumber: 91,
-                    columnNumber: 9
-                }, this))
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/ProjectWindowContext.tsx",
-        lineNumber: 85,
-        columnNumber: 5
-    }, this);
-}
-_s1(ProjectWindowContextProvider, "61LE2tC/ITY5ywfL+AYV6pLSuQ4=");
-_c1 = ProjectWindowContextProvider;
-function useProjectWindows() {
-    _s2();
-    const context = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"])(ProjectWindowContext);
-    if (context === undefined) {
-        throw new Error("useProjectWindows must be used within a ProjectWindowProvider");
-    }
-    return context;
-}
-_s2(useProjectWindows, "b9L3QQ+jgeyIrH0NfHrJ8nn7VMU=");
-var _c, _c1;
-__turbopack_context__.k.register(_c, "ProjectWindowProvider");
-__turbopack_context__.k.register(_c1, "ProjectWindowContextProvider");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(module, globalThis.$RefreshHelpers$);
-}
-}}),
 }]);
 
-//# sourceMappingURL=src_components_c8808ebd._.js.map
+//# sourceMappingURL=src_components_515ff355._.js.map

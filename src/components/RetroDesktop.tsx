@@ -167,9 +167,9 @@ export default function RetroDesktop() {
   const getResponsiveWindowSize = () => {
     const screenWidth = window.innerWidth;
 
-    // Base sizes for large screens (50px bigger)
+    // Base sizes for large screens (reduced height for better fit)
     const baseWidth = 850;
-    const baseHeight = 650;
+    const baseHeight = 550; // Reduced from 650 to 550
 
     // Scale down on smaller screens (better fit for mobile/tablet)
     if (screenWidth < 1200) {
@@ -748,6 +748,7 @@ export default function RetroDesktop() {
                 borderTop: "1px solid #606060",
                 borderLeft: "1px solid #606060",
                 boxShadow: "inset 1px 1px 0 #0a0a0a",
+                zIndex: 10,
               }}
             />
           </div>

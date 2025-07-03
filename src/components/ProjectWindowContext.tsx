@@ -86,6 +86,14 @@ export function ProjectWindowContextProvider({
       value={{ openProjectWindow, closeProjectWindow, openWindows }}
     >
       {children}
+      {/* Render project windows at root level */}
+      {Object.entries(openWindows).map(([windowId, windowData]) => (
+        <ProjectWindow
+          key={windowId}
+          project={windowData.project}
+          onClose={() => closeProjectWindow(windowId)}
+        />
+      ))}
     </ProjectWindowContext.Provider>
   );
 }

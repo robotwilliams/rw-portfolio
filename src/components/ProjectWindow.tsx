@@ -68,7 +68,7 @@ export default function ProjectWindow({
       const screenWidth = window.innerWidth;
 
       const baseWidth = 850;
-      const baseHeight = 650;
+      const baseHeight = 550; // Reduced from 650 to 550
 
       if (screenWidth < 1200) {
         const scale = Math.max(0.4, screenWidth / 1200);
@@ -100,9 +100,9 @@ export default function ProjectWindow({
     const x = baseX + cascadeOffset;
     const y = baseY + cascadeOffset;
 
-    // Ensure window doesn't go off-screen
+    // Ensure window doesn't go off-screen (leave space for taskbar)
     const maxX = Math.max(0, window.innerWidth - windowSize.width - 20);
-    const maxY = Math.max(0, window.innerHeight - windowSize.height - 80);
+    const maxY = Math.max(0, window.innerHeight - windowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
 
     return {
       x: Math.min(Math.max(0, x), maxX),
@@ -113,7 +113,7 @@ export default function ProjectWindow({
   const [windowSize, setWindowSize] = useState(() => {
     const screenWidth = window.innerWidth;
     const baseWidth = 850;
-    const baseHeight = 650;
+    const baseHeight = 550; // Reduced from 650 to 550
 
     if (screenWidth < 1200) {
       const scale = Math.max(0.7, screenWidth / 1200);
@@ -126,6 +126,8 @@ export default function ProjectWindow({
   });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isResizing, setIsResizing] = useState(false);
+  const [resizeStart, setResizeStart] = useState({ x: 0, y: 0, width: 0, height: 0 });
 
   useEffect(() => {
     setMounted(true);
@@ -136,8 +138,8 @@ export default function ProjectWindow({
     const handleWindowResize = () => {
       const getResponsiveWindowSize = () => {
         const screenWidth = window.innerWidth;
-        const baseWidth = 800;
-        const baseHeight = 600;
+        const baseWidth = 850;
+        const baseHeight = 550; // Reduced from 600 to 550
 
         if (screenWidth < 1200) {
           const scale = Math.max(0.4, screenWidth / 1200);
@@ -170,9 +172,9 @@ export default function ProjectWindow({
       const x = baseX + cascadeOffset;
       const y = baseY + cascadeOffset;
 
-      // Ensure window doesn't go off-screen with proper margins
+      // Ensure window doesn't go off-screen with proper margins (leave space for taskbar)
       const maxX = Math.max(0, window.innerWidth - newWindowSize.width - 20);
-      const maxY = Math.max(0, window.innerHeight - newWindowSize.height - 80);
+      const maxY = Math.max(0, window.innerHeight - newWindowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
 
       setPosition({
         x: Math.min(Math.max(0, x), maxX),
@@ -187,22 +189,48 @@ export default function ProjectWindow({
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (isDragging) {
-        const newPosition = {
-          x: e.clientX - dragOffset.x,
-          y: e.clientY - dragOffset.y,
+        const newX = e.clientX - dragOffset.x;
+        const newY = e.clientY - dragOffset.y;
+
+        // Constrain to viewport bounds (leave space for taskbar)
+        const maxX = Math.max(0, window.innerWidth - windowSize.width - 20);
+        const maxY = Math.max(0, window.innerHeight - windowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
+
+        const constrainedPosition = {
+          x: Math.min(Math.max(0, newX), maxX),
+          y: Math.min(Math.max(0, newY), maxY),
         };
-        setPosition(newPosition);
+
+        setPosition(constrainedPosition);
         if (onMove) {
-          onMove(newPosition.x, newPosition.y);
+          onMove(constrainedPosition.x, constrainedPosition.y);
         }
+      } else if (isResizing) {
+        const deltaX = e.clientX - resizeStart.x;
+        const deltaY = e.clientY - resizeStart.y;
+
+        const minWidth = 400;
+        const minHeight = 300;
+        const newWidth = Math.max(minWidth, resizeStart.width + deltaX);
+        const newHeight = Math.max(minHeight, resizeStart.height + deltaY);
+
+        // Constrain maximum size to viewport (leave space for taskbar)
+        const maxWidth = window.innerWidth - 40;
+        const maxHeight = window.innerHeight - 100; // Taskbar height is ~52px, so leave 100px margin
+
+        const constrainedWidth = Math.min(newWidth, maxWidth);
+        const constrainedHeight = Math.min(newHeight, maxHeight);
+
+        setWindowSize({ width: constrainedWidth, height: constrainedHeight });
       }
     };
 
     const handleMouseUp = () => {
       setIsDragging(false);
+      setIsResizing(false);
     };
 
-    if (isDragging) {
+    if (isDragging || isResizing) {
       document.addEventListener("mousemove", handleMouseMove);
       document.addEventListener("mouseup", handleMouseUp);
     }
@@ -211,7 +239,7 @@ export default function ProjectWindow({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, dragOffset]);
+  }, [isDragging, dragOffset, isResizing, resizeStart]);
 
   useEffect(() => {
     const convertMarkdown = async () => {
@@ -244,13 +272,20 @@ export default function ProjectWindow({
     });
   };
 
+  const startResize = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsResizing(true);
+    setResizeStart({
+      x: e.clientX,
+      y: e.clientY,
+      width: windowSize.width,
+      height: windowSize.height,
+    });
+  };
+
   const windowContent = (
     <>
-      {/* Backdrop to close window when clicked outside */}
-      <div
-        className="fixed inset-0 bg-transparent z-[99998]"
-        onClick={onClose}
-      />
       <div
         className={`retro-window fixed ${isActive ? "active" : ""}`}
         style={{
@@ -258,7 +293,7 @@ export default function ProjectWindow({
           top: position.y,
           width: windowSize.width,
           height: windowSize.height,
-          zIndex: 99999,
+          zIndex: 999, // Higher than main windows but lower than taskbar (1000)
         }}
         onClick={(e) => {
           e.stopPropagation();
@@ -314,6 +349,24 @@ export default function ProjectWindow({
         {/* Window Content */}
         <div className="window-content h-full overflow-auto relative">
           <div className="p-4">
+
+            {/* Resize Handle */}
+            <div
+              className="cursor-se-resize"
+              onMouseDown={startResize}
+              style={{
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                width: "16px",
+                height: "16px",
+                background: "#2a2a2a",
+                cursor: "se-resize",
+                borderTop: "1px solid #606060",
+                borderLeft: "1px solid #606060",
+                boxShadow: "inset 1px 1px 0 #0a0a0a",
+              }}
+            />
             {/* Project Header */}
             <div className="flex items-center gap-3 mb-4">
               <PixelIcon icon={getProjectIcon(project.title)} size={32} />
