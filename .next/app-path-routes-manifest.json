@@ -1,14 +1,14 @@
 {
-  "/_not-found/page": "/_not-found",
   "/api/content/about/route": "/api/content/about",
   "/api/content/contact/route": "/api/content/contact",
   "/api/content/markdown/route": "/api/content/markdown",
+  "/_not-found/page": "/_not-found",
   "/api/content/projects/route": "/api/content/projects",
-  "/api/test/route": "/api/test",
   "/favicon.ico/route": "/favicon.ico",
+  "/api/test/route": "/api/test",
   "/contact/page": "/contact",
-  "/page": "/",
   "/work/page": "/work",
+  "/page": "/",
   "/about/page": "/about",
   "/work/[slug]/page": "/work/[slug]"
 }

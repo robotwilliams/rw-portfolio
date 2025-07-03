@@ -6,20 +6,37 @@
  */
 
 import { NextRequest } from "next/server";
+import fs from "fs";
 import { GET } from "@/app/api/content/[page]";
-import { getAllPortfolioProjects } from "@/lib/markdown";
+import * as markdownModule from "@/lib/markdown";
 
-// Mock the markdown utility
+// Mock the markdown module
 jest.mock("@/lib/markdown", () => ({
+  getPageData: jest.fn(),
+  getPageContent: jest.fn(),
   getAllPortfolioProjects: jest.fn(),
+  getPortfolioProject: jest.fn(),
+  markdownToHtml: jest.fn(),
 }));
 
+const mockGetPageData = markdownModule.getPageData as jest.MockedFunction<
+  typeof markdownModule.getPageData
+>;
+const mockGetPageContent = markdownModule.getPageContent as jest.MockedFunction<
+  typeof markdownModule.getPageContent
+>;
 const mockGetAllPortfolioProjects =
-  getAllPortfolioProjects as jest.MockedFunction<
-    typeof getAllPortfolioProjects
+  markdownModule.getAllPortfolioProjects as jest.MockedFunction<
+    typeof markdownModule.getAllPortfolioProjects
   >;
+const mockGetPortfolioProject = markdownModule.getPortfolioProject as jest.MockedFunction<
+  typeof markdownModule.getPortfolioProject
+>;
+const mockMarkdownToHtml = markdownModule.markdownToHtml as jest.MockedFunction<
+  typeof markdownModule.markdownToHtml
+>;
 
-describe("Content API Route", () => {
+describe("Content API", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -27,8 +44,8 @@ describe("Content API Route", () => {
   describe("GET /api/content/[page]", () => {
     it("should return HTML content for valid pages", async () => {
       // Mock file system operations
-      const mockReadFileSync = jest.spyOn(require("fs"), "readFileSync");
-      const mockExistsSync = jest.spyOn(require("fs"), "existsSync");
+      const mockReadFileSync = jest.spyOn(fs, "readFileSync");
+      const mockExistsSync = jest.spyOn(fs, "existsSync");
 
       mockExistsSync.mockReturnValue(true);
       mockReadFileSync.mockReturnValue(
@@ -60,7 +77,7 @@ describe("Content API Route", () => {
     });
 
     it("should return 404 for non-existent files", async () => {
-      const mockExistsSync = jest.spyOn(require("fs"), "existsSync");
+      const mockExistsSync = jest.spyOn(fs, "existsSync");
       mockExistsSync.mockReturnValue(false);
 
       const request = new NextRequest(
@@ -76,8 +93,8 @@ describe("Content API Route", () => {
     });
 
     it("should return 500 for file processing errors", async () => {
-      const mockReadFileSync = jest.spyOn(require("fs"), "readFileSync");
-      const mockExistsSync = jest.spyOn(require("fs"), "existsSync");
+      const mockReadFileSync = jest.spyOn(fs, "readFileSync");
+      const mockExistsSync = jest.spyOn(fs, "existsSync");
 
       mockExistsSync.mockReturnValue(true);
       mockReadFileSync.mockImplementation(() => {

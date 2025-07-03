@@ -1,8 +1,8 @@
 1:"$Sreact.fragment"
-2:I[9462,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-b1c07f31a0f37d36.js"],"default"]
-3:I[848,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-b1c07f31a0f37d36.js"],"ProjectWindowContextProvider"]
-4:I[2529,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-b1c07f31a0f37d36.js"],"default"]
-5:I[848,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-b1c07f31a0f37d36.js"],"ProjectWindowProvider"]
+2:I[9462,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-c72d9cfd62e2fb22.js"],"default"]
+3:I[848,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-c72d9cfd62e2fb22.js"],"ProjectWindowContextProvider"]
+4:I[2529,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-c72d9cfd62e2fb22.js"],"default"]
+5:I[848,["766","static/chunks/766-ce2fae58204fe137.js","848","static/chunks/848-4ac57d04e4e1710e.js","177","static/chunks/app/layout-c72d9cfd62e2fb22.js"],"ProjectWindowProvider"]
 6:I[7555,[],""]
 7:I[1295,[],""]
 9:I[9665,[],"OutletBoundary"]
@@ -16,12 +16,12 @@ e:I[9665,[],"ViewportBoundary"]
 :HL["/_next/static/media/9b8c15de1de72117-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/be2416cbb012c256-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/css/dfdf9243bf010331.css","style"]
-0:{"P":null,"b":"9sndWWohr6h3NJMh8FOz3","p":"","c":["","about"],"i":false,"f":[[["",{"children":["about",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/dfdf9243bf010331.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_0cdd3d __variable_3757f2 __variable_94648d antialiased","children":["$","$L2",null,{"children":[["$","$L3",null,{"children":["$","$L4",null,{}]}],["$","$L5",null,{}]]}]}]}]]}],{"children":["about",["$","$1","c",{"children":[null,["$","$L6",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L8",null,["$","$L9",null,{"children":["$La","$Lb",["$","$Lc",null,{"promise":"$@d"}]]}]]}],{},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","27VCLkCkjHfvSbFbhu7hXv",{"children":[["$","$Le",null,{"children":"$Lf"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L10",null,{"children":"$L11"}]]}],false]],"m":"$undefined","G":["$12","$undefined"],"s":false,"S":true}
+0:{"P":null,"b":"J5Pia4yXALNgLbNN9BLX3","p":"","c":["","about"],"i":false,"f":[[["",{"children":["about",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/dfdf9243bf010331.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"__variable_0cdd3d __variable_3757f2 __variable_94648d antialiased","children":["$","$L2",null,{"children":[["$","$L3",null,{"children":["$","$L4",null,{}]}],["$","$L5",null,{}]]}]}]}]]}],{"children":["about",["$","$1","c",{"children":[null,["$","$L6",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":["__PAGE__",["$","$1","c",{"children":["$L8",null,["$","$L9",null,{"children":["$La","$Lb",["$","$Lc",null,{"promise":"$@d"}]]}]]}],{},null,false]},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","adCEPoyGLddqPiH-niexov",{"children":[["$","$Le",null,{"children":"$Lf"}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],["$","$L10",null,{"children":"$L11"}]]}],false]],"m":"$undefined","G":["$12","$undefined"],"s":false,"S":true}
 13:"$Sreact.suspense"
 14:I[4911,[],"AsyncMetadata"]
 11:["$","div",null,{"hidden":true,"children":["$","$13",null,{"fallback":null,"children":["$","$L14",null,{"promise":"$@15"}]}]}]
 b:null
-16:I[8575,["766","static/chunks/766-ce2fae58204fe137.js","220","static/chunks/app/about/page-b91282fdfa2dc5ee.js"],"default"]
+16:I[8575,["766","static/chunks/766-ce2fae58204fe137.js","220","static/chunks/app/about/page-ce52c2baafc80472.js"],"default"]
 17:Ta7e,<h1>About Robot Williams 🤖</h1>
 <p>I'm Rob Williams, a frontend developer and designer dedicated to creating intuitive and engaging digital experiences. With years of experience in web development and design, I specialize in building websites and applications that are both visually appealing and highly functional.</p>
 <h2>What I Do</h2>

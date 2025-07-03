@@ -17,6 +17,8 @@ import {
   mockPageData,
   mockMarkdownContent,
 } from "../__mocks__/markdown";
+import fs from "fs";
+import path from "path";
 
 // Mock fs and path modules
 jest.mock("fs", () => ({
@@ -29,8 +31,9 @@ jest.mock("path", () => ({
   join: jest.fn(),
 }));
 
-const fs = require("fs");
-const path = require("path");
+// Type the mocked modules
+const mockedFs = fs as jest.Mocked<typeof fs>;
+const mockedPath = path as jest.Mocked<typeof path>;
 
 describe("Markdown Utilities", () => {
   beforeEach(() => {
@@ -45,8 +48,8 @@ description: "Test description"
 ---
 # Content`;
 
-      fs.readFileSync.mockReturnValue(mockContent);
-      path.join.mockReturnValue("/mock/path");
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getPageData("test");
 
@@ -57,10 +60,10 @@ description: "Test description"
     });
 
     it("returns empty object for missing page", () => {
-      fs.readFileSync.mockImplementation(() => {
+      mockedFs.readFileSync.mockImplementation(() => {
         throw new Error("File not found");
       });
-      path.join.mockReturnValue("/mock/path");
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getPageData("missing");
 
@@ -76,8 +79,8 @@ title: "Test Page"
 # Test Content
 This is the content.`;
 
-      fs.readFileSync.mockReturnValue(mockContent);
-      path.join.mockReturnValue("/mock/path");
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getPageContent("test");
 
@@ -89,7 +92,10 @@ This is the content.`;
 
   describe("getAllPortfolioProjects", () => {
     it("returns all portfolio projects", () => {
-      const mockFiles = ["project1.md", "project2.md"];
+      const mockFiles = [
+        { name: "project1.md", isFile: () => true, isDirectory: () => false } as any,
+        { name: "project2.md", isFile: () => true, isDirectory: () => false } as any
+      ];
       const mockContent1 = `---
 title: "Project 1"
 slug: "project1"
@@ -102,11 +108,11 @@ slug: "project2"
 ---
 # Project 2 Content`;
 
-      fs.readdirSync.mockReturnValue(mockFiles);
-      fs.readFileSync
+      mockedFs.readdirSync.mockReturnValue(mockFiles);
+      mockedFs.readFileSync
         .mockReturnValueOnce(mockContent1)
         .mockReturnValueOnce(mockContent2);
-      path.join.mockReturnValue("/mock/path");
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getAllPortfolioProjects();
 
@@ -118,10 +124,14 @@ slug: "project2"
     });
 
     it("filters out non-markdown files", () => {
-      const mockFiles = ["project1.md", "image.jpg", "project2.md"];
+      const mockFiles = [
+        { name: "project1.md", isFile: () => true, isDirectory: () => false } as any,
+        { name: "image.jpg", isFile: () => true, isDirectory: () => false } as any,
+        { name: "project2.md", isFile: () => true, isDirectory: () => false } as any
+      ];
 
-      fs.readdirSync.mockReturnValue(mockFiles);
-      path.join.mockReturnValue("/mock/path");
+      mockedFs.readdirSync.mockReturnValue(mockFiles);
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getAllPortfolioProjects();
 
@@ -137,8 +147,8 @@ slug: "test-project"
 ---
 # Test Project Content`;
 
-      fs.readFileSync.mockReturnValue(mockContent);
-      path.join.mockReturnValue("/mock/path");
+      mockedFs.readFileSync.mockReturnValue(mockContent);
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getPortfolioProject("test-project");
 
@@ -150,10 +160,10 @@ slug: "test-project"
     });
 
     it("returns null for missing project", () => {
-      fs.readFileSync.mockImplementation(() => {
+      mockedFs.readFileSync.mockImplementation(() => {
         throw new Error("File not found");
       });
-      path.join.mockReturnValue("/mock/path");
+      mockedPath.join.mockReturnValue("/mock/path");
 
       const result = getPortfolioProject("missing-project");
 

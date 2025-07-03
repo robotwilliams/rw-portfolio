@@ -96,7 +96,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/robw/Downloads/rw-portfolio",
+    "outputFileTracingRoot": "/Users/robw/Developer/rw-portfolio",
     "experimental": {
       "nodeMiddleware": false,
       "cacheLife": {
@@ -154,7 +154,7 @@
       "middlewarePrefetch": "flexible",
       "optimisticClientCache": true,
       "manualClientBasePath": false,
-      "cpus": 15,
+      "cpus": 7,
       "memoryBasedWorkersCount": false,
       "imgOptConcurrency": null,
       "imgOptTimeoutInSeconds": 7,
@@ -279,10 +279,10 @@
     "bundlePagesRouterDependencies": false,
     "configFileName": "next.config.ts",
     "turbopack": {
-      "root": "/Users/robw/Downloads/rw-portfolio"
+      "root": "/Users/robw/Developer/rw-portfolio"
     }
   },
-  "appDir": "/Users/robw/Downloads/rw-portfolio",
+  "appDir": "/Users/robw/Developer/rw-portfolio",
   "relativeAppDir": "",
   "files": [
     ".next/routes-manifest.json",
