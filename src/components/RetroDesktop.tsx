@@ -323,12 +323,12 @@ export default function RetroDesktop() {
             prev.map((w) =>
               w.id === draggedWindow
                 ? {
-                    ...w,
-                    position: {
-                      x: constrainedX,
-                      y: constrainedY,
-                    },
-                  }
+                  ...w,
+                  position: {
+                    x: constrainedX,
+                    y: constrainedY,
+                  },
+                }
                 : w
             )
           );
@@ -354,9 +354,9 @@ export default function RetroDesktop() {
           prev.map((w) =>
             w.id === resizingWindow
               ? {
-                  ...w,
-                  size: { width: constrainedWidth, height: constrainedHeight },
-                }
+                ...w,
+                size: { width: constrainedWidth, height: constrainedHeight },
+              }
               : w
           )
         );
@@ -395,10 +395,10 @@ export default function RetroDesktop() {
         prev.map((w) =>
           w.id === href
             ? {
-                ...w,
-                isMinimized: false,
-                zIndex: Math.max(...prev.map((w) => w.zIndex)) + 1,
-              }
+              ...w,
+              isMinimized: false,
+              zIndex: Math.max(...prev.map((w) => w.zIndex)) + 1,
+            }
             : w
         )
       );
@@ -621,13 +621,12 @@ export default function RetroDesktop() {
         Each icon represents a navigation item and can be clicked to open
         the corresponding window.
       */}
-      <div className="absolute top-8 left-8 space-y-4">
+      <div className="absolute top-8 left-8">
         {navigation.map((item) => (
           <div
             key={item.name}
-            className={`desktop-icon ${
-              selectedDesktopIcon === item.href ? "selected" : ""
-            }`}
+            className={`desktop-icon ${selectedDesktopIcon === item.href ? "selected" : ""
+              }`}
             onClick={() => {
               setSelectedDesktopIcon(item.href);
               openWindow(item.href, item.name);
@@ -642,18 +641,18 @@ export default function RetroDesktop() {
                 <Image
                   src="/images/rw-logo.png"
                   alt={item.name}
-                  width={56}
-                  height={56}
+                  width={46}
+                  height={46}
                 />
               ) : item.name === "Contact" ? (
                 <Image
                   src="/images/rw-site-icon-folder-closed-contact.png"
                   alt={item.name}
-                  width={56}
-                  height={56}
+                  width={46}
+                  height={46}
                 />
               ) : (
-                <PixelIcon icon={item.icon} size={56} />
+                <PixelIcon icon={item.icon} size={46} />
               )}
             </div>
             <div
@@ -674,9 +673,8 @@ export default function RetroDesktop() {
       {windows.map((window) => (
         <div
           key={window.id}
-          className={`retro-window absolute ${
-            window.isMinimized ? "hidden" : ""
-          } ${activeWindow === window.id ? "active" : ""}`}
+          className={`retro-window absolute ${window.isMinimized ? "hidden" : ""
+            } ${activeWindow === window.id ? "active" : ""}`}
           style={{
             left: window.position.x,
             top: window.position.y,
@@ -819,9 +817,8 @@ export default function RetroDesktop() {
         <div className="flex items-center space-x-2 ml-2">
           {/* Start Button */}
           <button
-            className={`start-button flex items-center px-2 py-1 ${
-              startMenuOpen ? "bg-cyan-600" : ""
-            }`}
+            className={`start-button flex items-center px-2 py-1 ${startMenuOpen ? "bg-cyan-600" : ""
+              }`}
             style={{ gap: "4px" }}
             onClick={toggleStartMenu}
           >
@@ -840,9 +837,8 @@ export default function RetroDesktop() {
             return (
               <div
                 key={item.name}
-                className={`taskbar-icon ${
-                  window && !window.isMinimized ? "active" : ""
-                }`}
+                className={`taskbar-icon ${window && !window.isMinimized ? "active" : ""
+                  }`}
                 onClick={() => {
                   if (window && !window.isMinimized) {
                     bringToFront(item.href);
