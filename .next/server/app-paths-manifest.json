@@ -1,14 +1,7 @@
 {
   "/api/content/about/route": "app/api/content/about/route.js",
   "/api/content/contact/route": "app/api/content/contact/route.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/content/markdown/route": "app/api/content/markdown/route.js",
   "/api/content/projects/route": "app/api/content/projects/route.js",
-  "/api/test/route": "app/api/test/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/page": "app/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/work/page": "app/work/page.js",
-  "/about/page": "app/about/page.js",
-  "/work/[slug]/page": "app/work/[slug]/page.js"
+  "/page": "app/page.js"
 }
