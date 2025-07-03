@@ -153,7 +153,7 @@ export default function RetroDesktop() {
    * Uses clean retro-style icons inspired by minimal web design.
    */
   const navigation = [
-    { name: "About", href: "/about", icon: "👤" },
+    { name: "About", href: "/about", icon: "about" },
     { name: "Work", href: "/work", icon: "folder" },
     { name: "Contact", href: "/contact", icon: "contact" },
   ];
@@ -454,6 +454,13 @@ export default function RetroDesktop() {
     if (activeWindow === id) {
       setActiveWindow(null);
     }
+  };
+
+  const unminimizeWindow = (id: string) => {
+    setWindows((prev) =>
+      prev.map((w) => (w.id === id ? { ...w, isMinimized: false } : w))
+    );
+    setActiveWindow(id);
   };
 
   /**
@@ -835,17 +842,17 @@ export default function RetroDesktop() {
           {/* Taskbar Icons */}
           {navigation.map((item) => {
             const window = windows.find((w) => w.id === item.href);
+            // Only show taskbar button if window exists and is minimized
+            if (!window || !window.isMinimized) {
+              return null;
+            }
             return (
               <div
                 key={item.name}
-                className={`taskbar-icon ${window && !window.isMinimized ? "active" : ""
-                  }`}
+                className="taskbar-icon"
                 onClick={() => {
-                  if (window && !window.isMinimized) {
-                    bringToFront(item.href);
-                  } else {
-                    openWindow(item.href, item.name);
-                  }
+                  // Unminimize the window when taskbar button is clicked
+                  unminimizeWindow(item.href);
                 }}
               >
                 {item.name === "About" ? (
