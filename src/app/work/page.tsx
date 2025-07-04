@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PixelIcon from "@/components/PixelIcon";
 import { useProjectWindows } from "@/components/ProjectWindowContext";
 
 interface PortfolioProject {
@@ -38,6 +37,7 @@ export default function WorkPage() {
   const [projects, setProjects] = useState<PortfolioProject[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   // Use the global project window context
   const { openProjectWindow } = useProjectWindows();
@@ -145,12 +145,21 @@ export default function WorkPage() {
               key={project.slug}
               onClick={() => openProjectWindow(project)}
               className="project-icon"
+              onMouseEnter={() => setHoveredProject(project.slug)}
+              onMouseLeave={() => setHoveredProject(null)}
             >
               {/* Project Icon */}
-              <div className="mb-2">
-                <PixelIcon icon={getProjectIcon(project.title)} size={48} />
+              <div className="flex justify-center mb-2">
+                <img
+                  src={
+                    hoveredProject === project.slug
+                      ? "/images/rw-site-icon-folder-open.png"
+                      : "/images/rw-site-icon-folder-close.png"
+                  }
+                  alt={`${project.title} folder`}
+                  className="w-16 h-16 object-contain"
+                />
               </div>
-
               {/* Project Title */}
               <div className="text-center">
                 <h3 className="text-xs font-medium text-center leading-tight">
@@ -225,28 +234,3 @@ export default function WorkPage() {
   );
 }
 
-/**
- * Get Project Icon
- *
- * Maps project titles to appropriate Windows 98-style icons.
- * Returns emoji representations that will be styled by the PixelIcon component.
- */
-function getProjectIcon(projectTitle: string): string {
-  const title = projectTitle.toLowerCase();
-
-  if (title.includes("landscape") || title.includes("edgewater")) {
-    return "📁"; // Folder icon for landscape project
-  } else if (title.includes("smps") || title.includes("new york")) {
-    return "💼"; // Briefcase for professional services
-  } else if (title.includes("sbn") || title.includes("philadelphia")) {
-    return "📁"; // Folder for business network
-  } else if (title.includes("evron")) {
-    return "📧"; // Mail for e-commerce
-  } else if (title.includes("springboard") || title.includes("collaborative")) {
-    return "📁"; // Folder for educational nonprofit
-  } else if (title.includes("u3") || title.includes("studio")) {
-    return "💼"; // Briefcase for creative agency
-  } else {
-    return "📁"; // Default folder icon
-  }
-}

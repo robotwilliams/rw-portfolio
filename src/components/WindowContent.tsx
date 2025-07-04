@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import PixelIcon from "./PixelIcon";
 import ProjectWindow from "./ProjectWindow";
 import RetroLoading from "./RetroLoading";
 
@@ -66,6 +65,7 @@ export default function WindowContent({ page }: WindowContentProps) {
     };
   }>({});
   const [activeWindow, setActiveWindow] = useState<string | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   // State for other pages
   const [html, setHtml] = useState<string>("");
@@ -269,10 +269,20 @@ export default function WindowContent({ page }: WindowContentProps) {
                 key={project.slug}
                 onClick={() => openProjectWindow(project)}
                 className="window-icon"
+                onMouseEnter={() => setHoveredProject(project.slug)}
+                onMouseLeave={() => setHoveredProject(null)}
               >
                 {/* Project Icon */}
                 <div className="mb-2">
-                  <PixelIcon icon={getProjectIcon()} size={48} />
+                  <img
+                    src={
+                      hoveredProject === project.slug
+                        ? "/images/rw-site-icon-folder-open.png"
+                        : "/images/rw-site-icon-folder-close.png"
+                    }
+                    alt="Project folder"
+                    className="w-12 h-12 object-contain"
+                  />
                 </div>
 
                 {/* Project Title */}

@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import PixelIcon from "./PixelIcon";
 import Image from "next/image";
 // Note: These imports are not used in the current implementation
 // Content is loaded dynamically through WindowContent component
@@ -76,7 +75,16 @@ export default function RetroDesktop() {
   const [selectedDesktopIcon, setSelectedDesktopIcon] = useState<string | null>(
     null
   );
+  const [hoveredDesktopIcon, setHoveredDesktopIcon] = useState<string | null>(
+    null
+  );
   const [startMenuOpen, setStartMenuOpen] = useState(false);
+  const [hoveredStartMenuItem, setHoveredStartMenuItem] = useState<string | null>(
+    null
+  );
+  const [hoveredTaskbarIcon, setHoveredTaskbarIcon] = useState<string | null>(
+    null
+  );
 
   // Drag and resize state
   const [draggedWindow, setDraggedWindow] = useState<string | null>(null);
@@ -642,6 +650,8 @@ export default function RetroDesktop() {
               setSelectedDesktopIcon(null);
               openWindow(item.href, item.name);
             }}
+            onMouseEnter={() => setHoveredDesktopIcon(item.href)}
+            onMouseLeave={() => setHoveredDesktopIcon(null)}
           >
             <div className="mb-1">
               {item.name === "About" ? (
@@ -659,7 +669,16 @@ export default function RetroDesktop() {
                   height={46}
                 />
               ) : (
-                <PixelIcon icon={item.icon} size={46} />
+                <Image
+                  src={
+                    hoveredDesktopIcon === item.href
+                      ? "/images/rw-site-icon-folder-open.png"
+                      : "/images/rw-site-icon-folder-close.png"
+                  }
+                  alt={item.name}
+                  width={46}
+                  height={46}
+                />
               )}
             </div>
             <div
@@ -790,6 +809,8 @@ export default function RetroDesktop() {
                     openWindow(item.href, item.name);
                     setStartMenuOpen(false);
                   }}
+                  onMouseEnter={() => setHoveredStartMenuItem(item.href)}
+                  onMouseLeave={() => setHoveredStartMenuItem(null)}
                 >
                   {item.name === "About" ? (
                     <Image
@@ -806,7 +827,16 @@ export default function RetroDesktop() {
                       height={18}
                     />
                   ) : (
-                    <PixelIcon icon={item.icon} size={18} />
+                    <Image
+                      src={
+                        hoveredStartMenuItem === item.href
+                          ? "/images/rw-site-icon-folder-open.png"
+                          : "/images/rw-site-icon-folder-close.png"
+                      }
+                      alt={item.name}
+                      width={18}
+                      height={18}
+                    />
                   )}
                   <span className="text-base">{item.name}</span>
                 </div>
@@ -854,6 +884,8 @@ export default function RetroDesktop() {
                   // Unminimize the window when taskbar button is clicked
                   unminimizeWindow(item.href);
                 }}
+                onMouseEnter={() => setHoveredTaskbarIcon(item.href)}
+                onMouseLeave={() => setHoveredTaskbarIcon(null)}
               >
                 {item.name === "About" ? (
                   <Image
@@ -870,7 +902,16 @@ export default function RetroDesktop() {
                     height={32}
                   />
                 ) : (
-                  <PixelIcon icon={item.icon} size={32} />
+                  <Image
+                    src={
+                      hoveredTaskbarIcon === item.href
+                        ? "/images/rw-site-icon-folder-open.png"
+                        : "/images/rw-site-icon-folder-close.png"
+                    }
+                    alt={item.name}
+                    width={32}
+                    height={32}
+                  />
                 )}
               </div>
             );

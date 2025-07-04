@@ -6,7 +6,6 @@ import {
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import PixelIcon from "@/components/PixelIcon";
 
 interface ProjectPageProps {
   params: Promise<{
@@ -65,7 +64,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {/* Project Header - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
           <div className="flex items-center gap-3 mb-4">
-            <PixelIcon icon={getProjectIcon(project.title)} size={32} />
+            <img
+              src="/images/rw-site-icon-folder-close.png"
+              alt={`${project.title} folder`}
+              className="w-8 h-8 object-contain"
+            />
             <div>
               <h1 className="text-xl font-bold text-[#000080]">
                 {project.title}
@@ -232,28 +235,3 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   );
 }
 
-/**
- * Get Project Icon
- *
- * Maps project titles to appropriate Windows 98-style icons.
- * Returns emoji representations that will be styled by the PixelIcon component.
- */
-function getProjectIcon(projectTitle: string): string {
-  const title = projectTitle.toLowerCase();
-
-  if (title.includes("landscape") || title.includes("edgewater")) {
-    return "📁"; // Folder icon for landscape project
-  } else if (title.includes("smps") || title.includes("new york")) {
-    return "💼"; // Briefcase for professional services
-  } else if (title.includes("sbn") || title.includes("philadelphia")) {
-    return "📁"; // Folder for business network
-  } else if (title.includes("evron")) {
-    return "📧"; // Mail for e-commerce
-  } else if (title.includes("springboard") || title.includes("collaborative")) {
-    return "📁"; // Folder for educational nonprofit
-  } else if (title.includes("u3") || title.includes("studio")) {
-    return "💼"; // Briefcase for creative agency
-  } else {
-    return "📁"; // Default folder icon
-  }
-}

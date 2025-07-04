@@ -22,7 +22,6 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import PixelIcon from "./PixelIcon";
 
 interface ProjectWindowProps {
   project: {
@@ -57,6 +56,7 @@ export default function ProjectWindow({
 }: ProjectWindowProps) {
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [mounted, setMounted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [position, setPosition] = useState(() => {
     // Use external position if provided, otherwise calculate default
     if (externalPosition) {
@@ -368,8 +368,20 @@ export default function ProjectWindow({
               }}
             />
             {/* Project Header */}
-            <div className="flex items-center gap-3 mb-4">
-              <PixelIcon icon={getProjectIcon(project.title)} size={32} />
+            <div
+              className="flex items-center gap-3 mb-4"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <img
+                src={
+                  isHovered
+                    ? "/images/rw-site-icon-folder-open.png"
+                    : "/images/rw-site-icon-folder-close.png"
+                }
+                alt={`${project.title} folder`}
+                className="w-8 h-8 object-contain"
+              />
               <div>
                 <h1 className="text-xl font-bold text-[#000080]">
                   {project.title}
@@ -487,28 +499,3 @@ export default function ProjectWindow({
   return createPortal(windowContent, document.body);
 }
 
-/**
- * Get Project Icon
- *
- * Maps project titles to appropriate Windows 98-style icons.
- * Returns emoji representations that will be styled by the PixelIcon component.
- */
-function getProjectIcon(projectTitle: string): string {
-  const title = projectTitle.toLowerCase();
-
-  if (title.includes("landscape") || title.includes("edgewater")) {
-    return "📁"; // Folder icon for landscape project
-  } else if (title.includes("smps") || title.includes("new york")) {
-    return "💼"; // Briefcase for professional services
-  } else if (title.includes("sbn") || title.includes("philadelphia")) {
-    return "📁"; // Folder for business network
-  } else if (title.includes("evron")) {
-    return "📧"; // Mail for e-commerce
-  } else if (title.includes("springboard") || title.includes("collaborative")) {
-    return "📁"; // Folder for educational nonprofit
-  } else if (title.includes("u3") || title.includes("studio")) {
-    return "💼"; // Briefcase for creative agency
-  } else {
-    return "📁"; // Default folder icon
-  }
-}
