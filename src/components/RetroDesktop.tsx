@@ -885,7 +885,7 @@ export default function RetroDesktop() {
               style={{
                 boxShadow: "inset 1px 1px 0 #404040",
                 borderRadius: "20px",
-                transform: "scale(0.6)",
+                transform: "scale(0.47)",
                 transformOrigin: "center",
                 background: "#7a9aca",
                 border: "2px solid #4a6a9a",

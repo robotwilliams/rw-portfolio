@@ -1176,7 +1176,7 @@ svg {
 .clock-time {
   font-family: "DS-Digital", "Courier New", "Courier", monospace !important;
   font-weight: bold;
-  letter-spacing: 0.2px;
+  letter-spacing: -0.5px;
   font-size: 26px;
   color: #bfffbf !important;
   text-shadow: 0 0 2px #7fff7f, 1px 1px 2px rgba(0, 0, 0, 0.4);
@@ -1188,26 +1188,7 @@ svg {
   white-space: nowrap;
 }
 
-/* Responsive scaling for smaller screens */
-@media (max-width: 600px) {
-  .clock-time {
-    font-size: 24px;
-    transform: scale(0.9);
-    padding: 0px;
-  }
-}
 
-@media (max-width: 500px) {
-  .clock-time {
-    transform: scale(0.85);
-  }
-}
-
-@media (max-width: 400px) {
-  .clock-time {
-    transform: scale(0.8);
-  }
-}
 
 /**
  * RobotOS Desktop Icons
