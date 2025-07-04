@@ -605,17 +605,17 @@ svg {
   z-index: 9999;
   background: linear-gradient(
     to bottom,
-    #5dade2 0%,
-    #7bc8f0 25%,
-    #a8d8ff 50%,
-    #c4e0f5 65%,
-    #e8d0e8 80%,
-    #f8b4d9 90%,
-    #ffb3d9 100%
+    #4fa8d8 0%,
+    #6bb8e6 25%,
+    #96c8f0 50%,
+    #b0d0e8 60%,
+    #c0b8d8 80%,
+    #d8a8c8 90%,
+    #f0a0c8 95%
   );
   overflow: hidden;
   /* Enhanced pixelation filter to match desktop */
-  filter: contrast(1.8) saturate(0.7) brightness(0.9) hue-rotate(2deg);
+  filter: contrast(1.8) saturate(0.8) brightness(0.92) hue-rotate(2deg);
 }
 
 /**

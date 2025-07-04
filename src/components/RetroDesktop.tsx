@@ -112,16 +112,16 @@ export default function RetroDesktop() {
   const getTimeBasedGradient = (hour: number) => {
     if (hour >= 6 && hour < 12) {
       // Morning: Bright blue to pink with smooth blending
-      return "linear-gradient(180deg, #7bc8f0 0%, #8fd4f5 20%, #a8d8ff 40%, #c4e0f5 60%, #e8d0e8 80%, #f8b4d9 90%, #ffb3d9 100%)";
+      return "linear-gradient(180deg, #6bb8e6 0%, #7fc4f0 20%, #96c8f0 40%, #b0d0e8 60%, #c0b8d8 80%, #d8a8c8 90%, #f0a0c8 95%)";
     } else if (hour >= 12 && hour < 18) {
       // Afternoon: Yellow to orange to pink with smooth blending
-      return "linear-gradient(180deg, #ffd700 0%, #ffc040 25%, #ffb84d 45%, #ffc085 65%, #f0c0d0 80%, #f8b4d9 90%, #ffb3d9 100%)";
+      return "linear-gradient(180deg, #f0d000 0%, #e8b030 25%, #e0a83d 45%, #e8b065 60%, #d0a8a8 80%, #d8a8c8 90%, #f0a0c8 95%)";
     } else if (hour >= 18 && hour < 22) {
       // Evening: Purple to pink with smooth blending
-      return "linear-gradient(180deg, #9370db 0%, #a585d9 25%, #b19cd9 45%, #c8a2c8 65%, #e0b8d0 80%, #f8b4d9 90%, #ffb3d9 100%)";
+      return "linear-gradient(180deg, #8360cb 0%, #9575c9 25%, #a18cc9 45%, #b892b8 60%, #c0a0c0 80%, #d8a8c8 90%, #f0a0c8 95%)";
     } else {
       // Night: Dark indigo to pink with smooth blending
-      return "linear-gradient(180deg, #4b0082 0%, #5a2a8a 25%, #6a4c93 45%, #8a7bb8 65%, #c0a0d0 80%, #f8b4d9 90%, #ffb3d9 100%)";
+      return "linear-gradient(180deg, #3b0072 0%, #4a1a7a 25%, #5a3c83 45%, #7a6ba8 60%, #9880a8 80%, #d8a8c8 90%, #f0a0c8 95%)";
     }
   };
 
