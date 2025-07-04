@@ -185,12 +185,7 @@ export default function WindowContent({ page }: WindowContentProps) {
     }));
   };
 
-  /**
-   * Get Project Icon
-   */
-  const getProjectIcon = (): string => {
-    return "folder";
-  };
+
 
   // Render work page
   if (page === "work") {
@@ -210,7 +205,7 @@ export default function WindowContent({ page }: WindowContentProps) {
               "",
               "    [ROBOT] Scanning project files...",
               "    [ROBOT] Found 6 portfolio entries",
-              "    [ROBOT] Loading pixel art assets...",
+              "    [ROBOT] Loading PNG folder assets...",
               "    [ROBOT] Ready to display projects! 🤖",
               "",
               "$ echo 'Projects loaded successfully'",
