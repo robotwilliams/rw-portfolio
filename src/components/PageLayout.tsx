@@ -17,7 +17,7 @@ import React from "react";
 
 interface PageLayoutProps {
   page: "about" | "work" | "contact";
-  title: string;
+  title: React.ReactNode;
   description: string;
   icon: string;
   children: React.ReactNode;
@@ -99,11 +99,7 @@ export default function PageLayout({
         {/* Page Header */}
         <div className="mb-12">
           <div className="flex items-start gap-4 mb-4">
-            <img
-              src={icon}
-              alt={`${page} icon`}
-              className="w-10 h-10 object-contain"
-            />
+
             <h1 className="text-2xl font-bold text-[#000080]">{title}</h1>
           </div>
           <p className="text-[#000000] text-sm leading-relaxed max-w-3xl">
@@ -140,7 +136,7 @@ export function ContentSection({
 }: ContentSectionProps) {
   return (
     <div className={`${className}`}>
-      <div className="flex items-start gap-3 mb-6">
+      <div className="flex items-start gap-2 mb-6">
         {icon && (
           <span className="text-xl">{icon}</span>
         )}

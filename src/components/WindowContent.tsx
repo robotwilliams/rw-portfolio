@@ -500,7 +500,7 @@ export default function WindowContent({ page }: WindowContentProps) {
 
         {/* Categories Summary */}
         <ContentSection title="Project Categories" icon="📊">
-          <div className="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-4 gap-4">
+          <div className="grid gap-4 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, 220px)' }}>
             {categories.map((category) => {
               const categoryProjects = projects.filter(
                 (project) => project.category === category

@@ -661,6 +661,13 @@ export default function RetroDesktop() {
                   width={46}
                   height={46}
                 />
+              ) : item.name === "Work" ? (
+                <Image
+                  src="/images/rw-site-icon-work.png"
+                  alt={item.name}
+                  width={46}
+                  height={46}
+                />
               ) : item.name === "Contact" ? (
                 <Image
                   src="/images/rw-site-icon-folder-closed-contact.png"
@@ -668,18 +675,7 @@ export default function RetroDesktop() {
                   width={46}
                   height={46}
                 />
-              ) : (
-                <Image
-                  src={
-                    hoveredDesktopIcon === item.href
-                      ? "/images/rw-site-icon-folder-open.png"
-                      : "/images/rw-site-icon-folder-close.png"
-                  }
-                  alt={item.name}
-                  width={46}
-                  height={46}
-                />
-              )}
+              ) : null}
             </div>
             <div
               className="text-xs"
