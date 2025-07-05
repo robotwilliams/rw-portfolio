@@ -481,7 +481,7 @@ export default function WindowContent({ page }: WindowContentProps) {
                 <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '100%' }}>
                   <h3 className="text-xs font-medium text-center leading-tight truncate" style={{
                     fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
-                    fontSize: '10px',
+                    fontSize: '11px',
                     color: 'var(--text-primary)',
                     textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)',
                     wordWrap: 'break-word',
@@ -494,7 +494,7 @@ export default function WindowContent({ page }: WindowContentProps) {
                     <span className="text-xs" style={{
                       color: '#ff0000',
                       fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
-                      fontSize: '9px',
+                      fontSize: '10px',
                       textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)'
                     }}>★ Featured</span>
                   )}
