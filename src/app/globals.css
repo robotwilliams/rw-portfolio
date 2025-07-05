@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* DS-Digital Font for Clock Display Only */
 @font-face {
@@ -10,37 +12,56 @@
 
 /**
  * CSS Custom Properties (CSS Variables)
- * 
+ *
  * Defines the RobotOS color palette and design tokens.
  * These variables are used throughout the stylesheet to maintain
  * consistency and make it easy to modify the theme.
  */
 :root {
   /* RobotOS Color Palette */
-  --background: #236b5b; /* Desktop background color */
-  --foreground: #000000; /* Primary text color */
-  --desktop-bg: #236b5b; /* Desktop background (same as background) */
-  --taskbar-bg: #d4d0c8; /* Taskbar background color */
-  --window-bg: #d4d0c8; /* Window background color */
-  --window-border: #000000; /* Window border color */
-  --button-bg: #d4d0c8; /* Button background color */
-  --button-border: #000000; /* Button border color */
-  --text-primary: #000000; /* Primary text color */
-  --text-secondary: #000000; /* Secondary text color */
-  --accent: #808080; /* Dark gray accent color */
-  --accent-hover: #606060; /* Dark gray accent color on hover */
-  --magenta: #ff00ff; /* Magenta color for highlights */
-  --teal: #008080; /* Teal color for accents */
-  --dark-gray: #808080; /* Dark gray for borders and shadows */
-  --medium-gray: #d4d0c8; /* Medium gray for backgrounds */
-  --light-gray: #ffffff; /* Light gray/white for highlights */
-  --border-gray: #000000; /* Border color */
-  --highlight: #ffffff; /* Highlight color for 3D effects */
+  --background: #236b5b;
+  /* Desktop background color */
+  --foreground: #000000;
+  /* Primary text color */
+  --desktop-bg: #236b5b;
+  /* Desktop background (same as background) */
+  --taskbar-bg: #d4d0c8;
+  /* Taskbar background color */
+  --window-bg: #d4d0c8;
+  /* Window background color */
+  --window-border: #000000;
+  /* Window border color */
+  --button-bg: #d4d0c8;
+  /* Button background color */
+  --button-border: #000000;
+  /* Button border color */
+  --text-primary: #000000;
+  /* Primary text color */
+  --text-secondary: #000000;
+  /* Secondary text color */
+  --accent: #808080;
+  /* Dark gray accent color */
+  --accent-hover: #606060;
+  /* Dark gray accent color on hover */
+  --magenta: #ff00ff;
+  /* Magenta color for highlights */
+  --teal: #008080;
+  /* Teal color for accents */
+  --dark-gray: #808080;
+  /* Dark gray for borders and shadows */
+  --medium-gray: #d4d0c8;
+  /* Medium gray for backgrounds */
+  --light-gray: #ffffff;
+  /* Light gray/white for highlights */
+  --border-gray: #000000;
+  /* Border color */
+  --highlight: #ffffff;
+  /* Highlight color for 3D effects */
 }
 
 /**
  * Tailwind Theme Configuration
- * 
+ *
  * Maps CSS custom properties to Tailwind's theme system
  * for consistent color usage throughout the application.
  */
@@ -54,7 +75,7 @@
 
 /**
  * Base Body Styles
- * 
+ *
  * Sets up the fundamental styling for the entire application.
  * Uses Windows 95/98 fonts and styling conventions.
  */
@@ -78,7 +99,7 @@ body {
 
 /**
  * Enhanced RobotOS Pixelation Filter
- * 
+ *
  * Adds strong pixelation effects throughout the interface
  * to enhance the authentic old operating system appearance.
  */
@@ -129,13 +150,11 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 1px,
-    rgba(0, 0, 0, 0.15) 1px,
-    rgba(0, 0, 0, 0.15) 2px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.15) 1px,
+      rgba(0, 0, 0, 0.15) 2px);
   pointer-events: none;
   z-index: 9999;
   opacity: 0.9;
@@ -186,6 +205,7 @@ svg {
     opacity: 0;
     transform: scale(0.95) translateY(-10px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -196,6 +216,7 @@ svg {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -219,8 +240,10 @@ svg {
 }
 
 .retro-loading-text {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 .retro-loading-text::after {
@@ -230,10 +253,12 @@ svg {
 }
 
 @keyframes blink {
+
   0%,
   50% {
     opacity: 1;
   }
+
   51%,
   100% {
     opacity: 0;
@@ -262,10 +287,12 @@ svg {
 }
 
 @keyframes cursorBlink {
+
   0%,
   50% {
     opacity: 0;
   }
+
   51%,
   100% {
     opacity: 1;
@@ -287,7 +314,8 @@ svg {
   margin: 1px 0 !important;
   white-space: pre !important;
   font-weight: bold !important;
-  color: #4a8a8a !important; /* Mid teal for ASCII art */
+  color: #4a8a8a !important;
+  /* Mid teal for ASCII art */
   font-family: "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas",
     monospace !important;
   /* Ensure ASCII art doesn't overflow */
@@ -298,15 +326,19 @@ svg {
 .terminal-message:nth-child(1) {
   animation-delay: 0.2s;
 }
+
 .terminal-message:nth-child(2) {
   animation-delay: 0.8s;
 }
+
 .terminal-message:nth-child(3) {
   animation-delay: 1.4s;
 }
+
 .terminal-message:nth-child(4) {
   animation-delay: 2s;
 }
+
 .terminal-message:nth-child(5) {
   animation-delay: 2.6s;
 }
@@ -325,151 +357,175 @@ svg {
 
 /* Terminal syntax highlighting - Slightly paler and more washed out */
 .terminal-command {
-  color: #6b7bb8; /* Paler blue for commands */
+  color: #6b7bb8;
+  /* Paler blue for commands */
   font-weight: bold;
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-prompt {
-  color: #8ba5fa; /* Paler blue for prompts */
+  color: #8ba5fa;
+  /* Paler blue for prompts */
   font-weight: bold;
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-success {
-  color: #5bb881; /* Slightly paler green for success */
+  color: #5bb881;
+  /* Slightly paler green for success */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-error {
-  color: #c44444; /* Paler red for errors */
+  color: #c44444;
+  /* Paler red for errors */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-warning {
-  color: #c59e0b; /* Paler orange for warnings */
+  color: #c59e0b;
+  /* Paler orange for warnings */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-info {
-  color: #66b6d4; /* Paler cyan for info */
+  color: #66b6d4;
+  /* Paler cyan for info */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-path {
-  color: #6b82f6; /* Paler blue for paths */
+  color: #6b82f6;
+  /* Paler blue for paths */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-number {
-  color: #a5bcf6; /* Paler purple for numbers */
+  color: #a5bcf6;
+  /* Paler purple for numbers */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-string {
-  color: #c5a23c; /* Paler orange for strings */
+  color: #c5a23c;
+  /* Paler orange for strings */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-comment {
-  color: #9ca3af; /* Lighter gray for comments */
+  color: #9ca3af;
+  /* Lighter gray for comments */
   font-style: italic;
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-bracket {
-  color: #6b7280; /* Lighter dark gray for brackets */
+  color: #6b7280;
+  /* Lighter dark gray for brackets */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-operator {
-  color: #a45309; /* Paler brown for operators */
+  color: #a45309;
+  /* Paler brown for operators */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 /* New enhanced syntax highlighting classes */
 .terminal-flag {
-  color: #c5a23c; /* Paler orange for flags like -c, -v */
+  color: #c5a23c;
+  /* Paler orange for flags like -c, -v */
   font-weight: bold;
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-ip {
-  color: #6b82f6; /* Paler blue for IP addresses */
+  color: #6b82f6;
+  /* Paler blue for IP addresses */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-port {
-  color: #c59e0b; /* Paler orange for port numbers */
+  color: #c59e0b;
+  /* Paler orange for port numbers */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-user {
-  color: #5bb881; /* Slightly paler green for usernames */
+  color: #5bb881;
+  /* Slightly paler green for usernames */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-host {
-  color: #a5bcf6; /* Paler purple for hostnames */
+  color: #a5bcf6;
+  /* Paler purple for hostnames */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-process {
-  color: #d4a0b0; /* Lighter magenta for process names - was #c48999 */
+  color: #d4a0b0;
+  /* Lighter magenta for process names - was #c48999 */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-service {
-  color: #6b82f6; /* Paler blue for service names */
+  color: #6b82f6;
+  /* Paler blue for service names */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-permission {
-  color: #c5b308; /* Paler yellow for permissions */
+  color: #c5b308;
+  /* Paler yellow for permissions */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-status {
-  color: #5bb881; /* Slightly paler green for status indicators */
+  color: #5bb881;
+  /* Slightly paler green for status indicators */
   font-weight: bold;
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-memory {
-  color: #20b2aa; /* Higher chroma teal for memory values - was #a5bcf6 */
+  color: #20b2aa;
+  /* Higher chroma teal for memory values - was #a5bcf6 */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-version {
-  color: #c59e0b; /* Paler orange for version numbers */
+  color: #c59e0b;
+  /* Paler orange for version numbers */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
 .terminal-architecture {
-  color: #66b6d4; /* Paler cyan for architecture info */
+  color: #66b6d4;
+  /* Paler cyan for architecture info */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
@@ -486,16 +542,20 @@ svg {
 }
 
 @keyframes loadingDotsContent {
+
   0%,
   20% {
     content: "";
   }
+
   40% {
     content: ".";
   }
+
   60% {
     content: "..";
   }
+
   80%,
   100% {
     content: "...";
@@ -510,10 +570,12 @@ svg {
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.3;
   }
@@ -543,6 +605,7 @@ svg {
   0% {
     left: -20px;
   }
+
   100% {
     left: 100%;
   }
@@ -554,11 +617,13 @@ svg {
 }
 
 @keyframes robotBlink {
+
   0%,
   90%,
   100% {
     opacity: 1;
   }
+
   95% {
     opacity: 0.3;
   }
@@ -568,7 +633,7 @@ svg {
 
 /**
  * Page Load Fade In Animation
- * 
+ *
  * Creates a smooth fade-in effect when the main content
  * appears after the retro loading animation.
  */
@@ -581,6 +646,7 @@ svg {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -589,7 +655,7 @@ svg {
 
 /**
  * Page Load Container
- * 
+ *
  * Ensures the loading screen is properly centered
  * and takes up the full viewport with animated sky and clouds.
  */
@@ -603,16 +669,14 @@ svg {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background: linear-gradient(
-    to bottom,
-    #4fa8d8 0%,
-    #6bb8e6 25%,
-    #96c8f0 50%,
-    #b0d0e8 60%,
-    #c0b8d8 80%,
-    #d8a8c8 90%,
-    #f0a0c8 95%
-  );
+  background: linear-gradient(to bottom,
+      #4fa8d8 0%,
+      #6bb8e6 25%,
+      #96c8f0 50%,
+      #b0d0e8 60%,
+      #c0b8d8 80%,
+      #d8a8c8 90%,
+      #f0a0c8 95%);
   overflow: hidden;
   /* Enhanced pixelation filter to match desktop */
   filter: contrast(1.8) saturate(0.8) brightness(0.92) hue-rotate(2deg);
@@ -620,7 +684,7 @@ svg {
 
 /**
  * Cloud Scene Container
- * 
+ *
  * Contains the animated clouds with parallax effect.
  */
 .cloud-scene {
@@ -640,13 +704,11 @@ svg {
   left: 0;
   width: 100%;
   height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 1px,
-    rgba(0, 0, 0, 0.15) 1px,
-    rgba(0, 0, 0, 0.15) 2px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 1px,
+      rgba(0, 0, 0, 0.15) 1px,
+      rgba(0, 0, 0, 0.15) 2px);
   pointer-events: none;
   z-index: 9998;
   opacity: 0.9;
@@ -670,7 +732,7 @@ svg {
 
 /**
  * Cloud Layer Styles
- * 
+ *
  * Defines the positioning for cloud layers with different depths.
  */
 .cloud-layer {
@@ -679,7 +741,7 @@ svg {
 
 /**
  * Cloud Styles
- * 
+ *
  * Creates pixel art clouds using CSS box-shadows.
  * Each cloud has a unique animation pattern.
  */
@@ -754,12 +816,15 @@ svg {
   0% {
     transform: translateX(0);
   }
+
   25% {
     transform: translateX(25px);
   }
+
   50% {
     transform: translateX(0px);
   }
+
   75% {
     transform: translateX(25px);
   }
@@ -776,12 +841,15 @@ svg {
   0% {
     transform: translateX(0) scale(1.5);
   }
+
   25% {
     transform: translateX(15px) scale(1.5);
   }
+
   50% {
     transform: translateX(0px) scale(1.5);
   }
+
   75% {
     transform: translateX(15px) scale(1.5);
   }
@@ -799,12 +867,15 @@ svg {
   0% {
     transform: translateX(0) scale(1.2);
   }
+
   25% {
     transform: translateX(-15px) scale(1.2);
   }
+
   50% {
     transform: translateX(0px) scale(1.2);
   }
+
   75% {
     transform: translateX(-15px) scale(1.2);
   }
@@ -821,12 +892,15 @@ svg {
   0% {
     transform: translateX(0) scale(2);
   }
+
   25% {
     transform: translateX(20px) scale(2);
   }
+
   50% {
     transform: translateX(0px) scale(2);
   }
+
   75% {
     transform: translateX(20px) scale(2);
   }
@@ -834,7 +908,7 @@ svg {
 
 /**
  * RobotOS Desktop Background
- * 
+ *
  * Creates the characteristic RobotOS desktop background with
  * animated sky and clouds, similar to the loading screen.
  * This gives the authentic retro desktop appearance with a
@@ -848,7 +922,7 @@ svg {
 
 /**
  * Desktop Cloud Scene
- * 
+ *
  * Adds animated clouds to the desktop background for a more
  * dynamic and engaging retro experience.
  */
@@ -960,6 +1034,7 @@ svg {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(calc(100vw + 400px));
   }
@@ -969,6 +1044,7 @@ svg {
   0% {
     transform: translateX(0) scale(1.5);
   }
+
   100% {
     transform: translateX(calc(100vw + 500px)) scale(1.5);
   }
@@ -978,6 +1054,7 @@ svg {
   0% {
     transform: translateX(0) scale(1.2);
   }
+
   100% {
     transform: translateX(calc(100vw + 600px)) scale(1.2);
   }
@@ -987,6 +1064,7 @@ svg {
   0% {
     transform: translateX(0) scale(2);
   }
+
   100% {
     transform: translateX(calc(100vw + 700px)) scale(2);
   }
@@ -994,7 +1072,7 @@ svg {
 
 /**
  * RobotOS Taskbar
- * 
+ *
  * Styles the bottom taskbar that contains the start button,
  * running applications, and system clock. Uses authentic
  * RobotOS styling with 3D border effects.
@@ -1018,7 +1096,7 @@ svg {
 
 /**
  * RobotOS Window Styles
- * 
+ *
  * Defines the appearance of all windows in the desktop interface.
  * Includes the characteristic gray background, black borders,
  * and inset shadow effects that give windows their 3D appearance.
@@ -1045,7 +1123,7 @@ svg {
 
 /**
  * Window Titlebar
- * 
+ *
  * Styles the dark gray titlebar at the top of each window.
  * Contains the window title and control buttons (close, minimize).
  * Uses the characteristic dark gray color and white text.
@@ -1069,7 +1147,7 @@ svg {
 
 /**
  * Window Content Area
- * 
+ *
  * Styles the main content area of windows where the actual
  * content is displayed. Uses the characteristic gray background
  * and includes proper padding and scrolling.
@@ -1077,7 +1155,8 @@ svg {
 .window-content {
   padding: 6px;
   background: #d4d0c8;
-  color: #8a8a8a; /* Lighter gray for default text */
+  color: #8a8a8a;
+  /* Lighter gray for default text */
   font-size: 11px;
   border-radius: 0 0 16px 16px;
   line-height: 1.3;
@@ -1093,7 +1172,7 @@ svg {
 
 /**
  * RobotOS Button Styles
- * 
+ *
  * Defines the appearance of buttons throughout the interface.
  * Includes the characteristic 3D effect with outset borders
  * and hover/active states that simulate button presses.
@@ -1125,7 +1204,7 @@ svg {
 
 /**
  * RobotOS Taskbar Icons
- * 
+ *
  * Styles the application icons in the taskbar.
  * Includes hover effects and active states for running applications.
  */
@@ -1168,7 +1247,7 @@ svg {
 
 /**
  * Taskbar Color Override
- * 
+ *
  * Ensures all taskbar elements use the correct colors
  * and prevents any green colors from appearing.
  */
@@ -1201,7 +1280,7 @@ svg {
 
 /**
  * RobotOS Desktop Icons
- * 
+ *
  * Styles the desktop icons that appear in the top-left corner.
  * Includes hover effects, selection states, and proper spacing.
  */
@@ -1249,7 +1328,7 @@ svg {
 
 /**
  * RobotOS Project Icons
- * 
+ *
  * Styles for project icons in the work page and project windows.
  * Provides consistent hover and active states with desktop icons.
  */
@@ -1298,7 +1377,7 @@ svg {
 
 /**
  * RobotOS Window Icons
- * 
+ *
  * Styles for icons within windows (like project icons in work page).
  * Provides consistent hover and active states with desktop icons.
  */
@@ -1347,7 +1426,7 @@ svg {
 
 /**
  * Custom Scrollbar Styles
- * 
+ *
  * Styles the scrollbars to match the RobotOS aesthetic.
  * Uses the characteristic gray colors and 3D effects.
  */
@@ -1371,7 +1450,7 @@ svg {
 
 /**
  * Form Input Styles
- * 
+ *
  * Styles form inputs to match the RobotOS aesthetic.
  * Includes the characteristic inset borders and gray backgrounds.
  */
@@ -1391,7 +1470,7 @@ svg {
 
 /**
  * Textarea Styles
- * 
+ *
  * Styles textareas to match the RobotOS aesthetic.
  * Similar to input styles but with proper multi-line support.
  */
@@ -1413,7 +1492,7 @@ svg {
 
 /**
  * Link Styles
- * 
+ *
  * Styles links to match the RobotOS aesthetic.
  * Uses the characteristic blue color and includes hover effects.
  */
@@ -1429,7 +1508,7 @@ svg {
 
 /**
  * Prose Content Styles
- * 
+ *
  * Styles for markdown content rendered in windows.
  * Provides proper typography and spacing for readable content.
  */
@@ -1589,7 +1668,7 @@ svg {
   margin: 12px 0;
 }
 
-.prose figure > * {
+.prose figure>* {
   margin: 0;
 }
 
@@ -1601,19 +1680,19 @@ svg {
   font-size: 12px;
 }
 
-.prose ul > li > *:first-child {
+.prose ul>li>*:first-child {
   margin-top: 0;
 }
 
-.prose ul > li > *:last-child {
+.prose ul>li>*:last-child {
   margin-bottom: 0;
 }
 
-.prose ol > li > *:first-child {
+.prose ol>li>*:first-child {
   margin-top: 0;
 }
 
-.prose ol > li > *:last-child {
+.prose ol>li>*:last-child {
   margin-bottom: 0;
 }
 
@@ -1625,23 +1704,23 @@ svg {
   margin-bottom: 4px;
 }
 
-.prose hr + * {
+.prose hr+* {
   margin-top: 0;
 }
 
-.prose h2 + * {
+.prose h2+* {
   margin-top: 0;
 }
 
-.prose h3 + * {
+.prose h3+* {
   margin-top: 0;
 }
 
-.prose h4 + * {
+.prose h4+* {
   margin-top: 0;
 }
 
-.prose h6 + * {
+.prose h6+* {
   margin-top: 0;
 }
 
@@ -1661,17 +1740,17 @@ svg {
   border-bottom-right-radius: 0;
 }
 
-.prose > :first-child {
+.prose> :first-child {
   margin-top: 0;
 }
 
-.prose > :last-child {
+.prose> :last-child {
   margin-bottom: 0;
 }
 
 /**
  * Start Button Styles
- * 
+ *
  * Styles the start button in the taskbar.
  * Includes the characteristic 3D effect and hover states.
  */
@@ -1707,7 +1786,7 @@ svg {
 
 /**
  * Start Menu Styles
- * 
+ *
  * Styles the dropdown start menu that appears when the start button is clicked.
  * Includes the characteristic gray background and 3D borders.
  */
@@ -1760,7 +1839,7 @@ svg {
 
 /**
  * Contact Form Styles
- * 
+ *
  * Styles for the contact form to match the Windows 95/98 aesthetic.
  * Includes proper spacing and form element styling.
  */
@@ -1799,7 +1878,7 @@ svg {
 
 /**
  * Screen Reader Text
- * 
+ *
  * Utility class for hiding text visually while keeping it
  * accessible to screen readers. Used for accessibility.
  */
@@ -1817,7 +1896,7 @@ svg {
 
 /**
  * Window Resize Handle Styles
- * 
+ *
  * Styles the resize handle in the bottom-right corner of windows.
  * Includes hover and active states for better user feedback.
  */
@@ -1830,7 +1909,7 @@ svg {
   transition: all 0.1s ease;
   z-index: 20;
   /* Classic Windows diagonal grip pattern */
-  background-image: 
+  background-image:
     linear-gradient(45deg, transparent 40%, #808080 40%, #808080 60%, transparent 60%),
     linear-gradient(-45deg, transparent 40%, #808080 40%, #808080 60%, transparent 60%);
   background-size: 6px 6px, 6px 6px;
@@ -1852,7 +1931,7 @@ svg {
 
 /**
  * Pixel Icon Container Styles
- * 
+ *
  * Base styles for the pixel icon containers with simple hover effects.
  * Provides proper positioning, interaction states, and retro styling.
  */
@@ -1871,7 +1950,7 @@ svg {
 
 /**
  * Isometric Icon Styles
- * 
+ *
  * Base styles for all isometric icons.
  * Provides the 3D perspective and positioning context.
  */
@@ -1885,7 +1964,7 @@ svg {
 
 /**
  * Isometric Cube Styles
- * 
+ *
  * Styles for the 3D cubes used to build isometric icons.
  * Each cube has three faces (top, front, right) that create
  * the 3D appearance.
@@ -1918,7 +1997,7 @@ svg {
 
 /**
  * Person Icon Specific Styles
- * 
+ *
  * Custom styles for the person icon's head and body parts.
  */
 .isometric-person .head {
@@ -1931,7 +2010,7 @@ svg {
 
 /**
  * Briefcase Icon Specific Styles
- * 
+ *
  * Custom styles for the briefcase icon's case and handle parts.
  */
 .isometric-briefcase .case {
@@ -1944,7 +2023,7 @@ svg {
 
 /**
  * Envelope Icon Specific Styles
- * 
+ *
  * Custom styles for the envelope icon's envelope body.
  */
 .isometric-envelope .envelope {
@@ -1953,7 +2032,7 @@ svg {
 
 /**
  * Isometric Triangle Styles
- * 
+ *
  * Styles for triangular shapes used in isometric icons.
  * Used for the envelope flap and other triangular elements.
  */
@@ -1975,7 +2054,7 @@ svg {
 
 /**
  * Selected Icon Styles
- * 
+ *
  * Styles for when desktop icons are selected.
  * Changes the colors to match the Windows 95/98 selection state.
  */
@@ -2000,7 +2079,7 @@ svg {
 
 /**
  * Hourglass Icon Styles
- * 
+ *
  * Creates an animated hourglass icon using pure CSS.
  * Matches the Windows 95/98 aesthetic with proper 3D effects.
  */
@@ -2023,14 +2102,21 @@ svg {
   left: -4px;
   top: -4px;
   position: absolute;
-  box-shadow: 
-    /* left */ 2px 2px #ffffff, 2px 4px #ffffff, 2px 6px #ffffff,
+  box-shadow:
+    /* left */
+    2px 2px #ffffff, 2px 4px #ffffff, 2px 6px #ffffff,
     4px 8px #ffffff, 6px 10px #ffffff, 4px 12px #ffffff, 2px 14px #ffffff,
-    2px 16px #ffffff, 2px 18px #ffffff, /* top */ 4px 2px #ffffff,
+    2px 16px #ffffff, 2px 18px #ffffff,
+    /* top */
+    4px 2px #ffffff,
     6px 2px #ffffff, 8px 2px #ffffff, 10px 2px #ffffff, 12px 2px #ffffff,
-    14px 2px #ffffff, /* right */ 14px 4px #ffffff, 14px 6px #ffffff,
+    14px 2px #ffffff,
+    /* right */
+    14px 4px #ffffff, 14px 6px #ffffff,
     12px 8px #ffffff, 10px 10px #ffffff, 12px 12px #ffffff, 14px 14px #ffffff,
-    14px 16px #ffffff, /* bottom */ 14px 18px #ffffff, 12px 18px #ffffff,
+    14px 16px #ffffff,
+    /* bottom */
+    14px 18px #ffffff, 12px 18px #ffffff,
     10px 18px #ffffff, 8px 18px #ffffff, 6px 18px #ffffff, 4px 18px #ffffff;
 }
 
@@ -2047,9 +2133,14 @@ svg {
 
 .clock-icon .hourglass::after {
   box-shadow:
-    /* 3 */ 4px 6px #03c8f4, 6px 6px #03c8f4, 8px 6px #03c8f4,
-    10px 6px #03c8f4, 12px 6px #03c8f4, /* 2 */ 6px 8px #03c8f4, 8px 8px #03c8f4,
-    10px 8px #03c8f4, /* 1 */ 8px 10px #03c8f4;
+    /* 3 */
+    4px 6px #03c8f4, 6px 6px #03c8f4, 8px 6px #03c8f4,
+    10px 6px #03c8f4, 12px 6px #03c8f4,
+    /* 2 */
+    6px 8px #03c8f4, 8px 8px #03c8f4,
+    10px 8px #03c8f4,
+    /* 1 */
+    8px 10px #03c8f4;
   animation: sand 3s infinite;
 }
 
@@ -2061,57 +2152,92 @@ svg {
 @keyframes sand {
   0% {
     box-shadow:
-      /* 3 */ 4px 6px #03c8f4, 6px 6px #03c8f4, 8px 6px #03c8f4,
-      10px 6px #03c8f4, 12px 6px #03c8f4, /* 2 */ 6px 8px #03c8f4,
-      8px 8px #03c8f4, 10px 8px #03c8f4, /* 1 */ 8px 10px #03c8f4;
+      /* 3 */
+      4px 6px #03c8f4, 6px 6px #03c8f4, 8px 6px #03c8f4,
+      10px 6px #03c8f4, 12px 6px #03c8f4,
+      /* 2 */
+      6px 8px #03c8f4,
+      8px 8px #03c8f4, 10px 8px #03c8f4,
+      /* 1 */
+      8px 10px #03c8f4;
   }
+
   24% {
     box-shadow:
-      /* 3 */ 4px 6px #03c8f4, 6px 6px #03c8f4, 8px 6px #03c8f4,
-      10px 6px #03c8f4, 12px 6px #03c8f4, /* 2 */ 6px 8px #03c8f4,
-      8px 8px #03c8f4, 10px 8px #03c8f4, /* 1 */ 8px 10px #03c8f4;
+      /* 3 */
+      4px 6px #03c8f4, 6px 6px #03c8f4, 8px 6px #03c8f4,
+      10px 6px #03c8f4, 12px 6px #03c8f4,
+      /* 2 */
+      6px 8px #03c8f4,
+      8px 8px #03c8f4, 10px 8px #03c8f4,
+      /* 1 */
+      8px 10px #03c8f4;
   }
+
   25% {
     box-shadow:
-      /* 3 */ 4px 6px transparent, 6px 6px transparent,
+      /* 3 */
+      4px 6px transparent, 6px 6px transparent,
       8px 6px transparent, 10px 6px transparent, 12px 6px transparent,
-      /* 2 */ 6px 8px #03c8f4, 8px 8px #03c8f4, 10px 8px #03c8f4,
-      /* 1 */ 8px 10px #03c8f4;
+      /* 2 */
+      6px 8px #03c8f4, 8px 8px #03c8f4, 10px 8px #03c8f4,
+      /* 1 */
+      8px 10px #03c8f4;
   }
+
   49% {
     box-shadow:
-      /* 3 */ 4px 6px transparent, 6px 6px transparent,
+      /* 3 */
+      4px 6px transparent, 6px 6px transparent,
       8px 6px transparent, 10px 6px transparent, 12px 6px transparent,
-      /* 2 */ 6px 8px #03c8f4, 8px 8px #03c8f4, 10px 8px #03c8f4,
-      /* 1 */ 8px 10px #03c8f4;
+      /* 2 */
+      6px 8px #03c8f4, 8px 8px #03c8f4, 10px 8px #03c8f4,
+      /* 1 */
+      8px 10px #03c8f4;
   }
+
   50% {
     box-shadow:
-      /* 3 */ 4px 6px transparent, 6px 6px transparent,
+      /* 3 */
+      4px 6px transparent, 6px 6px transparent,
       8px 6px transparent, 10px 6px transparent, 12px 6px transparent,
-      /* 2 */ 6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
-      /* 1 */ 8px 10px #03c8f4;
+      /* 2 */
+      6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
+      /* 1 */
+      8px 10px #03c8f4;
   }
+
   74% {
     box-shadow:
-      /* 3 */ 4px 6px transparent, 6px 6px transparent,
+      /* 3 */
+      4px 6px transparent, 6px 6px transparent,
       8px 6px transparent, 10px 6px transparent, 12px 6px transparent,
-      /* 2 */ 6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
-      /* 1 */ 8px 10px #03c8f4;
+      /* 2 */
+      6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
+      /* 1 */
+      8px 10px #03c8f4;
   }
+
   75% {
     box-shadow:
-      /* 3 */ 4px 6px transparent, 6px 6px transparent,
+      /* 3 */
+      4px 6px transparent, 6px 6px transparent,
       8px 6px transparent, 10px 6px transparent, 12px 6px transparent,
-      /* 2 */ 6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
-      /* 1 */ 8px 10px transparent;
+      /* 2 */
+      6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
+      /* 1 */
+      8px 10px transparent;
   }
+
   100% {
     box-shadow:
-      /* 3 */ 4px 6px transparent, 6px 6px transparent,
+      /* 3 */
+      4px 6px transparent, 6px 6px transparent,
       8px 6px transparent, 10px 6px transparent, 12px 6px transparent,
-      /* 2 */ 6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
-      /* 1 */ 8px 10px transparent;
+      /* 2 */
+      6px 8px transparent, 8px 8px transparent, 10px 8px transparent,
+      /* 1 */
+      8px 10px transparent;
   }
 }
 
@@ -2119,27 +2245,35 @@ svg {
   0% {
     box-shadow: 8px 10px #03c8f4;
   }
+
   24% {
     box-shadow: 8px 10px #03c8f4;
   }
+
   25% {
     box-shadow: 8px 12px #03c8f4;
   }
+
   49% {
     box-shadow: 8px 12px #03c8f4;
   }
+
   50% {
     box-shadow: 8px 14px #03c8f4;
   }
+
   74% {
     box-shadow: 8px 14px #03c8f4;
   }
+
   75% {
     box-shadow: 8px 16px #03c8f4;
   }
+
   99.9% {
     box-shadow: 8px 16px #03c8f4;
   }
+
   100% {
     box-shadow: 8px 10px #03c8f4;
   }
@@ -2147,7 +2281,7 @@ svg {
 
 /**
  * Enhanced Pixel Art Effects
- * 
+ *
  * Additional styling to enhance the pixel art aesthetic
  * across the entire application.
  */
@@ -2247,7 +2381,7 @@ select {
 
 /**
  * Window Loader Styles
- * 
+ *
  * Spinning dot loader for window opening animation.
  * Uses pixel-perfect animation with RobotOS styling.
  */
@@ -2288,6 +2422,7 @@ select {
       -12px 12px transparent, -18px 6px transparent, -18px 0px transparent,
       -18px -6px transparent, -12px -12px transparent, -6px -18px transparent;
   }
+
   6.25% {
     box-shadow: 0px -18px transparent, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px #a0a0a0, 18px 6px #a0a0a0, 12px 12px #a0a0a0,
@@ -2295,6 +2430,7 @@ select {
       -12px 12px transparent, -18px 6px transparent, -18px 0px transparent,
       -18px -6px transparent, -12px -12px transparent, -6px -18px transparent;
   }
+
   12.5% {
     box-shadow: 0px -18px transparent, 6px -18px transparent, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px #a0a0a0, 18px 6px #a0a0a0, 12px 12px #a0a0a0,
@@ -2302,6 +2438,7 @@ select {
       -12px 12px transparent, -18px 6px transparent, -18px 0px transparent,
       -18px -6px transparent, -12px -12px transparent, -6px -18px transparent;
   }
+
   18.75% {
     box-shadow: 0px -18px transparent, 6px -18px transparent,
       12px -12px transparent, 18px -6px #a0a0a0, 18px 0px #a0a0a0,
@@ -2310,6 +2447,7 @@ select {
       -18px 0px transparent, -18px -6px transparent, -12px -12px transparent,
       -6px -18px transparent;
   }
+
   25% {
     box-shadow: 0px -18px transparent, 6px -18px transparent,
       12px -12px transparent, 18px -6px transparent, 18px 0px #a0a0a0,
@@ -2318,6 +2456,7 @@ select {
       -18px 0px transparent, -18px -6px transparent, -12px -12px transparent,
       -6px -18px transparent;
   }
+
   31.25% {
     box-shadow: 0px -18px transparent, 6px -18px transparent,
       12px -12px transparent, 18px -6px transparent, 18px 0px transparent,
@@ -2326,6 +2465,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px transparent, -12px -12px transparent,
       -6px -18px transparent;
   }
+
   37.5% {
     box-shadow: 0px -18px transparent, 6px -18px transparent,
       12px -12px transparent, 18px -6px transparent, 18px 0px transparent,
@@ -2334,6 +2474,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px transparent,
       -6px -18px transparent;
   }
+
   43.75% {
     box-shadow: 0px -18px transparent, 6px -18px transparent,
       12px -12px transparent, 18px -6px transparent, 18px 0px transparent,
@@ -2342,6 +2483,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px transparent;
   }
+
   50% {
     box-shadow: 0px -18px transparent, 6px -18px transparent,
       12px -12px transparent, 18px -6px transparent, 18px 0px transparent,
@@ -2350,6 +2492,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   56.25% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px transparent, 12px -12px transparent,
       18px -6px transparent, 18px 0px transparent, 18px 6px transparent,
@@ -2358,6 +2501,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   62.5% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px transparent,
       18px -6px transparent, 18px 0px transparent, 18px 6px transparent,
@@ -2366,6 +2510,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   68.75% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px transparent, 18px 0px transparent, 18px 6px transparent,
@@ -2374,6 +2519,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   75% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px transparent, 18px 6px transparent,
@@ -2382,6 +2528,7 @@ select {
       -18px 0px #a0a0a0, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   81.25% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px #a0a0a0, 18px 6px transparent,
@@ -2390,6 +2537,7 @@ select {
       -18px 0px transparent, -18px -6px #a0a0a0, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   87.5% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px #a0a0a0, 18px 6px #a0a0a0,
@@ -2398,6 +2546,7 @@ select {
       -18px 0px transparent, -18px -6px transparent, -12px -12px #a0a0a0,
       -6px -18px #a0a0a0;
   }
+
   93.75% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px #a0a0a0, 18px 6px #a0a0a0, 12px 12px #a0a0a0,
@@ -2405,6 +2554,7 @@ select {
       -12px 12px transparent, -18px 6px transparent, -18px 0px transparent,
       -18px -6px transparent, -12px -12px transparent, -6px -18px #a0a0a0;
   }
+
   100% {
     box-shadow: 0px -18px #a0a0a0, 6px -18px #a0a0a0, 12px -12px #a0a0a0,
       18px -6px #a0a0a0, 18px 0px #a0a0a0, 18px 6px #a0a0a0, 12px 12px #a0a0a0,
@@ -2429,7 +2579,7 @@ select {
 
 /**
  * Page Layout Styles
- * 
+ *
  * Styles for the reusable PageLayout component and its sub-components.
  * Ensures consistent typography, spacing, and RobotOS styling across all pages.
  */
@@ -2514,15 +2664,15 @@ select {
   gap: 2rem;
 }
 
-.page-content .space-y-1 > * + * {
+.page-content .space-y-1>*+* {
   margin-top: 0.25rem;
 }
 
-.page-content .space-y-6 > * + * {
+.page-content .space-y-6>*+* {
   margin-top: 1.5rem;
 }
 
-.page-content .space-y-12 > * + * {
+.page-content .space-y-12>*+* {
   margin-top: 3rem;
 }
 
@@ -2654,11 +2804,11 @@ select {
   .page-content .lg-grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  
+
   .page-content .lg-grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  
+
   .page-content .xl-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -2670,7 +2820,7 @@ select {
     min-width: 300px;
     padding: 4px;
   }
-  
+
   .retro-window {
     min-width: 350px;
     min-height: 300px;
