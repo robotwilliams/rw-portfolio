@@ -1,0 +1,110 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 1,
+  "final_space": true,
+  "console_title_template": "{{ .FolderName }}",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "path",
+          "style": "plain",
+          "background": "#3b8eea",
+          "foreground": "#ffffff",
+          "properties": {
+            "style": "folder",
+            "max_depth": 1,
+            "enable_hyperlink": true
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "background": "#23d18b",
+          "foreground": "#ffffff",
+          "properties": {
+            "display_stash_count": true,
+            "display_upstream_icon": true,
+            "fetch_stash_count": true,
+            "fetch_status": true,
+            "fetch_upstream": true,
+            "display_status": true
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        },
+        {
+          "type": "node",
+          "style": "plain",
+          "background": "#f14c4c",
+          "foreground": "#ffffff",
+          "properties": {
+            "fetch_version": true,
+            "display_mode": "files"
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "background": "#d670d6",
+          "foreground": "#ffffff",
+          "properties": {
+            "fetch_virtual_env": true,
+            "display_mode": "files"
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "background": "#f5e543",
+          "foreground": "#000000",
+          "properties": {
+            "time_format": "15:04:05",
+            "display_date": false
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "exit",
+          "style": "plain",
+          "background": "#f14c4c",
+          "foreground": "#ffffff",
+          "properties": {
+            "display_exit_code": true,
+            "error_color": "#f14c4c",
+            "success_color": "#23d18b"
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "background": "#29b8db",
+          "foreground": "#ffffff",
+          "properties": {
+            "display_host": true,
+            "display_user": true
+          },
+          "trailing_diamond": " ",
+          "leading_diamond": " "
+        }
+      ]
+    }
+  ]
+} 

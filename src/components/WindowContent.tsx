@@ -2,6 +2,13 @@
 import { useEffect, useState } from "react";
 import ProjectWindow from "./ProjectWindow";
 import RetroLoading from "./RetroLoading";
+import PageLayout, {
+  ContentSection,
+  InfoGrid,
+  InfoCard,
+  LinkGrid,
+  LinkButton,
+} from "./PageLayout";
 
 /**
  * WindowContent Component Props
@@ -185,7 +192,199 @@ export default function WindowContent({ page }: WindowContentProps) {
     }));
   };
 
+  // Render other pages using the new PageLayout
+  if (page === "about" || page === "contact") {
+    const pageConfig = {
+      about: {
+        title: "About Robot Williams 🤖",
+        description: "Learn more about Rob Williams, Frontend Maker and creative developer.",
+        icon: "/images/rw-logo.png",
+      },
+      contact: {
+        title: "Say Hello",
+        description: "Get in touch with Rob Williams for your next project.",
+        icon: "/images/rw-site-icon-folder-closed-contact.png",
+      },
+    };
 
+    const config = pageConfig[page];
+
+    return (
+      <PageLayout
+        page={page}
+        title={config.title}
+        description={config.description}
+        icon={config.icon}
+        loading={otherPageLoading}
+        error={otherPageError}
+        onRetry={loadOtherPage}
+      >
+        {page === "about" && (
+          <>
+            <ContentSection title="What I Do" icon="💼">
+              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
+                My focus is on frontend development and creative problem-solving. I combine technical expertise with a strong understanding of user experience, ensuring that every project delivers both performance and visual impact.
+              </p>
+            </ContentSection>
+
+            <ContentSection title="My Philosophy" icon="🎯">
+              <InfoGrid columns={2}>
+                <InfoCard title="Perspective">
+                  My experience enables me to deliver solutions that are intuitive and natural for end users. I am comfortable working independently or as part of a team of any size.
+                </InfoCard>
+                <InfoCard title="Future-Proofing">
+                  With the ever-changing landscape of digital media, I believe it is essential to design for flexibility and longevity, ensuring that solutions remain effective as technology evolves.
+                </InfoCard>
+                <InfoCard title="Process-Oriented">
+                  I approach each project as a unique challenge, blending UX, UI, IA, and technical requirements to deliver the best possible outcome.
+                </InfoCard>
+                <InfoCard title="Results-Focused">
+                  I am passionate about improving systems and processes. If you need help with refactoring or CMS maintenance, I am always ready to assist.
+                </InfoCard>
+              </InfoGrid>
+            </ContentSection>
+
+            <ContentSection title="Technical Skills" icon="🔧">
+              <InfoGrid columns={3}>
+                <InfoCard title="Frontend Development">
+                  React, Vue.js, HTML5, CSS3, JavaScript/TypeScript
+                </InfoCard>
+                <InfoCard title="Design Tools">
+                  Figma, Adobe Creative Suite, Sketch
+                </InfoCard>
+                <InfoCard title="CMS Platforms">
+                  WordPress, Contentful, Strapi
+                </InfoCard>
+                <InfoCard title="Performance">
+                  Web optimization, accessibility, responsive design
+                </InfoCard>
+                <InfoCard title="Tools">
+                  Git, Webpack, Node.js, modern build tools
+                </InfoCard>
+              </InfoGrid>
+            </ContentSection>
+
+            <ContentSection title="Recent Work" icon="📁">
+              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
+                I have had the pleasure of working with a variety of clients, including:
+              </p>
+              <InfoGrid columns={2}>
+                <InfoCard title="Edgewater Landscapes LLC">
+                  Landscape design and development
+                </InfoCard>
+                <InfoCard title="SMPS New York">
+                  Professional services marketing
+                </InfoCard>
+                <InfoCard title="SBN Philadelphia">
+                  Sustainable business network
+                </InfoCard>
+                <InfoCard title="Evron">
+                  Digital agency and creative studio
+                </InfoCard>
+                <InfoCard title="Springboard Collaborative">
+                  Educational nonprofit
+                </InfoCard>
+                <InfoCard title="U3 Studio">
+                  Creative design studio
+                </InfoCard>
+              </InfoGrid>
+            </ContentSection>
+
+            <ContentSection title="Let's Work Together" icon="🤝">
+              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
+                Whether you need a complete website redesign, a custom web application, or assistance improving your digital presence, I am here to help. I believe in delivering work that meets your immediate needs and supports your long-term goals.
+              </p>
+              <LinkButton href="/contact" external={false}>
+                Get in touch
+              </LinkButton>
+            </ContentSection>
+          </>
+        )}
+
+        {page === "contact" && (
+          <>
+            <ContentSection title="Get In Touch" icon="💌">
+              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
+                I&apos;m always interested in new opportunities and exciting projects. Whether you need a complete website redesign, a custom web application, or just want to chat about digital experiences, I&apos;d love to hear from you.
+              </p>
+            </ContentSection>
+
+            <ContentSection title="Contact Form" icon="📝">
+              <form className="contact-form w-full" id="contact-form" method="POST" name="contactForm">
+                <p className="screen-reader-text">
+                  <label>Don&apos;t fill this out if you&apos;re human: <input name="bot-field" /></label>
+                </p>
+
+                <div className="space-y-6">
+                  <div className="form-row">
+                    <label className="form-label" htmlFor="contact-user-name">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="contact-user-name"
+                      className="form-input retro-input w-full"
+                      placeholder="Enter your name"
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <label className="form-label" htmlFor="contact-user-email">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="contact-user-email"
+                      className="form-input retro-input w-full"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <label className="form-label" htmlFor="contact-message">Message</label>
+                    <textarea
+                      name="message"
+                      id="contact-message"
+                      className="form-textarea retro-textarea w-full"
+                      rows={6}
+                      placeholder="Enter your message"
+                    ></textarea>
+                  </div>
+
+                  <input type="hidden" name="form-name" value="contactForm" />
+
+                  <div className="form-row form-submit">
+                    <button type="submit" className="button retro-button px-8 py-3">Send Message</button>
+                  </div>
+                </div>
+              </form>
+            </ContentSection>
+
+            <ContentSection title="Other Ways to Connect" icon="🔗">
+              <LinkGrid>
+                <LinkButton href="mailto:hello@robotwilliams.com">
+                  Email: hello@robotwilliams.com
+                </LinkButton>
+                <LinkButton href="https://twitter.com/r0b0twilliams">
+                  Twitter: @r0b0twilliams
+                </LinkButton>
+                <LinkButton href="https://codepen.io/robotwilliams">
+                  CodePen: robotwilliams
+                </LinkButton>
+                <LinkButton href="https://github.com/robotwilliams">
+                  GitHub: robotwilliams
+                </LinkButton>
+                <LinkButton href="https://www.linkedin.com/pub/robert-williams/30/80b/5b0">
+                  LinkedIn: Robert Williams
+                </LinkButton>
+              </LinkGrid>
+              <p className="text-sm mt-6" style={{ color: '#000000' }}>
+                I typically respond to all inquiries within 24 hours. I look forward to hearing from you!
+              </p>
+            </ContentSection>
+          </>
+        )}
+      </PageLayout>
+    );
+  }
 
   // Render work page
   if (page === "work") {
@@ -242,33 +441,25 @@ export default function WindowContent({ page }: WindowContentProps) {
     );
 
     return (
-      <div className="relative">
-        {/* Work Page Content */}
-        <div className="p-6">
-          {/* Page Header */}
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-[#000080] mb-2">
-              📁 My Work
-            </h1>
-            <p className="text-[#000000] text-sm">
-              Click on any project icon to open it in a window. A collection of
-              projects that showcase my skills in web development, design, and
-              creative problem-solving.
-            </p>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
+      <PageLayout
+        page="work"
+        title="📁 My Work"
+        description="Click on any project icon to open it in a window. A collection of projects that showcase my skills in web development, design, and creative problem-solving."
+        icon="/images/rw-site-icon-folder-close.png"
+      >
+        {/* Projects Grid */}
+        <ContentSection title="Projects" icon="📁">
+          <div className="grid grid-cols-2 md-grid-cols-3 lg-grid-cols-4 xl-grid-cols-5 gap-8">
             {projects.map((project) => (
               <button
                 key={project.slug}
                 onClick={() => openProjectWindow(project)}
-                className="window-icon"
+                className="window-icon p-4 hover-scale-105 transition-transform"
                 onMouseEnter={() => setHoveredProject(project.slug)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
                 {/* Project Icon */}
-                <div className="mb-2">
+                <div className="mb-4">
                   <img
                     src={
                       hoveredProject === project.slug
@@ -276,50 +467,39 @@ export default function WindowContent({ page }: WindowContentProps) {
                         : "/images/rw-site-icon-folder-close.png"
                     }
                     alt="Project folder"
-                    className="w-12 h-12 object-contain"
+                    className="w-16 h-16 object-contain"
                   />
                 </div>
 
                 {/* Project Title */}
-                <div className="text-center">
+                <div className="text-center space-y-1">
                   <h3 className="text-xs font-medium text-center leading-tight">
                     {project.title}
                   </h3>
                   {project.featured && (
-                    <span className="text-xs text-[#ff0000]">★ Featured</span>
+                    <span className="text-xs" style={{ color: '#ff0000' }}>★ Featured</span>
                   )}
                 </div>
               </button>
             ))}
           </div>
+        </ContentSection>
 
-          {/* Categories Summary */}
-          <div className="mb-6">
-            <h2 className="text-lg font-bold text-[#000080] mb-4">
-              📊 Project Categories
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {categories.map((category) => {
-                const categoryProjects = projects.filter(
-                  (project) => project.category === category
-                );
-                return (
-                  <div
-                    key={category}
-                    className="bg-[#ffffff] border border-[#808080] p-3"
-                  >
-                    <h3 className="text-sm font-semibold text-[#000000] mb-1">
-                      {category}
-                    </h3>
-                    <p className="text-xs text-[#808080]">
-                      {categoryProjects.length} projects
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
+        {/* Categories Summary */}
+        <ContentSection title="Project Categories" icon="📊">
+          <div className="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-4 gap-4">
+            {categories.map((category) => {
+              const categoryProjects = projects.filter(
+                (project) => project.category === category
+              );
+              return (
+                <InfoCard key={category} title={category}>
+                  {categoryProjects.length} projects
+                </InfoCard>
+              );
+            })}
           </div>
-        </div>
+        </ContentSection>
 
         {/* Project Windows */}
         {Object.entries(openWindows).map(([windowId, windowData]) => (
@@ -333,41 +513,11 @@ export default function WindowContent({ page }: WindowContentProps) {
             onMove={(x, y) => moveWindow(windowId, x, y)}
           />
         ))}
-      </div>
+      </PageLayout>
     );
   }
 
-  // Render other pages
-  if (otherPageLoading) {
-    return (
-      <div className="p-8">
-        <RetroLoading
-          messages={[
-            "$ cd /content",
-            "$ find . -name '*.md'",
-            "[OK] Found markdown files",
-            "$ pandoc content.md -o content.html",
-            "[OK] Markdown converted to HTML",
-            "$ cp retro-styles.css /tmp/",
-            "[OK] RobotOS styling applied",
-            "",
-            "    [ROBOT] Content processed successfully",
-            "    [ROBOT] Styling applied with retro flair",
-            "    [ROBOT] Ready to display! 🤖",
-            "",
-            "$ echo 'Content ready for display!'",
-            "Content ready for display!",
-          ]}
-          duration={2500}
-        />
-      </div>
-    );
-  }
-
-  if (otherPageError) {
-    return <div className="p-8 text-center text-red-600">{otherPageError}</div>;
-  }
-
+  // Fallback for home page or other content
   return (
     <div
       className="prose max-w-none p-6"
