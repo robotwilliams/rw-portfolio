@@ -1085,6 +1085,10 @@ svg {
   min-width: 400px;
   min-height: 300px;
   padding-bottom: 4rem;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /**
@@ -2657,6 +2661,41 @@ select {
   .page-content .xl-grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
+}
+
+/* Window content responsive adjustments */
+@media (max-width: 600px) {
+  .window-content {
+    min-width: 300px;
+    padding: 4px;
+  }
+  
+  .retro-window {
+    min-width: 350px;
+    min-height: 300px;
+  }
+}
+
+/* Ensure content doesn't overflow in small windows */
+.window-content * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Prevent text overflow in cards and buttons */
+.window-icon,
+.project-icon,
+.desktop-icon {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.window-icon h3,
+.project-icon h3,
+.desktop-icon h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* Enhanced form styling */

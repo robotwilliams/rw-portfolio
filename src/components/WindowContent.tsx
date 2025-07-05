@@ -449,7 +449,12 @@ export default function WindowContent({ page }: WindowContentProps) {
       >
         {/* Projects Grid */}
         <ContentSection title="Projects" icon="📁">
-          <div className="grid gap-6 -ml-3" style={{ gridTemplateColumns: 'repeat(auto-fill, 120px)', justifyContent: 'start' }}>
+          <div className="grid gap-4 -ml-2" style={{
+            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 120px))',
+            justifyContent: 'start',
+            maxWidth: '100%',
+            overflow: 'hidden'
+          }}>
             {projects.map((project) => (
               <button
                 key={project.slug}
@@ -457,9 +462,10 @@ export default function WindowContent({ page }: WindowContentProps) {
                 className="window-icon"
                 onMouseEnter={() => setHoveredProject(project.slug)}
                 onMouseLeave={() => setHoveredProject(null)}
+                style={{ minWidth: '0', maxWidth: '120px' }}
               >
                 {/* Project Icon */}
-                <div className="mb-4">
+                <div className="mb-3">
                   <img
                     src={
                       hoveredProject === project.slug
@@ -467,28 +473,28 @@ export default function WindowContent({ page }: WindowContentProps) {
                         : "/images/rw-site-icon-folder-close.png"
                     }
                     alt="Project folder"
-                    className="w-16 h-16 object-contain"
+                    className="w-14 h-14 object-contain"
                   />
                 </div>
 
                 {/* Project Title */}
-                <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '112px' }}>
-                  <h3 className="text-xs font-medium text-center leading-tight" style={{
+                <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '100%' }}>
+                  <h3 className="text-xs font-medium text-center leading-tight truncate" style={{
                     fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
-                    fontSize: '11px',
+                    fontSize: '10px',
                     color: 'var(--text-primary)',
                     textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)',
                     wordWrap: 'break-word',
                     overflowWrap: 'break-word',
                     hyphens: 'auto'
-                  }}>
+                  }} title={project.title}>
                     {project.title}
                   </h3>
                   {project.featured && (
                     <span className="text-xs" style={{
                       color: '#ff0000',
                       fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
-                      fontSize: '11px',
+                      fontSize: '9px',
                       textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)'
                     }}>★ Featured</span>
                   )}
@@ -500,7 +506,11 @@ export default function WindowContent({ page }: WindowContentProps) {
 
         {/* Categories Summary */}
         <ContentSection title="Project Categories" icon="📊">
-          <div className="grid gap-4 mb-4" style={{ gridTemplateColumns: 'repeat(auto-fit, 220px)' }}>
+          <div className="grid gap-3 mb-4" style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+            maxWidth: '100%',
+            overflow: 'hidden'
+          }}>
             {categories.map((category) => {
               const categoryProjects = projects.filter(
                 (project) => project.category === category
