@@ -449,7 +449,7 @@ export default function WindowContent({ page }: WindowContentProps) {
       >
         {/* Projects Grid */}
         <ContentSection title="Projects" icon="📁">
-          <div className="grid grid-cols-2 md-grid-cols-3 lg-grid-cols-4 xl-grid-cols-5 gap-8">
+          <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fill, 100px)', justifyContent: 'center' }}>
             {projects.map((project) => (
               <button
                 key={project.slug}

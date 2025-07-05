@@ -91,7 +91,7 @@ export default function ContactPage() {
         Two-column layout with contact form and contact information.
         Responsive design that stacks on mobile devices.
       */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 lg-grid-cols-2 gap-8">
         {/* 
           Contact Form Section
           Form for project inquiries with validation and feedback.

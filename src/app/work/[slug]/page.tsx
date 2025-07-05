@@ -78,7 +78,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
 
           {/* Project Meta - Windows 98 Style */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 md-grid-cols-3 gap-4 mb-4">
             <div className="bg-[#ffffff] border border-[#808080] p-3">
               <span className="text-xs text-[#808080]">Client</span>
               <p className="font-medium text-sm">{project.client}</p>
@@ -187,7 +187,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <h3 className="text-lg font-bold text-[#000080] mb-4">
               🖼️ Project Gallery
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
               {project.gallery.map((image, index) => (
                 <div
                   key={index}
@@ -207,7 +207,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <h3 className="text-lg font-bold text-[#000080] mb-4">
             📁 Related Projects
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
             {getAllPortfolioProjects()
               .filter(
                 (p) =>

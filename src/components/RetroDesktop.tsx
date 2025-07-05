@@ -758,26 +758,27 @@ export default function RetroDesktop() {
 
             {/* Window Loader */}
             <WindowLoader isLoading={windowLoading[window.id] || false} />
-
-            {/* Resize Handle */}
-            <div
-              className="cursor-se-resize"
-              onMouseDown={(e) => startResize(e, window.id)}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                width: "16px",
-                height: "16px",
-                background: "#2a2a2a",
-                cursor: "se-resize",
-                borderTop: "1px solid #606060",
-                borderLeft: "1px solid #606060",
-                boxShadow: "inset 1px 1px 0 #0a0a0a",
-                zIndex: 10,
-              }}
-            />
           </div>
+
+          {/* Resize Handle - Windows 11 style */}
+          <div
+            className="cursor-se-resize"
+            onMouseDown={(e) => startResize(e, window.id)}
+            style={{
+              position: "absolute",
+              bottom: "0",
+              right: "0",
+              width: "25px",
+              height: "25px",
+              background: "#c0c0c0",
+              cursor: "se-resize",
+              zIndex: 20,
+              boxShadow: "inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080",
+              clipPath: "polygon(100% 0%, 0% 100%, 100% 100%)",
+              backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+              backgroundSize: "4px 4px",
+            }}
+          />
         </div>
       ))}
 

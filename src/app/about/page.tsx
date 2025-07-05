@@ -67,9 +67,9 @@ export default async function AboutPage() {
           Two-column layout with main content and sidebar.
           The main content displays the markdown content converted to HTML.
         */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg-grid-cols-3 gap-6 mb-6">
           {/* Main Content Column */}
-          <div className="lg:col-span-2">
+          <div className="lg-col-span-2">
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
               <h2 className="text-lg font-bold text-[#000080] mb-4">
                 📄 About Me

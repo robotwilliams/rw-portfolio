@@ -30,7 +30,7 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="bg-white shadow-sm border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm-px-6 lg-px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <Link href="/" className="flex-shrink-0">
@@ -39,16 +39,15 @@ export default function Layout({ children }: LayoutProps) {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md-flex items-center space-x-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    isActive(item.href)
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                  }`}
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${isActive(item.href)
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                    }`}
                 >
                   {item.name}
                 </Link>
@@ -56,7 +55,7 @@ export default function Layout({ children }: LayoutProps) {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
+            <div className="md-hidden flex items-center">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
@@ -100,17 +99,16 @@ export default function Layout({ children }: LayoutProps) {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
+          <div className="md-hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm-px-3 border-t border-gray-200">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
-                    isActive(item.href)
-                      ? "text-blue-600 bg-blue-50"
-                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                  }`}
+                  className={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${isActive(item.href)
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                    }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
@@ -126,8 +124,8 @@ export default function Layout({ children }: LayoutProps) {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm-px-6 lg-px-8">
+          <div className="grid grid-cols-1 md-grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4">Rob W</h3>
               <p className="text-gray-300">

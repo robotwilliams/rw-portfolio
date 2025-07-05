@@ -349,24 +349,6 @@ export default function ProjectWindow({
         {/* Window Content */}
         <div className="window-content h-full overflow-auto relative">
           <div className="p-4">
-
-            {/* Resize Handle */}
-            <div
-              className="cursor-se-resize"
-              onMouseDown={startResize}
-              style={{
-                position: "absolute",
-                bottom: 0,
-                right: 0,
-                width: "16px",
-                height: "16px",
-                background: "#2a2a2a",
-                cursor: "se-resize",
-                borderTop: "1px solid #606060",
-                borderLeft: "1px solid #606060",
-                boxShadow: "inset 1px 1px 0 #0a0a0a",
-              }}
-            />
             {/* Project Header */}
             <div
               className="flex items-center gap-3 mb-4"
@@ -391,7 +373,7 @@ export default function ProjectWindow({
             </div>
 
             {/* Project Meta */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-1 md-grid-cols-3 gap-4 mb-4">
               <div className="bg-[#ffffff] border border-[#808080] p-3">
                 <span className="text-xs text-[#808080]">Client</span>
                 <p className="font-medium text-sm">{project.client}</p>
@@ -474,7 +456,7 @@ export default function ProjectWindow({
                 <h3 className="text-lg font-bold text-[#000080] mb-4">
                   🖼️ Project Gallery
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
                   {project.gallery.map((image, index) => (
                     <div
                       key={index}
@@ -490,6 +472,26 @@ export default function ProjectWindow({
             )}
           </div>
         </div>
+
+        {/* Resize Handle - Windows 11 style */}
+        <div
+          className="cursor-se-resize"
+          onMouseDown={startResize}
+          style={{
+            position: "absolute",
+            bottom: "0",
+            right: "0",
+            width: "25px",
+            height: "25px",
+            background: "#c0c0c0",
+            cursor: "se-resize",
+            zIndex: 20,
+            boxShadow: "inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080",
+            clipPath: "polygon(100% 0%, 0% 100%, 100% 100%)",
+            backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+            backgroundSize: "4px 4px",
+          }}
+        />
       </div>
     </>
   );
