@@ -22,6 +22,13 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import PageLayout, {
+  ContentSection,
+  InfoGrid,
+  InfoCard,
+  LinkGrid,
+  LinkButton,
+} from "./PageLayout";
 
 interface ProjectWindowProps {
   project: {
@@ -56,7 +63,7 @@ export default function ProjectWindow({
 }: ProjectWindowProps) {
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [mounted, setMounted] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
   const [position, setPosition] = useState(() => {
     // Use external position if provided, otherwise calculate default
     if (externalPosition) {
@@ -348,77 +355,45 @@ export default function ProjectWindow({
         </div>
         {/* Window Content */}
         <div className="window-content h-full overflow-auto relative">
-          <div className="p-4">
-            {/* Project Header */}
-            <div
-              className="flex items-center gap-3 mb-4"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              <img
-                src={
-                  isHovered
-                    ? "/images/rw-site-icon-folder-open.png"
-                    : "/images/rw-site-icon-folder-close.png"
-                }
-                alt={`${project.title} folder`}
-                className="w-8 h-8 object-contain"
-              />
-              <div>
-                <h1 className="text-xl font-bold text-[#000080]">
-                  {project.title}
-                </h1>
-                <p className="text-sm text-[#000000]">{project.description}</p>
-              </div>
-            </div>
-
+          <PageLayout
+            page="project"
+            title={project.title}
+            description={project.description}
+            icon="/images/rw-site-icon-folder-close.png"
+          >
             {/* Project Meta */}
-            <div className="grid grid-cols-1 md-grid-cols-3 gap-4 mb-4">
-              <div className="bg-[#ffffff] border border-[#808080] p-3">
-                <span className="text-xs text-[#808080]">Client</span>
-                <p className="font-medium text-sm">{project.client}</p>
-              </div>
-              <div className="bg-[#ffffff] border border-[#808080] p-3">
-                <span className="text-xs text-[#808080]">Duration</span>
-                <p className="font-medium text-sm">{project.duration}</p>
-              </div>
-              <div className="bg-[#ffffff] border border-[#808080] p-3">
-                <span className="text-xs text-[#808080]">Date</span>
-                <p className="font-medium text-sm">
+            <ContentSection title="Project Overview" icon="📁">
+              <InfoGrid columns={3}>
+                <InfoCard title="Client">
+                  {project.client}
+                </InfoCard>
+                <InfoCard title="Duration">
+                  {project.duration}
+                </InfoCard>
+                <InfoCard title="Date">
                   {new Date(project.date).toLocaleDateString()}
-                </p>
-              </div>
-            </div>
+                </InfoCard>
+              </InfoGrid>
+            </ContentSection>
 
             {/* Project Links */}
-            <div className="flex flex-wrap gap-3 mb-4">
-              {project.live_url && (
-                <a
-                  href={project.live_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold text-sm hover:bg-[#d4d0c8] transition-colors"
-                >
-                  View Live Site
-                </a>
-              )}
-              {project.github_url && (
-                <a
-                  href={project.github_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold text-sm hover:bg-[#d4d0c8] transition-colors"
-                >
-                  View Code
-                </a>
-              )}
-            </div>
+            <ContentSection title="Project Links" icon="🔗">
+              <LinkGrid>
+                {project.live_url && (
+                  <LinkButton href={project.live_url}>
+                    View Live Site
+                  </LinkButton>
+                )}
+                {project.github_url && (
+                  <LinkButton href={project.github_url}>
+                    View Code
+                  </LinkButton>
+                )}
+              </LinkGrid>
+            </ContentSection>
 
             {/* Project Content */}
-            <div className="mb-4">
-              <h2 className="text-lg font-bold text-[#000080] mb-4">
-                📄 Project Details
-              </h2>
+            <ContentSection title="Project Details" icon="📄">
               <div
                 className="prose prose-sm max-w-none text-[#000000]"
                 style={
@@ -431,13 +406,10 @@ export default function ProjectWindow({
                 }
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
-            </div>
+            </ContentSection>
 
             {/* Technologies Used */}
-            <div className="mb-4">
-              <h3 className="text-lg font-bold text-[#000080] mb-4">
-                🔧 Technologies Used
-              </h3>
+            <ContentSection title="Technologies Used" icon="🔧">
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
                   <span
@@ -448,19 +420,16 @@ export default function ProjectWindow({
                   </span>
                 ))}
               </div>
-            </div>
+            </ContentSection>
 
             {/* Project Gallery */}
             {project.gallery && project.gallery.length > 0 && (
-              <div>
-                <h3 className="text-lg font-bold text-[#000080] mb-4">
-                  🖼️ Project Gallery
-                </h3>
+              <ContentSection title="Project Gallery" icon="🖼️">
                 <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
                   {project.gallery.map((image, index) => (
                     <div
                       key={index}
-                      className="bg-[#ffffff] border border-[#808080] h-48 flex items-center justify-center"
+                      className="bg-[#ffffff] border border-[#808080] aspect-square flex items-center justify-center min-h-[120px]"
                     >
                       <span className="text-[#808080] text-sm">
                         Gallery Image {index + 1}
@@ -468,9 +437,9 @@ export default function ProjectWindow({
                     </div>
                   ))}
                 </div>
-              </div>
+              </ContentSection>
             )}
-          </div>
+          </PageLayout>
         </div>
 
         {/* Resize Handle - Windows 11 style */}

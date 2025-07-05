@@ -16,7 +16,7 @@
 import React from "react";
 
 interface PageLayoutProps {
-  page: "about" | "work" | "contact";
+  page: "about" | "work" | "contact" | "project";
   title: React.ReactNode;
   description: string;
   icon: string;
@@ -95,7 +95,7 @@ export default function PageLayout({
   return (
     <div className="relative">
       {/* Page Content */}
-      <div className="p-8">
+      <div className="p-6">
         {/* Page Header */}
         <div className="mb-12">
           <div className="flex items-start gap-4 mb-4">

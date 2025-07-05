@@ -75,9 +75,7 @@ export default function RetroDesktop() {
   const [selectedDesktopIcon, setSelectedDesktopIcon] = useState<string | null>(
     null
   );
-  const [hoveredDesktopIcon, setHoveredDesktopIcon] = useState<string | null>(
-    null
-  );
+
   const [startMenuOpen, setStartMenuOpen] = useState(false);
   const [hoveredStartMenuItem, setHoveredStartMenuItem] = useState<string | null>(
     null
@@ -650,8 +648,8 @@ export default function RetroDesktop() {
               setSelectedDesktopIcon(null);
               openWindow(item.href, item.name);
             }}
-            onMouseEnter={() => setHoveredDesktopIcon(item.href)}
-            onMouseLeave={() => setHoveredDesktopIcon(null)}
+          // onMouseEnter={() => setHoveredDesktopIcon(item.href)}
+          // onMouseLeave={() => setHoveredDesktopIcon(null)}
           >
             <div className="mb-1">
               {item.name === "About" ? (
