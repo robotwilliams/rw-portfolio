@@ -2676,6 +2676,54 @@ select {
   }
 }
 
+/* Responsive InfoCard header sizes */
+@media (min-width: 768px) {
+  .page-content .bg-white h3 {
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-content .bg-white h3 {
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .page-content .bg-white h3 {
+    font-size: 20px !important;
+  }
+}
+
+/* InfoCard specific responsive sizing */
+.bg-white.border.border-gray h3 {
+  transition: font-size 0.2s ease;
+}
+
+@media (max-width: 767px) {
+  .bg-white.border.border-gray h3 {
+    font-size: 14px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bg-white.border.border-gray h3 {
+    font-size: 16px !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .bg-white.border.border-gray h3 {
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .bg-white.border.border-gray h3 {
+    font-size: 20px !important;
+  }
+}
+
 /* Ensure content doesn't overflow in small windows */
 .window-content * {
   max-width: 100%;

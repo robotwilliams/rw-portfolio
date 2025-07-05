@@ -193,7 +193,7 @@ interface InfoCardProps {
 export function InfoCard({ title, children, className = "" }: InfoCardProps) {
   return (
     <div className={`bg-white border border-gray p-4 rounded-sm min-w-0 ${className}`} style={{ backgroundColor: '#ffffff', borderColor: '#808080' }}>
-      <h3 className="text-sm font-semibold text-black mb-2 truncate" style={{ color: '#000000' }} title={title}>{title}</h3>
+      <h3 className="text-base font-semibold text-black mb-2 truncate" style={{ color: '#000000' }} title={title}>{title}</h3>
       <div className="text-xs text-gray leading-relaxed break-words" style={{ color: '#808080' }}>{children}</div>
     </div>
   );
