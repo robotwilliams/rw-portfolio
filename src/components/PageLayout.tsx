@@ -192,9 +192,29 @@ interface InfoCardProps {
 
 export function InfoCard({ title, children, className = "" }: InfoCardProps) {
   return (
-    <div className={`bg-white border border-gray p-4 rounded-sm min-w-0 ${className}`} style={{ backgroundColor: '#ffffff', borderColor: '#808080' }}>
-      <h3 className="text-sm font-semibold text-black mb-2 truncate" style={{ color: '#000000' }} title={title}>{title}</h3>
-      <div className="text-xs text-gray leading-relaxed break-words" style={{ color: '#808080' }}>{children}</div>
+    <div
+      className={`bg-white border border-gray p-4 min-w-0 ${className}`}
+      style={{
+        backgroundColor: '#f0f0f0',
+        border: '2px outset #ffffff',
+        borderTopColor: '#c0c0c0',
+        borderLeftColor: '#c0c0c0',
+        borderRadius: '16px',
+        boxShadow: 'inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.2)',
+        transition: 'all 0.1s ease',
+        cursor: 'pointer'
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.backgroundColor = '#f8f8f8';
+        e.currentTarget.style.boxShadow = 'inset 1px 1px 0 rgba(255, 255, 255, 0.6), inset -1px -1px 0 rgba(0, 0, 0, 0.2), 2px 2px 6px rgba(0, 0, 0, 0.3)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.backgroundColor = '#f0f0f0';
+        e.currentTarget.style.boxShadow = 'inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.2)';
+      }}
+    >
+      <h3 className="text-sm font-semibold text-black mb-2 truncate" style={{ color: '#404040' }} title={title}>{title}</h3>
+      <div className="text-xs text-gray leading-relaxed break-words" style={{ color: '#606060' }}>{children}</div>
     </div>
   );
 }
