@@ -339,7 +339,7 @@ export default function ProjectWindow({
             </button>
             {/* Close Button */}
             <button
-              className="w-7 h-7 bg-red-600 border-2 border-red-800 flex items-center justify-center text-white text-lg font-bold hover:bg-red-500 transition-colors cursor-pointer"
+              className="w-7 h-7 bg-red-600 border-2 border-red-800 flex items-center justify-center text-white text-lg font-bold hover:bg-red-400 transition-colors cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 onClose();

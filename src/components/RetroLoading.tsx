@@ -2,7 +2,7 @@
  * RetroLoading Component
  *
  * A hacker-style terminal loading animation that displays
- * authentic console messages with retro terminal aesthetics.
+ * funny, surreal, and authentic console messages with retro terminal aesthetics.
  * Perfect for loading states in the robotOS interface.
  */
 
