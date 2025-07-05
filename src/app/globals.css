@@ -1084,6 +1084,7 @@ svg {
   font-family: var(--font-pixel), "Press Start 2P", monospace;
   min-width: 400px;
   min-height: 300px;
+  padding-bottom: 4rem;
 }
 
 /**
@@ -1315,6 +1316,9 @@ svg {
   /* Enhanced pixel art effect */
   filter: contrast(1.05) saturate(0.98);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  /* Fixed size to match grid columns */
+  width: 120px;
+  flex-shrink: 0;
 }
 
 .window-icon:hover {
