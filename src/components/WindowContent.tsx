@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
-import ProjectWindow from "./ProjectWindow";
-import RetroLoading from "./RetroLoading";
 import PageLayout, {
   ContentSection,
-  InfoGrid,
   InfoCard,
-  LinkGrid,
+  InfoGrid,
   LinkButton,
+  LinkGrid,
 } from "./PageLayout";
+import ProjectWindow from "./ProjectWindow";
+import RetroLoading from "./RetroLoading";
 
 /**
  * WindowContent Component Props
@@ -315,29 +315,30 @@ export default function WindowContent({ page }: WindowContentProps) {
                   <label>Don&apos;t fill this out if you&apos;re human: <input name="bot-field" /></label>
                 </p>
 
-                <div className="space-y-6">
-                  <div className="form-row">
-                    <label className="form-label" htmlFor="contact-user-name">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="contact-user-name"
-                      className="form-input retro-input w-full"
-                      placeholder="Enter your name"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-x-4">
+                    <div className="form-row">
+                      <label className="form-label" htmlFor="contact-user-name">Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        id="contact-user-name"
+                        className="form-input retro-input w-full"
+                        placeholder="Enter your name"
+                      />
+                    </div>
 
-                  <div className="form-row">
-                    <label className="form-label" htmlFor="contact-user-email">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="contact-user-email"
-                      className="form-input retro-input w-full"
-                      placeholder="Enter your email address"
-                    />
+                    <div className="form-row">
+                      <label className="form-label" htmlFor="contact-user-email">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="contact-user-email"
+                        className="form-input retro-input w-full"
+                        placeholder="Enter your email address"
+                      />
+                    </div>
                   </div>
-
                   <div className="form-row">
                     <label className="form-label" htmlFor="contact-message">Message</label>
                     <textarea
@@ -351,7 +352,7 @@ export default function WindowContent({ page }: WindowContentProps) {
 
                   <input type="hidden" name="form-name" value="contactForm" />
 
-                  <div className="form-row form-submit">
+                  <div className="form-row form-submit pt-4">
                     <button type="submit" className="button retro-button px-8 py-3">Send Message</button>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { getPageData, getFeaturedProjects } from "@/lib/markdown";
+import { getFeaturedProjects, getPageData } from "@/lib/markdown";
 import Link from "next/link";
 
 /**
@@ -22,7 +22,7 @@ export default function HomePage() {
 
   return (
     <div className="p-4">
-      {/* 
+      {/*
         Hero Section
         Main introduction area with:
         - Page title and subtitle from markdown frontmatter
@@ -37,7 +37,7 @@ export default function HomePage() {
         </Link>
       </div>
 
-      {/* 
+      {/*
         Featured Work Section
         Showcases selected projects that best represent skills and experience.
         Features:
@@ -88,7 +88,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 
+      {/*
         About Preview Section
         Brief introduction to skills and expertise areas.
         Features:
@@ -136,7 +136,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* 
+      {/*
         Final Call-to-Action Section
         Encourages visitors to start a project or get in touch.
         Features:

@@ -1,21 +1,5 @@
-import type { NextConfig } from "next";
-
-/**
- * Next.js Configuration
- *
- * This file configures the Next.js application with various settings for:
- * - Build optimization
- * - Image handling
- * - Performance settings
- * - Development features
- *
- * Current configuration is minimal but can be extended with:
- * - Image domains for external images
- * - Redirects and rewrites
- * - Environment variables
- * - Build optimizations
- */
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   /* config options here */
   // Enable experimental features if needed
   // experimental: {
@@ -58,4 +42,4 @@ const nextConfig: NextConfig = {
   // },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
