@@ -91,7 +91,7 @@ export default function RetroLoading({
 
         return newCounts;
       });
-    }, 100); // Very fast animation
+    }, 60); // Slower dot animation
 
     return () => clearInterval(dotsInterval);
   }, [currentMessageIndex, messages]);
@@ -144,7 +144,15 @@ export default function RetroLoading({
       </div>
 
       {/* Window Content */}
-      <div className="window-content" style={{ height: "400px" }}>
+      <div
+        className="window-content"
+        style={{
+          height: "400px",
+          padding: "6px",
+          paddingTop: "16px",
+          paddingBottom: "6px"
+        }}
+      >
         <div className="retro-loading-text" ref={textRef}>
           {messages.slice(0, currentMessageIndex + 1).map((message, index) => (
             <div key={index} className="terminal-message">

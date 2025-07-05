@@ -52,7 +52,7 @@ export default function PageLoadWrapper({ children }: PageLoadWrapperProps) {
               '<span class="terminal-bracket">[</span><span class="terminal-success">OK</span><span class="terminal-bracket">]</span> <span class="terminal-process">Memory allocation</span>: <span class="terminal-memory">640K</span>',
               '<span class="terminal-bracket">[</span><span class="terminal-success">OK</span><span class="terminal-bracket">]</span> <span class="terminal-process">Loading</span> system modules {{dots}}',
               '<span class="terminal-bracket">[</span><span class="terminal-success">OK</span><span class="terminal-bracket">]</span> <span class="terminal-process">Pixel drivers</span> initialized',
-              '<span class="terminal-bracket">[</span><span class="terminal-success">OK</span><span class="terminal-bracket">]</span> <span class="terminal-process">Bypassing</span> modern standards {{dots}}',
+              '<span class="terminal-bracket">[</span><span class="terminal-success">OK</span><span class="terminal-bracket">]</span> <span class="terminal-process">Bypassing</span> <span class="terminal-process">modern standards</span> {{dots}}',
               '<span class="terminal-bracket">[</span><span class="terminal-success">OK</span><span class="terminal-bracket">]</span> <span class="terminal-process">Nostalgia modules</span> installed',
               "",
               "            __              __    _____   ____       ",

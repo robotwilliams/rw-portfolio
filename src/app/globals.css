@@ -432,7 +432,7 @@ svg {
 }
 
 .terminal-process {
-  color: #c48999; /* Paler magenta for process names */
+  color: #d4a0b0; /* Lighter magenta for process names - was #c48999 */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
@@ -457,7 +457,7 @@ svg {
 }
 
 .terminal-memory {
-  color: #a5bcf6; /* Paler purple for memory values */
+  color: #20b2aa; /* Higher chroma teal for memory values - was #a5bcf6 */
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
@@ -1077,7 +1077,7 @@ svg {
 .window-content {
   padding: 6px;
   background: #d4d0c8;
-  color: #000000;
+  color: #8a8a8a; /* Lighter gray for default text */
   font-size: 11px;
   border-radius: 0 0 16px 16px;
   line-height: 1.3;
