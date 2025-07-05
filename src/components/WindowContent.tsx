@@ -196,7 +196,7 @@ export default function WindowContent({ page }: WindowContentProps) {
   if (page === "about" || page === "contact") {
     const pageConfig = {
       about: {
-        title: "About Robot Williams 🤖",
+        title: "🤖 About Robot Williams",
         description: "Learn more about Rob Williams, Frontend Maker and creative developer.",
         icon: "/images/rw-logo.png",
       },
@@ -443,18 +443,18 @@ export default function WindowContent({ page }: WindowContentProps) {
     return (
       <PageLayout
         page="work"
-        title="📁 My Work"
+        title={<><img src="/images/rw-site-icon-work.png" alt="Work" className="inline-block w-7 h-7 mr-2 align-middle" />My Work</>}
         description="Click on any project icon to open it in a window. A collection of projects that showcase my skills in web development, design, and creative problem-solving."
         icon="/images/rw-site-icon-folder-close.png"
       >
         {/* Projects Grid */}
         <ContentSection title="Projects" icon="📁">
-          <div className="grid gap-4" style={{ gridTemplateColumns: 'repeat(auto-fill, 100px)', justifyContent: 'center' }}>
+          <div className="grid gap-6 -ml-3" style={{ gridTemplateColumns: 'repeat(auto-fill, 120px)', justifyContent: 'start' }}>
             {projects.map((project) => (
               <button
                 key={project.slug}
                 onClick={() => openProjectWindow(project)}
-                className="window-icon p-4 hover-scale-105 transition-transform"
+                className="window-icon"
                 onMouseEnter={() => setHoveredProject(project.slug)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -472,12 +472,25 @@ export default function WindowContent({ page }: WindowContentProps) {
                 </div>
 
                 {/* Project Title */}
-                <div className="text-center space-y-1">
-                  <h3 className="text-xs font-medium text-center leading-tight">
+                <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '112px' }}>
+                  <h3 className="text-xs font-medium text-center leading-tight" style={{
+                    fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
+                    fontSize: '11px',
+                    color: 'var(--text-primary)',
+                    textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)',
+                    wordWrap: 'break-word',
+                    overflowWrap: 'break-word',
+                    hyphens: 'auto'
+                  }}>
                     {project.title}
                   </h3>
                   {project.featured && (
-                    <span className="text-xs" style={{ color: '#ff0000' }}>★ Featured</span>
+                    <span className="text-xs" style={{
+                      color: '#ff0000',
+                      fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
+                      fontSize: '11px',
+                      textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)'
+                    }}>★ Featured</span>
                   )}
                 </div>
               </button>
