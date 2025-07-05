@@ -2,8 +2,8 @@
  * RetroLoading Component
  *
  * A hacker-style terminal loading animation that displays
- * funny console messages with retro terminal aesthetics.
- * Perfect for loading states in the Windows 98 interface.
+ * authentic console messages with retro terminal aesthetics.
+ * Perfect for loading states in the robotOS interface.
  */
 
 import { useState, useEffect, useRef } from "react";
@@ -23,7 +23,7 @@ export default function RetroLoading({
     "> System ready. Welcome to RobotOS!",
   ],
   onComplete,
-  duration = 3500,
+  duration = 2000,
 }: RetroLoadingProps) {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
@@ -32,7 +32,7 @@ export default function RetroLoading({
   const textRef = useRef<HTMLDivElement>(null);
   const spinnerChars = ["|", "/", "-", "\\"];
 
-  // Store random max dots for each message
+  // Store random max dots for each message to create variety
   const maxDotsPerMessage = useRef<{ [index: number]: number }>({});
 
   function getMaxDots(index: number) {
@@ -43,6 +43,7 @@ export default function RetroLoading({
     return maxDotsPerMessage.current[index];
   }
 
+  // Main message progression timer
   useEffect(() => {
     const messageInterval = setInterval(() => {
       setCurrentMessageIndex((prev) => {
@@ -62,7 +63,7 @@ export default function RetroLoading({
     return () => clearInterval(messageInterval);
   }, [messages, duration, onComplete]);
 
-  // Spinner animation
+  // Spinner animation for visual feedback
   useEffect(() => {
     const spinnerInterval = setInterval(() => {
       setSpinnerChar((prev) => (prev + 1) % spinnerChars.length);
@@ -70,7 +71,7 @@ export default function RetroLoading({
     return () => clearInterval(spinnerInterval);
   }, [spinnerChars.length]);
 
-  // Simple console loader dots - appear one by one, stop at random numbers
+  // Animated dots that appear gradually for each message
   useEffect(() => {
     const dotsInterval = setInterval(() => {
       setDotCounts((prev) => {
@@ -107,7 +108,7 @@ export default function RetroLoading({
     return null;
   }
 
-  // Helper to render message with dots and spinner
+  // Helper to render message with animated dots
   function renderMessage(message: string, index: number) {
     // Replace spinner
     const html = message.replace(
