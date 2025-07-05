@@ -2,7 +2,7 @@
 title: "Edgewater Landscapes LLC"
 description: "Landscape design and development company website"
 slug: "brand-design"
-category: "Web Development"
+category: "Design"
 client: "Edgewater Landscapes LLC"
 duration: "3 months"
 date: "2022-01-15"

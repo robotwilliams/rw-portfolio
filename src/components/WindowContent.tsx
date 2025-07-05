@@ -506,15 +506,17 @@ export default function WindowContent({ page }: WindowContentProps) {
 
         {/* Categories Summary */}
         <ContentSection title="Project Categories" icon="📊">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+          <div className="flex flex-wrap gap-3 mb-4">
             {categories.map((category) => {
               const categoryProjects = projects.filter(
                 (project) => project.category === category
               );
               return (
-                <InfoCard key={category} title={category}>
-                  {categoryProjects.length} projects
-                </InfoCard>
+                <div key={category} style={{ minWidth: '200px', flex: '1 1 200px' }}>
+                  <InfoCard title={category}>
+                    {categoryProjects.length} projects
+                  </InfoCard>
+                </div>
               );
             })}
           </div>
