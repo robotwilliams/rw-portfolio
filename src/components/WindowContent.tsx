@@ -449,7 +449,7 @@ export default function WindowContent({ page }: WindowContentProps) {
       >
         {/* Projects Grid */}
         <ContentSection title="Projects" icon="📁">
-          <div className="grid gap-4 -ml-2" style={{
+          <div className="grid gap-2 px-2" style={{
             gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 120px))',
             justifyContent: 'start',
             maxWidth: '100%',
