@@ -1,6 +1,7 @@
 "use client";
 
 import { useProjectWindows } from "@/components/ProjectWindowContext";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface PortfolioProject {
@@ -150,14 +151,16 @@ export default function WorkPage() {
             >
               {/* Project Icon */}
               <div className="flex justify-center mb-2">
-                <img
+                <Image
                   src={
                     hoveredProject === project.slug
                       ? "/images/rw-site-icon-folder-open.png"
                       : "/images/rw-site-icon-folder-close.png"
                   }
                   alt={`${project.title} folder`}
-                  className="w-16 h-16 object-contain"
+                  width={64}
+                  height={64}
+                  className="object-contain"
                 />
               </div>
               {/* Project Title */}

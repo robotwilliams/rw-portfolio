@@ -1,5 +1,6 @@
 import { getPageContent, markdownToHtml } from "@/lib/markdown";
 import { Metadata } from "next";
+import Image from "next/image";
 
 /**
  * About Page Metadata
@@ -46,10 +47,12 @@ export default async function AboutPage() {
         */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
           <div className="flex items-center gap-3 mb-4">
-            <img
+            <Image
               src="/images/rw-site-icon-folder-close.png"
               alt="About folder"
-              className="w-8 h-8 object-contain"
+              width={32}
+              height={32}
+              className="object-contain"
             />
             <div>
               <h1 className="text-2xl font-bold">

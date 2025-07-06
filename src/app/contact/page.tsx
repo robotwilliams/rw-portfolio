@@ -52,7 +52,7 @@ export default function ContactPage() {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // For now, just show success message
-    // TODO: Implement actual form submission to API or email service
+    // TODO: This form currently simulates submission. Replace with actual API or email service integration for production use.
     setSubmitStatus("success");
     setIsSubmitting(false);
     setFormData({ name: "", email: "", subject: "", message: "" });

@@ -35,6 +35,7 @@ const mockMarkdownToHtml = markdownModule.markdownToHtml as jest.MockedFunction<
 >;
 
 describe("Markdown Utilities", () => {
+  // Tests for the main markdown utility module
   beforeEach(() => {
     mockGetPageData.mockReset();
     mockGetPageContent.mockReset();
@@ -44,6 +45,7 @@ describe("Markdown Utilities", () => {
   });
 
   describe("getPageData", () => {
+    // Tests for extracting page metadata from markdown frontmatter
     it("returns page data for valid page", () => {
       mockGetPageData.mockReturnValue({ title: "Test Page", description: "Test description" });
       const result = mockGetPageData("test");
@@ -60,6 +62,7 @@ describe("Markdown Utilities", () => {
   });
 
   describe("getPageContent", () => {
+    // Tests for extracting markdown content without frontmatter
     it("returns markdown content without frontmatter", () => {
       mockGetPageContent.mockReturnValue("# Test Content\nThis is the content.");
       const result = mockGetPageContent("test");
@@ -70,6 +73,7 @@ describe("Markdown Utilities", () => {
   });
 
   describe("getAllPortfolioProjects", () => {
+    // Tests for extracting all portfolio projects from markdown files
     it("returns all portfolio projects", () => {
       mockGetAllPortfolioProjects.mockReturnValue([
         { title: "Project 1", slug: "project1", description: "desc1", category: "cat1", client: "client1", date: "2023-01-01", duration: "1 month", technologies: ["React"], image: "", featured: false, content: "" },
@@ -93,6 +97,7 @@ describe("Markdown Utilities", () => {
   });
 
   describe("getPortfolioProject", () => {
+    // Tests for extracting a single project by slug
     it("returns project for valid slug", () => {
       mockGetPortfolioProject.mockReturnValue({
         title: "Test Project",
@@ -130,6 +135,7 @@ describe("Markdown Utilities", () => {
   });
 
   describe("markdownToHtml", () => {
+    // Tests for converting markdown to HTML, including edge cases
     it("converts markdown to HTML", async () => {
       mockMarkdownToHtml.mockResolvedValue("<h1>Test Heading</h1><p>This is a <strong>bold</strong> paragraph.</p>");
       const markdown = "# Test Heading\n\nThis is a **bold** paragraph.";

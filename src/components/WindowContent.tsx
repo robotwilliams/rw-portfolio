@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import PageLayout, {
   ContentSection,
@@ -75,7 +76,6 @@ export default function WindowContent({ page }: WindowContentProps) {
 
   // State for other pages
   const [html, setHtml] = useState<string>("");
-  const [otherPageLoading, setOtherPageLoading] = useState(true);
   const [otherPageError, setOtherPageError] = useState<string | null>(null);
 
   /**
@@ -124,7 +124,6 @@ export default function WindowContent({ page }: WindowContentProps) {
    */
   const loadOtherPage = async () => {
     try {
-      setOtherPageLoading(true);
       setOtherPageError(null);
 
       const response = await fetch(`/api/content/${page}`);
@@ -135,8 +134,6 @@ export default function WindowContent({ page }: WindowContentProps) {
     } catch (err) {
       setOtherPageError("Failed to load content");
       console.error("Error loading content:", err);
-    } finally {
-      setOtherPageLoading(false);
     }
   };
 
@@ -214,7 +211,6 @@ export default function WindowContent({ page }: WindowContentProps) {
         title={config.title}
         description={config.description}
         icon={config.icon}
-        loading={otherPageLoading}
         error={otherPageError}
         onRetry={loadOtherPage}
       >
@@ -449,14 +445,16 @@ export default function WindowContent({ page }: WindowContentProps) {
               >
                 {/* Project Icon */}
                 <div className="mb-3">
-                  <img
+                  <Image
                     src={
                       hoveredProject === project.slug
                         ? "/images/rw-site-icon-folder-open.png"
                         : "/images/rw-site-icon-folder-close.png"
                     }
                     alt="Project folder"
-                    className="w-14 h-14 object-contain"
+                    width={56}
+                    height={56}
+                    className="object-contain"
                   />
                 </div>
 

@@ -13,6 +13,7 @@
  * - RobotOS styling throughout
  */
 
+import Image from "next/image";
 import React from "react";
 
 interface PageLayoutProps {
@@ -21,7 +22,6 @@ interface PageLayoutProps {
   description: string;
   icon: string;
   children: React.ReactNode;
-  loading?: boolean;
   error?: string | null;
   onRetry?: () => void;
 }
@@ -32,7 +32,6 @@ export default function PageLayout({
   description,
   icon,
   children,
-  loading = false,
   error = null,
   onRetry,
 }: PageLayoutProps) {
@@ -41,10 +40,12 @@ export default function PageLayout({
     return (
       <div className="p-8">
         <div className="flex items-center gap-4 mb-8">
-          <img
+          <Image
             src={icon}
             alt={`${page} icon`}
-            className="w-10 h-10 object-contain"
+            width={40}
+            height={40}
+            className="object-contain"
           />
           <h1>{title}</h1>
         </div>
