@@ -398,7 +398,7 @@ export default function WindowContent({ page }: WindowContentProps) {
       return (
         <div className="text-center">
           <div className="text-2xl mb-5">❌</div>
-          <h2 className="text-lg font-bold mb-2">
+          <h2 className="text-lg font-bold">
             Error Loading Projects
           </h2>
           <p className="text-sm text-[#000000] mb-5">{error}</p>

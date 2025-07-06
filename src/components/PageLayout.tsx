@@ -192,7 +192,7 @@ export function InfoCard({ title, children, className = "" }: InfoCardProps) {
         e.currentTarget.style.boxShadow = 'inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.2)';
       }}
     >
-      <h5 className="mb-2 truncate" title={title}>{title}</h5>
+      <h5 className="truncate" title={title}>{title}</h5>
       <span className="text-md text-gray leading-relaxed break-words" style={{ color: '#606060' }}>{children}</span>
     </div>
   );

@@ -93,7 +93,7 @@ export default function ContactPage() {
             Uses retro styling to match the Windows 95/98 theme.
           */}
           <div>
-            <h2 className="text-xl font-bold mb-5">Send Me a Message</h2>
+            <h2 className="text-xl font-bold">Send Me a Message</h2>
 
             {/* Success Message */}
             {submitStatus === "success" && (
@@ -191,7 +191,7 @@ export default function ContactPage() {
           <div className="space-y-6">
             {/* Introduction */}
             <div>
-              <h2 className="text-xl font-bold mb-5">Get In Touch</h2>
+              <h2 className="text-xl font-bold">Get In Touch</h2>
               <p className="mb-5">
                 I&apos;m always excited to hear about new projects and
                 opportunities. Whether you have a specific project in mind or just
@@ -239,7 +239,7 @@ export default function ContactPage() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-lg font-bold mb-5">Follow Me</h3>
+              <h3 className="text-lg font-bold">Follow Me</h3>
               <div className="flex space-x-4">
                 <a
                   href="https://linkedin.com/in/robw"

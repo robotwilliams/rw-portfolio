@@ -30,7 +30,7 @@ export default function HomePage() {
         - Clean, centered layout for maximum impact
       */}
       <div className="text-center">
-        <h1 className="text-3xl font-bold mb-5">{homeData.hero_title}</h1>
+        <h1 className="text-3xl font-bold">{homeData.hero_title}</h1>
         <p className="text-lg mb-5">{homeData.hero_subtitle}</p>
         <Link href={String(homeData.cta_link)} className="retro-button">
           {homeData.cta_text}
@@ -47,7 +47,7 @@ export default function HomePage() {
         - "View All Work" button for complete portfolio
       */}
       <div>
-        <h2 className="text-2xl font-bold text-center mb-5">Featured Work</h2>
+        <h2 className="text-2xl font-bold text-center">Featured Work</h2>
         <p className="text-center mb-5">
           A selection of my recent projects that showcase my skills and approach
           to creative development.
@@ -97,7 +97,7 @@ export default function HomePage() {
         - Link to full about page for more details
       */}
       <div>
-        <h2 className="text-2xl font-bold text-center mb-5">About Me</h2>
+        <h2 className="text-2xl font-bold text-center">About Me</h2>
         <p className="mb-5 text-center">
           I&apos;m a passionate creative developer and designer with over 5
           years of experience crafting digital experiences that make a
@@ -145,7 +145,7 @@ export default function HomePage() {
         - Simple, focused messaging
       */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-5">
+        <h2 className="text-2xl font-bold">
           Ready to Start Your Project?
         </h2>
         <p className="mb-5">

@@ -55,7 +55,7 @@ export default async function AboutPage() {
               className="object-contain"
             />
             <div>
-              <h1 className="text-2xl font-bold mb-5">
+              <h1 className="text-2xl font-bold">
                 About Robot Williams 🤖
               </h1>
               <p className="text-sm" style={{ color: '#2F4F4F' }}>
@@ -74,7 +74,7 @@ export default async function AboutPage() {
           {/* Main Content Column */}
           <div className="lg-col-span-2">
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h2 className="text-lg font-bold mb-5">
+              <h2 className="text-lg font-bold">
                 📄 About Me
               </h2>
               <div
@@ -99,7 +99,7 @@ export default async function AboutPage() {
               This can be replaced with an actual image when available.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold mb-5">
+              <h3 className="text-sm font-bold">
                 🖼️ Profile
               </h3>
               <div className="bg-[#ffffff] border border-[#808080] h-48 flex items-center justify-center">
@@ -113,7 +113,7 @@ export default async function AboutPage() {
               Provides a quick overview for visitors.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold mb-5">
+              <h3 className="text-sm font-bold">
                 ℹ️ Quick Info
               </h3>
               <div className="space-y-3">
@@ -145,7 +145,7 @@ export default async function AboutPage() {
               and online presence. Helps visitors connect and learn more.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold mb-5">
+              <h3 className="text-sm font-bold">
                 🔗 Connect
               </h3>
               <div className="space-y-2">
@@ -193,7 +193,7 @@ export default async function AboutPage() {
         */}
         <div className="text-center">
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-6">
-            <h2 className="text-lg font-bold mb-5">
+            <h2 className="text-lg font-bold">
               💼 Let&apos;s Work Together
             </h2>
             <p className="text-sm mb-5 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
