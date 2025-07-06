@@ -153,8 +153,6 @@ h6 {
   margin: 0;
   font-weight: normal;
   line-height: 1.2;
-  margin-bottom: 1.25rem !important;
-  /* mb-5 equivalent for consistent spacing */
 }
 
 /* Heading hierarchy - progressive color and size system */
