@@ -55,7 +55,7 @@ export default async function AboutPage() {
               className="object-contain"
             />
             <div>
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-2xl font-bold mb-5">
                 About Robot Williams 🤖
               </h1>
               <p className="text-sm" style={{ color: '#2F4F4F' }}>
@@ -74,7 +74,7 @@ export default async function AboutPage() {
           {/* Main Content Column */}
           <div className="lg-col-span-2">
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h2 className="text-lg font-bold">
+              <h2 className="text-lg font-bold mb-5">
                 📄 About Me
               </h2>
               <div
@@ -193,7 +193,7 @@ export default async function AboutPage() {
         */}
         <div className="text-center">
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-6">
-            <h2 className="text-lg font-bold mb-3">
+            <h2 className="text-lg font-bold mb-5">
               💼 Let&apos;s Work Together
             </h2>
             <p className="text-sm mb-5 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>

@@ -123,7 +123,7 @@ export default function WorkPage() {
           with classic Windows 98 styling.
         */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-          <h1>📁 My Work</h1>
+          <h1 className="mb-5">📁 My Work</h1>
           <p className="text-sm" style={{ color: '#2F4F4F' }}>
             Click on any project icon to open it in a window. A collection of
             projects that showcase my skills in web development, design, and
@@ -217,7 +217,7 @@ export default function WorkPage() {
         */}
         <div className="mt-8 text-center">
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-6">
-            <h2>
+            <h2 className="mb-5">
               💼 Ready to Start Your Project?
             </h2>
             <p className="text-sm mb-5 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>

@@ -73,7 +73,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               className="object-contain"
             />
             <div>
-              <h1>
+              <h1 className="mb-5">
                 {project.title}
               </h1>
               <p className="text-sm text-[#000000]">{project.description}</p>
@@ -151,7 +151,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Project Content - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
-          <h2>
+          <h2 className="mb-5">
             📄 Project Details
           </h2>
           <div
@@ -169,7 +169,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Technologies Used - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
-          <h2>
+          <h2 className="mb-5">
             🔧 Technologies Used
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -187,7 +187,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {/* Project Gallery - Windows 98 Window */}
         {project.gallery && project.gallery.length > 0 && (
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
-            <h2>
+            <h2 className="mb-5">
               🖼️ Project Gallery
             </h2>
             <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
@@ -207,7 +207,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Related Projects - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-          <h2>
+          <h2 className="mb-5">
             📁 Related Projects
           </h2>
           <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
