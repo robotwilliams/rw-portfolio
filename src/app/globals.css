@@ -1627,9 +1627,10 @@ svg {
   line-height: 1.4;
 }
 
-.prose strong {
+.prose strong,
+.prose li strong {
+  color: #0077AA !important;
   font-weight: bold;
-  color: var(--text-primary);
 }
 
 .prose a {
