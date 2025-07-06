@@ -1602,10 +1602,10 @@ svg {
   padding-left: 20px;
 }
 
-.prose li {
-  margin-bottom: 4px;
-  line-height: 1.4;
-  color: #0077AA;
+.prose li,
+.prose ul li,
+.prose ol li {
+  color: #0077AA !important;
   font-size: 16px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
