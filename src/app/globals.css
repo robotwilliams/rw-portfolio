@@ -3033,6 +3033,17 @@ p[class*="text-3xl"] {
   margin-bottom: 0 !important;
 }
 
+/* But preserve margin for prose headers */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  margin-bottom: 1.25rem !important;
+  /* mb-5 equivalent */
+}
+
 /* Consistent spacing for desktop icons and projects */
 .desktop-icon,
 .project-icon,
