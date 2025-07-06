@@ -155,10 +155,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             📄 Project Details
           </h2>
           <div
-            className="prose prose-sm max-w-none text-[#000000]"
+            className="prose prose-sm max-w-none"
             style={
               {
-                "--tw-prose-body": "#000000",
+                "--tw-prose-body": "#0077AA",
                 "--tw-prose-headings": "#000080",
                 "--tw-prose-links": "#000080",
               } as React.CSSProperties
@@ -223,7 +223,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={`/work/${relatedProject.slug}`}
                   className="bg-[#ffffff] border border-[#808080] p-3 hover:bg-[#f0f0f0] transition-colors"
                 >
-                  <h3>
+                  <h3 className="mb-5">
                     {relatedProject.title}
                   </h3>
                   <p className="text-xs text-[#808080]">

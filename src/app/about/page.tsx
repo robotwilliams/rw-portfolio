@@ -78,10 +78,10 @@ export default async function AboutPage() {
                 📄 About Me
               </h2>
               <div
-                className="prose prose-sm max-w-none text-[#000000]"
+                className="prose prose-sm max-w-none"
                 style={
                   {
-                    "--tw-prose-body": "#000000",
+                    "--tw-prose-body": "#0077AA",
                     "--tw-prose-headings": "#000080",
                     "--tw-prose-links": "#000080",
                   } as React.CSSProperties
@@ -99,7 +99,7 @@ export default async function AboutPage() {
               This can be replaced with an actual image when available.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold mb-3">
+              <h3 className="text-sm font-bold mb-5">
                 🖼️ Profile
               </h3>
               <div className="bg-[#ffffff] border border-[#808080] h-48 flex items-center justify-center">
@@ -113,7 +113,7 @@ export default async function AboutPage() {
               Provides a quick overview for visitors.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold mb-3">
+              <h3 className="text-sm font-bold mb-5">
                 ℹ️ Quick Info
               </h3>
               <div className="space-y-3">
@@ -145,7 +145,7 @@ export default async function AboutPage() {
               and online presence. Helps visitors connect and learn more.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold mb-3">
+              <h3 className="text-sm font-bold mb-5">
                 🔗 Connect
               </h3>
               <div className="space-y-2">
