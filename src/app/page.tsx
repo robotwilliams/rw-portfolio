@@ -29,9 +29,9 @@ export default function HomePage() {
         - Call-to-action button linking to work page
         - Clean, centered layout for maximum impact
       */}
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-4">{homeData.hero_title}</h1>
-        <p className="text-lg mb-6">{homeData.hero_subtitle}</p>
+      <div className="text-center">
+        <h1 className="text-3xl font-bold">{homeData.hero_title}</h1>
+        <p className="text-lg mb-5">{homeData.hero_subtitle}</p>
         <Link href={String(homeData.cta_link)} className="retro-button">
           {homeData.cta_text}
         </Link>
@@ -46,9 +46,9 @@ export default function HomePage() {
         - Links to individual project pages
         - "View All Work" button for complete portfolio
       */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">Featured Work</h2>
-        <p className="text-center mb-6">
+      <div>
+        <h2 className="text-2xl font-bold text-center">Featured Work</h2>
+        <p className="text-center mb-5">
           A selection of my recent projects that showcase my skills and approach
           to creative development.
         </p>
@@ -96,9 +96,9 @@ export default function HomePage() {
         - Grid layout for easy scanning
         - Link to full about page for more details
       */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4 text-center">About Me</h2>
-        <p className="mb-6 text-center">
+      <div>
+        <h2 className="text-2xl font-bold text-center">About Me</h2>
+        <p className="mb-5 text-center">
           I&apos;m a passionate creative developer and designer with over 5
           years of experience crafting digital experiences that make a
           difference. I specialize in modern web development, UI/UX design, and
@@ -145,10 +145,10 @@ export default function HomePage() {
         - Simple, focused messaging
       */}
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">
+        <h2 className="text-2xl font-bold">
           Ready to Start Your Project?
         </h2>
-        <p className="mb-6">
+        <p className="mb-5">
           Let&apos;s work together to bring your vision to life. I&apos;m always
           excited to hear about new projects and opportunities.
         </p>

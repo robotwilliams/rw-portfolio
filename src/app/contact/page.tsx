@@ -93,11 +93,11 @@ export default function ContactPage() {
             Uses retro styling to match the Windows 95/98 theme.
           */}
           <div>
-            <h2 className="text-xl font-bold mb-4">Send Me a Message</h2>
+            <h2 className="text-xl font-bold">Send Me a Message</h2>
 
             {/* Success Message */}
             {submitStatus === "success" && (
-              <div className="mb-4 p-3 bg-green-600 text-white">
+              <div className="mb-5 p-3 bg-green-600 text-white">
                 <p>Thank you for your message! I&apos;ll get back to you soon.</p>
               </div>
             )}
@@ -191,8 +191,8 @@ export default function ContactPage() {
           <div className="space-y-6">
             {/* Introduction */}
             <div>
-              <h2 className="text-xl font-bold mb-4">Get In Touch</h2>
-              <p className="mb-4">
+              <h2 className="text-xl font-bold">Get In Touch</h2>
+              <p className="mb-5">
                 I&apos;m always excited to hear about new projects and
                 opportunities. Whether you have a specific project in mind or just
                 want to chat about digital experiences, I&apos;d love to connect.
@@ -239,7 +239,7 @@ export default function ContactPage() {
 
             {/* Social Links */}
             <div>
-              <h3 className="text-lg font-bold mb-4">Follow Me</h3>
+              <h3 className="text-lg font-bold mb-5">Follow Me</h3>
               <div className="flex space-x-4">
                 <a
                   href="https://linkedin.com/in/robw"
@@ -274,7 +274,7 @@ export default function ContactPage() {
               Helps set expectations for visitors.
             */}
             <div className="bg-gray-50 p-4 rounded">
-              <h4 className="font-bold mb-2">What to Expect</h4>
+              <h4 className="font-bold">What to Expect</h4>
               <ul className="text-sm space-y-1">
                 <li>• Response within 24 hours</li>
                 <li>• Free initial consultation</li>

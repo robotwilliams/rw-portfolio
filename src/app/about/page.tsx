@@ -45,8 +45,8 @@ export default async function AboutPage() {
           Main title and subtitle section that introduces the page
           with classic Windows 98 styling.
         */}
-        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
+          <div className="flex items-center gap-3 mb-5">
             <Image
               src="/images/rw-site-icon-folder-close.png"
               alt="About folder"
@@ -70,11 +70,11 @@ export default async function AboutPage() {
           Two-column layout with main content and sidebar.
           The main content displays the markdown content converted to HTML.
         */}
-        <div className="grid grid-cols-1 lg-grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 lg-grid-cols-3 gap-6">
           {/* Main Content Column */}
           <div className="lg-col-span-2">
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h2 className="text-lg font-bold mb-4">
+              <h2 className="text-lg font-bold">
                 📄 About Me
               </h2>
               <div
@@ -196,7 +196,7 @@ export default async function AboutPage() {
             <h2 className="text-lg font-bold mb-3">
               💼 Let&apos;s Work Together
             </h2>
-            <p className="text-sm mb-4 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
+            <p className="text-sm mb-5 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
               Whether you need a complete website redesign, a custom web
               application, or help improving your existing digital presence,
               I&apos;m here to help.

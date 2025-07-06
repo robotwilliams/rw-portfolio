@@ -78,7 +78,7 @@ export default function WorkPage() {
       <div className="min-h-screen bg-[#c0c0c0] p-4 flex items-center justify-center">
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-8">
           <div className="text-center">
-            <div className="text-2xl mb-4">⏳</div>
+            <div className="text-2xl mb-5">⏳</div>
             <h2>
               Loading Projects...
             </h2>
@@ -97,11 +97,11 @@ export default function WorkPage() {
       <div className="min-h-screen bg-[#c0c0c0] p-4 flex items-center justify-center">
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-8">
           <div className="text-center">
-            <div className="text-2xl mb-4">❌</div>
+            <div className="text-2xl mb-5">❌</div>
             <h2>
               Error Loading Projects
             </h2>
-            <p className="text-sm text-[#000000] mb-4">{error}</p>
+            <p className="text-sm text-[#000000] mb-5">{error}</p>
             <button
               onClick={() => window.location.reload()}
               className="px-4 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold hover:bg-[#d4d0c8] transition-colors"
@@ -122,7 +122,7 @@ export default function WorkPage() {
           Main title and description that introduces the portfolio
           with classic Windows 98 styling.
         */}
-        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
           <h1>📁 My Work</h1>
           <p className="text-sm" style={{ color: '#2F4F4F' }}>
             Click on any project icon to open it in a window. A collection of
@@ -220,7 +220,7 @@ export default function WorkPage() {
             <h2>
               💼 Ready to Start Your Project?
             </h2>
-            <p className="text-sm mb-4 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
+            <p className="text-sm mb-5 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
               I&apos;m always excited to work on new projects and bring creative
               ideas to life. Let&apos;s discuss how we can work together.
             </p>

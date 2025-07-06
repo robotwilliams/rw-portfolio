@@ -50,11 +50,11 @@ export default function PageLayout({
           <h1>{title}</h1>
         </div>
         <div className="text-center">
-          <div className="text-2xl mb-6">❌</div>
+          <div className="text-2xl mb-5">❌</div>
           <h2>
             Error Loading {page.charAt(0).toUpperCase() + page.slice(1)} Content
           </h2>
-          <p className="text-sm text-[#000000] mb-6">{error}</p>
+          <p className="text-sm text-[#000000] mb-5">{error}</p>
           {onRetry && (
             <button
               onClick={onRetry}
@@ -71,19 +71,19 @@ export default function PageLayout({
   return (
     <div className="relative">
       {/* Page Content */}
-      <div className="p-6">
+      <div>
         {/* Page Header */}
         <div className="mb-12">
-          <div className="flex items-start gap-4 mb-4">
+          <div className="flex items-start gap-4 mb-5">
             <h1>{title}</h1>
           </div>
-          <p className="text-sm leading-relaxed max-w-3xl" style={{ color: '#2F4F4F' }}>
+          <p className="text-sm leading-relaxed max-w-3xl px-2" style={{ color: '#2F4F4F' }}>
             {description}
           </p>
         </div>
 
         {/* Page Content */}
-        <div className="page-content space-y-12">
+        <div className="page-content">
           {children}
         </div>
       </div>
@@ -114,10 +114,10 @@ export function ContentSection({
   const HeadingTag = `h${headingLevel}` as keyof JSX.IntrinsicElements;
 
   return (
-    <div className={`${className}`}>
-      <div className="flex items-start gap-1">
+    <div className={`content-section ${className}`}>
+      <div className="flex items-start gap-1 mb-5">
         {icon && (
-          <span className="text-2xl mb-6 -mt-1">{icon}</span>
+          <span className="text-2xl -mt-1">{icon}</span>
         )}
         <HeadingTag>{title}</HeadingTag>
       </div>

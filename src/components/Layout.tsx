@@ -127,14 +127,14 @@ export default function Layout({ children }: LayoutProps) {
         <div className="max-w-7xl mx-auto py-12 px-4 sm-px-6 lg-px-8">
           <div className="grid grid-cols-1 md-grid-cols-3 gap-8">
             <div>
-              <h3 className="text-lg font-semibold mb-4">Rob W</h3>
+              <h3 className="text-lg font-semibold mb-5">Rob W</h3>
               <p className="text-gray-300">
                 Creative developer and designer building digital experiences
                 that matter.
               </p>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-5">Quick Links</h4>
               <ul className="space-y-2">
                 {navigation.map((item) => (
                   <li key={item.name}>
@@ -149,7 +149,7 @@ export default function Layout({ children }: LayoutProps) {
               </ul>
             </div>
             <div>
-              <h4 className="text-lg font-semibold mb-4">Connect</h4>
+              <h4 className="text-lg font-semibold mb-5">Connect</h4>
               <div className="flex space-x-4">
                 <a
                   href="https://linkedin.com/in/robw"

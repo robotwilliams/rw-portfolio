@@ -53,7 +53,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     <div className="min-h-screen bg-[#c0c0c0] p-4">
       <div className="max-w-4xl mx-auto">
         {/* Back to Work - Windows 98 Style */}
-        <div className="mb-6">
+        <div className="mb-5">
           <Link
             href="/work"
             className="inline-flex items-center text-[#DDA0DD] hover:text-[#9370DB] font-medium text-sm"
@@ -63,8 +63,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Project Header - Windows 98 Window */}
-        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
-          <div className="flex items-center gap-3 mb-4">
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
+          <div className="flex items-center gap-3 mb-5">
             <Image
               src="/images/rw-site-icon-folder-close.png"
               alt={`${project.title} folder`}
@@ -81,7 +81,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
 
           {/* Project Meta - Windows 98 Style */}
-          <div className="grid grid-cols-1 md-grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 md-grid-cols-3 gap-4 mb-5">
             <div className="bg-[#ffffff] border border-[#808080] p-3">
               <span className="text-xs text-[#808080]">Client</span>
               <p className="font-medium text-sm">{project.client}</p>
@@ -150,7 +150,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Project Content - Windows 98 Window */}
-        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
           <h2>
             📄 Project Details
           </h2>
@@ -168,7 +168,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {/* Technologies Used - Windows 98 Window */}
-        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
           <h2>
             🔧 Technologies Used
           </h2>
@@ -186,7 +186,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Project Gallery - Windows 98 Window */}
         {project.gallery && project.gallery.length > 0 && (
-          <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
+          <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
             <h2>
               🖼️ Project Gallery
             </h2>

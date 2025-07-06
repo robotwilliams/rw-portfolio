@@ -387,10 +387,8 @@ export default function WindowContent({ page }: WindowContentProps) {
     // Loading state
     if (loading) {
       return (
-        <div className="p-8">
-          <div className="text-center">
-            <p>Loading...</p>
-          </div>
+        <div className="text-center">
+          <p>Loading...</p>
         </div>
       );
     }
@@ -398,12 +396,12 @@ export default function WindowContent({ page }: WindowContentProps) {
     // Error state
     if (error) {
       return (
-        <div className="p-8 text-center">
-          <div className="text-2xl mb-4">❌</div>
+        <div className="text-center">
+          <div className="text-2xl mb-5">❌</div>
           <h2 className="text-lg font-bold mb-2">
             Error Loading Projects
           </h2>
-          <p className="text-sm text-[#000000] mb-4">{error}</p>
+          <p className="text-sm text-[#000000] mb-5">{error}</p>
           <button
             onClick={loadWorkPage}
             className="px-4 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold hover:bg-[#d4d0c8] transition-colors"
@@ -428,7 +426,7 @@ export default function WindowContent({ page }: WindowContentProps) {
       >
         {/* Projects Grid */}
         <ContentSection title="Projects" icon="📁">
-          <div className="grid gap-2 px-2" style={{
+          <div className="grid gap-2" style={{
             gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 120px))',
             justifyContent: 'start',
             maxWidth: '100%',
@@ -487,7 +485,7 @@ export default function WindowContent({ page }: WindowContentProps) {
 
         {/* Categories Summary */}
         <ContentSection title="Project Categories" icon="📊" headingLevel={3}>
-          <div className="flex flex-wrap gap-3 mb-4">
+          <div className="flex flex-wrap gap-3 mb-5">
             {categories.map((category) => {
               const categoryProjects = projects.filter(
                 (project) => project.category === category
@@ -522,7 +520,7 @@ export default function WindowContent({ page }: WindowContentProps) {
   // Fallback for home page or other content
   return (
     <div
-      className="prose max-w-none p-6"
+      className="prose max-w-none"
       style={
         {
           "--tw-prose-body": "#000000",
