@@ -36,31 +36,6 @@ export default function PageLayout({
   error = null,
   onRetry,
 }: PageLayoutProps) {
-  // Loading state
-  if (loading) {
-    return (
-      <div className="p-8">
-        <div className="flex items-center gap-4 mb-8">
-          <img
-            src={icon}
-            alt={`${page} icon`}
-            className="w-10 h-10 object-contain"
-          />
-          <h1 className="text-2xl font-bold text-[#000080]">{title}</h1>
-        </div>
-        <div className="text-center">
-          <div className="text-2xl mb-6">⏳</div>
-          <h2 className="text-lg font-bold text-[#000080] mb-3">
-            Loading {page.charAt(0).toUpperCase() + page.slice(1)} Content
-          </h2>
-          <p className="text-sm text-[#000000]">
-            Please wait while we load the content...
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   // Error state
   if (error) {
     return (
@@ -71,11 +46,11 @@ export default function PageLayout({
             alt={`${page} icon`}
             className="w-10 h-10 object-contain"
           />
-          <h1 className="text-2xl font-bold text-[#000080]">{title}</h1>
+          <h1>{title}</h1>
         </div>
         <div className="text-center">
           <div className="text-2xl mb-6">❌</div>
-          <h2 className="text-lg font-bold text-[#000080] mb-3">
+          <h2>
             Error Loading {page.charAt(0).toUpperCase() + page.slice(1)} Content
           </h2>
           <p className="text-sm text-[#000000] mb-6">{error}</p>
@@ -99,10 +74,9 @@ export default function PageLayout({
         {/* Page Header */}
         <div className="mb-12">
           <div className="flex items-start gap-4 mb-4">
-
-            <h1 className="text-2xl font-bold text-[#000080]">{title}</h1>
+            <h1>{title}</h1>
           </div>
-          <p className="text-[#000000] text-sm leading-relaxed max-w-3xl">
+          <p className="text-sm leading-relaxed max-w-3xl" style={{ color: '#2F4F4F' }}>
             {description}
           </p>
         </div>
@@ -118,7 +92,7 @@ export default function PageLayout({
 
 /**
  * Content Section Component
- * 
+ *
  * A reusable section component for organizing content within pages.
  */
 interface ContentSectionProps {
@@ -126,6 +100,7 @@ interface ContentSectionProps {
   icon?: string;
   children: React.ReactNode;
   className?: string;
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export function ContentSection({
@@ -133,14 +108,17 @@ export function ContentSection({
   icon,
   children,
   className = "",
+  headingLevel = 2,
 }: ContentSectionProps) {
+  const HeadingTag = `h${headingLevel}` as keyof JSX.IntrinsicElements;
+
   return (
     <div className={`${className}`}>
-      <div className="flex items-start gap-2 mb-6">
+      <div className="flex items-start gap-1">
         {icon && (
-          <span className="text-xl">{icon}</span>
+          <span className="text-2xl mb-6 -mt-1">{icon}</span>
         )}
-        <h2 className="text-xl font-bold text-[#000080]">{title}</h2>
+        <HeadingTag>{title}</HeadingTag>
       </div>
       <div className="space-y-6">
         {children}
@@ -151,7 +129,7 @@ export function ContentSection({
 
 /**
  * Info Grid Component
- * 
+ *
  * A responsive grid for displaying information cards.
  */
 interface InfoGridProps {
@@ -181,7 +159,7 @@ export function InfoGrid({
 
 /**
  * Info Card Component
- * 
+ *
  * A styled card for displaying information.
  */
 interface InfoCardProps {
@@ -213,15 +191,15 @@ export function InfoCard({ title, children, className = "" }: InfoCardProps) {
         e.currentTarget.style.boxShadow = 'inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 rgba(0, 0, 0, 0.3), 2px 2px 4px rgba(0, 0, 0, 0.2)';
       }}
     >
-      <h3 className="text-sm font-semibold text-black mb-2 truncate" style={{ color: '#404040' }} title={title}>{title}</h3>
-      <div className="text-xs text-gray leading-relaxed break-words" style={{ color: '#606060' }}>{children}</div>
+      <h5 className="mb-2 truncate" title={title}>{title}</h5>
+      <span className="text-md text-gray leading-relaxed break-words" style={{ color: '#606060' }}>{children}</span>
     </div>
   );
 }
 
 /**
  * Link Grid Component
- * 
+ *
  * A grid for displaying external links and social media.
  */
 interface LinkGridProps {
@@ -239,7 +217,7 @@ export function LinkGrid({ children, className = "" }: LinkGridProps) {
 
 /**
  * Link Button Component
- * 
+ *
  * A styled button for external links.
  */
 interface LinkButtonProps {
@@ -260,7 +238,7 @@ export function LinkButton({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={`inline-flex items-center px-6 py-3 font-semibold text-sm transition-colors ${className}`}
+      className={`inline-flex items-center px-6 py-3 text-sm transition-colors ${className}`}
       style={{
         backgroundColor: '#c0c0c0',
         border: '2px solid #dfdfdf',
@@ -278,4 +256,4 @@ export function LinkButton({
       {children}
     </a>
   );
-} 
+}

@@ -39,7 +39,7 @@ export default async function AboutPage() {
   return (
     <div className="min-h-screen bg-[#c0c0c0] p-4">
       <div className="max-w-4xl mx-auto">
-        {/* 
+        {/*
           Page Header - Windows 98 Style
           Main title and subtitle section that introduces the page
           with classic Windows 98 styling.
@@ -52,17 +52,17 @@ export default async function AboutPage() {
               className="w-8 h-8 object-contain"
             />
             <div>
-              <h1 className="text-2xl font-bold text-[#000080]">
+              <h1 className="text-2xl font-bold">
                 About Robot Williams 🤖
               </h1>
-              <p className="text-sm text-[#000000]">
+              <p className="text-sm" style={{ color: '#2F4F4F' }}>
                 Frontend Maker and creative developer
               </p>
             </div>
           </div>
         </div>
 
-        {/* 
+        {/*
           Main Content Area - Windows 98 Style
           Two-column layout with main content and sidebar.
           The main content displays the markdown content converted to HTML.
@@ -71,7 +71,7 @@ export default async function AboutPage() {
           {/* Main Content Column */}
           <div className="lg-col-span-2">
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h2 className="text-lg font-bold text-[#000080] mb-4">
+              <h2 className="text-lg font-bold mb-4">
                 📄 About Me
               </h2>
               <div
@@ -90,13 +90,13 @@ export default async function AboutPage() {
 
           {/* Sidebar Column */}
           <div className="space-y-6">
-            {/* 
+            {/*
               Profile Image - Windows 98 Style
               Placeholder for profile photo with fallback text.
               This can be replaced with an actual image when available.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold text-[#000080] mb-3">
+              <h3 className="text-sm font-bold mb-3">
                 🖼️ Profile
               </h3>
               <div className="bg-[#ffffff] border border-[#808080] h-48 flex items-center justify-center">
@@ -104,13 +104,13 @@ export default async function AboutPage() {
               </div>
             </div>
 
-            {/* 
+            {/*
               Quick Info Section - Windows 98 Style
               Displays key information about skills, specialty, and contact.
               Provides a quick overview for visitors.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold text-[#000080] mb-3">
+              <h3 className="text-sm font-bold mb-3">
                 ℹ️ Quick Info
               </h3>
               <div className="space-y-3">
@@ -136,13 +136,13 @@ export default async function AboutPage() {
               </div>
             </div>
 
-            {/* 
+            {/*
               Social Links Section - Windows 98 Style
               Provides links to professional social media profiles
               and online presence. Helps visitors connect and learn more.
             */}
             <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-              <h3 className="text-sm font-bold text-[#000080] mb-3">
+              <h3 className="text-sm font-bold mb-3">
                 🔗 Connect
               </h3>
               <div className="space-y-2">
@@ -183,17 +183,17 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        {/* 
+        {/*
           Call-to-Action Section - Windows 98 Style
           Encourages visitors to get in touch for projects or collaboration.
           Uses classic Windows 98 button styling.
         */}
         <div className="text-center">
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-6">
-            <h2 className="text-lg font-bold text-[#000080] mb-3">
+            <h2 className="text-lg font-bold mb-3">
               💼 Let&apos;s Work Together
             </h2>
-            <p className="text-[#000000] text-sm mb-4 max-w-2xl mx-auto">
+            <p className="text-sm mb-4 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
               Whether you need a complete website redesign, a custom web
               application, or help improving your existing digital presence,
               I&apos;m here to help.

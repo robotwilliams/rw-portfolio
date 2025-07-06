@@ -8,7 +8,6 @@ import PageLayout, {
   LinkGrid,
 } from "./PageLayout";
 import ProjectWindow from "./ProjectWindow";
-import RetroLoading from "./RetroLoading";
 
 /**
  * WindowContent Component Props
@@ -201,7 +200,7 @@ export default function WindowContent({ page }: WindowContentProps) {
         icon: "/images/rw-logo.png",
       },
       contact: {
-        title: "Say Hello",
+        title: "📠 Say Hello",
         description: "Get in touch with Rob Williams for your next project.",
         icon: "/images/rw-site-icon-folder-closed-contact.png",
       },
@@ -221,13 +220,13 @@ export default function WindowContent({ page }: WindowContentProps) {
       >
         {page === "about" && (
           <>
-            <ContentSection title="What I Do" icon="💼">
+            <ContentSection title="About Me" icon="💼">
               <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
                 My focus is on frontend development and creative problem-solving. I combine technical expertise with a strong understanding of user experience, ensuring that every project delivers both performance and visual impact.
               </p>
             </ContentSection>
 
-            <ContentSection title="My Philosophy" icon="🎯">
+            <ContentSection title="My Philosophy" icon="🎯" headingLevel={3}>
               <InfoGrid columns={2}>
                 <InfoCard title="Perspective">
                   My experience enables me to deliver solutions that are intuitive and natural for end users. I am comfortable working independently or as part of a team of any size.
@@ -244,7 +243,7 @@ export default function WindowContent({ page }: WindowContentProps) {
               </InfoGrid>
             </ContentSection>
 
-            <ContentSection title="Technical Skills" icon="🔧">
+            <ContentSection title="Technical Skills" icon="🔧" headingLevel={4}>
               <InfoGrid columns={3}>
                 <InfoCard title="Frontend Development">
                   React, Vue.js, HTML5, CSS3, JavaScript/TypeScript
@@ -264,7 +263,7 @@ export default function WindowContent({ page }: WindowContentProps) {
               </InfoGrid>
             </ContentSection>
 
-            <ContentSection title="Recent Work" icon="📁">
+            <ContentSection title="Recent Work" icon="📁" headingLevel={4}>
               <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
                 I have had the pleasure of working with a variety of clients, including:
               </p>
@@ -290,7 +289,7 @@ export default function WindowContent({ page }: WindowContentProps) {
               </InfoGrid>
             </ContentSection>
 
-            <ContentSection title="Let's Work Together" icon="🤝">
+            <ContentSection title="Let's Work Together" icon="🤝" headingLevel={3}>
               <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
                 Whether you need a complete website redesign, a custom web application, or assistance improving your digital presence, I am here to help. I believe in delivering work that meets your immediate needs and supports your long-term goals.
               </p>
@@ -359,7 +358,7 @@ export default function WindowContent({ page }: WindowContentProps) {
               </form>
             </ContentSection>
 
-            <ContentSection title="Other Ways to Connect" icon="🔗">
+            <ContentSection title="Other Ways to Connect" icon="🔗" headingLevel={3}>
               <LinkGrid>
                 <LinkButton href="mailto:hello@robotwilliams.com">
                   Email: hello@robotwilliams.com
@@ -393,26 +392,9 @@ export default function WindowContent({ page }: WindowContentProps) {
     if (loading) {
       return (
         <div className="p-8">
-          <RetroLoading
-            messages={[
-              "$ cd /portfolio",
-              "$ ls -la",
-              "[OK] Found 6 project files",
-              "$ cat projects.json",
-              "[OK] Loading project metadata...",
-              "$ npm install nostalgia",
-              "[OK] RobotOS compatibility installed",
-              "",
-              "    [ROBOT] Scanning project files...",
-              "    [ROBOT] Found 6 portfolio entries",
-              "    [ROBOT] Loading PNG folder assets...",
-              "    [ROBOT] Ready to display projects! 🤖",
-              "",
-              "$ echo 'Projects loaded successfully'",
-              "Projects loaded successfully",
-            ]}
-            duration={3000}
-          />
+          <div className="text-center">
+            <p>Loading...</p>
+          </div>
         </div>
       );
     }
@@ -422,7 +404,7 @@ export default function WindowContent({ page }: WindowContentProps) {
       return (
         <div className="p-8 text-center">
           <div className="text-2xl mb-4">❌</div>
-          <h2 className="text-lg font-bold text-[#000080] mb-2">
+          <h2 className="text-lg font-bold mb-2">
             Error Loading Projects
           </h2>
           <p className="text-sm text-[#000000] mb-4">{error}</p>
@@ -444,7 +426,7 @@ export default function WindowContent({ page }: WindowContentProps) {
     return (
       <PageLayout
         page="work"
-        title={<><img src="/images/rw-site-icon-work.png" alt="Work" className="inline-block w-7 h-7 mr-2 align-middle" />My Work</>}
+        title={<>✏️My Work</>}
         description="Click on any project icon to open it in a window. A collection of projects that showcase my skills in web development, design, and creative problem-solving."
         icon="/images/rw-site-icon-folder-close.png"
       >
@@ -480,7 +462,7 @@ export default function WindowContent({ page }: WindowContentProps) {
 
                 {/* Project Title */}
                 <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '100%' }}>
-                  <h3 className="text-xs font-medium text-center leading-tight truncate" style={{
+                  <span className="text-xs font-medium text-center leading-tight truncate block text-gray-600" style={{
                     fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
                     fontSize: '13px',
                     color: 'var(--text-primary)',
@@ -490,7 +472,7 @@ export default function WindowContent({ page }: WindowContentProps) {
                     hyphens: 'auto'
                   }} title={project.title}>
                     {project.title}
-                  </h3>
+                  </span>
                   {project.featured && (
                     <span className="text-xs" style={{
                       color: '#ff0000',
@@ -506,7 +488,7 @@ export default function WindowContent({ page }: WindowContentProps) {
         </ContentSection>
 
         {/* Categories Summary */}
-        <ContentSection title="Project Categories" icon="📊">
+        <ContentSection title="Project Categories" icon="📊" headingLevel={3}>
           <div className="flex flex-wrap gap-3 mb-4">
             {categories.map((category) => {
               const categoryProjects = projects.filter(

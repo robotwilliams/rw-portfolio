@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import ProjectWindow from "./ProjectWindow";
 
 interface PortfolioProject {
@@ -29,32 +29,7 @@ const ProjectWindowContext = createContext<
   ProjectWindowContextType | undefined
 >(undefined);
 
-export function ProjectWindowProvider() {
-  const [openWindows, setOpenWindows] = useState<
-    Record<string, { project: PortfolioProject; isActive: boolean }>
-  >({});
 
-  const closeProjectWindow = (windowId: string) => {
-    setOpenWindows((prev) => {
-      const newWindows = { ...prev };
-      delete newWindows[windowId];
-      return newWindows;
-    });
-  };
-
-  return (
-    <>
-      {/* Render project windows at root level */}
-      {Object.entries(openWindows).map(([windowId, windowData]) => (
-        <ProjectWindow
-          key={windowId}
-          project={windowData.project}
-          onClose={() => closeProjectWindow(windowId)}
-        />
-      ))}
-    </>
-  );
-}
 
 export function ProjectWindowContextProvider({
   children,
@@ -102,7 +77,7 @@ export function useProjectWindows() {
   const context = useContext(ProjectWindowContext);
   if (context === undefined) {
     throw new Error(
-      "useProjectWindows must be used within a ProjectWindowProvider"
+      "useProjectWindows must be used within a ProjectWindowContextProvider"
     );
   }
   return context;

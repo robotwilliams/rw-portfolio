@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useProjectWindows } from "@/components/ProjectWindowContext";
+import { useEffect, useState } from "react";
 
 interface PortfolioProject {
   slug: string;
@@ -78,7 +78,7 @@ export default function WorkPage() {
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-8">
           <div className="text-center">
             <div className="text-2xl mb-4">⏳</div>
-            <h2 className="text-lg font-bold text-[#000080] mb-2">
+            <h2>
               Loading Projects...
             </h2>
             <p className="text-sm text-[#000000]">
@@ -97,7 +97,7 @@ export default function WorkPage() {
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-8">
           <div className="text-center">
             <div className="text-2xl mb-4">❌</div>
-            <h2 className="text-lg font-bold text-[#000080] mb-2">
+            <h2>
               Error Loading Projects
             </h2>
             <p className="text-sm text-[#000000] mb-4">{error}</p>
@@ -116,21 +116,21 @@ export default function WorkPage() {
   return (
     <div className="min-h-screen bg-[#c0c0c0] p-4 relative">
       <div className="max-w-7xl mx-auto">
-        {/* 
+        {/*
           Page Header - Windows 98 Style
           Main title and description that introduces the portfolio
           with classic Windows 98 styling.
         */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
-          <h1 className="text-2xl font-bold text-[#000080] mb-2">📁 My Work</h1>
-          <p className="text-[#000000] text-sm">
+          <h1>📁 My Work</h1>
+          <p className="text-sm" style={{ color: '#2F4F4F' }}>
             Click on any project icon to open it in a window. A collection of
             projects that showcase my skills in web development, design, and
             creative problem-solving.
           </p>
         </div>
 
-        {/* 
+        {/*
           Projects Grid - Windows 98 Desktop Style
           Displays all projects as desktop icons in a grid layout.
           Each project icon contains:
@@ -162,9 +162,9 @@ export default function WorkPage() {
               </div>
               {/* Project Title */}
               <div className="text-center">
-                <h3 className="text-xs font-medium text-center leading-tight">
+                <h6 className="text-xs font-medium text-center leading-tight text-gray-800">
                   {project.title}
-                </h3>
+                </h6>
                 {project.featured && (
                   <span className="text-xs text-[#ff0000]">★ Featured</span>
                 )}
@@ -173,16 +173,16 @@ export default function WorkPage() {
           ))}
         </div>
 
-        {/* 
+        {/*
           Categories Summary - Windows 98 Style
           Shows a breakdown of project categories with counts.
           Helps visitors understand the range of work and expertise areas.
         */}
         <div className="mt-8">
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-            <h2 className="text-lg font-bold text-[#000080] mb-4">
+            <h3>
               📊 Project Categories
-            </h2>
+            </h3>
             <div className="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-4 gap-4">
               {categories.map((category) => {
                 // Count projects in each category
@@ -194,7 +194,7 @@ export default function WorkPage() {
                     key={category}
                     className="bg-[#ffffff] border border-[#808080] p-3"
                   >
-                    <h3 className="text-sm font-semibold text-[#000000] mb-1">
+                    <h3>
                       {category}
                     </h3>
                     <p className="text-xs text-[#808080]">
@@ -207,17 +207,17 @@ export default function WorkPage() {
           </div>
         </div>
 
-        {/* 
+        {/*
           Call-to-Action Section - Windows 98 Style
           Encourages visitors to start a project or get in touch.
           Uses classic Windows 98 button styling.
         */}
         <div className="mt-8 text-center">
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-6">
-            <h2 className="text-lg font-bold text-[#000080] mb-3">
+            <h2>
               💼 Ready to Start Your Project?
             </h2>
-            <p className="text-[#000000] text-sm mb-4 max-w-2xl mx-auto">
+            <p className="text-sm mb-4 max-w-2xl mx-auto" style={{ color: '#2F4F4F' }}>
               I&apos;m always excited to work on new projects and bring creative
               ideas to life. Let&apos;s discuss how we can work together.
             </p>
@@ -233,4 +233,3 @@ export default function WorkPage() {
     </div>
   );
 }
-

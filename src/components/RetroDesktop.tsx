@@ -1,13 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-// Note: These imports are not used in the current implementation
-// Content is loaded dynamically through WindowContent component
-// import AboutPage from "@/app/about/page";
-// import WorkPage from "@/app/work/page";
-// import ContactPage from "@/app/contact/page";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import WindowContent from "./WindowContent";
 import WindowLoader from "./WindowLoader";
 
@@ -608,7 +603,7 @@ export default function RetroDesktop() {
         transition: "background 0.5s ease-in-out",
       }}
     >
-      {/* 
+      {/*
         Animated Cloud Scene
         Pixel art clouds that move across the desktop background
         creating a dynamic sky effect.
@@ -628,7 +623,7 @@ export default function RetroDesktop() {
         </div>
       </div>
 
-      {/* 
+      {/*
         Desktop Icons
         Clickable icons positioned in the top-left corner of the desktop.
         Each icon represents a navigation item and can be clicked to open
@@ -685,7 +680,7 @@ export default function RetroDesktop() {
         ))}
       </div>
 
-      {/* 
+      {/*
         Windows
         Renders all open windows with their current positions, sizes, and states.
         Each window can be dragged, resized, minimized, and closed.
@@ -715,7 +710,7 @@ export default function RetroDesktop() {
             <div className="flex space-x-1">
               {/* Minimize Button */}
               <button
-                className="w-7 h-7 bg-yellow-600 border-2 border-yellow-800 flex items-center justify-center text-black text-lg font-bold hover:bg-yellow-500 transition-colors cursor-pointer"
+                className="w-7 h-7 bg-yellow-600 border-2 border-yellow-800 flex items-center justify-center text-lg font-bold hover:bg-yellow-500 transition-colors cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   minimizeWindow(window.id);
@@ -747,11 +742,17 @@ export default function RetroDesktop() {
           </div>
 
           {/* Window Content */}
-          <div className="window-content h-full overflow-auto relative">
+          <div
+            className="window-content h-full relative"
+            style={{ overflow: windowLoading[window.id] ? 'hidden' : 'auto' }}
+          >
+            {/* Loader Overlay */}
+            {windowLoading[window.id] && (
+              <div className="window-loader-overlay">
+                <WindowLoader isLoading={true} />
+              </div>
+            )}
             {windowContentMap[window.id]}
-
-            {/* Window Loader */}
-            <WindowLoader isLoading={windowLoading[window.id] || false} />
           </div>
 
           {/* Resize Handle - Windows 11 style */}
@@ -776,7 +777,7 @@ export default function RetroDesktop() {
         </div>
       ))}
 
-      {/* 
+      {/*
         Start Menu
         Dropdown menu that appears when the start button is clicked.
         Contains navigation items and branding information.
@@ -841,7 +842,7 @@ export default function RetroDesktop() {
         </div>
       )}
 
-      {/* 
+      {/*
         Taskbar
         Fixed bottom bar containing the start button, running applications,
         and system clock. Provides quick access to open windows and navigation.
@@ -940,7 +941,7 @@ export default function RetroDesktop() {
         </div>
       </div>
 
-      {/* 
+      {/*
         Click Outside Handler
         Invisible overlay that deselects desktop icons when clicking
         outside of them. Uses pointer-events: none to not interfere

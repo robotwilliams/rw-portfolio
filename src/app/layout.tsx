@@ -1,3 +1,8 @@
+import PageLoadWrapper from "@/components/PageLoadWrapper";
+import {
+  ProjectWindowContextProvider,
+} from "@/components/ProjectWindowContext";
+import RetroDesktop from "@/components/RetroDesktop";
 import type { Metadata } from "next";
 import {
   IBM_Plex_Mono,
@@ -5,11 +10,6 @@ import {
   Source_Code_Pro,
 } from "next/font/google";
 import "./globals.css";
-import RetroDesktop from "@/components/RetroDesktop";
-import PageLoadWrapper from "@/components/PageLoadWrapper";
-import {
-  ProjectWindowContextProvider,
-} from "@/components/ProjectWindowContext";
 
 /**
  * Font Configuration
@@ -87,9 +87,9 @@ export default function RootLayout() {
       <body
         className={`${ibmPlexMono.variable} ${pressStart2P.variable} ${sourceCodePro.variable} antialiased`}
       >
-        {/* 
+        {/*
           RetroDesktop Component
-          
+
           This component creates the RobotOS desktop interface that wraps
           all content. It provides:
           - Desktop background with grid pattern
@@ -98,7 +98,7 @@ export default function RootLayout() {
           - Taskbar with start menu and running applications
           - Authentic RobotOS styling and interactions
           - Interactive work page with project grid and window management
-          
+
           The children prop contains the actual page content, but in this
           implementation, content is loaded dynamically through the
           WindowContent component based on the current route. The work page

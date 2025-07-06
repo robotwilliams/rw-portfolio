@@ -14,10 +14,10 @@ jest.mock("@/lib/markdown", () => ({
   markdownToHtml: jest.fn(),
 }));
 
-import { NextRequest } from "next/server";
-import fs from "fs";
 import { GET } from "@/app/api/content/[page]";
 import * as markdownModule from "@/lib/markdown";
+import fs from "fs";
+import { NextRequest } from "next/server";
 
 const mockGetPageData = markdownModule.getPageData as jest.MockedFunction<
   typeof markdownModule.getPageData

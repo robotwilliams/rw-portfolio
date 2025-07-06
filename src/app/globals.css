@@ -10,6 +10,14 @@
   font-style: normal;
 }
 
+/* Wheaton Capitals Font for Headers */
+@font-face {
+  font-family: "Wheaton Capitals";
+  src: url("/fonts/wheaton capitals.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /**
  * CSS Custom Properties (CSS Variables)
  *
@@ -118,12 +126,6 @@ body {
 }
 
 /* Additional pixel art enhancements for text elements */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 p,
 span,
 div {
@@ -133,6 +135,63 @@ div {
   text-rendering: optimize-contrast;
   /* Slight text shadow for pixelated feel */
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   TYPOGRAPHY SYSTEM
+   ======================================== */
+
+/* Base heading styles - applies to ALL headings everywhere */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Wheaton Capitals", "MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  margin-top: 0;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+/* Heading hierarchy - progressive color and size system */
+/* Same purple hue (#6D28D9) getting progressively lighter */
+h1 {
+  color: #6D28D9;
+  font-size: 30px;
+}
+
+h2 {
+  color: #7C3AED;
+  font-size: 26px;
+}
+
+h3 {
+  color: #8B5CF6;
+  font-size: 22px;
+}
+
+h4 {
+  color: #A78BFA;
+  font-size: 18px;
+}
+
+h5 {
+  color: #B794F4;
+  font-size: 16px;
+}
+
+h6 {
+  color: #C4B5FD;
+  font-size: 14px;
+}
+
+/* Project folder titles - small and dark gray */
+.project-icon h6 {
+  color: #4A5568 !important;
+  font-size: 12px !important;
 }
 
 /* Enhanced scanlines effect for stronger CRT monitor feel */
@@ -1510,43 +1569,21 @@ svg {
   font-family: var(--font-pixel), "Press Start 2P", monospace;
 }
 
-.prose h1 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 12px;
-  margin-top: 16px;
-  color: var(--text-primary);
-  border-bottom: 1px solid var(--dark-gray);
-  padding-bottom: 4px;
-}
-
-.prose h2 {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  margin-top: 14px;
-  color: var(--text-primary);
-}
-
-.prose h3 {
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  margin-top: 12px;
-  color: var(--text-primary);
-}
-
-.prose h4 {
-  font-size: 12px;
-  font-weight: bold;
-  margin-bottom: 6px;
-  margin-top: 10px;
-  color: var(--text-primary);
+/* Prose headings inherit from main heading system */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  /* Inherit all styles from main heading system */
 }
 
 .prose p {
   margin-bottom: 8px;
   line-height: 1.4;
+  color: #0077AA;
+  font-size: 16px;
 }
 
 .prose ul {
@@ -2380,17 +2417,16 @@ select {
  */
 .window-loader-overlay {
   position: absolute;
-  top: 10;
+  top: 0;
   left: 0;
   right: 0;
-  bottom: 50;
+  bottom: 0;
   background: #d4d0c8;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
   border-radius: 0 0 16px 16px;
-  padding-top: 0px;
 }
 
 .window-loader {
@@ -2582,19 +2618,45 @@ select {
   color: var(--text-primary);
 }
 
-.page-content h1,
-.page-content h2,
-.page-content h3 {
-  font-family: var(--font-pixel), "Press Start 2P", monospace;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
+
 
 .page-content p {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.4;
   margin-bottom: 1rem;
-  color: var(--text-primary);
+  margin-top: 0;
+  color: #0077AA;
+  /* Dark teal color for body text */
+}
+
+/* Simple paragraph styling */
+p {
+  color: #0077AA;
+  font-size: 16px;
+}
+
+/* Override Tailwind text color and size classes for paragraphs */
+p[class*="text-"],
+p.text-sm,
+p.text-lg,
+p.text-xs,
+p.text-base,
+p.text-xl,
+p.text-2xl,
+p.text-3xl {
+  color: #0077AA !important;
+  font-size: 16px !important;
+}
+
+/* Also override any text size classes on paragraphs */
+p[class*="text-sm"],
+p[class*="text-lg"],
+p[class*="text-xs"],
+p[class*="text-base"],
+p[class*="text-xl"],
+p[class*="text-2xl"],
+p[class*="text-3xl"] {
+  font-size: 16px !important;
 }
 
 .page-content .text-sm {
@@ -2820,53 +2882,10 @@ select {
   }
 }
 
-/* Responsive InfoCard header sizes */
-@media (min-width: 768px) {
-  .page-content .bg-white h3 {
-    font-size: 14px !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .page-content .bg-white h3 {
-    font-size: 15px !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  .page-content .bg-white h3 {
-    font-size: 16px !important;
-  }
-}
-
-/* InfoCard specific responsive sizing */
+/* InfoCard specific styling - inherits from main heading system */
 .bg-white.border.border-gray h3 {
   transition: font-size 0.2s ease;
-  font-weight: 600 !important;
-}
-
-@media (max-width: 767px) {
-  .bg-white.border.border-gray h3 {
-    font-size: 13px !important;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .bg-white.border.border-gray h3 {
-    font-size: 14px !important;
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1279px) {
-  .bg-white.border.border-gray h3 {
-    font-size: 15px !important;
-  }
-}
-
-@media (min-width: 1280px) {
-  .bg-white.border.border-gray h3 {
-    font-size: 16px !important;
-  }
+  font-weight: 600;
 }
 
 /* Ensure content doesn't overflow in small windows */
@@ -2883,6 +2902,7 @@ select {
   text-overflow: ellipsis;
 }
 
+/* Icon text styling - inherits from main heading system */
 .window-icon h3,
 .project-icon h3,
 .desktop-icon h3 {

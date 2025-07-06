@@ -1,6 +1,6 @@
 import {
-  getPortfolioProject,
   getAllPortfolioProjects,
+  getPortfolioProject,
   markdownToHtml,
 } from "@/lib/markdown";
 import { Metadata } from "next";
@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <div className="mb-6">
           <Link
             href="/work"
-            className="inline-flex items-center text-[#000080] hover:text-[#0000ff] font-medium text-sm"
+            className="inline-flex items-center text-[#DDA0DD] hover:text-[#9370DB] font-medium text-sm"
           >
             ← Back to Work
           </Link>
@@ -70,7 +70,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               className="w-8 h-8 object-contain"
             />
             <div>
-              <h1 className="text-xl font-bold text-[#000080]">
+              <h1>
                 {project.title}
               </h1>
               <p className="text-sm text-[#000000]">{project.description}</p>
@@ -148,7 +148,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Project Content - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
-          <h2 className="text-lg font-bold text-[#000080] mb-4">
+          <h2>
             📄 Project Details
           </h2>
           <div
@@ -166,9 +166,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Technologies Used - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
-          <h3 className="text-lg font-bold text-[#000080] mb-4">
+          <h2>
             🔧 Technologies Used
-          </h3>
+          </h2>
           <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
               <span
@@ -184,9 +184,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         {/* Project Gallery - Windows 98 Window */}
         {project.gallery && project.gallery.length > 0 && (
           <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-6">
-            <h3 className="text-lg font-bold text-[#000080] mb-4">
+            <h2>
               🖼️ Project Gallery
-            </h3>
+            </h2>
             <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
               {project.gallery.map((image, index) => (
                 <div
@@ -204,9 +204,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         {/* Related Projects - Windows 98 Window */}
         <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
-          <h3 className="text-lg font-bold text-[#000080] mb-4">
+          <h2>
             📁 Related Projects
-          </h3>
+          </h2>
           <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
             {getAllPortfolioProjects()
               .filter(
@@ -220,9 +220,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   href={`/work/${relatedProject.slug}`}
                   className="bg-[#ffffff] border border-[#808080] p-3 hover:bg-[#f0f0f0] transition-colors"
                 >
-                  <h4 className="font-medium text-sm text-[#000000] mb-1">
+                  <h3>
                     {relatedProject.title}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-[#808080]">
                     {relatedProject.description}
                   </p>
@@ -234,4 +234,3 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     </div>
   );
 }
-

@@ -29,7 +29,7 @@ I approach each project as a unique challenge, blending UX, UI, IA, and technica
 
 I am passionate about improving systems and processes. If you need help with refactoring or CMS maintenance, I am always ready to assist.
 
-## Technical Skills
+##### Technical Skills
 
 - **Frontend Development**: React, Vue.js, HTML5, CSS3, JavaScript/TypeScript
 - **Design Tools**: Figma, Adobe Creative Suite, Sketch

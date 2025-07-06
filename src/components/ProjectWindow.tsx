@@ -24,11 +24,12 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import PageLayout, {
   ContentSection,
-  InfoGrid,
   InfoCard,
-  LinkGrid,
+  InfoGrid,
   LinkButton,
+  LinkGrid,
 } from "./PageLayout";
+import WindowLoader from "./WindowLoader";
 
 interface ProjectWindowProps {
   project: {
@@ -63,6 +64,7 @@ export default function ProjectWindow({
 }: ProjectWindowProps) {
   const [htmlContent, setHtmlContent] = useState<string>("");
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(true);
   // const [isHovered, setIsHovered] = useState(false);
   const [position, setPosition] = useState(() => {
     // Use external position if provided, otherwise calculate default
@@ -251,6 +253,7 @@ export default function ProjectWindow({
   useEffect(() => {
     const convertMarkdown = async () => {
       try {
+        setLoading(true);
         const response = await fetch("/api/content/markdown", {
           method: "POST",
           headers: {
@@ -265,6 +268,8 @@ export default function ProjectWindow({
         }
       } catch (error) {
         console.error("Error converting markdown:", error);
+      } finally {
+        setLoading(false);
       }
     };
     convertMarkdown();
@@ -325,7 +330,7 @@ export default function ProjectWindow({
           <div className="flex space-x-1">
             {/* Minimize Button */}
             <button
-              className="w-7 h-7 bg-yellow-600 border-2 border-yellow-800 flex items-center justify-center text-black text-lg font-bold hover:bg-yellow-500 transition-colors cursor-pointer"
+              className="w-7 h-7 bg-yellow-600 border-2 border-yellow-800 flex items-center justify-center text-lg font-bold hover:bg-yellow-500 transition-colors cursor-pointer"
               onClick={(e) => {
                 e.stopPropagation();
                 onClose();
@@ -354,7 +359,17 @@ export default function ProjectWindow({
           </div>
         </div>
         {/* Window Content */}
-        <div className="window-content h-full overflow-auto relative">
+        <div
+          className="window-content h-full relative"
+          style={{ overflow: loading ? 'hidden' : 'auto' }}
+        >
+          {/* Loader Overlay */}
+          {loading && (
+            <div className="window-loader-overlay">
+              <WindowLoader isLoading={true} />
+            </div>
+          )}
+          {/* Main Content (hidden under overlay while loading) */}
           <PageLayout
             page="project"
             title={project.title}
@@ -469,4 +484,3 @@ export default function ProjectWindow({
 
   return createPortal(windowContent, document.body);
 }
-
