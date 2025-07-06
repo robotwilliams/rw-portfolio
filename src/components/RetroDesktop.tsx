@@ -653,6 +653,7 @@ export default function RetroDesktop() {
                   alt={item.name}
                   width={46}
                   height={46}
+                  style={{ width: "auto", height: "auto" }}
                 />
               ) : item.name === "Work" ? (
                 <Image
@@ -660,6 +661,7 @@ export default function RetroDesktop() {
                   alt={item.name}
                   width={46}
                   height={46}
+                  style={{ width: "auto", height: "auto" }}
                 />
               ) : item.name === "Contact" ? (
                 <Image
@@ -667,6 +669,7 @@ export default function RetroDesktop() {
                   alt={item.name}
                   width={46}
                   height={46}
+                  style={{ width: "auto", height: "auto" }}
                 />
               ) : null}
             </div>
@@ -792,6 +795,7 @@ export default function RetroDesktop() {
                   alt="robotOS"
                   width={36}
                   height={36}
+                  style={{ width: "auto", height: "auto" }}
                 />
               </span>
               <span className="ml-3 text-base font-bold">robotOS</span>
@@ -814,6 +818,7 @@ export default function RetroDesktop() {
                       alt={item.name}
                       width={18}
                       height={18}
+                      style={{ width: "auto", height: "auto" }}
                     />
                   ) : item.name === "Contact" ? (
                     <Image
@@ -821,6 +826,7 @@ export default function RetroDesktop() {
                       alt={item.name}
                       width={18}
                       height={18}
+                      style={{ width: "auto", height: "auto" }}
                     />
                   ) : (
                     <Image
@@ -832,6 +838,7 @@ export default function RetroDesktop() {
                       alt={item.name}
                       width={18}
                       height={18}
+                      style={{ width: "auto", height: "auto" }}
                     />
                   )}
                   <span className="text-base">{item.name}</span>
@@ -861,6 +868,7 @@ export default function RetroDesktop() {
               alt="Start"
               width={27}
               height={27}
+              style={{ width: "auto", height: "auto" }}
             />
             <span className="text-sm font-bold">Start</span>
           </button>

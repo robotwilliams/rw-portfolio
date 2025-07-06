@@ -5,7 +5,7 @@
 /* DS-Digital Font for Clock Display Only */
 @font-face {
   font-family: "DS-Digital";
-  src: url("/fonts/DS-DIGI.TTF") format("truetype");
+  src: url("/fonts/Advanced-Pixel-LCD-7.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
