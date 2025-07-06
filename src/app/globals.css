@@ -1581,7 +1581,7 @@ svg {
 .prose h6 {
   /* Inherit all styles from main heading system */
   margin-bottom: 1.25rem !important;
-  /* mb-5 equivalent */
+  /* mb-5 equivalent for consistent spacing */
 }
 
 .prose p {
@@ -3040,8 +3040,8 @@ p[class*="text-3xl"] {
 .prose h4,
 .prose h5,
 .prose h6 {
-  margin-bottom: 1.25rem !important;
-  /* mb-5 equivalent */
+  margin-bottom: 0.75rem !important;
+  /* mb-3 equivalent for better proportion */
 }
 
 /* Consistent spacing for desktop icons and projects */
