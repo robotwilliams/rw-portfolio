@@ -19,9 +19,11 @@ This portfolio website serves as a showcase for Rob Williams' work as a creative
 ### Core Technologies
 
 - **Next.js 15.3.4**: React framework with App Router for server-side rendering and static generation
-- **TypeScript**: Type-safe development with strict type checking
-- **Tailwind CSS 4**: Utility-first CSS framework for rapid styling
-- **React 19**: Latest React with concurrent features and improved performance
+- **TypeScript 5**: Type-safe development with strict type checking
+- **Tailwind CSS 3.4.17**: Utility-first CSS framework for rapid styling
+- **React 18.3.1**: Latest stable React with hooks and modern features
+- **Gray-matter**: Frontmatter parsing for markdown files
+- **Remark**: Markdown processing and HTML conversion
 
 ### Content Management System
 
@@ -43,6 +45,8 @@ The site features a **Windows 98-inspired desktop interface** that includes:
 - **Interactive Work Environment**: Project grid that opens detailed project windows
 - **Window Management**: Only one project window open at a time with proper stacking
 - **Authentic Styling**: Accurate recreation of Windows 98 visual design and interactions
+- **Time-based Backgrounds**: Dynamic gradients that change based on time of day
+- **Live Clock**: Authentic digital clock in the taskbar
 
 ## Features
 
@@ -55,6 +59,8 @@ The site features a **Windows 98-inspired desktop interface** that includes:
 - **Authentic Icons**: Pixel-perfect Windows 98 icons throughout the interface
 - **Contact Form**: Functional contact form with validation
 - **Blog Ready**: Structure in place for future blog functionality
+- **Time-based Interface**: Dynamic backgrounds and adaptive styling
+- **Comprehensive Testing**: Full test suite with 90%+ coverage goals
 
 ## Project Structure
 
@@ -62,23 +68,96 @@ The site features a **Windows 98-inspired desktop interface** that includes:
 rw-portfolio/
 ├── content/                    # Markdown CMS content
 │   ├── pages/                 # Static pages (home, about, contact)
-│   ├── portfolio/             # Portfolio projects
-│   └── blog/                  # Future blog posts
+│   └── portfolio/             # Portfolio projects (6 projects)
 ├── src/
-│   ├── app/                   # Next.js app router pages
-│   │   ├── about/             # About page
-│   │   ├── work/              # Work/portfolio pages
-│   │   │   └── [slug]/        # Individual project pages
-│   │   ├── contact/           # Contact page
-│   │   ├── layout.tsx         # Root layout
-│   │   └── page.tsx           # Home page
+│   ├── app/                   # Next.js app router
+│   │   ├── api/               # API routes
+│   │   │   └── content/       # Content API endpoints
+│   │   ├── globals.css        # 3,436 lines of RobotOS styling
+│   │   ├── layout.tsx         # Root layout with fonts
+│   │   └── page.tsx           # Home page component
 │   ├── components/            # React components
-│   │   └── Layout.tsx         # Main layout with navigation
+│   │   ├── RetroDesktop.tsx   # Main desktop interface (993 lines)
+│   │   ├── WindowContent.tsx  # Dynamic content loader (556 lines)
+│   │   ├── ProjectWindow.tsx  # Project detail windows (587 lines)
+│   │   ├── PageLayout.tsx     # Reusable layout system (261 lines)
+│   │   └── ...                # Additional components
 │   └── lib/                   # Utility functions
-│       └── markdown.ts        # Markdown parsing utilities
-├── public/                    # Static assets
+│       └── markdown.ts        # Content processing (192 lines)
+├── tests/                     # Comprehensive test suite
+├── public/                    # Static assets and icons
 └── package.json
 ```
+
+## Core Components Architecture
+
+### RetroDesktop.tsx (993 lines)
+The main desktop interface providing:
+- **Window Management System**: Open, close, minimize, drag, resize windows with cascading positioning
+- **Desktop Icons**: Navigation with authentic Windows 98 styling and hover effects
+- **Taskbar**: Start menu, running applications, live digital clock
+- **Time-based Backgrounds**: Dynamic gradients that change based on time of day (morning/afternoon/evening/night)
+- **Responsive Design**: Mobile-first window sizing and positioning
+- **Z-Index Management**: Proper window stacking order and activation
+
+### WindowContent.tsx (556 lines)
+Dynamic content loader handling:
+- **Page-specific Rendering**: Home, about, work, contact pages with consistent layouts
+- **Interactive Work Grid**: Project icons that open detailed windows (only one at a time)
+- **API Integration**: Content loading from markdown files via API routes
+- **Window State Management**: Single project window policy with proper cleanup
+- **Error Handling**: Graceful error states with retry functionality
+
+### ProjectWindow.tsx (587 lines)
+Individual project detail windows featuring:
+- **Draggable Interface**: Move windows around the desktop with mouse event handling
+- **Markdown Rendering**: Convert project content to HTML with proper styling
+- **Project Metadata**: Client, duration, technologies, live links, GitHub links
+- **Responsive Positioning**: Mobile and desktop layouts with proper constraints
+- **Portal Rendering**: Windows rendered outside main component tree for proper z-indexing
+
+### PageLayout.tsx (261 lines)
+Reusable layout system with:
+- **ContentSection**: Organized content areas with icons and headings
+- **InfoGrid**: Responsive information cards with hover effects
+- **InfoCard**: Styled cards with 3D button effects and hover states
+- **LinkButton**: Styled external links with RobotOS aesthetics
+- **Error Handling**: Graceful error states and retry mechanisms
+
+## API Architecture
+
+### Content API Routes
+- **`/api/content/[page]`**: Dynamic page content (home, about, contact) with markdown processing
+- **`/api/content/projects`**: Portfolio project data aggregation from markdown files
+- **Markdown Processing**: Server-side markdown-to-HTML conversion using remark
+- **Error Handling**: Graceful fallbacks and retry mechanisms
+
+### Data Flow
+1. **Markdown Files** → **Gray-matter Parsing** → **Frontmatter + Content**
+2. **Content** → **Remark Processing** → **HTML Output**
+3. **API Response** → **Client-side Rendering** → **Desktop Windows**
+
+## State Management
+
+### Window Management System
+```typescript
+interface Window {
+  id: string;
+  title: string;
+  isOpen: boolean;
+  isMinimized: boolean;
+  zIndex: number;
+  position: { x: number; y: number };
+  size: { width: number; height: number };
+}
+```
+
+### Key Features
+- **Cascading Positioning**: Windows open in staggered positions to avoid overlap
+- **Drag & Resize**: Mouse event handling for window manipulation with constraints
+- **Z-Index Management**: Proper window stacking order and activation
+- **Responsive Sizing**: Mobile-first window dimensions (280-850px width)
+- **Single Project Window**: Only one project detail open at a time for performance
 
 ## CMS System
 
@@ -134,6 +213,75 @@ featured: true
 Detailed project description...
 ```
 
+## Performance Optimizations
+
+### Content Loading
+- **Static Generation**: Pre-rendered markdown content for fast initial loads
+- **API Routes**: Dynamic content loading without page refreshes
+- **Image Optimization**: Next.js Image component with automatic optimization
+- **Code Splitting**: Automatic bundle optimization and lazy loading
+
+### State Management
+- **Efficient Re-rendering**: Proper state updates to prevent unnecessary renders
+- **Window Position Caching**: Cached calculations to avoid recalculation
+- **Event Listener Cleanup**: Proper cleanup to prevent memory leaks
+- **Portal Rendering**: Project windows rendered outside main tree for performance
+
+## Responsive Design
+
+### Breakpoint System
+- **360px**: Extra small mobile devices
+- **480px**: Small mobile devices
+- **600px**: Mobile devices
+- **768px**: Tablet devices
+- **1200px+**: Desktop devices
+
+### Window Sizing Strategy
+- **Mobile**: 280-400px width, 400-500px height (more vertical space)
+- **Desktop**: 850px width, 550px height (optimal viewing)
+- **Tablet**: Proportional scaling based on screen size
+- **Touch Interactions**: Mobile-friendly window management
+
+### Typography Scaling
+- **Responsive Font Sizes**: Progressive scaling from mobile to desktop
+- **Line Height Optimization**: Improved readability on small screens
+- **Spacing Adjustments**: Optimized padding and margins for each breakpoint
+
+## Testing Infrastructure
+
+### Comprehensive Test Suite
+- **Component Tests**: Individual React component testing with React Testing Library
+- **Integration Tests**: End-to-end workflow testing for desktop interactions
+- **API Tests**: Content loading and error handling validation
+- **Utility Tests**: Markdown processing and helper function testing
+
+### Test Coverage Goals
+- **Components**: 90% coverage
+- **Utilities**: 95% coverage
+- **API Routes**: 85% coverage
+- **Integration**: 80% coverage
+
+### Testing Tools
+- **Jest**: Test runner and assertion library
+- **React Testing Library**: Component testing utilities
+- **Custom Test Utils**: Window management and responsive testing helpers
+- **Mock Data**: Consistent test data for reliable testing
+
+### Running Tests
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode (development)
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
+
+# Run tests for CI/CD
+npm run test:ci
+```
+
 ## Getting Started
 
 ### Prerequisites
@@ -171,6 +319,47 @@ npm run build
 npm start
 ```
 
+## Advanced Features
+
+### Time-based Interface
+- **Dynamic Backgrounds**: Morning, afternoon, evening, night gradients with smooth transitions
+- **Animated Clouds**: Pixel art clouds with parallax movement across the desktop
+- **Live Clock**: Authentic digital clock in taskbar with hourglass animation
+- **Icon Text Colors**: Adaptive text colors based on time of day for optimal contrast
+
+### Authentic Windows 98 Experience
+- **3D Button Effects**: Inset/outset borders for authentic Windows 98 feel
+- **Pixel Art Enhancement**: CSS filters for retro appearance and authentic pixelation
+- **Window Controls**: Minimize, close, resize handles with proper styling
+- **Start Menu**: Dropdown navigation with hover effects and icon animations
+- **Taskbar**: Running applications, system tray, and live clock display
+
+### Interactive Elements
+- **Hover Effects**: Authentic Windows 98 hover states throughout the interface
+- **Click Animations**: Button press effects and visual feedback
+- **Window Transitions**: Smooth opening, closing, and minimizing animations
+- **Icon Selection**: Visual feedback for selected desktop icons
+
+## Development Workflow
+
+### Content Management
+- **Hot Reloading**: Instant content updates during development
+- **Frontmatter Validation**: Type-safe content structure with TypeScript
+- **Version Control**: Git-tracked content changes for easy rollback
+- **CMS Migration Path**: Easy transition to WordPress/Strapi with structured data
+
+### Code Quality
+- **TypeScript**: Strict type checking throughout the application
+- **ESLint**: Code quality and consistency enforcement
+- **Prettier**: Automatic code formatting for consistent style
+- **Git Hooks**: Pre-commit validation to maintain code quality
+
+### Development Tools
+- **Next.js Dev Tools**: Built-in development server with hot reloading
+- **React DevTools**: Component inspection and state debugging
+- **TypeScript IntelliSense**: Enhanced development experience with type hints
+- **Tailwind CSS IntelliSense**: Autocomplete for utility classes
+
 ## Content Management
 
 ### Adding a New Page
@@ -193,6 +382,26 @@ npm start
 - **Projects**: Edit markdown files in `content/portfolio/`
 - **Styling**: Modify Tailwind classes in component files
 - **Layout**: Update components in `src/components/`
+
+## Deployment & SEO
+
+### Build Optimization
+- **Static Site Generation**: Pre-rendered pages for fast loading and SEO
+- **Bundle Optimization**: Automatic code splitting and tree shaking
+- **Image Compression**: Optimized assets with Next.js Image component
+- **CDN Ready**: Static assets optimized for CDN delivery
+
+### SEO Features
+- **Meta Tags**: Dynamic meta tag generation for each page
+- **Structured Data**: Rich snippets for search engines
+- **Performance**: Core Web Vitals optimization for better rankings
+- **Accessibility**: WCAG 2.1 AA compliance for broader reach
+
+### Deployment Options
+- **Vercel**: Optimized for Next.js with automatic deployments
+- **Netlify**: Static site hosting with form handling
+- **AWS/GCP**: Custom deployment with full control
+- **Docker**: Containerized deployment for consistent environments
 
 ## CMS Migration Strategy
 
