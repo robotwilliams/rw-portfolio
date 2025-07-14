@@ -79,8 +79,35 @@ export default function ProjectWindow({
       const baseWidth = 850;
       const baseHeight = 550; // Reduced from 650 to 550
 
-      if (screenWidth < 1200) {
-        const scale = Math.max(0.4, screenWidth / 1200);
+      // Mobile-first responsive design
+      if (screenWidth <= 360) {
+        // Extra small mobile
+        return {
+          width: 280,
+          height: 240,
+        };
+      } else if (screenWidth <= 480) {
+        // Small mobile
+        return {
+          width: 320,
+          height: 280,
+        };
+      } else if (screenWidth <= 600) {
+        // Mobile
+        return {
+          width: 400,
+          height: 350,
+        };
+      } else if (screenWidth <= 768) {
+        // Tablet
+        const scale = Math.max(0.6, screenWidth / 768);
+        return {
+          width: Math.floor(baseWidth * scale),
+          height: Math.floor(baseHeight * scale),
+        };
+      } else if (screenWidth < 1200) {
+        // Small desktop
+        const scale = Math.max(0.7, screenWidth / 1200);
         return {
           width: Math.floor(baseWidth * scale),
           height: Math.floor(baseHeight * scale),
@@ -124,7 +151,34 @@ export default function ProjectWindow({
     const baseWidth = 850;
     const baseHeight = 550; // Reduced from 650 to 550
 
-    if (screenWidth < 1200) {
+    // Mobile-first responsive design
+    if (screenWidth <= 360) {
+      // Extra small mobile
+      return {
+        width: 280,
+        height: 240,
+      };
+    } else if (screenWidth <= 480) {
+      // Small mobile
+      return {
+        width: 320,
+        height: 280,
+      };
+    } else if (screenWidth <= 600) {
+      // Mobile
+      return {
+        width: 400,
+        height: 350,
+      };
+    } else if (screenWidth <= 768) {
+      // Tablet
+      const scale = Math.max(0.6, screenWidth / 768);
+      return {
+        width: Math.floor(baseWidth * scale),
+        height: Math.floor(baseHeight * scale),
+      };
+    } else if (screenWidth < 1200) {
+      // Small desktop
       const scale = Math.max(0.7, screenWidth / 1200);
       return {
         width: Math.floor(baseWidth * scale),
@@ -150,8 +204,35 @@ export default function ProjectWindow({
         const baseWidth = 850;
         const baseHeight = 550; // Reduced from 600 to 550
 
-        if (screenWidth < 1200) {
-          const scale = Math.max(0.4, screenWidth / 1200);
+        // Mobile-first responsive design
+        if (screenWidth <= 360) {
+          // Extra small mobile
+          return {
+            width: 280,
+            height: 240,
+          };
+        } else if (screenWidth <= 480) {
+          // Small mobile
+          return {
+            width: 320,
+            height: 280,
+          };
+        } else if (screenWidth <= 600) {
+          // Mobile
+          return {
+            width: 400,
+            height: 350,
+          };
+        } else if (screenWidth <= 768) {
+          // Tablet
+          const scale = Math.max(0.6, screenWidth / 768);
+          return {
+            width: Math.floor(baseWidth * scale),
+            height: Math.floor(baseHeight * scale),
+          };
+        } else if (screenWidth < 1200) {
+          // Small desktop
+          const scale = Math.max(0.7, screenWidth / 1200);
           return {
             width: Math.floor(baseWidth * scale),
             height: Math.floor(baseHeight * scale),
@@ -218,8 +299,27 @@ export default function ProjectWindow({
         const deltaX = e.clientX - resizeStart.x;
         const deltaY = e.clientY - resizeStart.y;
 
-        const minWidth = 400;
-        const minHeight = 300;
+        // Responsive minimum sizes based on screen width
+        const screenWidth = window.innerWidth;
+        let minWidth, minHeight;
+
+        if (screenWidth <= 360) {
+          minWidth = 260;
+          minHeight = 200;
+        } else if (screenWidth <= 480) {
+          minWidth = 280;
+          minHeight = 240;
+        } else if (screenWidth <= 600) {
+          minWidth = 320;
+          minHeight = 280;
+        } else if (screenWidth <= 768) {
+          minWidth = 400;
+          minHeight = 350;
+        } else {
+          minWidth = 500;
+          minHeight = 400;
+        }
+
         const newWidth = Math.max(minWidth, resizeStart.width + deltaX);
         const newHeight = Math.max(minHeight, resizeStart.height + deltaY);
 
