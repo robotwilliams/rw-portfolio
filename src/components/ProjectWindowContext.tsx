@@ -3,27 +3,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import ProjectWindow from "./ProjectWindow";
 
-interface PortfolioProject {
-  slug: string;
-  title: string;
-  description: string;
-  client: string;
-  duration: string;
-  date: string;
-  category: string;
-  technologies: string[];
-  live_url?: string;
-  github_url?: string;
-  gallery?: string[];
-  content: string;
-  featured?: boolean;
-}
-
-interface ProjectWindowContextType {
-  openProjectWindow: (project: PortfolioProject) => void;
-  closeProjectWindow: (windowId: string) => void;
-  openWindows: Record<string, { project: PortfolioProject; isActive: boolean }>;
-}
+import { PortfolioProject, ProjectWindowContextType } from "@/types";
 
 const ProjectWindowContext = createContext<
   ProjectWindowContextType | undefined

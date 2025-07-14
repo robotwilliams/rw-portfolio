@@ -4,21 +4,7 @@ import { useProjectWindows } from "@/components/ProjectWindowContext";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-interface PortfolioProject {
-  slug: string;
-  title: string;
-  description: string;
-  client: string;
-  duration: string;
-  date: string;
-  category: string;
-  technologies: string[];
-  live_url?: string;
-  github_url?: string;
-  gallery?: string[];
-  content: string;
-  featured?: boolean;
-}
+import { PortfolioProject } from "@/types";
 
 /**
  * Work Page Component

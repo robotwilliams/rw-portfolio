@@ -14,17 +14,8 @@
  */
 
 import Image from "next/image";
-import React from "react";
 
-interface PageLayoutProps {
-  page: "about" | "work" | "contact" | "project";
-  title: React.ReactNode;
-  description: string;
-  icon: string;
-  children: React.ReactNode;
-  error?: string | null;
-  onRetry?: () => void;
-}
+import { PageLayoutProps } from "@/types";
 
 export default function PageLayout({
   page,
@@ -91,18 +82,13 @@ export default function PageLayout({
   );
 }
 
+import { ContentSectionProps } from "@/types";
+
 /**
  * Content Section Component
  *
  * A reusable section component for organizing content within pages.
  */
-interface ContentSectionProps {
-  title: string;
-  icon?: string;
-  children: React.ReactNode;
-  className?: string;
-  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
-}
 
 export function ContentSection({
   title,
@@ -128,16 +114,13 @@ export function ContentSection({
   );
 }
 
+import { InfoGridProps } from "@/types";
+
 /**
  * Info Grid Component
  *
  * A responsive grid for displaying information cards.
  */
-interface InfoGridProps {
-  children: React.ReactNode;
-  columns?: 1 | 2 | 3 | 4;
-  className?: string;
-}
 
 export function InfoGrid({
   children,
@@ -158,16 +141,13 @@ export function InfoGrid({
   );
 }
 
+import { InfoCardProps } from "@/types";
+
 /**
  * Info Card Component
  *
  * A styled card for displaying information.
  */
-interface InfoCardProps {
-  title: string;
-  children: React.ReactNode;
-  className?: string;
-}
 
 export function InfoCard({ title, children, className = "" }: InfoCardProps) {
   return (
@@ -198,15 +178,13 @@ export function InfoCard({ title, children, className = "" }: InfoCardProps) {
   );
 }
 
+import { LinkGridProps } from "@/types";
+
 /**
  * Link Grid Component
  *
  * A grid for displaying external links and social media.
  */
-interface LinkGridProps {
-  children: React.ReactNode;
-  className?: string;
-}
 
 export function LinkGrid({ children, className = "" }: LinkGridProps) {
   return (
@@ -216,17 +194,13 @@ export function LinkGrid({ children, className = "" }: LinkGridProps) {
   );
 }
 
+import { LinkButtonProps } from "@/types";
+
 /**
  * Link Button Component
  *
  * A styled button for external links.
  */
-interface LinkButtonProps {
-  href: string;
-  children: React.ReactNode;
-  external?: boolean;
-  className?: string;
-}
 
 export function LinkButton({
   href,

@@ -31,28 +31,7 @@ import PageLayout, {
 } from "./PageLayout";
 import WindowLoader from "./WindowLoader";
 
-interface ProjectWindowProps {
-  project: {
-    slug: string;
-    title: string;
-    description: string;
-    client: string;
-    duration: string;
-    date: string;
-    category: string;
-    technologies: string[];
-    live_url?: string;
-    github_url?: string;
-    gallery?: string[];
-    content: string;
-    featured?: boolean;
-  };
-  onClose: () => void;
-  isActive?: boolean;
-  onActivate?: () => void;
-  position?: { x: number; y: number };
-  onMove?: (x: number, y: number) => void;
-}
+import { ProjectWindowProps } from "@/types";
 
 export default function ProjectWindow({
   project,
@@ -282,50 +261,25 @@ export default function ProjectWindow({
         const newX = e.clientX - dragOffset.x;
         const newY = e.clientY - dragOffset.y;
 
-        // Constrain to viewport bounds (leave space for taskbar)
+        // Constrain to viewport bounds
         const maxX = Math.max(0, window.innerWidth - windowSize.width - 20);
-        const maxY = Math.max(0, window.innerHeight - windowSize.height - 80); // Taskbar height is ~52px, so leave 80px margin
+        const maxY = Math.max(0, window.innerHeight - windowSize.height - 80);
 
-        const constrainedPosition = {
-          x: Math.min(Math.max(0, newX), maxX),
-          y: Math.min(Math.max(0, newY), maxY),
-        };
+        const constrainedX = Math.min(Math.max(0, newX), maxX);
+        const constrainedY = Math.min(Math.max(0, newY), maxY);
 
-        setPosition(constrainedPosition);
-        if (onMove) {
-          onMove(constrainedPosition.x, constrainedPosition.y);
-        }
+        setPosition({ x: constrainedX, y: constrainedY });
+        onMove?.(constrainedX, constrainedY);
       } else if (isResizing) {
         const deltaX = e.clientX - resizeStart.x;
         const deltaY = e.clientY - resizeStart.y;
 
-        // Responsive minimum sizes based on screen width
-        const screenWidth = window.innerWidth;
-        let minWidth, minHeight;
+        const newWidth = Math.max(300, resizeStart.width + deltaX);
+        const newHeight = Math.max(200, resizeStart.height + deltaY);
 
-        if (screenWidth <= 360) {
-          minWidth = 260;
-          minHeight = 200;
-        } else if (screenWidth <= 480) {
-          minWidth = 280;
-          minHeight = 240;
-        } else if (screenWidth <= 600) {
-          minWidth = 320;
-          minHeight = 280;
-        } else if (screenWidth <= 768) {
-          minWidth = 400;
-          minHeight = 350;
-        } else {
-          minWidth = 500;
-          minHeight = 400;
-        }
-
-        const newWidth = Math.max(minWidth, resizeStart.width + deltaX);
-        const newHeight = Math.max(minHeight, resizeStart.height + deltaY);
-
-        // Constrain maximum size to viewport (leave space for taskbar)
-        const maxWidth = window.innerWidth - 40;
-        const maxHeight = window.innerHeight - 100; // Taskbar height is ~52px, so leave 100px margin
+        // Constrain to viewport bounds
+        const maxWidth = window.innerWidth - position.x - 20;
+        const maxHeight = window.innerHeight - position.y - 80;
 
         const constrainedWidth = Math.min(newWidth, maxWidth);
         const constrainedHeight = Math.min(newHeight, maxHeight);
@@ -348,7 +302,7 @@ export default function ProjectWindow({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isDragging, dragOffset, isResizing, resizeStart]);
+  }, [isDragging, dragOffset, isResizing, resizeStart, windowSize.width, windowSize.height, position.x, position.y, onMove]);
 
   useEffect(() => {
     const convertMarkdown = async () => {

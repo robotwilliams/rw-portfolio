@@ -1,6 +1,6 @@
 import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
+import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
 
@@ -12,51 +12,14 @@ import html from "remark-html";
  */
 const contentDirectory = path.join(process.cwd(), "content");
 
-/**
- * Page Data Interface
- *
- * Defines the structure for page metadata extracted from markdown frontmatter.
- * This interface is flexible to accommodate various frontmatter fields
- * that different pages might have.
- */
-export interface PageData {
-  title: string; // Page title for SEO and display
-  description: string; // Page description for SEO
-  [key: string]: string | number | boolean | string[]; // Additional frontmatter fields
-}
+import { PageData, PortfolioProject } from "@/types";
 
 /**
- * Portfolio Project Interface
+ * Content Directory Configuration
  *
- * Defines the complete structure for portfolio project data.
- * This includes both metadata (from frontmatter) and content (from markdown body).
- * All fields are used throughout the portfolio pages for display and filtering.
+ * Defines the base directory where all markdown content is stored.
+ * This is the root of the markdown-based CMS system.
  */
-export interface PortfolioProject {
-  // Basic project information
-  title: string; // Project title
-  description: string; // Short project description
-  slug: string; // URL-friendly identifier
-  category: string; // Project category (e.g., "Web Development")
-  client: string; // Client name
-  date: string; // Project completion date
-  duration: string; // Project duration (e.g., "3 months")
-
-  // Technical information
-  technologies: string[]; // Array of technologies used
-  image: string; // Main project image path
-  gallery?: string[]; // Optional gallery of additional images
-
-  // Links
-  live_url?: string; // Link to live project
-  github_url?: string; // Link to GitHub repository
-
-  // Display options
-  featured: boolean; // Whether to show in featured section
-
-  // Content
-  content: string; // Full markdown content
-}
 
 /**
  * Get Page Data

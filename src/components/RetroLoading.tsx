@@ -8,11 +8,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-interface RetroLoadingProps {
-  messages?: string[];
-  onComplete?: () => void;
-  duration?: number;
-}
+import { RetroLoadingProps } from "@/types";
 
 export default function RetroLoading({
   messages = [

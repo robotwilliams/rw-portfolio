@@ -1,6 +1,7 @@
 "use client";
+import { PortfolioProject, WindowContentProps } from "@/types";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PageLayout, {
   ContentSection,
   InfoCard,
@@ -9,32 +10,6 @@ import PageLayout, {
   LinkGrid,
 } from "./PageLayout";
 import ProjectWindow from "./ProjectWindow";
-
-/**
- * WindowContent Component Props
- *
- * Defines the props for the WindowContent component which loads
- * different content based on the current page/route.
- */
-interface WindowContentProps {
-  page: "home" | "about" | "work" | "contact"; // The page content to load
-}
-
-interface PortfolioProject {
-  slug: string;
-  title: string;
-  description: string;
-  client: string;
-  duration: string;
-  date: string;
-  category: string;
-  technologies: string[];
-  live_url?: string;
-  github_url?: string;
-  gallery?: string[];
-  content: string;
-  featured?: boolean;
-}
 
 /**
  * WindowContent Component
@@ -79,24 +54,11 @@ export default function WindowContent({ page }: WindowContentProps) {
   const [otherPageError, setOtherPageError] = useState<string | null>(null);
 
   /**
-   * Load Content Effect
-   *
-   * Handles different content loading based on the page type.
-   */
-  useEffect(() => {
-    if (page === "work") {
-      loadWorkPage();
-    } else {
-      loadOtherPage();
-    }
-  }, [page]);
-
-  /**
    * Load Work Page Content
    *
    * Fetches projects and sets up the interactive work page.
    */
-  const loadWorkPage = async () => {
+  const loadWorkPage = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
@@ -115,14 +77,14 @@ export default function WindowContent({ page }: WindowContentProps) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   /**
    * Load Other Page Content
    *
    * Fetches markdown content for non-work pages.
    */
-  const loadOtherPage = async () => {
+  const loadOtherPage = useCallback(async () => {
     try {
       setOtherPageError(null);
 
@@ -135,7 +97,20 @@ export default function WindowContent({ page }: WindowContentProps) {
       setOtherPageError("Failed to load content");
       console.error("Error loading content:", err);
     }
-  };
+  }, [page]);
+
+  /**
+   * Load Content Effect
+   *
+   * Handles different content loading based on the page type.
+   */
+  useEffect(() => {
+    if (page === "work") {
+      loadWorkPage();
+    } else {
+      loadOtherPage();
+    }
+  }, [page, loadWorkPage, loadOtherPage]);
 
   /**
    * Work Page Window Management

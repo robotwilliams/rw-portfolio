@@ -2,25 +2,18 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import WindowContent from "./WindowContent";
 import WindowLoader from "./WindowLoader";
 
+import { Window } from "@/types";
+
 /**
- * Window Interface
+ * Window Content Mapping
  *
- * Defines the structure for each window in the desktop environment.
- * Windows can be opened, closed, minimized, moved, and resized.
+ * Maps route paths to their corresponding content components.
+ * This allows the desktop to load different content based on the current route.
  */
-interface Window {
-  id: string; // Unique identifier for the window
-  title: string; // Display title in the window titlebar
-  isOpen: boolean; // Whether the window is currently open
-  isMinimized: boolean; // Whether the window is minimized
-  zIndex: number; // Stacking order for overlapping windows
-  position: { x: number; y: number }; // Window position on screen
-  size: { width: number; height: number }; // Window dimensions
-}
 
 /**
  * Window Content Mapping
@@ -153,11 +146,11 @@ export default function RetroDesktop() {
    * Each item has a name, href (route), and emoji icon.
    * Uses clean retro-style icons inspired by minimal web design.
    */
-  const navigation = [
+  const navigation = useMemo(() => [
     { name: "About", href: "/about", icon: "about" },
     { name: "Work", href: "/work", icon: "folder" },
     { name: "Contact", href: "/contact", icon: "contact" },
-  ];
+  ], []);
 
   /**
    * Calculate Responsive Window Size
@@ -227,7 +220,7 @@ export default function RetroDesktop() {
    * similar to Windows 95/98 behavior. Ensures windows always fit on screen.
    * First window starts higher up for better visual balance.
    */
-  const getCascadingPosition = () => {
+  const getCascadingPosition = useCallback(() => {
     const windowSize = getResponsiveWindowSize();
     const cascadeOffset = 35; // Larger offset for better spacing
 
@@ -250,7 +243,7 @@ export default function RetroDesktop() {
       x: Math.min(Math.max(0, x), maxX),
       y: Math.min(Math.max(0, y), maxY),
     };
-  };
+  }, [windows]);
 
   /**
    * Initialize Windows Based on Current Path
@@ -285,7 +278,7 @@ export default function RetroDesktop() {
       setWindows((prev) => [...prev, newWindow]);
       setActiveWindow(newWindow.id);
     }
-  }, [pathname, windows.length]);
+  }, [pathname, windows.length, getCascadingPosition, navigation]);
 
   /**
    * Update Clock Every Second
