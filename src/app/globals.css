@@ -3105,7 +3105,7 @@ p[class*="text-3xl"] {
   }
 
   .window-content {
-    padding: 0.75rem;
+    padding: 1.5rem;
     min-width: 280px;
     min-height: 200px;
     font-size: 10px;
@@ -3127,7 +3127,7 @@ p[class*="text-3xl"] {
   .desktop-icon,
   .project-icon,
   .window-icon {
-    padding: 12px 8px 8px 8px;
+    padding: 24px 8px 20px 8px;
     margin-bottom: 1.5rem !important;
   }
 
@@ -3164,7 +3164,7 @@ p[class*="text-3xl"] {
   }
 
   .window-content {
-    padding: 0.5rem;
+    padding: 1.25rem;
     min-width: 260px;
     min-height: 180px;
     font-size: 9px;
@@ -3186,7 +3186,7 @@ p[class*="text-3xl"] {
   .desktop-icon,
   .project-icon,
   .window-icon {
-    padding: 16px 10px 10px 10px;
+    padding: 28px 10px 24px 10px;
     margin-bottom: 2rem !important;
   }
 
@@ -3223,7 +3223,7 @@ p[class*="text-3xl"] {
   }
 
   .window-content {
-    padding: 0.375rem;
+    padding: 1rem;
     min-width: 240px;
     min-height: 160px;
     font-size: 8px;
@@ -3245,7 +3245,7 @@ p[class*="text-3xl"] {
   .desktop-icon,
   .project-icon,
   .window-icon {
-    padding: 18px 12px 12px 12px;
+    padding: 32px 12px 28px 12px;
     margin-bottom: 2.5rem !important;
   }
 

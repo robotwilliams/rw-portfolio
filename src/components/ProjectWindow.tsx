@@ -79,24 +79,24 @@ export default function ProjectWindow({
       const baseWidth = 850;
       const baseHeight = 550; // Reduced from 650 to 550
 
-      // Mobile-first responsive design
+      // Mobile-first responsive design with more height for mobile
       if (screenWidth <= 360) {
-        // Extra small mobile
+        // Extra small mobile - more height
         return {
           width: 280,
-          height: 240,
+          height: 400, // Increased from 240
         };
       } else if (screenWidth <= 480) {
-        // Small mobile
+        // Small mobile - more height
         return {
           width: 320,
-          height: 280,
+          height: 450, // Increased from 280
         };
       } else if (screenWidth <= 600) {
-        // Mobile
+        // Mobile - more height
         return {
           width: 400,
-          height: 350,
+          height: 500, // Increased from 350
         };
       } else if (screenWidth <= 768) {
         // Tablet
@@ -151,24 +151,24 @@ export default function ProjectWindow({
     const baseWidth = 850;
     const baseHeight = 550; // Reduced from 650 to 550
 
-    // Mobile-first responsive design
+    // Mobile-first responsive design with more height for mobile
     if (screenWidth <= 360) {
-      // Extra small mobile
+      // Extra small mobile - more height
       return {
         width: 280,
-        height: 240,
+        height: 400, // Increased from 240
       };
     } else if (screenWidth <= 480) {
-      // Small mobile
+      // Small mobile - more height
       return {
         width: 320,
-        height: 280,
+        height: 450, // Increased from 280
       };
     } else if (screenWidth <= 600) {
-      // Mobile
+      // Mobile - more height
       return {
         width: 400,
-        height: 350,
+        height: 500, // Increased from 350
       };
     } else if (screenWidth <= 768) {
       // Tablet
@@ -204,24 +204,24 @@ export default function ProjectWindow({
         const baseWidth = 850;
         const baseHeight = 550; // Reduced from 600 to 550
 
-        // Mobile-first responsive design
+        // Mobile-first responsive design with more height for mobile
         if (screenWidth <= 360) {
-          // Extra small mobile
+          // Extra small mobile - more height
           return {
             width: 280,
-            height: 240,
+            height: 400, // Increased from 240
           };
         } else if (screenWidth <= 480) {
-          // Small mobile
+          // Small mobile - more height
           return {
             width: 320,
-            height: 280,
+            height: 450, // Increased from 280
           };
         } else if (screenWidth <= 600) {
-          // Mobile
+          // Mobile - more height
           return {
             width: 400,
-            height: 350,
+            height: 500, // Increased from 350
           };
         } else if (screenWidth <= 768) {
           // Tablet

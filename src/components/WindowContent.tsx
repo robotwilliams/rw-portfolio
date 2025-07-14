@@ -144,12 +144,31 @@ export default function WindowContent({ page }: WindowContentProps) {
     setOpenWindows({});
     const windowId = project.slug;
     const screenWidth = window.innerWidth;
-    const windowWidth = 850; // Adjust if you use a different width
-    const margin = 260;
+
+    // Calculate responsive window size
+    let windowWidth = 850;
+    if (screenWidth <= 600) {
+      // Mobile: use responsive width
+      if (screenWidth <= 360) windowWidth = 280;
+      else if (screenWidth <= 480) windowWidth = 320;
+      else windowWidth = 400;
+    }
+
+    // Center the window on mobile, right-aligned on desktop
+    let x;
+    if (screenWidth <= 600) {
+      // Mobile: center the window
+      x = Math.max(0, (screenWidth - windowWidth) / 2);
+    } else {
+      // Desktop: right-aligned (original behavior)
+      const margin = 260;
+      x = Math.max(0, screenWidth - windowWidth - margin);
+    }
+
     setOpenWindows({
       [windowId]: {
         project,
-        position: { x: Math.max(0, screenWidth - windowWidth - margin), y: 340 },
+        position: { x, y: 340 },
         isActive: true,
       },
     });
@@ -427,7 +446,9 @@ export default function WindowContent({ page }: WindowContentProps) {
         {/* Projects Grid */}
         <ContentSection title="Projects" icon="📁">
           <div className="grid gap-2" style={{
-            gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 120px))',
+            gridTemplateColumns: window.innerWidth <= 600
+              ? 'repeat(auto-fill, minmax(140px, 160px))' // Bigger on mobile
+              : 'repeat(auto-fill, minmax(100px, 120px))', // Original size on desktop
             justifyContent: 'start',
             maxWidth: '100%',
             overflow: 'hidden'
@@ -450,8 +471,8 @@ export default function WindowContent({ page }: WindowContentProps) {
                         : "/images/rw-site-icon-folder-close.png"
                     }
                     alt="Project folder"
-                    width={56}
-                    height={56}
+                    width={window.innerWidth <= 600 ? 72 : 56} // Bigger on mobile
+                    height={window.innerWidth <= 600 ? 72 : 56} // Bigger on mobile
                     className="object-contain"
                   />
                 </div>
@@ -460,7 +481,7 @@ export default function WindowContent({ page }: WindowContentProps) {
                 <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '100%' }}>
                   <span className="text-xs font-medium text-center leading-tight truncate block text-gray-600" style={{
                     fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
-                    fontSize: '13px',
+                    fontSize: window.innerWidth <= 600 ? '15px' : '13px', // Bigger on mobile
                     color: 'var(--text-primary)',
                     textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)',
                     wordWrap: 'break-word',

@@ -168,13 +168,39 @@ export default function RetroDesktop() {
   const getResponsiveWindowSize = () => {
     const screenWidth = window.innerWidth;
 
-    // Base sizes for large screens (reduced height for better fit)
+    // Base sizes for large screens
     const baseWidth = 850;
-    const baseHeight = 550; // Reduced from 650 to 550
+    const baseHeight = 550;
 
-    // Scale down on smaller screens (better fit for mobile/tablet)
-    if (screenWidth < 1200) {
-      const scale = Math.max(0.4, screenWidth / 1200);
+    // Mobile-first responsive design with more height for mobile
+    if (screenWidth <= 360) {
+      // Extra small mobile - more height
+      return {
+        width: 280,
+        height: 400, // Increased from 240
+      };
+    } else if (screenWidth <= 480) {
+      // Small mobile - more height
+      return {
+        width: 320,
+        height: 450, // Increased from 280
+      };
+    } else if (screenWidth <= 600) {
+      // Mobile - more height
+      return {
+        width: 400,
+        height: 500, // Increased from 350
+      };
+    } else if (screenWidth <= 768) {
+      // Tablet
+      const scale = Math.max(0.6, screenWidth / 768);
+      return {
+        width: Math.floor(baseWidth * scale),
+        height: Math.floor(baseHeight * scale),
+      };
+    } else if (screenWidth < 1200) {
+      // Small desktop
+      const scale = Math.max(0.7, screenWidth / 1200);
       return {
         width: Math.floor(baseWidth * scale),
         height: Math.floor(baseHeight * scale),
