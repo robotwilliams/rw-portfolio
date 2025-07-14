@@ -141,15 +141,15 @@ export default function WindowContent({ page }: WindowContentProps) {
    * Work Page Window Management
    */
   const openProjectWindow = (project: PortfolioProject) => {
-    // Close any existing windows
     setOpenWindows({});
-
-    // Open new window
     const windowId = project.slug;
+    const screenWidth = window.innerWidth;
+    const windowWidth = 850; // Adjust if you use a different width
+    const margin = 260;
     setOpenWindows({
       [windowId]: {
         project,
-        position: { x: 100, y: 100 },
+        position: { x: Math.max(0, screenWidth - windowWidth - margin), y: 340 },
         isActive: true,
       },
     });
