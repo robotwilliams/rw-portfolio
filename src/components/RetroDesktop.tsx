@@ -926,7 +926,7 @@ export default function RetroDesktop() {
         <div className="ml-auto flex items-center">
           {hasMounted && (
             <div
-              className="text-sm font-bold py-1 flex items-center h-15 -mr-6"
+              className="text-sm font-bold py-1 flex items-center h-15"
               style={{
                 boxShadow: "inset 1px 1px 0 #404040",
                 borderRadius: "20px",
@@ -936,13 +936,14 @@ export default function RetroDesktop() {
                 border: "2px solid #4a6a9a",
                 paddingLeft: "22px",
                 paddingRight: "16px",
+                marginRight: "-45px",
               }}
             >
               <div className="clock-icon">
                 <div className="hourglass"></div>
               </div>
               <span className="clock-time">
-                {currentTime.toLocaleTimeString()}
+                <span className="clock-digits">{currentTime.toLocaleTimeString()}</span>
               </span>
             </div>
           )}

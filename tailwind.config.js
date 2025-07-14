@@ -32,6 +32,7 @@ module.exports = {
         terminal: ['var(--font-ibm-plex-mono)', 'IBM Plex Mono', 'monospace'],
         pixel: ['var(--font-press-start-2p)', 'Press Start 2P', 'monospace'],
         mono: ['var(--font-source-code-pro)', 'Source Code Pro', 'monospace'],
+        digital: ['Digital-7', 'Digital-7-Mono', 'DS-Digital', 'monospace'],
       },
     },
   },
