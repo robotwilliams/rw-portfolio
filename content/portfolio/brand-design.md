@@ -1,6 +1,6 @@
 ---
 title: "Edgewater Landscapes LLC"
-description: "Landscape design and development company website"
+description: "Landscape design and development company website."
 slug: "brand-design"
 category: "Design"
 client: "Edgewater Landscapes LLC"
@@ -10,12 +10,28 @@ featured: true
 live_url: "https://edgewaterlandscapes.com"
 github_url: ""
 technologies: ["React", "Next.js", "Tailwind CSS", "Contentful CMS"]
-gallery: []
+gallery:
+  - src: "/images/Projects/project-edgewater-1.PNG"
+    alt: "Edgewater Landscapes - Homepage Design"
+    width: 1200
+    height: 900
+  - src: "/images/Projects/project-edgewater-2.PNG"
+    alt: "Edgewater Landscapes - Portfolio Gallery"
+    width: 900
+    height: 1200
+  - src: "/images/Projects/project-edgewater-thumb.PNG"
+    alt: "Edgewater Landscapes - Contact Page"
+    width: 1200
+    height: 900
 ---
 
 # Edgewater Landscapes LLC
 
 A comprehensive website redesign for Edgewater Landscapes LLC, a premier landscape design and development company serving the greater Philadelphia area.
+
+## Project Gallery
+
+The project gallery showcases the key pages and features of the Edgewater Landscapes website redesign.
 
 ## Project Overview
 

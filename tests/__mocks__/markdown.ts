@@ -45,7 +45,7 @@ export const mockProjects = [
   {
     slug: "brand-design",
     title: "Edgewater Landscapes LLC",
-    description: "Landscape design and development company website",
+    description: "Landscape design and development company website.",
     client: "Edgewater Landscapes LLC",
     duration: "3 months",
     date: "2022-01-15",

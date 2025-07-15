@@ -29,6 +29,7 @@ import PageLayout, {
   LinkButton,
   LinkGrid,
 } from "./PageLayout";
+import ProjectImageGallery from "./ProjectImageGallery";
 import WindowLoader from "./WindowLoader";
 
 import { ProjectWindowProps } from "@/types";
@@ -107,11 +108,11 @@ export default function ProjectWindow({
     const windowSize = getResponsiveWindowSize();
     const cascadeOffset = 35;
 
-    // Start higher up for the first window, then cascade
+    // Center the window on screen
     const baseX = Math.max(0, (window.innerWidth - windowSize.width) / 2);
-    const baseY =
-      Math.max(0, (window.innerHeight - windowSize.height) / 2) - 50;
+    const baseY = Math.max(0, (window.innerHeight - windowSize.height) / 2);
 
+    // Add cascade offset for multiple windows
     const x = baseX + cascadeOffset;
     const y = baseY + cascadeOffset;
 
@@ -445,6 +446,13 @@ export default function ProjectWindow({
               </InfoGrid>
             </ContentSection>
 
+            {/* Project Gallery */}
+            {project.gallery && project.gallery.length > 0 && (
+              <ContentSection title="Project Gallery" icon="🖼️">
+                <ProjectImageGallery images={project.gallery} />
+              </ContentSection>
+            )}
+
             {/* Project Links */}
             <ContentSection title="Project Links" icon="🔗">
               <LinkGrid>
@@ -490,24 +498,6 @@ export default function ProjectWindow({
                 ))}
               </div>
             </ContentSection>
-
-            {/* Project Gallery */}
-            {project.gallery && project.gallery.length > 0 && (
-              <ContentSection title="Project Gallery" icon="🖼️">
-                <div className="grid grid-cols-1 md-grid-cols-2 gap-4">
-                  {project.gallery.map((image, index) => (
-                    <div
-                      key={index}
-                      className="bg-[#ffffff] border border-[#808080] aspect-square flex items-center justify-center min-h-[120px]"
-                    >
-                      <span className="text-[#808080] text-sm">
-                        Gallery Image {index + 1}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </ContentSection>
-            )}
           </PageLayout>
         </div>
 

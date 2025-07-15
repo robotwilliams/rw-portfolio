@@ -397,7 +397,7 @@ export default function RetroDesktop() {
         document.removeEventListener("mouseup", handleMouseUp);
       };
     }
-  }, [draggedWindow, dragOffset, resizingWindow, resizeStart]);
+  }, [draggedWindow, dragOffset, resizingWindow, resizeStart, windows]);
 
   /**
    * Open Window Function

@@ -30,7 +30,7 @@ cta_link: "/work"
 # - link: URL to the full project page
 featured_work:
   - title: "Edgewater Landscapes LLC"
-    description: "Landscape design and development company website"
+    description: "Landscape design and development company website."
     image: "/images/placeholder.svg"
     link: "/work/edgewater-landscapes"
   - title: "SMPS New York"

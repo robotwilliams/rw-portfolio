@@ -1,6 +1,0 @@
-<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-  <rect width="300" height="200" fill="#c0c0c0" stroke="#000000" stroke-width="2"/>
-  <rect x="10" y="10" width="280" height="180" fill="#ffffff" stroke="#000000" stroke-width="1"/>
-  <text x="150" y="100" font-family="monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#000000">Project Image</text>
-  <text x="150" y="120" font-family="monospace" font-size="12" text-anchor="middle" fill="#666666">300x200</text>
-</svg> 

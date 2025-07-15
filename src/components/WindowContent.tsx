@@ -129,21 +129,14 @@ export default function WindowContent({ page }: WindowContentProps) {
       else windowWidth = 400;
     }
 
-    // Center the window on mobile, right-aligned on desktop
-    let x;
-    if (screenWidth <= 600) {
-      // Mobile: center the window
-      x = Math.max(0, (screenWidth - windowWidth) / 2);
-    } else {
-      // Desktop: right-aligned (original behavior)
-      const margin = 260;
-      x = Math.max(0, screenWidth - windowWidth - margin);
-    }
+    // Always center the window
+    const x = Math.max(0, (window.innerWidth - windowWidth) / 2);
+    const y = Math.max(0, (window.innerHeight - 550 - 80) / 2); // Account for taskbar
 
     setOpenWindows({
       [windowId]: {
         project,
-        position: { x, y: 340 },
+        position: { x, y },
         isActive: true,
       },
     });
@@ -454,10 +447,9 @@ export default function WindowContent({ page }: WindowContentProps) {
 
                 {/* Project Title */}
                 <div className="text-center space-y-1" style={{ width: '100%', maxWidth: '100%' }}>
-                  <span className="text-xs font-medium text-center leading-tight truncate block text-gray-600" style={{
+                  <span className="text-xs font-medium text-center leading-tight truncate block text-teal" style={{
                     fontFamily: '"MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif',
                     fontSize: window.innerWidth <= 600 ? '15px' : '13px', // Bigger on mobile
-                    color: 'var(--text-primary)',
                     textShadow: '0 1px 0 rgba(0, 0, 0, 0.1)',
                     wordWrap: 'break-word',
                     overflowWrap: 'break-word',

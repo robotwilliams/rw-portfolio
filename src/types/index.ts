@@ -7,6 +7,18 @@
  */
 
 /**
+ * Project Image Interface
+ *
+ * Defines the structure for project gallery images.
+ */
+export interface ProjectImage {
+  src: string; // Image source path
+  alt: string; // Alt text for accessibility
+  width: number; // Image width
+  height: number; // Image height
+}
+
+/**
  * Portfolio Project Interface
  *
  * Defines the complete structure for portfolio project data.
@@ -26,7 +38,7 @@ export interface PortfolioProject {
   // Technical information
   technologies: string[]; // Array of technologies used
   image: string; // Main project image path
-  gallery?: string[]; // Optional gallery of additional images
+  gallery?: ProjectImage[]; // Optional gallery of additional images
 
   // Links
   live_url?: string; // Link to live project

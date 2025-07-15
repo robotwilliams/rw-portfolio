@@ -12,14 +12,35 @@ import html from "remark-html";
  */
 const contentDirectory = path.join(process.cwd(), "content");
 
-import { PageData, PortfolioProject } from "@/types";
+import { PageData, PortfolioProject, ProjectImage } from "@/types";
 
 /**
- * Content Directory Configuration
+ * Transform Gallery Data
  *
- * Defines the base directory where all markdown content is stored.
- * This is the root of the markdown-based CMS system.
+ * Converts gallery data from frontmatter format to ProjectImage format.
+ * Handles both the old string[] format and the new ProjectImage[] format.
+ *
+ * @param gallery - Gallery data from frontmatter
+ * @returns Array of ProjectImage objects
  */
+function transformGalleryData(gallery: unknown): ProjectImage[] {
+  if (!gallery || !Array.isArray(gallery)) {
+    return [];
+  }
+
+  // If it's already in the correct format, return as-is
+  if (gallery.length > 0 && typeof gallery[0] === 'object' && gallery[0].src) {
+    return gallery as ProjectImage[];
+  }
+
+  // Convert from string[] format to ProjectImage[] format
+  return gallery.map((imagePath: string, index: number) => ({
+    src: imagePath,
+    alt: `Project Image ${index + 1}`,
+    width: 1200,
+    height: 900,
+  }));
+}
 
 /**
  * Get Page Data
@@ -86,6 +107,7 @@ export function getAllPortfolioProjects(): PortfolioProject[] {
         slug: data.slug || fileName.replace(/\.md$/, ""), // Use frontmatter slug or fallback to filename
         content,
         ...data,
+        gallery: transformGalleryData(data.gallery),
       } as PortfolioProject;
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -113,6 +135,7 @@ export function getPortfolioProject(slug: string): PortfolioProject | null {
       slug,
       content,
       ...data,
+      gallery: transformGalleryData(data.gallery),
     } as PortfolioProject;
   } catch {
     return null;
