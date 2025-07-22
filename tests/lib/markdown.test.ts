@@ -137,10 +137,10 @@ describe("Markdown Utilities", () => {
   describe("markdownToHtml", () => {
     // Tests for converting markdown to HTML, including edge cases
     it("converts markdown to HTML", async () => {
-      mockMarkdownToHtml.mockResolvedValue("<h1>Test Heading</h1><p>This is a <strong>bold</strong> paragraph.</p>");
+      mockMarkdownToHtml.mockResolvedValue("<h3>Test Heading</h3><p>This is a <strong>bold</strong> paragraph.</p>");
       const markdown = "# Test Heading\n\nThis is a **bold** paragraph.";
       const result = await mockMarkdownToHtml(markdown);
-      expect(result).toContain("<h1>Test Heading</h1>");
+      expect(result).toContain("<h3>Test Heading</h3>");
       expect(result).toContain("<p>This is a <strong>bold</strong> paragraph.</p>");
     });
     it("handles empty markdown", async () => {
@@ -149,13 +149,24 @@ describe("Markdown Utilities", () => {
       expect(result).toBe("");
     });
     it("handles complex markdown structures", async () => {
-      mockMarkdownToHtml.mockResolvedValue("<h1>Main Heading</h1><h2>Subheading</h2><ul><li>List item 1</li><li>List item 2</li></ul>");
+      mockMarkdownToHtml.mockResolvedValue("<h3>Main Heading</h3><h4>Subheading</h4><ul><li>List item 1</li><li>List item 2</li></ul>");
       const markdown = `# Main Heading\n\n## Subheading\n\n- List item 1\n- List item 2`;
       const result = await mockMarkdownToHtml(markdown);
-      expect(result).toContain("<h1>Main Heading</h1>");
-      expect(result).toContain("<h2>Subheading</h2>");
+      expect(result).toContain("<h3>Main Heading</h3>");
+      expect(result).toContain("<h4>Subheading</h4>");
       expect(result).toContain("<ul>");
       expect(result).toContain("<li>List item 1</li>");
+    });
+    it("shifts heading levels down by 2", async () => {
+      mockMarkdownToHtml.mockResolvedValue("<h3>Heading 1</h3><h4>Heading 2</h4><h5>Heading 3</h5><h6>Heading 4</h6><h6>Heading 5</h6><h6>Heading 6</h6>");
+      const markdown = `# Heading 1\n## Heading 2\n### Heading 3\n#### Heading 4\n##### Heading 5\n###### Heading 6`;
+      const result = await mockMarkdownToHtml(markdown);
+      expect(result).toContain("<h3>Heading 1</h3>");
+      expect(result).toContain("<h4>Heading 2</h4>");
+      expect(result).toContain("<h5>Heading 3</h5>");
+      expect(result).toContain("<h6>Heading 4</h6>");
+      expect(result).toContain("<h6>Heading 5</h6>");
+      expect(result).toContain("<h6>Heading 6</h6>");
     });
   });
 });

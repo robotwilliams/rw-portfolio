@@ -3,6 +3,8 @@ import matter from "gray-matter";
 import path from "path";
 import { remark } from "remark";
 import html from "remark-html";
+import { visit } from "unist-util-visit";
+import type { Root, Heading } from "mdast";
 
 /**
  * Content Directory Configuration
@@ -157,6 +159,30 @@ export function getFeaturedProjects(): PortfolioProject[] {
 }
 
 /**
+ * Custom Remark Plugin: Shift Heading Levels
+ *
+ * Shifts all heading levels down by 2 to fix heading hierarchy.
+ * This ensures that when project content (which starts with h1) is rendered
+ * inside a "Project Details" section (h2), the hierarchy is valid.
+ * 
+ * h1 -> h3
+ * h2 -> h4
+ * h3 -> h5
+ * h4 -> h6
+ * h5 -> h6 (max level)
+ * h6 -> h6 (max level)
+ */
+function shiftHeadingLevels() {
+  return function (tree: Root) {
+    visit(tree, "heading", (node: Heading) => {
+      // Shift heading level down by 2, but don't go below h6
+      const newLevel = Math.min(6, node.depth + 2) as 1 | 2 | 3 | 4 | 5 | 6;
+      node.depth = newLevel;
+    });
+  };
+}
+
+/**
  * Convert Markdown to HTML
  *
  * Converts markdown content to HTML using the remark processor.
@@ -172,6 +198,9 @@ export function getFeaturedProjects(): PortfolioProject[] {
  * @returns Promise that resolves to HTML string
  */
 export async function markdownToHtml(markdown: string): Promise<string> {
-  const result = await remark().use(html).process(markdown);
+  const result = await remark()
+    .use(shiftHeadingLevels)
+    .use(html)
+    .process(markdown);
   return result.toString();
 }

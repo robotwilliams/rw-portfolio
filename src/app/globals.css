@@ -192,27 +192,27 @@ h1 {
 }
 
 h2 {
-  color: #9F75E0;
+  color: #9A70DB;
   font-size: 26px;
 }
 
 h3 {
-  color: #AF85E2;
+  color: #A178DE;
   font-size: 22px;
 }
 
 h4 {
-  color: #9C75D8;
+  color: #A880E1;
   font-size: 18px;
 }
 
 h5 {
-  color: #A981D6;
+  color: #AF88E4;
   font-size: 16px;
 }
 
 h6 {
-  color: #B491D8;
+  color: #B690E7;
   font-size: 14px;
 }
 
@@ -1762,7 +1762,7 @@ svg {
 .prose ul li,
 .prose ol li {
   color: #0077AA !important;
-  font-size: 16px;
+  font-size: 14px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
@@ -2806,7 +2806,7 @@ select {
 
 
 .page-content p {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
   margin-bottom: 1rem;
   margin-top: 0;
