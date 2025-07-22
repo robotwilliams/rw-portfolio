@@ -3,6 +3,7 @@
 import { useProjectWindows } from "@/components/ProjectWindowContext";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import VintageButton from "@/components/VintageButton";
 
 import { PortfolioProject } from "@/types";
 
@@ -88,12 +89,12 @@ export default function WorkPage() {
               Error Loading Projects
             </h2>
             <p className="text-sm text-[#000000] mb-5">{error}</p>
-            <button
+            <VintageButton
+              variant="purple"
               onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold hover:bg-[#d4d0c8] transition-colors"
             >
               Try Again
-            </button>
+            </VintageButton>
           </div>
         </div>
       </div>
@@ -210,11 +211,10 @@ export default function WorkPage() {
               I&apos;m always excited to work on new projects and bring creative
               ideas to life. Let&apos;s discuss how we can work together.
             </p>
-            <a
-              href="/contact"
-              className="inline-block px-6 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold hover:bg-[#d4d0c8] transition-colors"
-            >
-              Get In Touch
+            <a href="/contact">
+              <VintageButton variant="purple">
+                Get In Touch
+              </VintageButton>
             </a>
           </div>
         </div>

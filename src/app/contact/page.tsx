@@ -1,6 +1,7 @@
 "use client";
 
 import PageLayout from "@/components/PageLayout";
+import VintageButton from "@/components/VintageButton";
 import { useState } from "react";
 
 /**
@@ -173,13 +174,23 @@ export default function ContactPage() {
               </div>
 
               {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="retro-button w-full"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
+              <div className="flex gap-4">
+                <VintageButton
+                  type="submit"
+                  variant="purple"
+                  disabled={isSubmitting}
+                  className="flex-1"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </VintageButton>
+                <VintageButton
+                  type="reset"
+                  variant="teal"
+                  className="flex-1"
+                >
+                  Reset Form
+                </VintageButton>
+              </div>
             </form>
           </div>
 

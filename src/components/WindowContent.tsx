@@ -10,6 +10,7 @@ import PageLayout, {
   LinkGrid,
 } from "./PageLayout";
 import ProjectWindow from "./ProjectWindow";
+import VintageButton from "./VintageButton";
 
 /**
  * WindowContent Component
@@ -292,7 +293,7 @@ export default function WindowContent({ page }: WindowContentProps) {
             </ContentSection>
 
             <ContentSection title="Contact Form" icon="📝">
-              <form className="contact-form w-full" id="contact-form" method="POST" name="contactForm">
+              <form className="contact-form w-full bg-gray-100 bg-opacity-40 shadow-lg p-4 rounded-lg" id="contact-form" method="POST" name="contactForm">
                 <p className="screen-reader-text">
                   <label>Don&apos;t fill this out if you&apos;re human: <input name="bot-field" /></label>
                 </p>
@@ -335,7 +336,9 @@ export default function WindowContent({ page }: WindowContentProps) {
                   <input type="hidden" name="form-name" value="contactForm" />
 
                   <div className="form-row form-submit pt-4">
-                    <button type="submit" className="button retro-button px-8 py-3">Send Message</button>
+                    <VintageButton type="submit" variant="purple" size="lg">
+                      Send Message
+                    </VintageButton>
                   </div>
                 </div>
               </form>
@@ -389,12 +392,12 @@ export default function WindowContent({ page }: WindowContentProps) {
             Error Loading Projects
           </h2>
           <p className="text-sm text-[#000000] mb-5">{error}</p>
-          <button
+          <VintageButton
+            variant="purple"
             onClick={loadWorkPage}
-            className="px-4 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold hover:bg-[#d4d0c8] transition-colors"
           >
             Try Again
-          </button>
+          </VintageButton>
         </div>
       );
     }

@@ -1,5 +1,6 @@
 import { getFeaturedProjects, getPageData } from "@/lib/markdown";
 import Link from "next/link";
+import VintageButton from "@/components/VintageButton";
 
 /**
  * Home Page Component
@@ -32,8 +33,10 @@ export default function HomePage() {
       <div className="text-center">
         <h1 className="text-3xl font-bold">{homeData.hero_title}</h1>
         <p className="text-lg mb-5">{homeData.hero_subtitle}</p>
-        <Link href={String(homeData.cta_link)} className="retro-button">
-          {homeData.cta_text}
+        <Link href={String(homeData.cta_link)}>
+          <VintageButton variant="teal">
+            {homeData.cta_text}
+          </VintageButton>
         </Link>
       </div>
 
@@ -82,8 +85,10 @@ export default function HomePage() {
 
         {/* View All Work Button */}
         <div className="text-center mt-6">
-          <Link href="/work" className="retro-button">
-            View All Work
+          <Link href="/work">
+            <VintageButton variant="purple">
+              View All Work
+            </VintageButton>
           </Link>
         </div>
       </div>
@@ -130,8 +135,10 @@ export default function HomePage() {
 
         {/* About Link */}
         <div className="text-center">
-          <Link href="/about" className="retro-button">
-            Learn More About Me
+          <Link href="/about">
+            <VintageButton variant="teal">
+              Learn More About Me
+            </VintageButton>
           </Link>
         </div>
       </div>
@@ -152,8 +159,10 @@ export default function HomePage() {
           Let&apos;s work together to bring your vision to life. I&apos;m always
           excited to hear about new projects and opportunities.
         </p>
-        <Link href="/contact" className="retro-button">
-          Get In Touch
+        <Link href="/contact">
+          <VintageButton variant="purple">
+            Get In Touch
+          </VintageButton>
         </Link>
       </div>
     </div>

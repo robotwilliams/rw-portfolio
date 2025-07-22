@@ -1,5 +1,6 @@
 import { getPageContent, markdownToHtml } from "@/lib/markdown";
 import { Metadata } from "next";
+import VintageButton from "@/components/VintageButton";
 import Image from "next/image";
 
 /**
@@ -201,11 +202,10 @@ export default async function AboutPage() {
               application, or help improving your existing digital presence,
               I&apos;m here to help.
             </p>
-            <a
-              href="/contact"
-              className="inline-block px-6 py-2 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold text-sm hover:bg-[#d4d0c8] transition-colors"
-            >
-              Get In Touch
+            <a href="/contact">
+              <VintageButton variant="teal">
+                Get In Touch
+              </VintageButton>
             </a>
           </div>
         </div>

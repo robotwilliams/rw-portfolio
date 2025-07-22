@@ -877,8 +877,7 @@ export default function RetroDesktop() {
         <div className="flex items-center space-x-2 ml-2">
           {/* Start Button */}
           <button
-            className={`start-button flex items-center px-2 py-1 ${startMenuOpen ? "bg-cyan-600" : ""
-              }`}
+            className={`start-button flex items-center px-2 py-1 ${startMenuOpen ? "bg-cyan-600" : ""}`}
             style={{ gap: "4px" }}
             onClick={toggleStartMenu}
           >

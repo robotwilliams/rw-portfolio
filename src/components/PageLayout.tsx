@@ -14,6 +14,7 @@
  */
 
 import Image from "next/image";
+import VintageButton from "./VintageButton";
 
 import { PageLayoutProps } from "@/types";
 
@@ -47,12 +48,12 @@ export default function PageLayout({
           </h2>
           <p className="text-sm text-[#000000] mb-5">{error}</p>
           {onRetry && (
-            <button
+            <VintageButton
+              variant="teal"
               onClick={onRetry}
-              className="px-6 py-3 bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] text-[#000000] font-semibold hover:bg-[#d4d0c8] transition-colors"
             >
               Try Again
-            </button>
+            </VintageButton>
           )}
         </div>
       </div>
@@ -213,22 +214,11 @@ export function LinkButton({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={`inline-flex items-center px-6 py-3 text-sm transition-colors ${className}`}
-      style={{
-        backgroundColor: '#c0c0c0',
-        border: '2px solid #dfdfdf',
-        borderTopColor: '#808080',
-        borderLeftColor: '#808080',
-        color: '#000000',
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.backgroundColor = '#d4d0c8';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.backgroundColor = '#c0c0c0';
-      }}
+      className={className}
     >
-      {children}
+      <VintageButton variant="teal" className="inline-flex items-center">
+        {children}
+      </VintageButton>
     </a>
   );
 }
