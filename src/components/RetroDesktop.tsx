@@ -225,12 +225,7 @@ export default function RetroDesktop() {
     }
   }, [pathname, windows.length, getCascadingPosition, navigation]);
 
-  /**
-   * Update Clock Every Second
-   *
-   * Keeps the taskbar clock synchronized with the current time.
-   * This adds to the authentic Windows 95/98 experience.
-   */
+  // Updates clock every second
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTime(new Date());
@@ -239,12 +234,7 @@ export default function RetroDesktop() {
     return () => clearInterval(timer);
   }, []);
 
-  /**
-   * Close Start Menu When Clicking Outside
-   *
-   * Provides intuitive behavior where clicking outside the start menu
-   * closes it, similar to how Windows 95/98 worked.
-   */
+  // Closes start menu when clicking outside
   useEffect(() => {
     const handleClickOutside = () => {
       setStartMenuOpen(false);
@@ -256,12 +246,7 @@ export default function RetroDesktop() {
     }
   }, [startMenuOpen]);
 
-  /**
-   * Handle Mouse Move for Dragging and Resizing
-   *
-   * Manages the real-time updates when users are dragging windows
-   * or resizing them. This creates smooth, responsive interactions.
-   */
+  // Handles mouse move for dragging and resizing windows
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (draggedWindow) {
@@ -391,12 +376,7 @@ export default function RetroDesktop() {
     }
   };
 
-  /**
-   * Close Window Function
-   *
-   * Removes a window from the desktop and clears it as the active window
-   * if it was currently active.
-   */
+  // Closes a window and clears it as active if needed
   const closeWindow = (id: string) => {
     setWindows((prev) => prev.filter((w) => w.id !== id));
     if (activeWindow === id) {
@@ -404,12 +384,7 @@ export default function RetroDesktop() {
     }
   };
 
-  /**
-   * Minimize Window Function
-   *
-   * Hides a window from view while keeping it in memory.
-   * The window can be restored by clicking its taskbar icon.
-   */
+  // Minimizes a window - hides it but keeps it in memory
   const minimizeWindow = (id: string) => {
     setWindows((prev) =>
       prev.map((w) => (w.id === id ? { ...w, isMinimized: true } : w))
