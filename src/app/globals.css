@@ -1887,29 +1887,25 @@ svg {
   appearance: none;
 }
 
-/* Desktop icon text - content-aware contrast with strong stroke effect */
+/* Desktop icon text - content-aware contrast with subtle stroke effect */
 .desktop-icon .text-xs,
 .desktop-icon .desktop-icon-label,
 .desktop-icon > div:last-child,
 .desktop-icon span {
-  /* Strong text stroke effect for readability over any background */
-  /* Dark outline that works on light clouds/backgrounds */
+  /* Subtle text stroke effect for readability over any background */
+  /* Lighter outline that works on light clouds/backgrounds */
   text-shadow:
-    -2px -2px 0 rgba(0, 0, 0, 1),
-    2px -2px 0 rgba(0, 0, 0, 1),
-    -2px 2px 0 rgba(0, 0, 0, 1),
-    2px 2px 0 rgba(0, 0, 0, 1),
-    -1px -1px 0 rgba(0, 0, 0, 1),
-    1px -1px 0 rgba(0, 0, 0, 1),
-    -1px 1px 0 rgba(0, 0, 0, 1),
-    1px 1px 0 rgba(0, 0, 0, 1),
-    0 -2px 0 rgba(0, 0, 0, 1),
-    0 2px 0 rgba(0, 0, 0, 1),
-    -2px 0 0 rgba(0, 0, 0, 1),
-    2px 0 0 rgba(0, 0, 0, 1),
-    /* Additional glow for extra visibility */
-    0 0 3px rgba(0, 0, 0, 0.8),
-    0 0 6px rgba(0, 0, 0, 0.6);
+    -1px -1px 0 rgba(0, 0, 0, 0.3),
+    1px -1px 0 rgba(0, 0, 0, 0.3),
+    -1px 1px 0 rgba(0, 0, 0, 0.3),
+    1px 1px 0 rgba(0, 0, 0, 0.3),
+    0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 1px 0 rgba(0, 0, 0, 0.3),
+    -1px 0 0 rgba(0, 0, 0, 0.3),
+    1px 0 0 rgba(0, 0, 0, 0.3),
+    /* Subtle glow for extra visibility */
+    0 0 2px rgba(0, 0, 0, 0.4),
+    0 0 4px rgba(0, 0, 0, 0.2);
   /* White text that will show on dark backgrounds, dark outline shows on light */
   color: #ffffff !important;
   font-weight: 600;
