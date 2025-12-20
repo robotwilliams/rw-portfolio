@@ -1202,38 +1202,38 @@ svg {
     120px 45px 0 #c0c0c0, 125px 45px 0 #c0c0c0, 130px 45px 0 #c0c0c0;
 }
 
-/* Cloud 1 - Large, top area, slow */
+/* Cloud 1 - Large, mid area, slow */
 .desktop-cloud {
   transform: scale(3.8);
   left: -200px;
-  top: 100px;
+  top: 300px;
   z-index: 1;
   animation: desktopCloudDrift 200s linear infinite;
 }
 
-/* Cloud 2 - Medium-large, upper-mid, medium-slow */
+/* Cloud 2 - Medium-large, mid, medium-slow */
 .desktop-cloud-two {
   transform: scale(2.8);
   left: 300px;
-  top: 250px;
+  top: 400px;
   z-index: 2;
   animation: desktopCloudDrift2 150s linear infinite;
 }
 
-/* Cloud 3 - Small, very top, fast */
+/* Cloud 3 - Small, mid-upper, fast */
 .desktop-cloud-three {
   transform: scale(1.6);
   left: 600px;
-  top: 50px;
+  top: 250px;
   z-index: 1;
   animation: desktopCloudDrift3 80s linear infinite;
 }
 
-/* Cloud 4 - Extra large, mid-bottom, very slow */
+/* Cloud 4 - Extra large, mid-lower, very slow */
 .desktop-cloud-four {
   transform: scale(4.2);
   left: 900px;
-  top: 450px;
+  top: 500px;
   z-index: 2;
   animation: desktopCloudDrift4 240s linear infinite;
 }
@@ -1242,16 +1242,16 @@ svg {
 .desktop-cloud-five {
   transform: scale(2.5);
   left: 1200px;
-  top: 300px;
+  top: 350px;
   z-index: 1;
   animation: desktopCloudDrift5 120s linear infinite;
 }
 
-/* Cloud 6 - Large, bottom, slow */
+/* Cloud 6 - Large, mid-lower, slow */
 .desktop-cloud-six {
   transform: scale(3.4);
   left: 1500px;
-  top: 550px;
+  top: 450px;
   z-index: 2;
   animation: desktopCloudDrift6 170s linear infinite;
 }

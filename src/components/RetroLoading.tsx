@@ -1,11 +1,4 @@
-/**
- * RetroLoading Component
- *
- * A hacker-style terminal loading animation that displays
- * funny, surreal, and authentic console messages with retro terminal aesthetics.
- * Perfect for loading states in the robotOS interface.
- */
-
+// Terminal loading animation with retro console messages
 import { useEffect, useRef, useState } from "react";
 
 import { RetroLoadingProps } from "@/types";
