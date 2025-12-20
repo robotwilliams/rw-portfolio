@@ -32,12 +32,12 @@ export default function AdminPage() {
     setError("");
     setLoading(true);
 
-    const success = await login(username, password);
+    const result = await login(username, password);
 
-    if (success) {
+    if (result.success) {
       setAuthenticated(true);
     } else {
-      setError("Invalid username or password");
+      setError(result.error || "Invalid username or password. Please check your credentials.");
     }
 
     setLoading(false);

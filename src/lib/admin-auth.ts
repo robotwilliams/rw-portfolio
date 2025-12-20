@@ -16,7 +16,7 @@ export async function checkAuth(): Promise<boolean> {
   }
 }
 
-export async function login(username: string, password: string): Promise<boolean> {
+export async function login(username: string, password: string): Promise<{ success: boolean; error?: string }> {
   try {
     const response = await fetch("/api/admin/login", {
       method: "POST",
@@ -25,9 +25,12 @@ export async function login(username: string, password: string): Promise<boolean
       body: JSON.stringify({ username, password }),
     });
     const data = await response.json();
-    return data.success === true;
-  } catch {
-    return false;
+    if (data.success) {
+      return { success: true };
+    }
+    return { success: false, error: data.error || "Invalid credentials" };
+  } catch (error) {
+    return { success: false, error: "Network error. Please check your connection." };
   }
 }
 
