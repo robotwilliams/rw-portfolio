@@ -29,7 +29,7 @@ export async function login(username: string, password: string): Promise<{ succe
       return { success: true };
     }
     return { success: false, error: data.error || "Invalid credentials" };
-  } catch (error) {
+  } catch {
     return { success: false, error: "Network error. Please check your connection." };
   }
 }

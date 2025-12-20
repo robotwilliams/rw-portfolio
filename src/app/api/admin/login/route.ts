@@ -19,9 +19,9 @@ export async function POST(request: NextRequest) {
     if (!adminUsername || !adminPassword) {
       console.error("Admin credentials not configured - ADMIN_USERNAME and ADMIN_PASSWORD must be set");
       return NextResponse.json(
-        { 
-          success: false, 
-          error: "Server configuration error: Admin credentials not set. Please configure ADMIN_USERNAME and ADMIN_PASSWORD environment variables." 
+        {
+          success: false,
+          error: "Server configuration error: Admin credentials not set. Please configure ADMIN_USERNAME and ADMIN_PASSWORD environment variables."
         },
         { status: 500 }
       );
