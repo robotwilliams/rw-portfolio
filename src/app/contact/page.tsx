@@ -1,293 +1,76 @@
-"use client";
+import { getPageContent, markdownToHtml } from "@/lib/markdown";
+import { Metadata } from "next";
 
-import PageLayout from "@/components/PageLayout";
-import VintageButton from "@/components/VintageButton";
-import { useState } from "react";
+// Force dynamic rendering to ensure admin updates are immediately visible
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+/**
+ * Contact Page Metadata
+ */
+export const metadata: Metadata = {
+  title: "Contact Robot Williams",
+  description: "Get in touch with Rob Williams for your next project.",
+};
 
 /**
  * Contact Page Component
  *
- * This page provides multiple ways for visitors to get in touch:
- * - Contact form for project inquiries
- * - Contact information display
- * - Social media links
- * - Location and availability information
- *
- * The contact form includes:
- * - Form validation
- * - Loading states
- * - Success/error feedback
- * - Responsive design
- *
- * Note: This is a client component because it uses React state
- * for form management and user interactions.
+ * This page displays contact information and form from markdown content.
+ * Content is loaded from the markdown CMS system, making it easy
+ * to update without touching code.
  */
-export default function ContactPage() {
-  // Form state management
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  // UI state management
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
-
-  /**
-   * Handle Form Submission
-   *
-   * Processes the contact form submission.
-   * Currently simulates a submission with a delay.
-   * In a real implementation, this would send the data
-   * to an API endpoint or email service.
-   */
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission with a delay
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // For now, just show success message
-    // TODO: This form currently simulates submission. Replace with actual API or email service integration for production use.
-    setSubmitStatus("success");
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", subject: "", message: "" });
-  };
-
-  /**
-   * Handle Input Changes
-   *
-   * Updates the form state when users type in form fields.
-   * Uses a generic handler that works for both input and textarea elements.
-   */
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
+export default async function ContactPage() {
+  // Load page content from markdown CMS
+  const content = getPageContent("contact");
+  const htmlContent = await markdownToHtml(content);
   return (
-    <PageLayout
-      page="contact"
-      title="Let's Work Together"
-      description="Ready to start your next project? I'd love to hear from you."
-      icon="/images/rw-site-icon-email.png"
-    >
-      <div className="p-4">
-        {/*
-          Main Content Area
-          Two-column layout with contact form and contact information.
-          Responsive design that stacks on mobile devices.
-        */}
-        <div className="grid grid-cols-1 lg-grid-cols-2 gap-8">
-          {/*
-            Contact Form Section
-            Form for project inquiries with validation and feedback.
-            Uses retro styling to match the Windows 95/98 theme.
-          */}
-          <div>
-            <h2 className="text-xl font-bold">Send Me a Message</h2>
+    <div className="min-h-screen bg-[#c0c0c0] p-4">
+      <div className="max-w-4xl mx-auto">
+        {/* Page Header - Windows 98 Style */}
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
+          <h1 className="text-2xl font-bold">Contact Robot Williams</h1>
+          <p className="text-sm" style={{ color: '#2F4F4F' }}>
+            Get in touch with Rob Williams for your next project.
+          </p>
+        </div>
 
-            {/* Success Message */}
-            {submitStatus === "success" && (
-              <div className="mb-5 p-3 bg-green-600 text-white">
-                <p>Thank you for your message! I&apos;ll get back to you soon.</p>
-              </div>
-            )}
-
-            {/* Contact Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* Name Field */}
-              <div>
-                <label htmlFor="name" className="block text-sm font-bold mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="retro-input w-full"
-                  placeholder="Your name"
-                />
-              </div>
-
-              {/* Email Field */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-bold mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="retro-input w-full"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              {/* Subject Field */}
-              <div>
-                <label htmlFor="subject" className="block text-sm font-bold mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="retro-input w-full"
-                  placeholder="What's this about?"
-                />
-              </div>
-
-              {/* Message Field */}
-              <div>
-                <label htmlFor="message" className="block text-sm font-bold mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="retro-textarea w-full"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              {/* Submit Button */}
-              <div className="flex gap-4">
-                <VintageButton
-                  type="submit"
-                  variant="purple"
-                  disabled={isSubmitting}
-                  className="flex-1"
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </VintageButton>
-                <VintageButton
-                  type="reset"
-                  variant="teal"
-                  className="flex-1"
-                >
-                  Reset Form
-                </VintageButton>
-              </div>
-            </form>
+        {/* Google Map - Seattle Space Needle - Windows 98 Style */}
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-5">
+          <h2 className="text-lg font-bold mb-4">📍 Location</h2>
+          <div className="bg-[#ffffff] border border-[#808080] p-2">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.5!2d-122.3493!3d47.6205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490154f4f66dd1d%3A0x385b22aac5770c0!2sSpace%20Needle!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus&q=Space+Needle+Seattle+WA"
+              width="100%"
+              height="450"
+              style={{ border: "2px solid #808080", minHeight: "450px" }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Seattle Space Needle Location"
+            />
           </div>
+          <p className="text-sm mt-3" style={{ color: '#2F4F4F' }}>
+            Located in Seattle, Washington - near the Space Needle
+          </p>
+        </div>
 
-          {/*
-            Contact Information Section
-            Displays contact details, location, availability, and social links.
-            Provides multiple ways for visitors to connect.
-          */}
-          <div className="space-y-6">
-            {/* Introduction */}
-            <div>
-              <h2 className="text-xl font-bold">Get In Touch</h2>
-              <p className="mb-5">
-                I&apos;m always excited to hear about new projects and
-                opportunities. Whether you have a specific project in mind or just
-                want to chat about digital experiences, I&apos;d love to connect.
-              </p>
-            </div>
-
-            {/* Contact Details */}
-            <div className="space-y-4">
-              {/* Email Contact */}
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <span className="text-2xl">📧</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-bold">Email</h3>
-                  <a href="mailto:hello@robw.dev" className="retro-link">
-                    hello@robw.dev
-                  </a>
-                </div>
-              </div>
-
-              {/* Location */}
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <span className="text-2xl">📍</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-bold">Location</h3>
-                  <p>San Francisco, CA</p>
-                </div>
-              </div>
-
-              {/* Availability */}
-              <div className="flex items-start">
-                <div className="flex-shrink-0">
-                  <span className="text-2xl">⏰</span>
-                </div>
-                <div className="ml-4">
-                  <h3 className="text-lg font-bold">Availability</h3>
-                  <p>Available for new projects</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h3 className="text-lg font-bold">Follow Me</h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://linkedin.com/in/robw"
-                  className="retro-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/robw"
-                  className="retro-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
-              </div>
-            </div>
-
-            {/*
-              Additional Information
-              Provides context about typical projects and response times.
-              Helps set expectations for visitors.
-            */}
-            <div className="bg-gray-50 p-4 rounded">
-              <h4 className="font-bold">What to Expect</h4>
-              <ul className="text-sm space-y-1">
-                <li>• Response within 24 hours</li>
-                <li>• Free initial consultation</li>
-                <li>• Detailed project proposals</li>
-                <li>• Transparent pricing</li>
-              </ul>
-            </div>
-          </div>
+        {/* Main Content - Windows 98 Style */}
+        <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4">
+          <h2 className="text-lg font-bold mb-4">📄 Contact Information</h2>
+          <div
+            className="prose prose-sm max-w-none"
+            style={
+              {
+                "--tw-prose-body": "#0077AA",
+                "--tw-prose-headings": "#000080",
+                "--tw-prose-links": "#000080",
+              } as React.CSSProperties
+            }
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
         </div>
       </div>
-    </PageLayout>
+    </div>
   );
 }

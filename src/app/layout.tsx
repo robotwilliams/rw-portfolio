@@ -1,8 +1,4 @@
-import PageLoadWrapper from "@/components/PageLoadWrapper";
-import {
-  ProjectWindowContextProvider,
-} from "@/components/ProjectWindowContext";
-import RetroDesktop from "@/components/RetroDesktop";
+import ConditionalLayout from "@/components/ConditionalLayout";
 import type { Metadata, Viewport } from "next";
 import {
   IBM_Plex_Mono,
@@ -60,18 +56,18 @@ export const viewport: Viewport = {
 };
 
 // Root layout - wraps everything with fonts, styles, and desktop interface
-export default function RootLayout() {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body
         className={`${ibmPlexMono.variable} ${pressStart2P.variable} ${sourceCodePro.variable} antialiased`}
       >
-        {/* Desktop interface with windows, taskbar, icons, and all that good stuff */}
-        <PageLoadWrapper>
-          <ProjectWindowContextProvider>
-            <RetroDesktop />
-          </ProjectWindowContextProvider>
-        </PageLoadWrapper>
+        {/* Desktop interface for main site, plain layout for admin */}
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );

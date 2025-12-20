@@ -15,6 +15,10 @@ interface ProjectPageProps {
   }>;
 }
 
+// Force dynamic rendering to ensure admin updates are immediately visible
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const projects = getAllPortfolioProjects();
   return projects.map((project) => ({

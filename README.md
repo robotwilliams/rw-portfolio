@@ -52,6 +52,11 @@ The site features a **Windows 98-inspired desktop interface** that includes:
 
 - **Modern Tech Stack**: Next.js 15, TypeScript, Tailwind CSS
 - **Markdown CMS**: Content managed through markdown files with frontmatter
+- **Admin Dashboard**: Full-featured admin interface for content management
+  - Secure authentication with session cookies
+  - Edit pages (About, Contact) directly from the browser
+  - Edit portfolio projects with rich metadata
+  - Real-time content updates without page refresh
 - **Responsive Design**: Mobile-first approach with beautiful UI
 - **SEO Optimized**: Meta tags, structured data, and performance optimized
 - **Easy CMS Migration**: Designed to easily transition to WordPress or other CMS platforms
@@ -92,7 +97,9 @@ rw-portfolio/
 ## Core Components Architecture
 
 ### RetroDesktop.tsx (993 lines)
+
 The main desktop interface providing:
+
 - **Window Management System**: Open, close, minimize, drag, resize windows with cascading positioning
 - **Desktop Icons**: Navigation with authentic Windows 98 styling and hover effects
 - **Taskbar**: Start menu, running applications, live digital clock
@@ -101,7 +108,9 @@ The main desktop interface providing:
 - **Z-Index Management**: Proper window stacking order and activation
 
 ### WindowContent.tsx (556 lines)
+
 Dynamic content loader handling:
+
 - **Page-specific Rendering**: Home, about, work, contact pages with consistent layouts
 - **Interactive Work Grid**: Project icons that open detailed windows (only one at a time)
 - **API Integration**: Content loading from markdown files via API routes
@@ -109,7 +118,9 @@ Dynamic content loader handling:
 - **Error Handling**: Graceful error states with retry functionality
 
 ### ProjectWindow.tsx (587 lines)
+
 Individual project detail windows featuring:
+
 - **Draggable Interface**: Move windows around the desktop with mouse event handling
 - **Markdown Rendering**: Convert project content to HTML with proper styling
 - **Project Metadata**: Client, duration, technologies, live links, GitHub links
@@ -117,7 +128,9 @@ Individual project detail windows featuring:
 - **Portal Rendering**: Windows rendered outside main component tree for proper z-indexing
 
 ### PageLayout.tsx (261 lines)
+
 Reusable layout system with:
+
 - **ContentSection**: Organized content areas with icons and headings
 - **InfoGrid**: Responsive information cards with hover effects
 - **InfoCard**: Styled cards with 3D button effects and hover states
@@ -127,12 +140,14 @@ Reusable layout system with:
 ## API Architecture
 
 ### Content API Routes
+
 - **`/api/content/[page]`**: Dynamic page content (home, about, contact) with markdown processing
 - **`/api/content/projects`**: Portfolio project data aggregation from markdown files
 - **Markdown Processing**: Server-side markdown-to-HTML conversion using remark
 - **Error Handling**: Graceful fallbacks and retry mechanisms
 
 ### Data Flow
+
 1. **Markdown Files** → **Gray-matter Parsing** → **Frontmatter + Content**
 2. **Content** → **Remark Processing** → **HTML Output**
 3. **API Response** → **Client-side Rendering** → **Desktop Windows**
@@ -140,6 +155,7 @@ Reusable layout system with:
 ## State Management
 
 ### Window Management System
+
 ```typescript
 interface Window {
   id: string;
@@ -153,6 +169,7 @@ interface Window {
 ```
 
 ### Key Features
+
 - **Cascading Positioning**: Windows open in staggered positions to avoid overlap
 - **Drag & Resize**: Mouse event handling for window manipulation with constraints
 - **Z-Index Management**: Proper window stacking order and activation
@@ -175,10 +192,10 @@ Pages are stored in `content/pages/` with the following structure:
 
 ```markdown
 ---
-title: "Page Title"
-description: "Page description for SEO"
-page_title: "Display Title"
-page_subtitle: "Display subtitle"
+title: 'Page Title'
+description: 'Page description for SEO'
+page_title: 'Display Title'
+page_subtitle: 'Display subtitle'
 # Additional frontmatter fields
 ---
 
@@ -193,18 +210,18 @@ Projects are stored in `content/portfolio/` with rich metadata:
 
 ```markdown
 ---
-title: "Project Name"
-description: "Project description"
-slug: "project-slug"
-category: "Web Development"
-client: "Client Name"
-date: "2024-01-15"
-duration: "3 months"
-technologies: ["React", "Node.js", "TypeScript"]
-image: "/images/project-image.jpg"
-gallery: ["/images/gallery1.jpg", "/images/gallery2.jpg"]
-live_url: "https://project.com"
-github_url: "https://github.com/user/project"
+title: 'Project Name'
+description: 'Project description'
+slug: 'project-slug'
+category: 'Web Development'
+client: 'Client Name'
+date: '2024-01-15'
+duration: '3 months'
+technologies: ['React', 'Node.js', 'TypeScript']
+image: '/images/project-image.jpg'
+gallery: ['/images/gallery1.jpg', '/images/gallery2.jpg']
+live_url: 'https://project.com'
+github_url: 'https://github.com/user/project'
 featured: true
 ---
 
@@ -216,12 +233,14 @@ Detailed project description...
 ## Performance Optimizations
 
 ### Content Loading
+
 - **Static Generation**: Pre-rendered markdown content for fast initial loads
 - **API Routes**: Dynamic content loading without page refreshes
 - **Image Optimization**: Next.js Image component with automatic optimization
 - **Code Splitting**: Automatic bundle optimization and lazy loading
 
 ### State Management
+
 - **Efficient Re-rendering**: Proper state updates to prevent unnecessary renders
 - **Window Position Caching**: Cached calculations to avoid recalculation
 - **Event Listener Cleanup**: Proper cleanup to prevent memory leaks
@@ -230,6 +249,7 @@ Detailed project description...
 ## Responsive Design
 
 ### Breakpoint System
+
 - **360px**: Extra small mobile devices
 - **480px**: Small mobile devices
 - **600px**: Mobile devices
@@ -237,12 +257,14 @@ Detailed project description...
 - **1200px+**: Desktop devices
 
 ### Window Sizing Strategy
+
 - **Mobile**: 280-400px width, 400-500px height (more vertical space)
 - **Desktop**: 850px width, 550px height (optimal viewing)
 - **Tablet**: Proportional scaling based on screen size
 - **Touch Interactions**: Mobile-friendly window management
 
 ### Typography Scaling
+
 - **Responsive Font Sizes**: Progressive scaling from mobile to desktop
 - **Line Height Optimization**: Improved readability on small screens
 - **Spacing Adjustments**: Optimized padding and margins for each breakpoint
@@ -250,24 +272,28 @@ Detailed project description...
 ## Testing Infrastructure
 
 ### Comprehensive Test Suite
+
 - **Component Tests**: Individual React component testing with React Testing Library
 - **Integration Tests**: End-to-end workflow testing for desktop interactions
 - **API Tests**: Content loading and error handling validation
 - **Utility Tests**: Markdown processing and helper function testing
 
 ### Test Coverage Goals
+
 - **Components**: 90% coverage
 - **Utilities**: 95% coverage
 - **API Routes**: 85% coverage
 - **Integration**: 80% coverage
 
 ### Testing Tools
+
 - **Jest**: Test runner and assertion library
 - **React Testing Library**: Component testing utilities
 - **Custom Test Utils**: Window management and responsive testing helpers
 - **Mock Data**: Consistent test data for reliable testing
 
 ### Running Tests
+
 ```bash
 # Run all tests
 npm test
@@ -322,12 +348,14 @@ npm start
 ## Advanced Features
 
 ### Time-based Interface
+
 - **Dynamic Backgrounds**: Morning, afternoon, evening, night gradients with smooth transitions
 - **Animated Clouds**: Pixel art clouds with parallax movement across the desktop
 - **Live Clock**: Authentic digital clock in taskbar with hourglass animation
 - **Icon Text Colors**: Adaptive text colors based on time of day for optimal contrast
 
 ### Authentic Windows 98 Experience
+
 - **3D Button Effects**: Inset/outset borders for authentic Windows 98 feel
 - **Pixel Art Enhancement**: CSS filters for retro appearance and authentic pixelation
 - **Window Controls**: Minimize, close, resize handles with proper styling
@@ -335,6 +363,7 @@ npm start
 - **Taskbar**: Running applications, system tray, and live clock display
 
 ### Interactive Elements
+
 - **Hover Effects**: Authentic Windows 98 hover states throughout the interface
 - **Click Animations**: Button press effects and visual feedback
 - **Window Transitions**: Smooth opening, closing, and minimizing animations
@@ -343,18 +372,27 @@ npm start
 ## Development Workflow
 
 ### Content Management
+
 - **Hot Reloading**: Instant content updates during development
 - **Frontmatter Validation**: Type-safe content structure with TypeScript
 - **Version Control**: Git-tracked content changes for easy rollback
 - **CMS Migration Path**: Easy transition to WordPress/Strapi with structured data
+- **Admin Dashboard**: Browser-based content editing at `/admin`
+  - Secure login with environment variables (`ADMIN_USERNAME`, `ADMIN_PASSWORD`)
+  - Edit pages (About, Contact) with live preview
+  - Edit portfolio projects with full metadata support
+  - Real-time updates - changes appear immediately on frontend
+  - No caching - all routes use `force-dynamic` for instant updates
 
 ### Code Quality
+
 - **TypeScript**: Strict type checking throughout the application
 - **ESLint**: Code quality and consistency enforcement
 - **Prettier**: Automatic code formatting for consistent style
 - **Git Hooks**: Pre-commit validation to maintain code quality
 
 ### Development Tools
+
 - **Next.js Dev Tools**: Built-in development server with hot reloading
 - **React DevTools**: Component inspection and state debugging
 - **TypeScript IntelliSense**: Enhanced development experience with type hints
@@ -378,26 +416,65 @@ npm start
 
 ### Editing Content
 
+#### Using Admin Dashboard (Recommended)
+
+1. Navigate to `/admin` in your browser
+2. Login with credentials from environment variables
+3. Select a page or project to edit
+4. Make changes in the editor
+5. Click "Save Changes" - updates appear immediately on the frontend
+
+#### Manual Editing
+
 - **Pages**: Edit markdown files in `content/pages/`
 - **Projects**: Edit markdown files in `content/portfolio/`
 - **Styling**: Modify Tailwind classes in component files
 - **Layout**: Update components in `src/components/`
 
+#### Environment Variables
+
+**Local Development:**
+Create a `.env.local` file with:
+
+```
+ADMIN_USERNAME=your_username
+ADMIN_PASSWORD=your_secure_password
+```
+
+**Production (Vercel):**
+
+1. Go to Vercel Dashboard → Your Project → Settings → Environment Variables
+2. Add `ADMIN_USERNAME` and `ADMIN_PASSWORD`
+3. Set them for **Production** environment
+4. Redeploy your project
+
+**Security:**
+
+- ✅ Only you can login with your credentials
+- ✅ Credentials stored securely in Vercel (not in code)
+- ✅ No default passwords - must set environment variables
+- ✅ Secure session cookies in production
+
+See `DEPLOYMENT.md` for detailed Vercel setup instructions.
+
 ## Deployment & SEO
 
 ### Build Optimization
+
 - **Static Site Generation**: Pre-rendered pages for fast loading and SEO
 - **Bundle Optimization**: Automatic code splitting and tree shaking
 - **Image Compression**: Optimized assets with Next.js Image component
 - **CDN Ready**: Static assets optimized for CDN delivery
 
 ### SEO Features
+
 - **Meta Tags**: Dynamic meta tag generation for each page
 - **Structured Data**: Rich snippets for search engines
 - **Performance**: Core Web Vitals optimization for better rankings
 - **Accessibility**: WCAG 2.1 AA compliance for broader reach
 
 ### Deployment Options
+
 - **Vercel**: Optimized for Next.js with automatic deployments
 - **Netlify**: Static site hosting with form handling
 - **AWS/GCP**: Custom deployment with full control
@@ -583,13 +660,13 @@ tests/
 ### Example Test
 
 ```typescript
-import { render, screen } from "@testing-library/react";
-import PixelIcon from "@/components/PixelIcon";
+import { render, screen } from '@testing-library/react';
+import PixelIcon from '@/components/PixelIcon';
 
-describe("PixelIcon", () => {
-  it("renders emoji icons correctly", () => {
+describe('PixelIcon', () => {
+  it('renders emoji icons correctly', () => {
     render(<PixelIcon icon="👤" size={32} />);
-    expect(screen.getByText("👤")).toBeInTheDocument();
+    expect(screen.getByText('👤')).toBeInTheDocument();
   });
 });
 ```

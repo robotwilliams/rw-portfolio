@@ -2,6 +2,10 @@ import { getFeaturedProjects, getPageData } from "@/lib/markdown";
 import Link from "next/link";
 import VintageButton from "@/components/VintageButton";
 
+// Force dynamic rendering to ensure admin updates are immediately visible
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 /**
  * Home Page Component
  *

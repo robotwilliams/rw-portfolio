@@ -3,6 +3,10 @@ import { Metadata } from "next";
 import VintageButton from "@/components/VintageButton";
 import Image from "next/image";
 
+// Force dynamic rendering to ensure admin updates are immediately visible
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 /**
  * About Page Metadata
  *

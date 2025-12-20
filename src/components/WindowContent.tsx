@@ -5,9 +5,6 @@ import { useCallback, useEffect, useState } from "react";
 import PageLayout, {
   ContentSection,
   InfoCard,
-  InfoGrid,
-  LinkButton,
-  LinkGrid,
 } from "./PageLayout";
 import ProjectWindow from "./ProjectWindow";
 import VintageButton from "./VintageButton";
@@ -40,7 +37,10 @@ export default function WindowContent({ page }: WindowContentProps) {
       setLoading(true);
       setError(null);
 
-      const response = await fetch("/api/content/projects");
+      // Add cache-busting to ensure fresh content after admin updates
+      const response = await fetch(`/api/content/projects?t=${Date.now()}`, {
+        cache: "no-store",
+      });
       const result = await response.json();
 
       if (result.success) {
@@ -63,7 +63,10 @@ export default function WindowContent({ page }: WindowContentProps) {
     try {
       setOtherPageError(null);
 
-      const response = await fetch(`/api/content/${page}`);
+      // Add cache-busting to ensure fresh content after admin updates
+      const response = await fetch(`/api/content/${page}?t=${Date.now()}`, {
+        cache: "no-store",
+      });
       if (!response.ok) throw new Error("Not found");
 
       const data = await response.json();
@@ -77,12 +80,15 @@ export default function WindowContent({ page }: WindowContentProps) {
   }, [page]);
 
   // Load content based on page type
+  // Only load markdown content for "about" and "contact" pages
+  // "home" is the desktop interface itself, not a content page
   useEffect(() => {
     if (page === "work") {
       loadWorkPage();
-    } else {
+    } else if (page === "about" || page === "contact") {
       loadOtherPage();
     }
+    // Note: "home" doesn't need content loading - it's the desktop interface
   }, [page, loadWorkPage, loadOtherPage]);
 
   /**
@@ -148,7 +154,8 @@ export default function WindowContent({ page }: WindowContentProps) {
     }));
   };
 
-  // Render other pages using the new PageLayout
+  // Render other pages using markdown content from API
+  // Note: "home" is the desktop interface itself, not a content page
   if (page === "about" || page === "contact") {
     const pageConfig = {
       about: {
@@ -174,168 +181,45 @@ export default function WindowContent({ page }: WindowContentProps) {
         error={otherPageError}
         onRetry={loadOtherPage}
       >
-        {page === "about" && (
-          <>
-            <ContentSection title="About Me" icon="💼">
-              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
-                My focus is on frontend development and creative problem-solving. I combine technical expertise with a strong understanding of user experience, ensuring that every project delivers both performance and visual impact.
+        {/* Google Map for contact page - appears between description and content */}
+        {page === "contact" && (
+          <div className="mb-8">
+            <div className="bg-[#c0c0c0] border-2 border-[#dfdfdf] border-t-[#808080] border-l-[#808080] p-4 mb-4">
+              <h2 className="text-lg font-bold mb-4">📍 Location</h2>
+              <div className="bg-[#ffffff] border border-[#808080] p-2">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2687.5!2d-122.3493!3d47.6205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490154f4f66dd1d%3A0x385b22aac5770c0!2sSpace%20Needle!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus&q=Space+Needle+Seattle+WA"
+                  width="100%"
+                  height="450"
+                  style={{ border: "2px solid #808080", minHeight: "450px" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Seattle Space Needle Location"
+                />
+              </div>
+              <p className="text-sm mt-3" style={{ color: '#2F4F4F' }}>
+                Located in Seattle, Washington - near the Space Needle
               </p>
-            </ContentSection>
-
-            <ContentSection title="My Philosophy" icon="🎯" headingLevel={3}>
-              <InfoGrid columns={2}>
-                <InfoCard title="Perspective">
-                  My experience enables me to deliver solutions that are intuitive and natural for end users. I am comfortable working independently or as part of a team of any size.
-                </InfoCard>
-                <InfoCard title="Future-Proofing">
-                  With the ever-changing landscape of digital media, I believe it is essential to design for flexibility and longevity, ensuring that solutions remain effective as technology evolves.
-                </InfoCard>
-                <InfoCard title="Process-Oriented">
-                  I approach each project as a unique challenge, blending UX, UI, IA, and technical requirements to deliver the best possible outcome.
-                </InfoCard>
-                <InfoCard title="Results-Focused">
-                  I am passionate about improving systems and processes. If you need help with refactoring or CMS maintenance, I am always ready to assist.
-                </InfoCard>
-              </InfoGrid>
-            </ContentSection>
-
-            <ContentSection title="Technical Skills" icon="🔧" headingLevel={4}>
-              <InfoGrid columns={3}>
-                <InfoCard title="Frontend Development">
-                  React, Vue.js, HTML5, CSS3, JavaScript/TypeScript
-                </InfoCard>
-                <InfoCard title="Design Tools">
-                  Figma, Adobe Creative Suite, Sketch
-                </InfoCard>
-                <InfoCard title="CMS Platforms">
-                  WordPress, Contentful, Strapi
-                </InfoCard>
-                <InfoCard title="Performance">
-                  Web optimization, accessibility, responsive design
-                </InfoCard>
-                <InfoCard title="Tools">
-                  Git, Webpack, Node.js, modern build tools
-                </InfoCard>
-              </InfoGrid>
-            </ContentSection>
-
-            <ContentSection title="Recent Work" icon="📁" headingLevel={4}>
-              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
-                I have had the pleasure of working with a variety of clients, including:
-              </p>
-              <InfoGrid columns={2}>
-                <InfoCard title="Edgewater Landscapes LLC">
-                  Landscape design and development
-                </InfoCard>
-                <InfoCard title="SMPS New York">
-                  Professional services marketing
-                </InfoCard>
-                <InfoCard title="SBN Philadelphia">
-                  Sustainable business network
-                </InfoCard>
-                <InfoCard title="Evron">
-                  Digital agency and creative studio
-                </InfoCard>
-                <InfoCard title="Springboard Collaborative">
-                  Educational nonprofit
-                </InfoCard>
-                <InfoCard title="U3 Studio">
-                  Creative design studio
-                </InfoCard>
-              </InfoGrid>
-            </ContentSection>
-
-            <ContentSection title="Let's Work Together" icon="🤝" headingLevel={3}>
-              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
-                Whether you need a complete website redesign, a custom web application, or assistance improving your digital presence, I am here to help. I believe in delivering work that meets your immediate needs and supports your long-term goals.
-              </p>
-              <LinkButton href="/contact" external={false}>
-                Get in touch
-              </LinkButton>
-            </ContentSection>
-          </>
+            </div>
+          </div>
         )}
 
-        {page === "contact" && (
-          <>
-            <ContentSection title="Get In Touch" icon="💌">
-              <p className="text-sm leading-relaxed" style={{ color: '#000000' }}>
-                I&apos;m always interested in new opportunities and exciting projects. Whether you need a complete website redesign, a custom web application, or just want to chat about digital experiences, I&apos;d love to hear from you.
-              </p>
-            </ContentSection>
-
-            <ContentSection title="Contact Form" icon="📝">
-              <form className="contact-form w-full bg-gray-100 bg-opacity-40 shadow-lg p-4 rounded-lg" id="contact-form" method="POST" name="contactForm">
-                <p className="screen-reader-text">
-                  <label>Don&apos;t fill this out if you&apos;re human: <input name="bot-field" /></label>
-                </p>
-
-                <div className="space-y-2">
-                  <div className="grid grid-cols-2 gap-x-4">
-                    <div className="form-row">
-                      <label className="form-label" htmlFor="contact-user-name">Name</label>
-                      <input
-                        type="text"
-                        name="name"
-                        id="contact-user-name"
-                        className="form-input retro-input w-full"
-                        placeholder="Enter your name"
-                      />
-                    </div>
-
-                    <div className="form-row">
-                      <label className="form-label" htmlFor="contact-user-email">Email</label>
-                      <input
-                        type="email"
-                        name="email"
-                        id="contact-user-email"
-                        className="form-input retro-input w-full"
-                        placeholder="Enter your email address"
-                      />
-                    </div>
-                  </div>
-                  <div className="form-row">
-                    <label className="form-label" htmlFor="contact-message">Message</label>
-                    <textarea
-                      name="message"
-                      id="contact-message"
-                      className="form-textarea retro-textarea w-full"
-                      rows={6}
-                      placeholder="Enter your message"
-                    ></textarea>
-                  </div>
-
-                  <input type="hidden" name="form-name" value="contactForm" />
-
-                  <div className="form-row form-submit pt-4">
-                    <VintageButton type="submit" variant="purple" size="lg">
-                      Send Message
-                    </VintageButton>
-                  </div>
-                </div>
-              </form>
-            </ContentSection>
-
-            <ContentSection title="Other Ways to Connect" icon="🔗" headingLevel={3}>
-              <LinkGrid>
-                <LinkButton href="mailto:robwilliamsdeveloper@gmail.com">
-                  Email: robwilliamsdeveloper@gmail.com
-                </LinkButton>
-                <LinkButton href="https://codepen.io/robotwilliams">
-                  CodePen: robotwilliams
-                </LinkButton>
-                <LinkButton href="https://github.com/robotwilliams">
-                  GitHub: robotwilliams
-                </LinkButton>
-                <LinkButton href="https://www.linkedin.com/pub/robert-williams/30/80b/5b0">
-                  LinkedIn: Robert Williams
-                </LinkButton>
-              </LinkGrid>
-              <p className="text-sm mt-6" style={{ color: '#000000' }}>
-                I typically respond to all inquiries within 24 hours. I look forward to hearing from you!
-              </p>
-            </ContentSection>
-          </>
+        {/* Display markdown content from API - this is what gets edited in admin */}
+        {html ? (
+          <div
+            className="prose prose-sm max-w-none"
+            style={
+              {
+                "--tw-prose-body": "#0077AA",
+                "--tw-prose-headings": "#000080",
+                "--tw-prose-links": "#000080",
+              } as React.CSSProperties
+            }
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        ) : (
+          <div className="text-center text-gray-500">Loading content...</div>
         )}
       </PageLayout>
     );
@@ -477,18 +361,11 @@ export default function WindowContent({ page }: WindowContentProps) {
     );
   }
 
-  // Fallback for home page or other content
+  // Fallback for home page (desktop interface) - no content needed
+  // This should rarely be reached since home is handled by RetroDesktop
   return (
-    <div
-      className="prose max-w-none"
-      style={
-        {
-          "--tw-prose-body": "#000000",
-          "--tw-prose-headings": "#000080",
-          "--tw-prose-links": "#000080",
-        } as React.CSSProperties
-      }
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <div className="text-center text-gray-500 p-8">
+      <p>Welcome to the desktop interface</p>
+    </div>
   );
 }

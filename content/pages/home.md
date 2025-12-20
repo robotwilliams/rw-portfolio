@@ -1,58 +1,35 @@
 ---
-# Home Page Content
-#
-# This file contains the content for the main landing page of the portfolio.
-# The frontmatter defines metadata used throughout the site, while the
-# markdown content provides the actual page content.
-#
-# Frontmatter Fields:
-# - title: Page title for SEO and browser tab
-# - description: Page description for SEO meta tags
-# - hero_title: Main heading displayed on the page
-# - hero_subtitle: Subtitle displayed below the main heading
-# - cta_text: Text for the primary call-to-action button
-# - cta_link: URL for the primary call-to-action button
-# - featured_work: Array of featured projects to showcase
-title: "Robot Williams 🤖"
-description: "Online portfolio of Rob Williams. Frontend Maker."
-hero_title: "Robot Williams 🤖"
-hero_subtitle: "Online portfolio of Rob Williams. Frontend Maker."
-cta_text: "View My Work"
-cta_link: "/work"
-
-# Featured Work Section
-#
-# This array defines the projects that will be highlighted on the home page.
-# Each project has:
-# - title: Project name
-# - description: Brief project description
-# - image: Path to project thumbnail image
-# - link: URL to the full project page
+title: "Robot Williams \U0001F916"
+description: Online portfolio of Rob Williams. Frontend Maker.
+hero_title: "Robot Williams \U0001F916"
+hero_subtitle: Online portfolio of Rob Williams. Frontend Maker.
+cta_text: View My Work
+cta_link: /work
 featured_work:
-  - title: "Edgewater Landscapes LLC"
-    description: "Landscape design and development company website."
-    image: "/images/placeholder.svg"
-    link: "/work/edgewater-landscapes"
-  - title: "SMPS New York"
-    description: "Professional services marketing association"
-    image: "/images/placeholder.svg"
-    link: "/work/smps-new-york"
-  - title: "SBN Philadelphia"
-    description: "Sustainable Business Network of Greater Philadelphia"
-    image: "/images/placeholder.svg"
-    link: "/work/sbn-philadelphia"
-  - title: "Evron"
-    description: "Digital agency and creative studio"
-    image: "/images/placeholder.svg"
-    link: "/work/evron"
-  - title: "Springboard Collaborative"
-    description: "Educational nonprofit organization"
-    image: "/images/placeholder.svg"
-    link: "/work/springboard-collaborative"
-  - title: "U3 Studio"
-    description: "Creative design studio"
-    image: "/images/placeholder.svg"
-    link: "/work/u3-studio"
+  - title: Edgewater Landscapes LLC
+    description: Landscape design and development company website.
+    image: /images/placeholder.svg
+    link: /work/edgewater-landscapes
+  - title: SMPS New York
+    description: Professional services marketing association
+    image: /images/placeholder.svg
+    link: /work/smps-new-york
+  - title: SBN Philadelphia
+    description: Sustainable Business Network of Greater Philadelphia
+    image: /images/placeholder.svg
+    link: /work/sbn-philadelphia
+  - title: Evron
+    description: Digital agency and creative studio
+    image: /images/placeholder.svg
+    link: /work/evron
+  - title: Springboard Collaborative
+    description: Educational nonprofit organization
+    image: /images/placeholder.svg
+    link: /work/springboard-collaborative
+  - title: U3 Studio
+    description: Creative design studio
+    image: /images/placeholder.svg
+    link: /work/u3-studio
 ---
 
 # Robot Williams 🤖

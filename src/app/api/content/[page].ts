@@ -5,6 +5,10 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
+// Disable Next.js caching for this route to ensure fresh content
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 /**
  * Allowed Page Types
  *
@@ -41,9 +45,9 @@ const ALLOWED = ["home", "about", "work", "contact"];
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { page: string } }
+  { params }: { params: Promise<{ page: string }> }
 ) {
-  const { page } = params;
+  const { page } = await params;
 
   // Validate that the requested page is allowed
   if (!ALLOWED.includes(page)) {
@@ -70,7 +74,16 @@ export async function GET(
     const htmlContent = processed.toString();
 
     // Return the HTML content as JSON response
-    return NextResponse.json({ html: htmlContent });
+    // Disable caching to ensure admin updates are immediately visible
+    return NextResponse.json(
+      { html: htmlContent },
+      {
+        headers: {
+          "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+          "Pragma": "no-cache",
+        },
+      }
+    );
   } catch (error) {
     // Handle any errors during processing
     console.error(`Error processing ${page}:`, error);
