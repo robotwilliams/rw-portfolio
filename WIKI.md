@@ -2,7 +2,7 @@
 
 ## Overview
 
-A modern portfolio website featuring a Windows 98-inspired retro desktop interface. Built with Next.js 15, TypeScript, and Tailwind CSS, this project showcases creative development skills through an interactive desktop environment where users can explore projects in draggable, resizable windows.
+My modern portfolio website featuring a Windows 98-inspired retro desktop interface. Built with Next.js 15, TypeScript, and Tailwind CSS, this project showcases creative development skills through an interactive desktop environment where users can explore projects in draggable, resizable windows.
 
 ## Key Features
 
