@@ -1,4 +1,5 @@
 import ConditionalLayout from "@/components/ConditionalLayout";
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import {
   IBM_Plex_Mono,
@@ -68,6 +69,7 @@ export default function RootLayout({
       >
         {/* Desktop interface for main site, plain layout for admin */}
         <ConditionalLayout>{children}</ConditionalLayout>
+        <Analytics />
       </body>
     </html>
   );
