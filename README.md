@@ -603,13 +603,39 @@ This is a personal portfolio project, but contributions are welcome for:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
+## Technical Philosophy
+
+### Why This Stack?
+
+**Next.js 15**: The App Router is a game-changer. Server components, streaming, and built-in optimizations make it the obvious choice for modern React apps. Plus, it handles routing, image optimization, and code splitting automatically.
+
+**TypeScript**: Type safety catches bugs before they reach production. The learning curve is worth it - you'll write better code and spend less time debugging.
+
+**Tailwind CSS**: Utility-first CSS might seem verbose at first, but once you get the hang of it, you'll build UIs faster than ever. No more context switching between HTML and CSS files.
+
+**Markdown CMS**: Simple, version-controlled, and easy to migrate. When you're ready for a "real" CMS, your content structure is already perfect.
+
+### Code Quality Standards
+
+This project follows a few key principles:
+
+1. **Simplicity First**: If there's a simple way and a complex way, choose simple. Complexity should only be added when it solves a real problem.
+
+2. **Accessibility Always**: Every interactive element has ARIA labels. Every image has alt text. Keyboard navigation works everywhere. This isn't optional - it's how the web should work.
+
+3. **Performance Matters**: Fast sites rank better, convert better, and feel better. We optimize images, split code, and pre-render pages.
+
+4. **Type Safety**: TypeScript isn't just about catching errors - it's about making code self-documenting and easier to refactor.
+
+5. **W3C Compliant**: Semantic HTML, proper ARIA usage, keyboard navigation. The web standards exist for good reasons.
+
 ## Contact
 
 For questions about this project or to discuss collaboration opportunities:
 
 - **Email**: robwilliamsdeveloper@gmail.com
-- **Website**: https://robw.dev
-- **GitHub**: https://github.com/robw
+- **Website**: https://robotwilliams.com
+- **GitHub**: https://github.com/robotwilliams
 
 ## 🧪 Testing
 
