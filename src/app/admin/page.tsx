@@ -10,6 +10,7 @@ import AdminDashboard from "@/components/AdminDashboard";
  * Admin Login Page
  *
  * Simple login form that redirects to dashboard on success.
+ * This is a client component, so it cannot use dynamic/revalidate exports.
  */
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
