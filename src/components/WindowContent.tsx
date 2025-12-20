@@ -12,27 +12,7 @@ import PageLayout, {
 import ProjectWindow from "./ProjectWindow";
 import VintageButton from "./VintageButton";
 
-/**
- * WindowContent Component
- *
- * This component dynamically loads content for different pages within
- * the desktop windows. It provides:
- *
- * For Work Page:
- * - Interactive project grid with RobotOS-style icons
- * - Clickable project icons that open detailed project windows
- * - Window management system (open, close, drag, activate)
- * - Project categories and metadata display
- *
- * For Other Pages:
- * - Markdown content rendering from API routes
- * - Loading and error states
- * - Consistent RobotOS styling
- *
- * The component integrates with the RetroDesktop system to provide
- * a seamless RobotOS-style desktop experience where all content
- * opens within windows rather than navigating to new pages.
- */
+// Loads content for different pages - work page has its own window system, others use markdown
 export default function WindowContent({ page }: WindowContentProps) {
   // State for work page
   const [projects, setProjects] = useState<PortfolioProject[]>([]);
@@ -54,11 +34,7 @@ export default function WindowContent({ page }: WindowContentProps) {
   const [html, setHtml] = useState<string>("");
   const [otherPageError, setOtherPageError] = useState<string | null>(null);
 
-  /**
-   * Load Work Page Content
-   *
-   * Fetches projects and sets up the interactive work page.
-   */
+  // Fetch projects for work page
   const loadWorkPage = useCallback(async () => {
     try {
       setLoading(true);
@@ -74,17 +50,15 @@ export default function WindowContent({ page }: WindowContentProps) {
       }
     } catch (err) {
       setError("Failed to fetch projects");
-      console.error("Error fetching projects:", err);
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error fetching projects:", err);
+      }
     } finally {
       setLoading(false);
     }
   }, []);
 
-  /**
-   * Load Other Page Content
-   *
-   * Fetches markdown content for non-work pages.
-   */
+  // Fetch markdown content for other pages
   const loadOtherPage = useCallback(async () => {
     try {
       setOtherPageError(null);
@@ -96,15 +70,13 @@ export default function WindowContent({ page }: WindowContentProps) {
       setHtml(data.html);
     } catch (err) {
       setOtherPageError("Failed to load content");
-      console.error("Error loading content:", err);
+      if (process.env.NODE_ENV === "development") {
+        console.error("Error loading content:", err);
+      }
     }
   }, [page]);
 
-  /**
-   * Load Content Effect
-   *
-   * Handles different content loading based on the page type.
-   */
+  // Load content based on page type
   useEffect(() => {
     if (page === "work") {
       loadWorkPage();

@@ -322,7 +322,9 @@ export default function ProjectWindow({
           setHtmlContent(result.data);
         }
       } catch (error) {
-        console.error("Error converting markdown:", error);
+        if (process.env.NODE_ENV === "development") {
+          console.error("Error converting markdown:", error);
+        }
       } finally {
         setLoading(false);
       }

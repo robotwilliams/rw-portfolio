@@ -120,7 +120,7 @@ body {
   overflow-y: auto;
   font-size: 12px;
   line-height: 1.2;
-  /* Enhanced pixelation filter for stronger retro look */
+  /* Pixelation filter for retro look */
   filter: contrast(1.8) saturate(0.7) brightness(0.9) hue-rotate(2deg);
   font-smooth: never;
   -webkit-font-smoothing: none;
@@ -135,12 +135,7 @@ body {
   box-sizing: border-box;
 }
 
-/**
- * Enhanced RobotOS Pixelation Filter
- *
- * Adds strong pixelation effects throughout the interface
- * to enhance the authentic old operating system appearance.
- */
+/* Pixelation filter for retro OS look */
 * {
   image-rendering: pixelated;
   image-rendering: -moz-crisp-edges;
@@ -150,11 +145,11 @@ body {
   image-rendering: optimize-contrast;
 }
 
-/* Enhanced pixelation for specific elements */
+/* Pixelation for specific elements */
 .window-content,
 .project-grid,
 .desktop-icon {
-  /* Enhanced pixel art filter for stronger retro look */
+  /* Pixel art filter */
   filter: contrast(1.2) saturate(0.9) brightness(0.95);
   /* Force pixelated rendering */
   image-rendering: pixelated;
@@ -166,7 +161,7 @@ body {
 p,
 span,
 div {
-  /* Enhanced text pixelation */
+  /* Text pixelation */
   text-rendering: optimizeSpeed;
   text-rendering: -webkit-optimize-contrast;
   text-rendering: optimize-contrast;
@@ -339,7 +334,7 @@ h6 {
   font-size: 12px !important;
 }
 
-/* Enhanced scanlines effect for stronger CRT monitor feel */
+/* Scanlines effect for CRT monitor feel */
 body::before {
   content: "";
   position: fixed;
@@ -357,7 +352,7 @@ body::before {
   opacity: 0.9;
 }
 
-/* Additional pixel grid overlay for enhanced pixelation */
+/* Pixel grid overlay */
 body::after {
   content: "";
   position: fixed;
@@ -373,10 +368,10 @@ body::after {
   opacity: 0.6;
 }
 
-/* Enhanced styling for images */
+/* Image styling */
 img,
 svg {
-  /* Enhanced pixel art filter for stronger retro look */
+  /* Pixel art filter */
   filter: contrast(1.6) saturate(0.8) brightness(0.9) hue-rotate(1deg);
   /* Force pixelated rendering */
   image-rendering: pixelated;
@@ -640,7 +635,7 @@ svg {
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
 }
 
-/* New enhanced syntax highlighting classes */
+/* Syntax highlighting classes */
 .terminal-flag {
   color: #c5a23c;
   /* Paler orange for flags like -c, -v */
@@ -826,7 +821,7 @@ svg {
   }
 }
 
-/* Enhanced scanlines effect for loading screen to match desktop */
+/* Scanlines for loading screen */
 
 /**
  * Page Load Fade In Animation
@@ -875,7 +870,7 @@ svg {
       #d8a8c8 90%,
       #f0a0c8 95%);
   overflow: hidden;
-  /* Enhanced pixelation filter to match desktop */
+  /* Pixelation filter */
   filter: contrast(1.8) saturate(0.8) brightness(0.92) hue-rotate(2deg);
 }
 
@@ -893,7 +888,7 @@ svg {
   left: 0;
 }
 
-/* Enhanced scanlines effect for loader page to match desktop */
+/* Scanlines for loader page */
 .page-load-container::before {
   content: "";
   position: absolute;
@@ -955,52 +950,52 @@ svg {
   bottom: 0;
   z-index: -2;
   animation: hover 10s linear infinite;
-  box-shadow: 70px 10px 0 #d4d4d6, 75px 10px 0 #d4d4d6, 80px 10px 0 #d4d4d6,
-    65px 15px 0 #d4d4d6, 70px 15px 0 #fafafa, 75px 15px 0 #fafafa,
-    80px 15px 0 #fafafa, 85px 15px 0 #d4d4d6, 105px 15px 0 #d4d4d6,
-    110px 15px 0 #d4d4d6, 115px 15px 0 #d4d4d6, 40px 20px 0 #d4d4d6,
-    45px 20px 0 #d4d4d6, 50px 20px 0 #d4d4d6, 55px 20px 0 #d4d4d6,
-    60px 20px 0 #d4d4d6, 65px 20px 0 #fafafa, 70px 20px 0 #fafafa,
-    75px 20px 0 #fafafa, 80px 20px 0 #fafafa, 85px 20px 0 #fafafa,
-    90px 20px 0 #d4d4d6, 95px 20px 0 #d4d4d6, 100px 20px 0 #d4d4d6,
-    105px 20px 0 #fafafa, 110px 20px 0 #fafafa, 115px 20px 0 #fafafa,
-    120px 20px 0 #d4d4d6, 35px 25px 0 #d4d4d6, 40px 25px 0 #fafafa,
-    45px 25px 0 #fafafa, 50px 25px 0 #d4d4d6, 55px 25px 0 #d4d4d6,
-    60px 25px 0 #fafafa, 65px 25px 0 #fafafa, 70px 25px 0 #fafafa,
-    75px 25px 0 #fafafa, 80px 25px 0 #fafafa, 85px 25px 0 #fafafa,
-    90px 25px 0 #fafafa, 95px 25px 0 #d4d4d6, 100px 25px 0 #fafafa,
-    105px 25px 0 #fafafa, 110px 25px 0 #fafafa, 115px 25px 0 #fafafa,
-    120px 25px 0 #fafafa, 125px 25px 0 #d4d4d6, 130px 25px 0 #d4d4d6,
-    30px 30px 0 #d4d4d6, 35px 30px 0 #fafafa, 40px 30px 0 #fafafa,
-    45px 30px 0 #fafafa, 50px 30px 0 #fafafa, 55px 30px 0 #fafafa,
-    60px 30px 0 #d4d4d6, 65px 30px 0 #fafafa, 70px 30px 0 #fafafa,
-    75px 30px 0 #fafafa, 80px 30px 0 #fafafa, 85px 30px 0 #fafafa,
-    90px 30px 0 #fafafa, 95px 30px 0 #d4d4d6, 100px 30px 0 #fafafa,
-    105px 30px 0 #fafafa, 110px 30px 0 #fafafa, 115px 30px 0 #fafafa,
-    120px 30px 0 #fafafa, 125px 30px 0 #fafafa, 130px 30px 0 #fafafa,
-    135px 30px 0 #d4d4d6, 25px 35px 0 #d4d4d6, 30px 35px 0 #f0f0f2,
-    35px 35px 0 #f0f0f2, 40px 35px 0 #fafafa, 45px 35px 0 #fafafa,
-    50px 35px 0 #fafafa, 55px 35px 0 #fafafa, 60px 35px 0 #fafafa,
-    65px 35px 0 #f0f0f2, 70px 35px 0 #f0f0f2, 75px 35px 0 #fafafa,
-    80px 35px 0 #fafafa, 85px 35px 0 #fafafa, 90px 35px 0 #fafafa,
-    95px 35px 0 #fafafa, 100px 35px 0 #fafafa, 105px 35px 0 #fafafa,
-    110px 35px 0 #fafafa, 115px 35px 0 #fafafa, 120px 35px 0 #fafafa,
-    125px 35px 0 #fafafa, 130px 35px 0 #fafafa, 135px 35px 0 #fafafa,
-    140px 35px 0 #d4d4d6, 25px 40px 0 #d4d4d6, 30px 40px 0 #f0f0f2,
-    35px 40px 0 #f0f0f2, 40px 40px 0 #f0f0f2, 45px 40px 0 #f0f0f2,
-    50px 40px 0 #f0f0f2, 55px 40px 0 #f0f0f2, 60px 40px 0 #f0f0f2,
-    65px 40px 0 #f0f0f2, 70px 40px 0 #f0f0f2, 75px 40px 0 #f0f0f2,
-    80px 40px 0 #f0f0f2, 85px 40px 0 #fafafa, 90px 40px 0 #f0f0f2,
-    95px 40px 0 #f0f0f2, 100px 40px 0 #f0f0f2, 105px 40px 0 #f0f0f2,
-    110px 40px 0 #f0f0f2, 115px 40px 0 #f0f0f2, 120px 40px 0 #f0f0f2,
-    125px 40px 0 #f0f0f2, 130px 40px 0 #f0f0f2, 135px 40px 0 #d4d4d6,
-    30px 45px 0 #d4d4d6, 35px 45px 0 #d4d4d6, 40px 45px 0 #d4d4d6,
-    45px 45px 0 #d4d4d6, 50px 45px 0 #d4d4d6, 55px 45px 0 #d4d4d6,
-    60px 45px 0 #d4d4d6, 65px 45px 0 #d4d4d6, 70px 45px 0 #d4d4d6,
-    75px 45px 0 #d4d4d6, 80px 45px 0 #d4d4d6, 85px 45px 0 #d4d4d6,
-    90px 45px 0 #d4d4d6, 95px 45px 0 #d4d4d6, 100px 45px 0 #d4d4d6,
-    105px 45px 0 #d4d4d6, 110px 45px 0 #d4d4d6, 115px 45px 0 #d4d4d6,
-    120px 45px 0 #d4d4d6, 125px 45px 0 #d4d4d6, 130px 45px 0 #d4d4d6;
+  box-shadow: 70px 10px 0 #c0c0c0, 75px 10px 0 #c0c0c0, 80px 10px 0 #c0c0c0,
+    65px 15px 0 #c0c0c0, 70px 15px 0 #d0d0d0, 75px 15px 0 #d0d0d0,
+    80px 15px 0 #d0d0d0, 85px 15px 0 #c0c0c0, 105px 15px 0 #c0c0c0,
+    110px 15px 0 #c0c0c0, 115px 15px 0 #c0c0c0, 40px 20px 0 #c0c0c0,
+    45px 20px 0 #c0c0c0, 50px 20px 0 #c0c0c0, 55px 20px 0 #c0c0c0,
+    60px 20px 0 #c0c0c0, 65px 20px 0 #d0d0d0, 70px 20px 0 #d0d0d0,
+    75px 20px 0 #d0d0d0, 80px 20px 0 #d0d0d0, 85px 20px 0 #d0d0d0,
+    90px 20px 0 #c0c0c0, 95px 20px 0 #c0c0c0, 100px 20px 0 #c0c0c0,
+    105px 20px 0 #d0d0d0, 110px 20px 0 #d0d0d0, 115px 20px 0 #d0d0d0,
+    120px 20px 0 #c0c0c0, 35px 25px 0 #c0c0c0, 40px 25px 0 #d0d0d0,
+    45px 25px 0 #d0d0d0, 50px 25px 0 #c0c0c0, 55px 25px 0 #c0c0c0,
+    60px 25px 0 #d0d0d0, 65px 25px 0 #d0d0d0, 70px 25px 0 #d0d0d0,
+    75px 25px 0 #d0d0d0, 80px 25px 0 #d0d0d0, 85px 25px 0 #d0d0d0,
+    90px 25px 0 #d0d0d0, 95px 25px 0 #c0c0c0, 100px 25px 0 #d0d0d0,
+    105px 25px 0 #d0d0d0, 110px 25px 0 #d0d0d0, 115px 25px 0 #d0d0d0,
+    120px 25px 0 #d0d0d0, 125px 25px 0 #c0c0c0, 130px 25px 0 #c0c0c0,
+    30px 30px 0 #c0c0c0, 35px 30px 0 #d0d0d0, 40px 30px 0 #d0d0d0,
+    45px 30px 0 #d0d0d0, 50px 30px 0 #d0d0d0, 55px 30px 0 #d0d0d0,
+    60px 30px 0 #c0c0c0, 65px 30px 0 #d0d0d0, 70px 30px 0 #d0d0d0,
+    75px 30px 0 #d0d0d0, 80px 30px 0 #d0d0d0, 85px 30px 0 #d0d0d0,
+    90px 30px 0 #d0d0d0, 95px 30px 0 #c0c0c0, 100px 30px 0 #d0d0d0,
+    105px 30px 0 #d0d0d0, 110px 30px 0 #d0d0d0, 115px 30px 0 #d0d0d0,
+    120px 30px 0 #d0d0d0, 125px 30px 0 #d0d0d0, 130px 30px 0 #d0d0d0,
+    135px 30px 0 #c0c0c0, 25px 35px 0 #c0c0c0, 30px 35px 0 #c8c8c8,
+    35px 35px 0 #c8c8c8, 40px 35px 0 #d0d0d0, 45px 35px 0 #d0d0d0,
+    50px 35px 0 #d0d0d0, 55px 35px 0 #d0d0d0, 60px 35px 0 #d0d0d0,
+    65px 35px 0 #c8c8c8, 70px 35px 0 #c8c8c8, 75px 35px 0 #d0d0d0,
+    80px 35px 0 #d0d0d0, 85px 35px 0 #d0d0d0, 90px 35px 0 #d0d0d0,
+    95px 35px 0 #d0d0d0, 100px 35px 0 #d0d0d0, 105px 35px 0 #d0d0d0,
+    110px 35px 0 #d0d0d0, 115px 35px 0 #d0d0d0, 120px 35px 0 #d0d0d0,
+    125px 35px 0 #d0d0d0, 130px 35px 0 #d0d0d0, 135px 35px 0 #d0d0d0,
+    140px 35px 0 #c0c0c0, 25px 40px 0 #c0c0c0, 30px 40px 0 #c8c8c8,
+    35px 40px 0 #c8c8c8, 40px 40px 0 #c8c8c8, 45px 40px 0 #c8c8c8,
+    50px 40px 0 #c8c8c8, 55px 40px 0 #c8c8c8, 60px 40px 0 #c8c8c8,
+    65px 40px 0 #c8c8c8, 70px 40px 0 #c8c8c8, 75px 40px 0 #c8c8c8,
+    80px 40px 0 #c8c8c8, 85px 40px 0 #d0d0d0, 90px 40px 0 #c8c8c8,
+    95px 40px 0 #c8c8c8, 100px 40px 0 #c8c8c8, 105px 40px 0 #c8c8c8,
+    110px 40px 0 #c8c8c8, 115px 40px 0 #c8c8c8, 120px 40px 0 #c8c8c8,
+    125px 40px 0 #c8c8c8, 130px 40px 0 #c8c8c8, 135px 40px 0 #c0c0c0,
+    30px 45px 0 #c0c0c0, 35px 45px 0 #c0c0c0, 40px 45px 0 #c0c0c0,
+    45px 45px 0 #c0c0c0, 50px 45px 0 #c0c0c0, 55px 45px 0 #c0c0c0,
+    60px 45px 0 #c0c0c0, 65px 45px 0 #c0c0c0, 70px 45px 0 #c0c0c0,
+    75px 45px 0 #c0c0c0, 80px 45px 0 #c0c0c0, 85px 45px 0 #c0c0c0,
+    90px 45px 0 #c0c0c0, 95px 45px 0 #c0c0c0, 100px 45px 0 #c0c0c0,
+    105px 45px 0 #c0c0c0, 110px 45px 0 #c0c0c0, 115px 45px 0 #c0c0c0,
+    120px 45px 0 #c0c0c0, 125px 45px 0 #c0c0c0, 130px 45px 0 #c0c0c0;
 }
 
 .cloud {
@@ -1146,7 +1141,9 @@ svg {
 .desktop-cloud,
 .desktop-cloud-two,
 .desktop-cloud-three,
-.desktop-cloud-four {
+.desktop-cloud-four,
+.desktop-cloud-five,
+.desktop-cloud-six {
   width: 5px;
   height: 5px;
   margin: 0 auto;
@@ -1156,119 +1153,160 @@ svg {
   bottom: 0;
   z-index: 0;
   animation: desktopHover 15s linear infinite;
-  box-shadow: 70px 10px 0 #d4d4d6, 75px 10px 0 #d4d4d6, 80px 10px 0 #d4d4d6,
-    65px 15px 0 #d4d4d6, 70px 15px 0 #fafafa, 75px 15px 0 #fafafa,
-    80px 15px 0 #fafafa, 85px 15px 0 #d4d4d6, 105px 15px 0 #d4d4d6,
-    110px 15px 0 #d4d4d6, 115px 15px 0 #d4d4d6, 40px 20px 0 #d4d4d6,
-    45px 20px 0 #d4d4d6, 50px 20px 0 #d4d4d6, 55px 20px 0 #d4d4d6,
-    60px 20px 0 #d4d4d6, 65px 20px 0 #fafafa, 70px 20px 0 #fafafa,
-    75px 20px 0 #fafafa, 80px 20px 0 #fafafa, 85px 20px 0 #fafafa,
-    90px 20px 0 #d4d4d6, 95px 20px 0 #d4d4d6, 100px 20px 0 #d4d4d6,
-    105px 20px 0 #fafafa, 110px 20px 0 #fafafa, 115px 20px 0 #fafafa,
-    120px 20px 0 #d4d4d6, 35px 25px 0 #d4d4d6, 40px 25px 0 #fafafa,
-    45px 25px 0 #fafafa, 50px 25px 0 #d4d4d6, 55px 25px 0 #d4d4d6,
-    60px 25px 0 #fafafa, 65px 25px 0 #fafafa, 70px 25px 0 #fafafa,
-    75px 25px 0 #fafafa, 80px 25px 0 #fafafa, 85px 25px 0 #fafafa,
-    90px 25px 0 #fafafa, 95px 25px 0 #d4d4d6, 100px 25px 0 #fafafa,
-    105px 25px 0 #fafafa, 110px 25px 0 #fafafa, 115px 25px 0 #fafafa,
-    120px 25px 0 #fafafa, 125px 25px 0 #d4d4d6, 130px 25px 0 #d4d4d6,
-    30px 30px 0 #d4d4d6, 35px 30px 0 #fafafa, 40px 30px 0 #fafafa,
-    45px 30px 0 #fafafa, 50px 30px 0 #fafafa, 55px 30px 0 #fafafa,
-    60px 30px 0 #d4d4d6, 65px 30px 0 #fafafa, 70px 30px 0 #fafafa,
-    75px 30px 0 #fafafa, 80px 30px 0 #fafafa, 85px 30px 0 #fafafa,
-    90px 30px 0 #fafafa, 95px 30px 0 #d4d4d6, 100px 30px 0 #fafafa,
-    105px 30px 0 #fafafa, 110px 30px 0 #fafafa, 115px 30px 0 #fafafa,
-    120px 30px 0 #fafafa, 125px 30px 0 #fafafa, 130px 30px 0 #fafafa,
-    135px 30px 0 #d4d4d6, 25px 35px 0 #d4d4d6, 30px 35px 0 #f0f0f2,
-    35px 35px 0 #f0f0f2, 40px 35px 0 #fafafa, 45px 35px 0 #fafafa,
-    50px 35px 0 #fafafa, 55px 35px 0 #fafafa, 60px 35px 0 #fafafa,
-    65px 35px 0 #f0f0f2, 70px 35px 0 #f0f0f2, 75px 35px 0 #fafafa,
-    80px 35px 0 #fafafa, 85px 35px 0 #fafafa, 90px 35px 0 #fafafa,
-    95px 35px 0 #fafafa, 100px 35px 0 #fafafa, 105px 35px 0 #fafafa,
-    110px 35px 0 #fafafa, 115px 35px 0 #fafafa, 120px 35px 0 #fafafa,
-    125px 35px 0 #fafafa, 130px 35px 0 #fafafa, 135px 35px 0 #fafafa,
-    140px 35px 0 #d4d4d6, 25px 40px 0 #d4d4d6, 30px 40px 0 #f0f0f2,
-    35px 40px 0 #f0f0f2, 40px 40px 0 #f0f0f2, 45px 40px 0 #f0f0f2,
-    50px 40px 0 #f0f0f2, 55px 40px 0 #f0f0f2, 60px 40px 0 #f0f0f2,
-    65px 40px 0 #f0f0f2, 70px 40px 0 #f0f0f2, 75px 40px 0 #f0f0f2,
-    80px 40px 0 #f0f0f2, 85px 40px 0 #fafafa, 90px 40px 0 #f0f0f2,
-    95px 40px 0 #f0f0f2, 100px 40px 0 #f0f0f2, 105px 40px 0 #f0f0f2,
-    110px 40px 0 #f0f0f2, 115px 40px 0 #f0f0f2, 120px 40px 0 #f0f0f2,
-    125px 40px 0 #f0f0f2, 130px 40px 0 #f0f0f2, 135px 40px 0 #d4d4d6,
-    30px 45px 0 #d4d4d6, 35px 45px 0 #d4d4d6, 40px 45px 0 #d4d4d6,
-    45px 45px 0 #d4d4d6, 50px 45px 0 #d4d4d6, 55px 45px 0 #d4d4d6,
-    60px 45px 0 #d4d4d6, 65px 45px 0 #d4d4d6, 70px 45px 0 #d4d4d6,
-    75px 45px 0 #d4d4d6, 80px 45px 0 #d4d4d6, 85px 45px 0 #d4d4d6,
-    90px 45px 0 #d4d4d6, 95px 45px 0 #d4d4d6, 100px 45px 0 #d4d4d6,
-    105px 45px 0 #d4d4d6, 110px 45px 0 #d4d4d6, 115px 45px 0 #d4d4d6,
-    120px 45px 0 #d4d4d6, 125px 45px 0 #d4d4d6, 130px 45px 0 #d4d4d6;
+  /* More neutral, muted gray colors */
+  box-shadow: 70px 10px 0 #c0c0c0, 75px 10px 0 #c0c0c0, 80px 10px 0 #c0c0c0,
+    65px 15px 0 #c0c0c0, 70px 15px 0 #d0d0d0, 75px 15px 0 #d0d0d0,
+    80px 15px 0 #d0d0d0, 85px 15px 0 #c0c0c0, 105px 15px 0 #c0c0c0,
+    110px 15px 0 #c0c0c0, 115px 15px 0 #c0c0c0, 40px 20px 0 #c0c0c0,
+    45px 20px 0 #c0c0c0, 50px 20px 0 #c0c0c0, 55px 20px 0 #c0c0c0,
+    60px 20px 0 #c0c0c0, 65px 20px 0 #d0d0d0, 70px 20px 0 #d0d0d0,
+    75px 20px 0 #d0d0d0, 80px 20px 0 #d0d0d0, 85px 20px 0 #d0d0d0,
+    90px 20px 0 #c0c0c0, 95px 20px 0 #c0c0c0, 100px 20px 0 #c0c0c0,
+    105px 20px 0 #d0d0d0, 110px 20px 0 #d0d0d0, 115px 20px 0 #d0d0d0,
+    120px 20px 0 #c0c0c0, 35px 25px 0 #c0c0c0, 40px 25px 0 #d0d0d0,
+    45px 25px 0 #d0d0d0, 50px 25px 0 #c0c0c0, 55px 25px 0 #c0c0c0,
+    60px 25px 0 #d0d0d0, 65px 25px 0 #d0d0d0, 70px 25px 0 #d0d0d0,
+    75px 25px 0 #d0d0d0, 80px 25px 0 #d0d0d0, 85px 25px 0 #d0d0d0,
+    90px 25px 0 #d0d0d0, 95px 25px 0 #c0c0c0, 100px 25px 0 #d0d0d0,
+    105px 25px 0 #d0d0d0, 110px 25px 0 #d0d0d0, 115px 25px 0 #d0d0d0,
+    120px 25px 0 #d0d0d0, 125px 25px 0 #c0c0c0, 130px 25px 0 #c0c0c0,
+    30px 30px 0 #c0c0c0, 35px 30px 0 #d0d0d0, 40px 30px 0 #d0d0d0,
+    45px 30px 0 #d0d0d0, 50px 30px 0 #d0d0d0, 55px 30px 0 #d0d0d0,
+    60px 30px 0 #c0c0c0, 65px 30px 0 #d0d0d0, 70px 30px 0 #d0d0d0,
+    75px 30px 0 #d0d0d0, 80px 30px 0 #d0d0d0, 85px 30px 0 #d0d0d0,
+    90px 30px 0 #d0d0d0, 95px 30px 0 #c0c0c0, 100px 30px 0 #d0d0d0,
+    105px 30px 0 #d0d0d0, 110px 30px 0 #d0d0d0, 115px 30px 0 #d0d0d0,
+    120px 30px 0 #d0d0d0, 125px 30px 0 #d0d0d0, 130px 30px 0 #d0d0d0,
+    135px 30px 0 #c0c0c0, 25px 35px 0 #c0c0c0, 30px 35px 0 #c8c8c8,
+    35px 35px 0 #c8c8c8, 40px 35px 0 #d0d0d0, 45px 35px 0 #d0d0d0,
+    50px 35px 0 #d0d0d0, 55px 35px 0 #d0d0d0, 60px 35px 0 #d0d0d0,
+    65px 35px 0 #c8c8c8, 70px 35px 0 #c8c8c8, 75px 35px 0 #d0d0d0,
+    80px 35px 0 #d0d0d0, 85px 35px 0 #d0d0d0, 90px 35px 0 #d0d0d0,
+    95px 35px 0 #d0d0d0, 100px 35px 0 #d0d0d0, 105px 35px 0 #d0d0d0,
+    110px 35px 0 #d0d0d0, 115px 35px 0 #d0d0d0, 120px 35px 0 #d0d0d0,
+    125px 35px 0 #d0d0d0, 130px 35px 0 #d0d0d0, 135px 35px 0 #d0d0d0,
+    140px 35px 0 #c0c0c0, 25px 40px 0 #c0c0c0, 30px 40px 0 #c8c8c8,
+    35px 40px 0 #c8c8c8, 40px 40px 0 #c8c8c8, 45px 40px 0 #c8c8c8,
+    50px 40px 0 #c8c8c8, 55px 40px 0 #c8c8c8, 60px 40px 0 #c8c8c8,
+    65px 40px 0 #c8c8c8, 70px 40px 0 #c8c8c8, 75px 40px 0 #c8c8c8,
+    80px 40px 0 #c8c8c8, 85px 40px 0 #d0d0d0, 90px 40px 0 #c8c8c8,
+    95px 40px 0 #c8c8c8, 100px 40px 0 #c8c8c8, 105px 40px 0 #c8c8c8,
+    110px 40px 0 #c8c8c8, 115px 40px 0 #c8c8c8, 120px 40px 0 #c8c8c8,
+    125px 40px 0 #c8c8c8, 130px 40px 0 #c8c8c8, 135px 40px 0 #c0c0c0,
+    30px 45px 0 #c0c0c0, 35px 45px 0 #c0c0c0, 40px 45px 0 #c0c0c0,
+    45px 45px 0 #c0c0c0, 50px 45px 0 #c0c0c0, 55px 45px 0 #c0c0c0,
+    60px 45px 0 #c0c0c0, 65px 45px 0 #c0c0c0, 70px 45px 0 #c0c0c0,
+    75px 45px 0 #c0c0c0, 80px 45px 0 #c0c0c0, 85px 45px 0 #c0c0c0,
+    90px 45px 0 #c0c0c0, 95px 45px 0 #c0c0c0, 100px 45px 0 #c0c0c0,
+    105px 45px 0 #c0c0c0, 110px 45px 0 #c0c0c0, 115px 45px 0 #c0c0c0,
+    120px 45px 0 #c0c0c0, 125px 45px 0 #c0c0c0, 130px 45px 0 #c0c0c0;
 }
 
+/* Cloud 1 - Large, top area, slow */
 .desktop-cloud {
-  left: 10px;
-  top: 350px;
-  animation: desktopCloudDrift 120s linear infinite;
+  transform: scale(3.8);
+  left: -200px;
+  top: 100px;
+  z-index: 1;
+  animation: desktopCloudDrift 200s linear infinite;
 }
 
+/* Cloud 2 - Medium-large, upper-mid, medium-slow */
 .desktop-cloud-two {
-  transform: scale(1.5);
-  left: 150px;
-  top: 330px;
+  transform: scale(2.8);
+  left: 300px;
+  top: 250px;
+  z-index: 2;
   animation: desktopCloudDrift2 150s linear infinite;
 }
 
+/* Cloud 3 - Small, very top, fast */
 .desktop-cloud-three {
-  transform: scale(1.2);
-  left: 450px;
-  top: 370px;
-  z-index: 0;
-  animation: desktopCloudDrift3 180s linear infinite;
+  transform: scale(1.6);
+  left: 600px;
+  top: 50px;
+  z-index: 1;
+  animation: desktopCloudDrift3 80s linear infinite;
 }
 
+/* Cloud 4 - Extra large, mid-bottom, very slow */
 .desktop-cloud-four {
-  transform: scale(2);
+  transform: scale(4.2);
   left: 900px;
-  top: 320px;
-  animation: desktopCloudDrift4 200s linear infinite;
+  top: 450px;
+  z-index: 2;
+  animation: desktopCloudDrift4 240s linear infinite;
+}
+
+/* Cloud 5 - Medium, mid, medium-fast */
+.desktop-cloud-five {
+  transform: scale(2.5);
+  left: 1200px;
+  top: 300px;
+  z-index: 1;
+  animation: desktopCloudDrift5 120s linear infinite;
+}
+
+/* Cloud 6 - Large, bottom, slow */
+.desktop-cloud-six {
+  transform: scale(3.4);
+  left: 1500px;
+  top: 550px;
+  z-index: 2;
+  animation: desktopCloudDrift6 170s linear infinite;
 }
 
 @keyframes desktopCloudDrift {
   0% {
-    transform: translateX(0);
+    transform: translateX(0) scale(4.2);
   }
-
   100% {
-    transform: translateX(calc(100vw + 400px));
+    transform: translateX(calc(100vw + 1000px)) scale(4.2);
   }
 }
 
 @keyframes desktopCloudDrift2 {
   0% {
-    transform: translateX(0) scale(1.5);
+    transform: translateX(0) scale(3.1);
   }
-
   100% {
-    transform: translateX(calc(100vw + 500px)) scale(1.5);
+    transform: translateX(calc(100vw + 800px)) scale(3.1);
   }
 }
 
 @keyframes desktopCloudDrift3 {
   0% {
-    transform: translateX(0) scale(1.2);
+    transform: translateX(0) scale(1.4);
   }
-
   100% {
-    transform: translateX(calc(100vw + 600px)) scale(1.2);
+    transform: translateX(calc(100vw + 400px)) scale(1.4);
   }
 }
 
 @keyframes desktopCloudDrift4 {
   0% {
-    transform: translateX(0) scale(2);
+    transform: translateX(0) scale(4.5);
   }
-
   100% {
-    transform: translateX(calc(100vw + 700px)) scale(2);
+    transform: translateX(calc(100vw + 1100px)) scale(4.5);
+  }
+}
+
+@keyframes desktopCloudDrift5 {
+  0% {
+    transform: translateX(0) scale(2.3);
+  }
+  100% {
+    transform: translateX(calc(100vw + 650px)) scale(2.3);
+  }
+}
+
+@keyframes desktopCloudDrift6 {
+  0% {
+    transform: translateX(0) scale(3.6);
+  }
+  100% {
+    transform: translateX(calc(100vw + 900px)) scale(3.6);
   }
 }
 
@@ -1407,7 +1445,7 @@ svg {
   cursor: pointer;
   color: var(--text-primary);
   transition: all 0.1s ease;
-  /* Enhanced pixel art effect */
+  /* Pixel art effect */
   filter: contrast(1.1) saturate(0.95);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 }
@@ -1424,7 +1462,7 @@ svg {
 /**
  * Vintage OS Button Styles
  *
- * Comprehensive button styling that matches the Windows 98 aesthetic
+ * Button styling for Windows 98 aesthetic
  * with authentic 3D effects, gleam, and shadow styling. Supports teal
  * and purple color variants with proper hover and active states.
  */
@@ -1587,7 +1625,7 @@ svg {
   transition: all 0.1s ease;
   color: var(--text-primary);
   font-family: var(--font-pixel), "Press Start 2P", monospace;
-  /* Enhanced pixel art effect */
+  /* Pixel art effect */
   filter: contrast(1.1) saturate(0.95);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   /* Reset button defaults to maintain visual appearance */
@@ -1827,15 +1865,44 @@ svg {
   transition: all 0.1s ease;
   background: transparent;
   font-family: "MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif;
-  /* Enhanced pixel art effect */
+  /* Pixel art effect */
   filter: contrast(1.05) saturate(0.98);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   /* Reset button defaults to maintain visual appearance */
   margin: 0;
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+/* Desktop icon text - content-aware contrast with strong stroke effect */
+.desktop-icon .text-xs,
+.desktop-icon .desktop-icon-label,
+.desktop-icon > div:last-child,
+.desktop-icon span {
+  /* Strong text stroke effect for readability over any background */
+  /* Dark outline that works on light clouds/backgrounds */
+  text-shadow:
+    -2px -2px 0 rgba(0, 0, 0, 1),
+    2px -2px 0 rgba(0, 0, 0, 1),
+    -2px 2px 0 rgba(0, 0, 0, 1),
+    2px 2px 0 rgba(0, 0, 0, 1),
+    -1px -1px 0 rgba(0, 0, 0, 1),
+    1px -1px 0 rgba(0, 0, 0, 1),
+    -1px 1px 0 rgba(0, 0, 0, 1),
+    1px 1px 0 rgba(0, 0, 0, 1),
+    0 -2px 0 rgba(0, 0, 0, 1),
+    0 2px 0 rgba(0, 0, 0, 1),
+    -2px 0 0 rgba(0, 0, 0, 1),
+    2px 0 0 rgba(0, 0, 0, 1),
+    /* Additional glow for extra visibility */
+    0 0 3px rgba(0, 0, 0, 0.8),
+    0 0 6px rgba(0, 0, 0, 0.6);
+  /* White text that will show on dark backgrounds, dark outline shows on light */
+  color: #ffffff !important;
+  font-weight: 600;
+  /* Ensure text stands out */
+  background: transparent;
 }
 
 .desktop-icon:hover {
@@ -1879,7 +1946,7 @@ svg {
   transition: all 0.1s ease;
   background: transparent;
   font-family: "MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif;
-  /* Enhanced pixel art effect */
+  /* Pixel art effect */
   filter: contrast(1.05) saturate(0.98);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   /* Fixed size - no scaling */
@@ -1928,7 +1995,7 @@ svg {
   transition: all 0.1s ease;
   background: transparent;
   font-family: "MS Sans Serif", "Microsoft Sans Serif", "Arial", sans-serif;
-  /* Enhanced pixel art effect */
+  /* Pixel art effect */
   filter: contrast(1.05) saturate(0.98);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
   /* Fixed size to match grid columns */
@@ -2838,13 +2905,13 @@ svg {
 }
 
 /**
- * Enhanced Pixel Art Effects
+ * Pixel Art Effects
  *
  * Additional styling to enhance the pixel art aesthetic
  * across the entire application.
  */
 
-/* Enhanced button press effect */
+/* Button press effect */
 .retro-button:active,
 .taskbar-icon:active {
   transform: translateY(1px);
@@ -2852,7 +2919,7 @@ svg {
     inset -1px -1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Enhanced text rendering for better pixelation */
+/* Text rendering for pixelation */
 input,
 textarea,
 select {
@@ -2864,7 +2931,7 @@ select {
   text-rendering: optimize-contrast;
 }
 
-/* Enhanced focus states with pixel art aesthetic */
+/* Focus states */
 .retro-input:focus,
 .retro-textarea:focus {
   outline: 2px solid #000000;
@@ -2873,12 +2940,12 @@ select {
     inset -1px -1px 0 rgba(255, 255, 255, 0.3);
 }
 
-/* Enhanced link hover effects */
+/* Link hover effects */
 .retro-link:hover {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 1px 0 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Enhanced desktop icon selection */
+/* Desktop icon selection */
 .desktop-icon.selected {
   background: rgba(0, 255, 255, 0.2);
   color: var(--text-primary);
@@ -2887,19 +2954,19 @@ select {
   box-shadow: inset 0 0 0 1px rgba(0, 255, 255, 0.3);
 }
 
-/* Enhanced taskbar active state */
+/* Taskbar active state */
 .taskbar-icon.active {
   box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.3),
     inset -1px -1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* Enhanced scrollbar for pixel art aesthetic */
+/* Scrollbar styling */
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(45deg, #808080 0%, #a0a0a0 50%, #808080 100%);
   border: 1px outset #ffffff;
 }
 
-/* Enhanced window titlebar for more authentic look */
+/* Window titlebar styling */
 .window-titlebar {
   background: linear-gradient(180deg, #7AB8B8 0%, #66A0A0 50%, #559595 100%);
   color: #ffffff;
@@ -2910,14 +2977,14 @@ select {
   letter-spacing: 0.5px;
 }
 
-/* Enhanced start button for more pixelated appearance */
+/* Start button styling */
 .start-button {
   background: linear-gradient(180deg, #c0c0c0 0%, #a0a0a0 100%);
   box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5),
     inset -1px -1px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Enhanced form elements for pixel art aesthetic */
+/* Form element styling */
 .form-input,
 .form-textarea {
   background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
@@ -2925,7 +2992,7 @@ select {
     inset -1px -1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* Enhanced prose content for better pixelation */
+/* Prose content styling */
 .prose {
   filter: contrast(1.05) saturate(0.98);
 }
@@ -3412,7 +3479,7 @@ p[class*="text-3xl"] {
   }
 }
 
-/* Enhanced Responsive Design for Windows */
+/* Responsive design for windows */
 /* Large tablet breakpoint (1024px and below) */
 @media (max-width: 1024px) {
   .retro-window {
@@ -3569,7 +3636,7 @@ p[class*="text-3xl"] {
     margin-bottom: 2rem !important;
   }
 
-  /* Enhanced content spacing for small mobile */
+  /* Content spacing for small mobile */
   .page-content p,
   .page-content ul,
   .page-content ol,
@@ -3680,7 +3747,7 @@ p[class*="text-3xl"] {
   white-space: nowrap;
 }
 
-/* Enhanced form styling */
+/* Form styling */
 .form-row {
   margin-bottom: 16px;
   display: flex;

@@ -8,10 +8,7 @@ import WindowLoader from "./WindowLoader";
 
 import { Window } from "@/types";
 
-/**
- * Get icon image source for navigation items
- * Simplifies repetitive image rendering logic
- */
+// Returns the right icon path based on nav item name
 const getIconSrc = (itemName: string, isHovered: boolean = false): string => {
   switch (itemName) {
     case "About":
@@ -27,19 +24,7 @@ const getIconSrc = (itemName: string, isHovered: boolean = false): string => {
   }
 };
 
-/**
- * Window Content Mapping
- *
- * Maps route paths to their corresponding content components.
- * This allows the desktop to load different content based on the current route.
- */
-
-/**
- * Window Content Mapping
- *
- * Maps route paths to their corresponding content components.
- * This allows the desktop to load different content based on the current route.
- */
+// Maps routes to their window content
 const windowContentMap: Record<string, React.ReactNode> = {
   "/": <WindowContent page="home" />,
   "/about": <WindowContent page="about" />,
@@ -47,30 +32,7 @@ const windowContentMap: Record<string, React.ReactNode> = {
   "/contact": <WindowContent page="contact" />,
 };
 
-/**
- * RetroDesktop Component
- *
- * This is the main component that creates the RobotOS desktop interface.
- * It provides:
- * - Desktop background with grid pattern
- * - Draggable desktop icons for navigation
- * - Window management system (open, close, minimize, resize, drag)
- * - Taskbar with start menu and running applications
- * - Authentic RobotOS styling and interactions
- *
- * The component uses React state to manage:
- * - Window positions, sizes, and states
- * - Active window selection
- * - Desktop icon selection
- * - Start menu visibility
- * - Drag and resize operations
- *
- * Special handling for the work page:
- * - The work page opens in its own window with interactive project grid
- * - Project icons within the work window open detailed project windows
- * - Only one project window can be open at a time within the work environment
- * - All content stays within the desktop environment (no page navigation)
- */
+// Main desktop component - handles windows, taskbar, icons, and all the desktop stuff
 export default function RetroDesktop() {
   const pathname = usePathname();
 
@@ -113,15 +75,7 @@ export default function RetroDesktop() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [timeBasedGradient, setTimeBasedGradient] = useState("");
 
-  /**
-   * Get Time-Based Background Gradient
-   *
-   * Returns different gradient backgrounds based on the current time of day:
-   * - Morning (6-11): Goldenrod to light blue
-   * - Afternoon (12-17): Yellow to orange
-   * - Evening (18-21): Blue to pink (current)
-   * - Night (22-5): Dark blue gradient
-   */
+  // Background gradient changes based on time of day
   const getTimeBasedGradient = (hour: number) => {
     if (hour >= 6 && hour < 12) {
       // Morning: Bright blue to pink with smooth blending
@@ -138,10 +92,7 @@ export default function RetroDesktop() {
     }
   };
 
-  /**
-   * Get appropriate text color for desktop icons based on time of day
-   * Ensures good contrast against the background gradient
-   */
+  // Icon text color based on time - dark for day, light for night
   const getIconTextColor = (hour: number) => {
     if (hour >= 6 && hour < 12) {
       // Morning: Dark text for light background
@@ -158,26 +109,14 @@ export default function RetroDesktop() {
     }
   };
 
-  /**
-   * Navigation Configuration
-   *
-   * Defines the main navigation items that appear as desktop icons.
-   * Each item has a name, href (route), and emoji icon.
-   * Uses clean retro-style icons inspired by minimal web design.
-   */
+  // Main nav items that show up as desktop icons
   const navigation = useMemo(() => [
     { name: "About", href: "/about", icon: "about" },
     { name: "Work", href: "/work", icon: "folder" },
     { name: "Contact", href: "/contact", icon: "contact" },
   ], []);
 
-  /**
-   * Calculate Responsive Window Size
-   *
-   * Determines window size based on screen size, scaling down proportionally
-   * on smaller screens like a responsive OS would behave.
-   * Mobile/tablet: Better height utilization. Desktop: Keep original sizing.
-   */
+  // Calculates window size based on screen - smaller screens get smaller windows
   const getResponsiveWindowSize = () => {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
@@ -245,14 +184,7 @@ export default function RetroDesktop() {
     return { width: baseWidth, height: baseHeight };
   };
 
-  /**
-   * Calculate Cascading Position for New Windows
-   *
-   * Determines the position for new windows with a cascading effect.
-   * Each new window is offset diagonally from the previous one,
-   * similar to Windows 95/98 behavior. Ensures windows always fit on screen.
-   * First window starts higher up for better visual balance.
-   */
+  // Cascades new windows diagonally like old Windows - each one offset from the last
   const getCascadingPosition = useCallback(() => {
     const windowSize = getResponsiveWindowSize();
     const cascadeOffset = 35; // Larger offset for better spacing
@@ -280,13 +212,7 @@ export default function RetroDesktop() {
     };
   }, [windows]);
 
-  /**
-   * Initialize Windows Based on Current Path
-   *
-   * Automatically opens a window for the current route when the component mounts
-   * or when the pathname changes. This ensures users see content relevant to
-   * their current location in the app.
-   */
+  // Auto-open window for current route on mount/pathname change
   useEffect(() => {
     // Skip window management for work page - it has its own window system
     if (pathname === "/work") {
@@ -438,13 +364,7 @@ export default function RetroDesktop() {
     }
   }, [draggedWindow, dragOffset, resizingWindow, resizeStart, windows]);
 
-  /**
-   * Open Window Function
-   *
-   * Opens a new window or brings an existing window to the front.
-   * If the window already exists, it's restored and brought to the front.
-   * If it doesn't exist, a new window is created at the center of the screen.
-   */
+  // Opens a window or brings existing one to front
   const openWindow = (href: string, title: string) => {
     const existingWindow = windows.find((w) => w.id === href);
     if (existingWindow) {
@@ -522,12 +442,7 @@ export default function RetroDesktop() {
     setActiveWindow(id);
   };
 
-  /**
-   * Bring Window to Front Function
-   *
-   * Makes a window the active window and gives it the highest z-index
-   * so it appears on top of other windows.
-   */
+  // Brings window to front by bumping its z-index
   const bringToFront = (id: string) => {
     setActiveWindow(id);
     setWindows((prev) =>
@@ -539,12 +454,7 @@ export default function RetroDesktop() {
     );
   };
 
-  /**
-   * Start Drag Function
-   *
-   * Initiates window dragging when the user clicks and drags the titlebar.
-   * Records the initial mouse position and window position for smooth dragging.
-   */
+  // Starts dragging a window - tracks mouse offset from window position
   const startDrag = (e: React.MouseEvent, windowId: string) => {
     e.preventDefault();
     const window = windows.find((w) => w.id === windowId);
@@ -558,12 +468,7 @@ export default function RetroDesktop() {
     }
   };
 
-  /**
-   * Start Resize Function
-   *
-   * Initiates window resizing when the user clicks and drags the resize handle.
-   * Records the initial mouse position and window size for smooth resizing.
-   */
+  // Starts resizing a window - tracks initial size and mouse position
   const startResize = (e: React.MouseEvent, windowId: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -580,22 +485,13 @@ export default function RetroDesktop() {
     }
   };
 
-  /**
-   * Toggle Start Menu Function
-   *
-   * Opens or closes the start menu when the start button is clicked.
-   * Prevents event bubbling to avoid immediate closure.
-   */
+  // Toggles start menu open/closed
   const toggleStartMenu = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.stopPropagation();
     setStartMenuOpen(!startMenuOpen);
   };
 
-  /**
-   * Handle Keyboard Navigation
-   *
-   * Provides keyboard support for closing start menu with Escape key
-   */
+  // Close start menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && startMenuOpen) {
@@ -607,24 +503,12 @@ export default function RetroDesktop() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [startMenuOpen]);
 
-  /**
-   * Set Mounted State
-   *
-   * Ensures the component is fully mounted before rendering
-   * time-sensitive elements like the clock.
-   */
+  // Set mounted flag for client-side only stuff like clock
   useEffect(() => {
     setHasMounted(true);
   }, []);
 
-  /**
-   * Handle Window Resize
-   *
-   * Ensures all windows stay within viewport bounds when the screen is resized.
-   * This prevents windows from being positioned outside the visible area.
-   * Also dynamically resizes windows when scaling back up for responsive behavior.
-   * Restores proper cascading positions for all windows.
-   */
+  // Keeps windows in bounds when screen resizes and recalculates positions
   useEffect(() => {
     const handleWindowResize = () => {
       setWindows((prev) => {
@@ -697,6 +581,12 @@ export default function RetroDesktop() {
         <div className="desktop-cloud-layer" data-depth="0.2">
           <div className="desktop-cloud-four"></div>
         </div>
+        <div className="desktop-cloud-layer" data-depth="0.3">
+          <div className="desktop-cloud-five"></div>
+        </div>
+        <div className="desktop-cloud-layer" data-depth="0.6">
+          <div className="desktop-cloud-six"></div>
+        </div>
       </div>
 
       {/*
@@ -731,10 +621,7 @@ export default function RetroDesktop() {
                 style={{ width: "auto", height: "auto" }}
               />
             </div>
-            <div
-              className="text-xs"
-              style={{ color: getIconTextColor(currentTime.getHours()) }}
-            >
+            <div className="text-xs desktop-icon-label">
               {item.name}
             </div>
           </button>

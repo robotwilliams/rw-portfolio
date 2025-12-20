@@ -10,11 +10,11 @@ export interface VintageButtonProps extends React.ButtonHTMLAttributes<HTMLButto
 
 /**
  * Vintage OS Button Component
- * 
- * A comprehensive button component that matches the Windows 98 aesthetic
+ *
+ * Button component matching Windows 98 aesthetic
  * with authentic 3D effects, gleam, and shadow styling. Supports teal and
  * purple color variants with proper hover and active states.
- * 
+ *
  * Features:
  * - Authentic Windows 98 3D button styling
  * - Teal and purple color variants
@@ -80,4 +80,4 @@ export const VintageButton: React.FC<VintageButtonProps> = ({
   );
 };
 
-export default VintageButton; 
+export default VintageButton;

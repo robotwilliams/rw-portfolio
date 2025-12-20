@@ -45,7 +45,9 @@ export default function WorkPage() {
         }
       } catch (err) {
         setError("Failed to fetch projects");
-        console.error("Error fetching projects:", err);
+        if (process.env.NODE_ENV === "development") {
+          console.error("Error fetching projects:", err);
+        }
       } finally {
         setLoading(false);
       }
