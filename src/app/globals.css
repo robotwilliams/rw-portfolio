@@ -115,7 +115,8 @@ body {
   font-family: var(--font-pixel), "Press Start 2P", monospace;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   font-size: 12px;
   line-height: 1.2;
   /* Enhanced pixelation filter for stronger retro look */
@@ -125,6 +126,10 @@ body {
   -moz-osx-font-smoothing: unset;
   /* Ensure proper viewport height */
   min-height: 100vh;
+  /* Prevent horizontal scrolling on mobile */
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 /**
@@ -1106,7 +1111,12 @@ svg {
 .desktop-bg {
   background: linear-gradient(180deg, #9bc4e2 0%, #d49595 100%);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 /**
@@ -1277,10 +1287,13 @@ svg {
   display: flex;
   align-items: center;
   padding: 0 10px;
-  z-index: 1000;
+  z-index: 10000;
   font-family: var(--font-pixel), "Press Start 2P", monospace;
   font-size: 12px;
   color: #000000;
+  /* Ensure taskbar is always visible on mobile */
+  min-height: 52px;
+  box-sizing: border-box;
 }
 
 /**
@@ -1422,7 +1435,7 @@ svg {
   background: linear-gradient(180deg, #7AB8B8 0%, #66A0A0 50%, #559595 100%);
   border: 2px outset #d0d0d0;
   color: #ffffff;
-  box-shadow: 
+  box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.3),
     inset -1px -1px 0 rgba(0, 0, 0, 0.2),
     2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -1431,7 +1444,7 @@ svg {
 .vintage-button-teal:hover {
   background: linear-gradient(180deg, #8AC8C8 0%, #76B0B0 50%, #65A5A5 100%);
   transform: translateY(-1px);
-  box-shadow: 
+  box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.4),
     inset -1px -1px 0 rgba(0, 0, 0, 0.15),
     3px 3px 6px rgba(0, 0, 0, 0.25);
@@ -1442,7 +1455,7 @@ svg {
   border-style: inset;
   border-color: #559595 #7AB8B8 #7AB8B8 #559595;
   transform: translateY(0px);
-  box-shadow: 
+  box-shadow:
     inset 2px 2px 0 rgba(0, 0, 0, 0.3),
     inset -2px -2px 0 rgba(255, 255, 255, 0.1),
     0 1px 2px rgba(0, 0, 0, 0.1);
@@ -1453,7 +1466,7 @@ svg {
   background: linear-gradient(180deg, #B8A8D8 0%, #A098C8 50%, #9588B8 100%);
   border: 2px outset #d0d0d0;
   color: #ffffff;
-  box-shadow: 
+  box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.3),
     inset -1px -1px 0 rgba(0, 0, 0, 0.2),
     2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -1462,7 +1475,7 @@ svg {
 .vintage-button-purple:hover {
   background: linear-gradient(180deg, #C8B8E8 0%, #B0A8D8 50%, #A598C8 100%);
   transform: translateY(-1px);
-  box-shadow: 
+  box-shadow:
     inset 1px 1px 0 rgba(255, 255, 255, 0.4),
     inset -1px -1px 0 rgba(0, 0, 0, 0.15),
     3px 3px 6px rgba(0, 0, 0, 0.25);
@@ -1473,7 +1486,7 @@ svg {
   border-style: inset;
   border-color: #9588B8 #B8A8D8 #B8A8D8 #9588B8;
   transform: translateY(0px);
-  box-shadow: 
+  box-shadow:
     inset 2px 2px 0 rgba(0, 0, 0, 0.3),
     inset -2px -2px 0 rgba(255, 255, 255, 0.1),
     0 1px 2px rgba(0, 0, 0, 0.1);
@@ -1509,12 +1522,12 @@ svg {
     padding: 1px 6px;
     font-size: 9px;
   }
-  
+
   .vintage-button.px-4 {
     padding: 3px 10px;
     font-size: 11px;
   }
-  
+
   .vintage-button.px-6 {
     padding: 5px 14px;
     font-size: 13px;
@@ -1526,12 +1539,12 @@ svg {
     padding: 1px 4px;
     font-size: 8px;
   }
-  
+
   .vintage-button.px-4 {
     padding: 2px 8px;
     font-size: 10px;
   }
-  
+
   .vintage-button.px-6 {
     padding: 4px 12px;
     font-size: 12px;
@@ -1562,6 +1575,13 @@ svg {
   /* Enhanced pixel art effect */
   filter: contrast(1.1) saturate(0.95);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  /* Reset button defaults to maintain visual appearance */
+  margin: 0;
+  padding: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .taskbar-icon:hover {
@@ -1595,6 +1615,78 @@ svg {
   color: var(--text-primary) !important;
   font-size: 14px !important;
   border: 2px solid #4a6a9a;
+}
+
+/* Mobile responsive styles for taskbar */
+@media (max-width: 768px) {
+  .taskbar {
+    height: 56px;
+    min-height: 56px;
+    padding: 0 8px;
+    font-size: 11px;
+    z-index: 10000;
+  }
+
+  .start-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .taskbar-icon {
+    width: 44px;
+    height: 38px;
+    margin-right: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .taskbar {
+    height: 60px;
+    min-height: 60px;
+    padding: 0 6px;
+    font-size: 10px;
+    z-index: 10000;
+  }
+
+  .start-button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .start-button span {
+    font-size: 11px;
+  }
+
+  .taskbar-icon {
+    width: 40px;
+    height: 36px;
+    margin-right: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskbar {
+    height: 64px;
+    min-height: 64px;
+    padding: 0 4px;
+    font-size: 9px;
+    z-index: 10000;
+  }
+
+  .start-button {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .start-button span {
+    font-size: 10px;
+  }
+
+  .taskbar-icon {
+    width: 36px;
+    height: 32px;
+    margin-right: 2px;
+  }
 }
 
 .clock-time {
@@ -1660,6 +1752,12 @@ svg {
   /* Enhanced pixel art effect */
   filter: contrast(1.05) saturate(0.98);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  /* Reset button defaults to maintain visual appearance */
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .desktop-icon:hover {
@@ -2161,12 +2259,15 @@ svg {
 }
 
 .start-menu-content {
-  padding: 4px;
+  padding: 0;
+  width: 100%;
 }
 
 .start-menu-items {
-  padding: 12px 0;
+  padding: 0;
+  margin: 0;
   background: #d4d0c8;
+  width: 100%;
 }
 
 .start-menu-header {
@@ -2180,11 +2281,28 @@ svg {
 }
 
 .start-menu-item {
-  padding: 8px 8px;
+  padding: 8px 12px;
   cursor: pointer;
   font-size: 11px;
   color: var(--text-primary);
   transition: background-color 0.1s ease;
+  /* Reset button defaults to maintain visual appearance */
+  margin: 0;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Critical: Force full width of menu */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  /* Ensure button stretches to full menu width */
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .start-menu-item:hover {
@@ -2193,6 +2311,10 @@ svg {
   filter: saturate(1.25) contrast(1.08) brightness(1.03);
   transition: all 0.2s ease;
   transform: translateY(-1px);
+  /* Maintain full width on hover */
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 /**
@@ -3213,6 +3335,18 @@ p[class*="text-3xl"] {
 }
 
 /* Enhanced Responsive Design for Windows */
+/* Large tablet breakpoint (1024px and below) */
+@media (max-width: 1024px) {
+  .retro-window {
+    max-width: 95vw;
+  }
+
+  .window-content {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
 /* Tablet breakpoint (768px and below) */
 @media (max-width: 768px) {
   .window-titlebar {
@@ -3225,18 +3359,40 @@ p[class*="text-3xl"] {
     padding: 1rem;
     min-width: 320px;
     min-height: 250px;
+    max-width: 100%;
+    overflow-x: auto;
   }
 
   .retro-window {
     min-width: 400px;
     min-height: 350px;
+    max-width: 95vw;
   }
 
   /* Reduce button sizes in titlebar for tablet */
-  .window-titlebar button {
-    width: 24px !important;
-    height: 24px !important;
-    font-size: 14px !important;
+.window-titlebar button {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 14px !important;
+}
+
+/* Window control button styles */
+.window-control-button {
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.window-minimize-button {
+  box-shadow: inset 1px 1px 0 #ffff80, inset -1px -1px 0 #808000;
+}
+
+.window-close-button {
+  box-shadow: inset 1px 1px 0 #ff8080, inset -1px -1px 0 #800000;
+}
+
+  /* Ensure desktop icons don't overflow on tablets */
+  .desktop-icon {
+    max-width: 100%;
   }
 }
 

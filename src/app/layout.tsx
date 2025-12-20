@@ -3,7 +3,7 @@ import {
   ProjectWindowContextProvider,
 } from "@/components/ProjectWindowContext";
 import RetroDesktop from "@/components/RetroDesktop";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   IBM_Plex_Mono,
   Press_Start_2P,
@@ -65,6 +65,13 @@ export const metadata: Metadata = {
   //   title: "Rob W - Creative Developer & Designer",
   //   description: "Portfolio of Rob W, a creative developer and designer building digital experiences that matter.",
   // },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
 };
 
 /**

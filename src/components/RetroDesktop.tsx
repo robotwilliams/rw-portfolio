@@ -9,6 +9,25 @@ import WindowLoader from "./WindowLoader";
 import { Window } from "@/types";
 
 /**
+ * Get icon image source for navigation items
+ * Simplifies repetitive image rendering logic
+ */
+const getIconSrc = (itemName: string, isHovered: boolean = false): string => {
+  switch (itemName) {
+    case "About":
+      return "/images/rw-logo.png";
+    case "Work":
+      return "/images/rw-site-icon-work.png";
+    case "Contact":
+      return "/images/rw-site-icon-folder-closed-contact.png";
+    default:
+      return isHovered
+        ? "/images/rw-site-icon-folder-open.png"
+        : "/images/rw-site-icon-folder-close.png";
+  }
+};
+
+/**
  * Window Content Mapping
  *
  * Maps route paths to their corresponding content components.
@@ -157,42 +176,55 @@ export default function RetroDesktop() {
    *
    * Determines window size based on screen size, scaling down proportionally
    * on smaller screens like a responsive OS would behave.
+   * Mobile/tablet: Better height utilization. Desktop: Keep original sizing.
    */
   const getResponsiveWindowSize = () => {
     const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const taskbarHeight = 60; // Account for taskbar
+    const availableHeight = screenHeight - taskbarHeight - 20; // Minimal margin for mobile/tablet
 
-    // Base sizes for large screens
+    // Base sizes for large screens (desktop - keep original)
     const baseWidth = 850;
     const baseHeight = 550;
 
-    // Mobile-first responsive design with more height for mobile
+    // Mobile and tablet: Use much more of the available height
     if (screenWidth <= 360) {
-      // Extra small mobile - more height
+      // Extra small mobile - fill most of height
       return {
         width: 280,
-        height: 400, // Increased from 240
+        height: Math.max(400, Math.min(availableHeight * 0.85, availableHeight)),
       };
     } else if (screenWidth <= 480) {
-      // Small mobile - more height
+      // Small mobile - fill most of height
       return {
         width: 320,
-        height: 450, // Increased from 280
+        height: Math.max(450, Math.min(availableHeight * 0.85, availableHeight)),
       };
     } else if (screenWidth <= 600) {
-      // Mobile - more height
+      // Mobile - fill most of height
       return {
         width: 400,
-        height: 500, // Increased from 350
+        height: Math.max(500, Math.min(availableHeight * 0.85, availableHeight)),
       };
     } else if (screenWidth <= 768) {
-      // Tablet
-      const scale = Math.max(0.6, screenWidth / 768);
+      // Tablet portrait - use 80% of available height
+      const widthScale = Math.max(0.6, screenWidth / 768);
+      const targetHeight = Math.floor(availableHeight * 0.8);
       return {
-        width: Math.floor(baseWidth * scale),
-        height: Math.floor(baseHeight * scale),
+        width: Math.floor(baseWidth * widthScale),
+        height: Math.max(500, targetHeight),
+      };
+    } else if (screenWidth <= 1024) {
+      // Tablet landscape - use 75% of available height
+      const widthScale = Math.max(0.75, screenWidth / 1024);
+      const targetHeight = Math.floor(availableHeight * 0.75);
+      return {
+        width: Math.floor(baseWidth * widthScale),
+        height: Math.max(550, targetHeight),
       };
     } else if (screenWidth < 1200) {
-      // Small desktop
+      // Small desktop - keep original behavior (don't change)
       const scale = Math.max(0.7, screenWidth / 1200);
       return {
         width: Math.floor(baseWidth * scale),
@@ -200,7 +232,7 @@ export default function RetroDesktop() {
       };
     }
 
-    // Scale up on extra large screens
+    // Desktop and larger - keep original behavior (don't change)
     if (screenWidth >= 1400) {
       const scale = Math.min(1.4, screenWidth / 1400);
       return {
@@ -209,6 +241,7 @@ export default function RetroDesktop() {
       };
     }
 
+    // Default desktop - keep original (don't change)
     return { width: baseWidth, height: baseHeight };
   };
 
@@ -223,21 +256,23 @@ export default function RetroDesktop() {
   const getCascadingPosition = useCallback(() => {
     const windowSize = getResponsiveWindowSize();
     const cascadeOffset = 35; // Larger offset for better spacing
+    const taskbarHeight = 60;
+    const availableHeight = window.innerHeight - taskbarHeight;
 
     // Count how many windows are currently open
     const openWindowCount = windows.filter((w) => !w.isMinimized).length;
 
     // Start higher up for the first window, then cascade
+    // Better centering that accounts for actual available height
     const baseX = Math.max(0, (window.innerWidth - windowSize.width) / 2);
-    const baseY =
-      Math.max(0, (window.innerHeight - windowSize.height) / 2) - 50; // Start higher
+    const baseY = Math.max(0, (availableHeight - windowSize.height) / 2) - 30; // Start higher
 
     const x = baseX + openWindowCount * cascadeOffset;
     const y = baseY + openWindowCount * cascadeOffset;
 
     // Ensure window doesn't go off-screen with proper margins
     const maxX = Math.max(0, window.innerWidth - windowSize.width - 20);
-    const maxY = Math.max(0, window.innerHeight - windowSize.height - 80); // Leave space for taskbar
+    const maxY = Math.max(0, availableHeight - windowSize.height - 20); // Leave space for taskbar
 
     return {
       x: Math.min(Math.max(0, x), maxX),
@@ -327,13 +362,15 @@ export default function RetroDesktop() {
         // Get the window being dragged
         const draggedWin = windows.find((w) => w.id === draggedWindow);
         if (draggedWin) {
+          const taskbarHeight = 60;
+          const availableHeight = window.innerHeight - taskbarHeight;
           const maxX = Math.max(
             0,
             window.innerWidth - draggedWin.size.width - 20
           );
           const maxY = Math.max(
             0,
-            window.innerHeight - draggedWin.size.height - 80
+            availableHeight - draggedWin.size.height - 20
           );
 
           const constrainedX = Math.min(Math.max(0, newX), maxX);
@@ -363,9 +400,11 @@ export default function RetroDesktop() {
         const newWidth = Math.max(minWidth, resizeStart.width + deltaX);
         const newHeight = Math.max(minHeight, resizeStart.height + deltaY);
 
-        // Constrain maximum size to viewport
+        // Constrain maximum size to viewport (accounting for taskbar)
+        const taskbarHeight = 60;
+        const availableHeight = window.innerHeight - taskbarHeight;
         const maxWidth = window.innerWidth - 40;
-        const maxHeight = window.innerHeight - 120;
+        const maxHeight = availableHeight - 40;
 
         const constrainedWidth = Math.min(newWidth, maxWidth);
         const constrainedHeight = Math.min(newHeight, maxHeight);
@@ -547,10 +586,26 @@ export default function RetroDesktop() {
    * Opens or closes the start menu when the start button is clicked.
    * Prevents event bubbling to avoid immediate closure.
    */
-  const toggleStartMenu = (e: React.MouseEvent) => {
+  const toggleStartMenu = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.stopPropagation();
     setStartMenuOpen(!startMenuOpen);
   };
+
+  /**
+   * Handle Keyboard Navigation
+   *
+   * Provides keyboard support for closing start menu with Escape key
+   */
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && startMenuOpen) {
+        setStartMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [startMenuOpen]);
 
   /**
    * Set Mounted State
@@ -577,18 +632,20 @@ export default function RetroDesktop() {
         const updatedWindows = prev.map((win, index) => {
           const newSize = getResponsiveWindowSize();
           const cascadeOffset = 35;
+          const taskbarHeight = 60;
+          const availableHeight = window.innerHeight - taskbarHeight;
 
           // Calculate new cascading position based on window order
           const baseX = Math.max(0, (window.innerWidth - newSize.width) / 2);
           const baseY =
-            Math.max(0, (window.innerHeight - newSize.height) / 2) - 50; // Start higher
+            Math.max(0, (availableHeight - newSize.height) / 2) - 30; // Start higher
 
           const newX = baseX + index * cascadeOffset;
           const newY = baseY + index * cascadeOffset;
 
           // Ensure window doesn't go off-screen
           const maxX = Math.max(0, window.innerWidth - newSize.width - 20);
-          const maxY = Math.max(0, window.innerHeight - newSize.height - 80);
+          const maxY = Math.max(0, availableHeight - newSize.height - 20);
 
           const constrainedX = Math.min(Math.max(0, newX), maxX);
           const constrainedY = Math.min(Math.max(0, newY), maxY);
@@ -648,12 +705,12 @@ export default function RetroDesktop() {
         Each icon represents a navigation item and can be clicked to open
         the corresponding window.
       */}
-      <div className="absolute top-8 left-8">
+      <nav className="absolute top-8 left-8" aria-label="Desktop navigation">
         {navigation.map((item) => (
-          <div
+          <button
             key={item.name}
-            className={`desktop-icon ${selectedDesktopIcon === item.href ? "selected" : ""
-              }`}
+            type="button"
+            className={`desktop-icon ${selectedDesktopIcon === item.href ? "selected" : ""}`}
             onClick={() => {
               setSelectedDesktopIcon(item.href);
               openWindow(item.href, item.name);
@@ -662,35 +719,17 @@ export default function RetroDesktop() {
               setSelectedDesktopIcon(null);
               openWindow(item.href, item.name);
             }}
-          // onMouseEnter={() => setHoveredDesktopIcon(item.href)}
-          // onMouseLeave={() => setHoveredDesktopIcon(null)}
+            aria-label={`Open ${item.name} window`}
+            aria-pressed={selectedDesktopIcon === item.href}
           >
             <div className="mb-1">
-              {item.name === "About" ? (
-                <Image
-                  src="/images/rw-logo.png"
-                  alt={item.name}
-                  width={46}
-                  height={46}
-                  style={{ width: "auto", height: "auto" }}
-                />
-              ) : item.name === "Work" ? (
-                <Image
-                  src="/images/rw-site-icon-work.png"
-                  alt={item.name}
-                  width={46}
-                  height={46}
-                  style={{ width: "auto", height: "auto" }}
-                />
-              ) : item.name === "Contact" ? (
-                <Image
-                  src="/images/rw-site-icon-folder-closed-contact.png"
-                  alt={item.name}
-                  width={46}
-                  height={46}
-                  style={{ width: "auto", height: "auto" }}
-                />
-              ) : null}
+              <Image
+                src={getIconSrc(item.name)}
+                alt={`${item.name} icon`}
+                width={46}
+                height={46}
+                style={{ width: "auto", height: "auto" }}
+              />
             </div>
             <div
               className="text-xs"
@@ -698,9 +737,9 @@ export default function RetroDesktop() {
             >
               {item.name}
             </div>
-          </div>
+          </button>
         ))}
-      </div>
+      </nav>
 
       {/*
         Windows
@@ -722,46 +761,42 @@ export default function RetroDesktop() {
           onClick={() => bringToFront(window.id)}
         >
           {/* Window Titlebar */}
-          <div
+          <header
             className="window-titlebar cursor-move"
             onMouseDown={(e) => startDrag(e, window.id)}
+            role="banner"
+            aria-label={`${window.title} window titlebar`}
           >
             <div className="flex items-center space-x-2">
-              <span>{window.title}</span>
+              <span id={`window-title-${window.id}`}>{window.title}</span>
             </div>
             <div className="flex space-x-1">
               {/* Minimize Button */}
               <button
-                className="w-7 h-7 bg-yellow-600 border-2 border-yellow-800 flex items-center justify-center text-lg font-bold hover:bg-yellow-500 transition-colors cursor-pointer"
+                type="button"
+                className="w-7 h-7 bg-yellow-600 border-2 border-yellow-800 flex items-center justify-center text-lg font-bold hover:bg-yellow-500 transition-colors cursor-pointer window-control-button window-minimize-button"
                 onClick={(e) => {
                   e.stopPropagation();
                   minimizeWindow(window.id);
                 }}
-                style={{
-                  boxShadow:
-                    "inset 1px 1px 0 #ffff80, inset -1px -1px 0 #808000",
-                  borderRadius: "4px",
-                }}
+                aria-label={`Minimize ${window.title} window`}
               >
-                −
+                <span aria-hidden="true">−</span>
               </button>
               {/* Close Button */}
               <button
-                className="w-7 h-7 bg-red-600 border-2 border-red-800 flex items-center justify-center text-white text-lg font-bold hover:bg-red-400 transition-colors cursor-pointer"
+                type="button"
+                className="w-7 h-7 bg-red-600 border-2 border-red-800 flex items-center justify-center text-white text-lg font-bold hover:bg-red-400 transition-colors cursor-pointer window-control-button window-close-button"
                 onClick={(e) => {
                   e.stopPropagation();
                   closeWindow(window.id);
                 }}
-                style={{
-                  boxShadow:
-                    "inset 1px 1px 0 #ff8080, inset -1px -1px 0 #800000",
-                  borderRadius: "4px",
-                }}
+                aria-label={`Close ${window.title} window`}
               >
-                ×
+                <span aria-hidden="true">×</span>
               </button>
             </div>
-          </div>
+          </header>
 
           {/* Window Content */}
           <div
@@ -805,13 +840,18 @@ export default function RetroDesktop() {
         Contains navigation items and branding information.
       */}
       {startMenuOpen && (
-        <div className="start-menu">
+        <nav
+          className="start-menu"
+          role="menu"
+          aria-label="Start menu"
+          aria-expanded={startMenuOpen}
+        >
           <div className="start-menu-content">
             <div className="start-menu-header-xp">
-              <span className="start-menu-header-xp-logo">
+              <span className="start-menu-header-xp-logo" aria-hidden="true">
                 <Image
                   src="/images/rw-logo.png"
-                  alt="robotOS"
+                  alt=""
                   width={36}
                   height={36}
                   style={{ width: "auto", height: "auto" }}
@@ -819,53 +859,42 @@ export default function RetroDesktop() {
               </span>
               <span className="ml-3 text-base font-bold">robotOS</span>
             </div>
-            <div className="start-menu-items">
+            <div className="start-menu-items" role="menubar">
               {navigation.map((item) => (
-                <div
+                <button
                   key={item.name}
+                  type="button"
+                  role="menuitem"
                   className="start-menu-item flex items-center space-x-2"
                   onClick={() => {
                     openWindow(item.href, item.name);
                     setStartMenuOpen(false);
                   }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      openWindow(item.href, item.name);
+                      setStartMenuOpen(false);
+                    }
+                  }}
                   onMouseEnter={() => setHoveredStartMenuItem(item.href)}
                   onMouseLeave={() => setHoveredStartMenuItem(null)}
+                  aria-label={`Open ${item.name}`}
                 >
-                  {item.name === "About" ? (
-                    <Image
-                      src="/images/rw-logo.png"
-                      alt={item.name}
-                      width={18}
-                      height={18}
-                      style={{ width: "auto", height: "auto" }}
-                    />
-                  ) : item.name === "Contact" ? (
-                    <Image
-                      src="/images/rw-site-icon-folder-closed-contact.png"
-                      alt={item.name}
-                      width={18}
-                      height={18}
-                      style={{ width: "auto", height: "auto" }}
-                    />
-                  ) : (
-                    <Image
-                      src={
-                        hoveredStartMenuItem === item.href
-                          ? "/images/rw-site-icon-folder-open.png"
-                          : "/images/rw-site-icon-folder-close.png"
-                      }
-                      alt={item.name}
-                      width={18}
-                      height={18}
-                      style={{ width: "auto", height: "auto" }}
-                    />
-                  )}
+                  <Image
+                    src={getIconSrc(item.name, hoveredStartMenuItem === item.href)}
+                    alt=""
+                    width={18}
+                    height={18}
+                    style={{ width: "auto", height: "auto" }}
+                    aria-hidden="true"
+                  />
                   <span className="text-base">{item.name}</span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
-        </div>
+        </nav>
       )}
 
       {/*
@@ -873,20 +902,31 @@ export default function RetroDesktop() {
         Fixed bottom bar containing the start button, running applications,
         and system clock. Provides quick access to open windows and navigation.
       */}
-      <div className="taskbar">
+      <nav className="taskbar" role="toolbar" aria-label="Taskbar">
         <div className="flex items-center space-x-2 ml-2">
           {/* Start Button */}
           <button
+            type="button"
             className={`start-button flex items-center px-2 py-1 ${startMenuOpen ? "bg-cyan-600" : ""}`}
             style={{ gap: "4px" }}
             onClick={toggleStartMenu}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleStartMenu(e);
+              }
+            }}
+            aria-label="Open start menu"
+            aria-expanded={startMenuOpen}
+            aria-haspopup="menu"
           >
             <Image
               src="/images/rw-site-icon-start.png"
-              alt="Start"
+              alt=""
               width={27}
               height={27}
               style={{ width: "auto", height: "auto" }}
+              aria-hidden="true"
             />
             <span className="text-sm font-bold">Start</span>
           </button>
@@ -899,8 +939,9 @@ export default function RetroDesktop() {
               return null;
             }
             return (
-              <div
+              <button
                 key={item.name}
+                type="button"
                 className="taskbar-icon"
                 onClick={() => {
                   // Unminimize the window when taskbar button is clicked
@@ -908,34 +949,16 @@ export default function RetroDesktop() {
                 }}
                 onMouseEnter={() => setHoveredTaskbarIcon(item.href)}
                 onMouseLeave={() => setHoveredTaskbarIcon(null)}
+                aria-label={`Restore ${item.name} window`}
               >
-                {item.name === "About" ? (
-                  <Image
-                    src="/images/rw-logo.png"
-                    alt={item.name}
-                    width={32}
-                    height={32}
-                  />
-                ) : item.name === "Contact" ? (
-                  <Image
-                    src="/images/rw-site-icon-folder-closed-contact.png"
-                    alt={item.name}
-                    width={32}
-                    height={32}
-                  />
-                ) : (
-                  <Image
-                    src={
-                      hoveredTaskbarIcon === item.href
-                        ? "/images/rw-site-icon-folder-open.png"
-                        : "/images/rw-site-icon-folder-close.png"
-                    }
-                    alt={item.name}
-                    width={32}
-                    height={32}
-                  />
-                )}
-              </div>
+                <Image
+                  src={getIconSrc(item.name, hoveredTaskbarIcon === item.href)}
+                  alt=""
+                  width={32}
+                  height={32}
+                  aria-hidden="true"
+                />
+              </button>
             );
           })}
         </div>
@@ -966,7 +989,7 @@ export default function RetroDesktop() {
             </div>
           )}
         </div>
-      </div>
+      </nav>
 
       {/*
         Click Outside Handler
