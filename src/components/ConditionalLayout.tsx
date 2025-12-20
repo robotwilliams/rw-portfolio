@@ -11,7 +11,7 @@ import RetroDesktop from "./RetroDesktop";
  *
  * Renders RetroDesktop for main site routes,
  * but skips it for admin routes.
- * 
+ *
  * This component checks the pathname and conditionally renders
  * either the desktop interface or just the children (for admin routes).
  */
@@ -21,7 +21,7 @@ export default function ConditionalLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  
+
   // Check if current route is an admin route
   const isAdminRoute = useMemo(() => {
     return pathname?.startsWith("/admin") ?? false;
