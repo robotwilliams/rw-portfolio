@@ -2,11 +2,11 @@
 
 ## Overview
 
-My modern portfolio website featuring a Windows 98-inspired retro desktop interface. Built with Next.js 15, TypeScript, and Tailwind CSS, this project showcases creative development skills through an interactive desktop environment where users can explore projects in draggable, resizable windows.
+A modern portfolio website with a Windows 98-inspired retro desktop interface. Built with Next.js 15, TypeScript, and Tailwind CSS. The project showcases creative development skills through an interactive desktop environment where users explore projects in draggable, resizable windows.
 
-**The Philosophy**: This isn't just a portfolio - it's a love letter to the era when computing was tactile, when every click felt intentional, and when interfaces had personality. We've taken the best of modern web development (React, TypeScript, Next.js) and wrapped it in the warm, nostalgic embrace of Windows 98. The result? A portfolio that's both cutting-edge and delightfully retro.
+The philosophy: this isn't just a portfolio. It's a nod to when computing was tactile, when every click felt intentional, and when interfaces had personality. We took modern web development (React, TypeScript, Next.js) and wrapped it in the nostalgic embrace of Windows 98. The result is a portfolio that's both cutting-edge and retro.
 
-**Why This Approach Works**: The retro aesthetic isn't just for show - it creates a memorable experience that stands out in a sea of minimalist portfolios. Users remember the site because it's different, and they engage with it because it's fun. Plus, the technical implementation demonstrates serious skills: complex state management, responsive design, accessibility compliance, and performance optimization - all while maintaining that authentic Windows 98 feel.
+Why this approach works: the retro aesthetic creates a memorable experience that stands out among minimalist portfolios. Users remember the site because it's different, and they engage with it because it's fun. The technical implementation demonstrates complex state management, responsive design, accessibility compliance, and performance optimization while maintaining an authentic Windows 98 feel.
 
 ## Key Features
 
@@ -249,65 +249,50 @@ Private project - All rights reserved
 
 ### Overview
 
-The admin dashboard is a full-featured content management system built right into the portfolio. No need for external CMS tools or complex setups - just log in and edit your content directly in the browser.
+The admin dashboard is a content management system built into the portfolio. No external CMS tools or complex setups needed. Just log in and edit content directly in the browser.
 
 ### Features
 
-- **Secure Authentication**: Session-based auth with environment variables (no default passwords!)
-- **Real-time Updates**: Changes appear immediately on the frontend (no caching delays)
-- **Page Editing**: Edit About and Contact pages with live markdown preview
-- **Project Management**: Edit all portfolio projects with full metadata support
-- **Simple Interface**: Clean, intuitive UI that doesn't get in your way
+Secure authentication with session-based auth and environment variables. Real-time updates that appear immediately on the frontend with no caching delays. Page editing for About and Contact pages with live markdown preview. Project management for all portfolio projects with full metadata support. Simple interface with a clean, intuitive UI.
 
 ### How It Works
 
-The admin system uses a clever architecture:
-1. **Client-side**: React components handle the UI and user interactions
-2. **API Routes**: Next.js API routes handle authentication and content saving
-3. **File System**: Content is saved directly to markdown files (version controlled!)
-4. **Dynamic Rendering**: All routes use `force-dynamic` to ensure fresh content
+The admin system uses a straightforward architecture. React components handle the UI and user interactions on the client side. Next.js API routes handle authentication and content saving. Content is saved directly to markdown files, which are version controlled. All routes use force-dynamic to ensure fresh content.
 
 ### Security
 
-- Credentials stored in environment variables (never in code)
-- Session cookies are `httpOnly` and `secure` in production
-- No default credentials - must be explicitly set
-- Server-side validation on all admin routes
+Credentials are stored in environment variables, never in code. Session cookies are httpOnly and secure in production. No default credentials are allowed. Server-side validation runs on all admin routes.
 
 ### Access
 
-Navigate to `/admin` on your live site, enter your credentials, and start editing. It's that simple.
+Navigate to /admin on your live site, enter your credentials, and start editing.
 
 ## Technical Deep Dive
 
-### Why Next.js App Router?
+### Why Next.js App Router
 
-The App Router gives us server components, which means we can fetch data on the server and send HTML directly to the client. This is perfect for our markdown CMS - we can read files on the server, process them, and send rendered HTML. No client-side markdown parsing needed for initial loads.
+The App Router provides server components, so we can fetch data on the server and send HTML directly to the client. This works well for the markdown CMS. We read files on the server, process them, and send rendered HTML. No client-side markdown parsing needed for initial loads.
 
 ### State Management Philosophy
 
-We use React's built-in state management (useState, useCallback, useMemo) rather than external libraries. Why? Because the state is relatively simple - windows, UI interactions, and content loading. No need for Redux or Zustand when React hooks handle everything elegantly.
+We use React's built-in state management (useState, useCallback, useMemo) rather than external libraries. The state is relatively simple: windows, UI interactions, and content loading. No need for Redux or Zustand when React hooks handle everything.
 
 ### Performance Strategy
 
-1. **Static Generation**: Most pages are pre-rendered at build time
-2. **Dynamic Routes**: Admin routes and API endpoints are server-rendered on demand
-3. **Image Optimization**: Next.js Image component handles all the heavy lifting
-4. **Code Splitting**: Automatic - Next.js splits code by route automatically
-5. **CSS Optimization**: Tailwind purges unused styles automatically
+Most pages are pre-rendered at build time. Admin routes and API endpoints are server-rendered on demand. The Next.js Image component handles image optimization. Code splitting happens automatically by route. Tailwind purges unused styles automatically.
 
 ### Accessibility First
 
-Every interactive element has proper ARIA labels. Every image has alt text. Keyboard navigation works throughout. Screen readers can understand the interface. This isn't just good practice - it's the right thing to do, and it makes the site better for everyone.
+Every interactive element has proper ARIA labels. Every image has alt text. Keyboard navigation works throughout. Screen readers can understand the interface. This is the right thing to do, and it makes the site better for everyone.
 
 ## Contact
 
-- **Email**: robwilliamsdeveloper@gmail.com
-- **Portfolio**: https://robotwilliams.com
-- **GitHub**: [@robotwilliams](https://github.com/robotwilliams)
+- Email: robwilliamsdeveloper@gmail.com
+- Portfolio: https://robotwilliams.com
+- GitHub: [@robotwilliams](https://github.com/robotwilliams)
 
 ---
 
-_Built with ❤️ using Next.js, TypeScript, and a whole lot of nostalgia for Windows 98_
+Built with Next.js, TypeScript, and a whole lot of nostalgia for Windows 98.
 
-**Last Updated**: December 2025
+Last Updated: December 2025

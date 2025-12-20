@@ -1,30 +1,25 @@
 /**
  * Admin Authentication Utilities
  *
- * Client-side authentication helpers for the admin dashboard. These functions handle
- * the communication between the React components and the server-side API routes.
+ * Client-side helpers for admin authentication. These functions handle communication
+ * between React components and the server API routes.
  *
- * The authentication flow is simple but effective:
- * 1. User enters credentials in the login form
- * 2. Credentials are sent to the server via POST request
- * 3. Server validates against environment variables and sets a session cookie
- * 4. Client checks authentication status by reading the session cookie
+ * The flow works like this: user enters credentials, they're sent to the server
+ * for validation against environment variables, and on success the server sets a
+ * session cookie. The client then checks this cookie to determine auth status.
  *
- * Security considerations:
- * - Credentials are never stored in the client code
- * - Session cookies are httpOnly and secure in production
- * - Network errors are handled gracefully
- * - No sensitive data is exposed in error messages
+ * Security: credentials never live in client code, session cookies are httpOnly
+ * and secure in production, network errors are handled gracefully, and we don't
+ * expose sensitive data in error messages.
  */
 
 /**
  * Check Authentication Status
  *
- * Verifies if the user is currently authenticated by checking the session cookie.
- * This is called on page load to determine if the user should see the login form
- * or the admin dashboard.
+ * Verifies if the user is authenticated by checking the session cookie. Called
+ * on page load to decide whether to show the login form or the dashboard.
  *
- * @returns Promise that resolves to true if authenticated, false otherwise
+ * @returns Promise resolving to true if authenticated, false otherwise
  */
 export async function checkAuth(): Promise<boolean> {
   try {
@@ -42,13 +37,13 @@ export async function checkAuth(): Promise<boolean> {
 /**
  * Login Function
  *
- * Attempts to authenticate the user with the provided credentials. The credentials
- * are sent to the server where they're validated against environment variables.
- * On success, the server sets a session cookie that's used for subsequent requests.
+ * Authenticates the user with provided credentials. Sends them to the server
+ * for validation against environment variables. On success, the server sets a
+ * session cookie used for subsequent requests.
  *
- * @param username - The admin username (from environment variable)
- * @param password - The admin password (from environment variable)
- * @returns Promise resolving to an object with success status and optional error message
+ * @param username - Admin username from environment variable
+ * @param password - Admin password from environment variable
+ * @returns Promise with success status and optional error message
  */
 export async function login(username: string, password: string): Promise<{ success: boolean; error?: string }> {
   try {
@@ -73,11 +68,10 @@ export async function login(username: string, password: string): Promise<{ succe
 /**
  * Logout Function
  *
- * Clears the session cookie by calling the logout API endpoint. This effectively
- * ends the user's session and requires them to log in again to access the admin dashboard.
+ * Clears the session cookie by calling the logout API endpoint. This ends the
+ * user's session and requires them to log in again.
  *
- * Note: Errors during logout are silently ignored since the user is already leaving
- * the admin area, and there's no critical action that needs to happen.
+ * Errors are silently ignored since the user is leaving anyway.
  */
 export async function logout(): Promise<void> {
   try {

@@ -2,21 +2,17 @@
 
 ## Overview
 
-This guide walks you through deploying the portfolio to Vercel and setting up the admin dashboard. Vercel is the recommended platform because it's optimized for Next.js, handles automatic deployments from GitHub, and provides excellent performance out of the box.
+This guide covers deploying the portfolio to Vercel and setting up the admin dashboard. Vercel is recommended because it's optimized for Next.js, handles automatic deployments from GitHub, and provides excellent performance.
 
-**Why Vercel?** It's built by the Next.js team, so it understands Next.js better than any other platform. Automatic deployments, edge functions, and zero-config SSL are just the beginning. Plus, the free tier is generous enough for most portfolios.
+Why Vercel? It's built by the Next.js team, so it understands Next.js better than other platforms. Automatic deployments, edge functions, and zero-config SSL come standard. The free tier is generous enough for most portfolios.
 
 ## Setting Up Admin Dashboard on Vercel
 
 ### Understanding the Admin System
 
-The admin dashboard uses a simple but secure authentication system:
-- **Credentials**: Stored in environment variables (never in code)
-- **Session Management**: Uses httpOnly cookies (can't be accessed by JavaScript)
-- **Security**: Secure cookies in production (HTTPS only)
-- **No Defaults**: The code requires environment variables - no fallback credentials
+The admin dashboard uses a simple but secure authentication system. Credentials are stored in environment variables, never in code. Session management uses httpOnly cookies that can't be accessed by JavaScript. Cookies are secure in production (HTTPS only). The code requires environment variables with no fallback credentials.
 
-This approach is perfect for a portfolio site where you're the only admin. It's simple, secure, and doesn't require complex OAuth or database setups.
+This approach works well for a portfolio site where you're the only admin. It's simple, secure, and doesn't require OAuth or database setups.
 
 ### Step 1: Set Environment Variables in Vercel
 
@@ -30,13 +26,7 @@ ADMIN_USERNAME=your_secure_username
 ADMIN_PASSWORD=your_secure_password
 ```
 
-**Important:**
-
-- Use a strong, unique password (mix of letters, numbers, symbols)
-- Don't use the default "admin" / "admin123" - be creative!
-- These are case-sensitive (Admin ≠ admin)
-- Make sure to set them for **Production**, **Preview**, and **Development** environments
-- Consider using different credentials for each environment if you want extra security
+Important: use a strong, unique password with letters, numbers, and symbols. Don't use defaults like "admin" or "admin123". These are case-sensitive. Set them for Production, Preview, and Development environments. Consider using different credentials for each environment for extra security.
 
 ### Step 2: Deploy to Vercel
 
@@ -63,24 +53,13 @@ You'll see a login form. Enter:
 
 ### Security Notes
 
-✅ **Only you can login** - The credentials are stored securely in Vercel's environment variables
-✅ **Not accessible to others** - Without your username/password, no one can access the admin dashboard
-✅ **Secure cookies** - Session cookies are `httpOnly` and `secure` in production
-✅ **No default credentials** - The code requires environment variables (no fallback defaults)
+Only you can login. Credentials are stored securely in Vercel's environment variables. Without your username and password, no one can access the admin dashboard. Session cookies are httpOnly and secure in production. The code requires environment variables with no fallback defaults.
 
 ### Troubleshooting
 
-**Can't login?**
+Can't login? Double-check your environment variables in Vercel. Make sure they're set for the Production environment. Redeploy after changing environment variables. Clear your browser cookies and try again.
 
-- Double-check your environment variables in Vercel
-- Make sure they're set for the **Production** environment
-- Redeploy after changing environment variables
-- Clear your browser cookies and try again
-
-**Environment variables not working?**
-
-- Vercel requires a redeploy after adding/changing environment variables
-- Go to **Deployments** → Click **Redeploy** on the latest deployment
+Environment variables not working? Vercel requires a redeploy after adding or changing environment variables. Go to Deployments and click Redeploy on the latest deployment.
 
 ### Quick Vercel CLI Setup (Alternative)
 
@@ -103,54 +82,32 @@ vercel --prod
 
 ## Admin Dashboard Features
 
-Once logged in, you can:
-
-- ✅ Edit **About** page content
-- ✅ Edit **Contact** page content
-- ✅ Edit **Portfolio Projects** (all 6 projects)
-- ✅ See changes immediately on the live site
-- ✅ Logout when done
+Once logged in, you can edit the About page content, edit the Contact page content, edit all portfolio projects, see changes immediately on the live site, and logout when done.
 
 All changes are saved directly to the markdown files and appear instantly on your live site!
 
-## How It Works (Technical Deep Dive)
+## How It Works
 
 ### The Authentication Flow
 
-1. **User visits `/admin`**: The page loads and checks for an existing session cookie
-2. **Login attempt**: Credentials are sent to `/api/admin/login` via POST request
-3. **Server validation**: Server compares credentials against environment variables
-4. **Session creation**: On success, server sets an `admin_session` cookie
-5. **Cookie properties**: 
-   - `httpOnly: true` - JavaScript can't access it (XSS protection)
-   - `secure: true` - Only sent over HTTPS in production
-   - `sameSite: "lax"` - CSRF protection
-   - `maxAge: 24 hours` - Session expires after 24 hours
+User visits /admin and the page checks for an existing session cookie. On login attempt, credentials are sent to /api/admin/login via POST request. The server compares credentials against environment variables. On success, the server sets an admin_session cookie with these properties: httpOnly true (JavaScript can't access it, XSS protection), secure true (only sent over HTTPS in production), sameSite lax (CSRF protection), maxAge 24 hours (session expires after 24 hours).
 
-### Why This Approach?
+### Why This Approach
 
-**Simple**: No database needed, no OAuth setup, no complex token management. Just environment variables and cookies.
+Simple: no database needed, no OAuth setup, no complex token management. Just environment variables and cookies.
 
-**Secure**: httpOnly cookies can't be stolen by XSS attacks. Secure flag ensures HTTPS-only transmission. SameSite prevents CSRF.
+Secure: httpOnly cookies can't be stolen by XSS attacks. Secure flag ensures HTTPS-only transmission. SameSite prevents CSRF.
 
-**Effective**: For a single-admin portfolio site, this is more than enough security. If you need multi-user support later, you can upgrade to a proper auth system.
+Effective: for a single-admin portfolio site, this provides sufficient security. If you need multi-user support later, you can upgrade to a proper auth system.
 
 ### Content Updates
 
-When you save content in the admin dashboard:
-1. Content is sent to `/api/admin/save-content`
-2. Server validates you're authenticated
-3. Markdown file is written to the file system
-4. Next.js detects the change (in development) or you redeploy (in production)
-5. Frontend routes use `force-dynamic` so they always fetch fresh content
+When you save content in the admin dashboard, it's sent to /api/admin/save-content. The server validates you're authenticated, then writes the markdown file to the file system. Next.js detects the change in development, or you redeploy in production. Frontend routes use force-dynamic so they always fetch fresh content.
 
-**Note**: In production, file system writes persist between deployments on Vercel, but for true persistence, consider using a database or Git-based workflow.
+Note: in production, file system writes persist between deployments on Vercel, but for true persistence, consider using a database or Git-based workflow.
 
 ### Performance Considerations
 
-- **Dynamic Routes**: Admin routes use `force-dynamic` to ensure fresh content
-- **API Routes**: All admin API routes are server-rendered on demand
-- **No Caching**: Content API routes disable caching so admin updates appear immediately
-- **Build Time**: Static pages are still pre-rendered for performance
+Admin routes use force-dynamic to ensure fresh content. All admin API routes are server-rendered on demand. Content API routes disable caching so admin updates appear immediately. Static pages are still pre-rendered for performance.
 
-This hybrid approach gives you the best of both worlds: fast static pages for visitors, dynamic content for admin updates.
+This hybrid approach gives you fast static pages for visitors and dynamic content for admin updates.

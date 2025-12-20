@@ -9,28 +9,22 @@ import AdminDashboard from "@/components/AdminDashboard";
 /**
  * Admin Login Page
  *
- * The entry point for the admin dashboard. This component handles authentication
- * state and conditionally renders either the login form or the admin dashboard.
+ * Entry point for the admin dashboard. Handles authentication state and renders
+ * either the login form or the dashboard.
  *
- * **Authentication Flow**:
- * 1. On mount, checks if user is already authenticated (via session cookie)
- * 2. Shows login form if not authenticated
- * 3. On successful login, shows the admin dashboard
- * 4. Handles logout by clearing session and returning to login form
+ * Authentication flow: on mount, checks if user is already authenticated via
+ * session cookie. Shows login form if not authenticated, shows dashboard on
+ * successful login, handles logout by clearing session.
  *
- * **State Management**:
- * - `authenticated`: null (checking), true (logged in), false (not logged in)
- * - `username`/`password`: Form input values
- * - `error`: Error message to display (if login fails)
- * - `loading`: Prevents double-submission during login
+ * State: authenticated (null/true/false), username/password for form inputs,
+ * error message for display, loading flag to prevent double-submission.
  *
- * **Security**: Credentials are never stored in this component - they're sent
- * to the server API route which validates against environment variables.
+ * Security: credentials are never stored here. They're sent to the server API
+ * route which validates against environment variables.
  *
- * **Technical Note**: This is a client component ("use client") because it needs
- * React hooks (useState, useEffect) and user interactions. Client components
- * cannot use Next.js route segment config like `export const dynamic`, so we
- * handle dynamic rendering in the layout file instead.
+ * This is a client component because it needs React hooks and user interactions.
+ * Client components can't use Next.js route segment config like export const dynamic,
+ * so we handle dynamic rendering in the layout file instead.
  */
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);
