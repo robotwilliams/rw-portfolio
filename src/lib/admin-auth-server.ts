@@ -4,12 +4,12 @@ import { NextResponse } from "next/server";
 /**
  * Server-side Admin Authentication Helper
  *
- * Simple utilities for checking authentication in API routes.
+ * Utilities for checking authentication in API routes.
  */
 
 /**
- * Checks if the current request is authenticated.
- * Returns the cookie store if authenticated, null otherwise.
+ * Check if current request is authenticated.
+ * Returns cookie store if authenticated, null otherwise.
  */
 export async function checkAuth(): Promise<Awaited<ReturnType<typeof cookies>> | null> {
   const cookieStore = await cookies();
@@ -23,8 +23,8 @@ export async function checkAuth(): Promise<Awaited<ReturnType<typeof cookies>> |
 }
 
 /**
- * Middleware helper that returns an unauthorized response if not authenticated.
- * Use this in API routes that require authentication.
+ * Middleware helper that returns unauthorized response if not authenticated.
+ * Use in API routes that require authentication.
  */
 export async function requireAuth(): Promise<
   | { authenticated: true; cookieStore: Awaited<ReturnType<typeof cookies>> }
