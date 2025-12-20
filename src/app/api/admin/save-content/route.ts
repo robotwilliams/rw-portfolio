@@ -4,6 +4,10 @@ import path from "path";
 import matter from "gray-matter";
 import { requireAuth } from "@/lib/admin-auth-server";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 /**
  * POST /api/admin/save-content
  *
@@ -15,6 +19,9 @@ import { requireAuth } from "@/lib/admin-auth-server";
  *   frontmatter: object,
  *   content: string (markdown content)
  * }
+ *
+ * Note: On Vercel, file system writes are not persistent. Consider using
+ * a database or external storage for production content management.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -54,14 +61,40 @@ export async function POST(request: NextRequest) {
     // Build markdown file with frontmatter
     const frontmatterString = matter.stringify(content, frontmatter || {});
 
+    // Ensure directory exists
+    const dir = path.dirname(filePath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
     // Write file
     fs.writeFileSync(filePath, frontmatterString, "utf8");
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error saving content:", error);
+    
+    // Provide more detailed error information
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : "Unknown error occurred";
+    
+    // Check if it's a filesystem permission error (common on Vercel)
+    if (errorMessage.includes("EACCES") || errorMessage.includes("permission") || errorMessage.includes("read-only")) {
+      return NextResponse.json(
+        { 
+          success: false, 
+          error: "File system is read-only. This deployment platform (Vercel) doesn't support file writes. Consider using a database or external storage for content management." 
+        },
+        { status: 500 }
+      );
+    }
+    
     return NextResponse.json(
-      { success: false, error: "Failed to save content" },
+      { 
+        success: false, 
+        error: `Failed to save content: ${errorMessage}` 
+      },
       { status: 500 }
     );
   }
