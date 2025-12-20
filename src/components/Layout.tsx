@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
     if (href === "/") {
       return pathname === "/";
     }
-    return pathname.startsWith(href);
+    return pathname?.startsWith(href) ?? false;
   };
 
   return (

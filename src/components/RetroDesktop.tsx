@@ -204,7 +204,7 @@ export default function RetroDesktop() {
     }
 
     const currentPage = navigation.find((item) =>
-      item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
+      item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href) ?? false
     );
 
     if (currentPage && !initializedWindows.current.has(currentPage.href)) {
