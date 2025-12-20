@@ -9,6 +9,12 @@ import html from "remark-html";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+/**
+ * GET /api/content/contact
+ *
+ * Returns the contact page content as HTML. Reads markdown file,
+ * processes it, and returns rendered HTML.
+ */
 export async function GET() {
   const filePath = path.join(process.cwd(), "content/pages", "contact.md");
   if (!fs.existsSync(filePath)) {

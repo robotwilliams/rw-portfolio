@@ -64,7 +64,7 @@ export default function VintageButtonsDemo() {
           </VintageButton>
           <VintageButton
             variant="teal"
-            onMouseEnter={() => console.log('Teal button hovered')}
+            onMouseEnter={() => {}}
           >
             Hover Me
           </VintageButton>
