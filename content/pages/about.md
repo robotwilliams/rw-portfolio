@@ -1,6 +1,6 @@
 ---
-title: Robot Williams
-description: 'Learn more about Rob Williams, Frontend Maker and creative developer.'
+title: Me
+description: Frontend Maker and creative developer.
 ---
 
 # Robot Williams 🤖
