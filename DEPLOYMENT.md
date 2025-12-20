@@ -19,14 +19,28 @@ This approach works well for a portfolio site where you're the only admin. It's 
 1. Go to your Vercel project dashboard: https://vercel.com/dashboard
 2. Select your project (`rw-portfolio`)
 3. Go to **Settings** → **Environment Variables**
-4. Add these two variables:
+4. Add these variables:
 
 ```
 ADMIN_USERNAME=your_secure_username
 ADMIN_PASSWORD=your_secure_password
+GITHUB_TOKEN=your_github_personal_access_token
+GITHUB_REPO=robotwilliams/rw-portfolio
+GITHUB_BRANCH=main
 ```
 
-Important: use a strong, unique password with letters, numbers, and symbols. Don't use defaults like "admin" or "admin123". These are case-sensitive. Set them for Production, Preview, and Development environments. Consider using different credentials for each environment for extra security.
+**Admin Credentials:**
+- Use a strong, unique password with letters, numbers, and symbols
+- Don't use defaults like "admin" or "admin123"
+- These are case-sensitive
+- Set them for Production, Preview, and Development environments
+
+**GitHub Token (Required for Admin Dashboard):**
+- Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
+- Generate a new token with `repo` scope (full control of private repositories)
+- Copy the token and add it as `GITHUB_TOKEN` in Vercel
+- This allows the admin dashboard to commit changes back to your repository
+- Vercel will automatically redeploy when changes are committed
 
 ### Step 2: Deploy to Vercel
 
@@ -104,14 +118,14 @@ Effective: for a single-admin portfolio site, this provides sufficient security.
 
 When you save content in the admin dashboard, it's sent to /api/admin/save-content. The server validates you're authenticated, then writes the markdown file to the file system. Next.js detects the change in development, or you redeploy in production. Frontend routes use force-dynamic so they always fetch fresh content.
 
-**Important**: On Vercel, the file system is read-only. File writes will fail in production. For production content management, you need to use one of these approaches:
+**Content Saving**: The admin dashboard uses GitHub API to save content in production. When you save content:
 
-1. **Database**: Use Vercel KV, Supabase, or another database to store content
-2. **Git-based workflow**: Use GitHub API to commit changes back to the repository
-3. **External storage**: Use Vercel Blob Storage or similar service
-4. **Development only**: Use the admin dashboard locally, then commit and push changes
+1. Changes are committed to your GitHub repository via API
+2. Vercel automatically detects the new commit
+3. Vercel redeploys with the updated content
+4. Changes appear on the live site after deployment (usually 1-2 minutes)
 
-The current implementation works in development but will show an error in production on Vercel. This is a platform limitation, not a code issue.
+In development, changes are saved directly to the file system for instant updates.
 
 ### Performance Considerations
 
