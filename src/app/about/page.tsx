@@ -131,10 +131,10 @@ export default async function AboutPage() {
                 <div className="bg-[#ffffff] border border-[#808080] p-2">
                   <span className="text-xs text-[#808080]">Email</span>
                   <a
-                    href="mailto:hello@robotwilliams.com"
+                    href="mailto:robwilliamsdeveloper@gmail.com"
                     className="font-medium text-sm text-[#000080] hover:text-[#0000ff]"
                   >
-                    hello@robotwilliams.com
+                    robwilliamsdeveloper@gmail.com
                   </a>
                 </div>
               </div>
@@ -150,14 +150,6 @@ export default async function AboutPage() {
                 🔗 Connect
               </h3>
               <div className="space-y-2">
-                <a
-                  href="https://twitter.com/r0b0twilliams"
-                  className="block text-[#000080] hover:text-[#0000ff] font-medium text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Twitter
-                </a>
                 <a
                   href="https://github.com/robotwilliams"
                   className="block text-[#000080] hover:text-[#0000ff] font-medium text-sm"

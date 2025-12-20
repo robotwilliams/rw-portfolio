@@ -346,11 +346,8 @@ export default function WindowContent({ page }: WindowContentProps) {
 
             <ContentSection title="Other Ways to Connect" icon="🔗" headingLevel={3}>
               <LinkGrid>
-                <LinkButton href="mailto:hello@robotwilliams.com">
-                  Email: hello@robotwilliams.com
-                </LinkButton>
-                <LinkButton href="https://twitter.com/r0b0twilliams">
-                  Twitter: @r0b0twilliams
+                <LinkButton href="mailto:robwilliamsdeveloper@gmail.com">
+                  Email: robwilliamsdeveloper@gmail.com
                 </LinkButton>
                 <LinkButton href="https://codepen.io/robotwilliams">
                   CodePen: robotwilliams

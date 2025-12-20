@@ -268,14 +268,6 @@ export default function ContactPage() {
                 >
                   GitHub
                 </a>
-                <a
-                  href="https://twitter.com/robw"
-                  className="retro-link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Twitter
-                </a>
               </div>
             </div>
 

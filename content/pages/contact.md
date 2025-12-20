@@ -17,42 +17,42 @@ I'm always interested in new opportunities and exciting projects. Whether you ne
   <p className="screen-reader-text">
     <label>Don't fill this out if you're human: <input name="bot-field"/></label>
   </p>
-  
+
   <div className="form-row">
     <label className="form-label" htmlFor="contact-user-name">Name</label>
-    <input 
-      type="text" 
-      name="name" 
-      id="contact-user-name" 
-      className="form-input retro-input" 
+    <input
+      type="text"
+      name="name"
+      id="contact-user-name"
+      className="form-input retro-input"
       placeholder="Enter your name"
     />
   </div>
-  
+
   <div className="form-row">
     <label className="form-label" htmlFor="contact-user-email">Email</label>
-    <input 
-      type="email" 
-      name="email" 
-      id="contact-user-email" 
-      className="form-input retro-input" 
+    <input
+      type="email"
+      name="email"
+      id="contact-user-email"
+      className="form-input retro-input"
       placeholder="Enter your email address"
     />
   </div>
-  
+
   <div className="form-row">
     <label className="form-label" htmlFor="contact-message">Message</label>
-    <textarea 
-      name="message" 
-      id="contact-message" 
-      className="form-textarea retro-textarea" 
-      rows={5} 
+    <textarea
+      name="message"
+      id="contact-message"
+      className="form-textarea retro-textarea"
+      rows={5}
       placeholder="Enter your message"
     ></textarea>
   </div>
-  
+
   <input type="hidden" name="form-name" value="contactForm"/>
-  
+
   <div className="form-row form-submit">
     <button type="submit" className="button retro-button">Send Message</button>
   </div>
@@ -60,8 +60,7 @@ I'm always interested in new opportunities and exciting projects. Whether you ne
 
 ## Other Ways to Connect
 
-- **Email**: [hello@robotwilliams.com](mailto:hello@robotwilliams.com)
-- **Twitter**: [@r0b0twilliams](https://twitter.com/r0b0twilliams)
+- **Email**: [robwilliamsdeveloper@gmail.com](mailto:robwilliamsdeveloper@gmail.com)
 - **CodePen**: [robotwilliams](https://codepen.io/robotwilliams)
 - **GitHub**: [robotwilliams](https://github.com/robotwilliams)
 - **LinkedIn**: [Robert Williams](https://www.linkedin.com/pub/robert-williams/30/80b/5b0)
