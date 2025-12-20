@@ -422,7 +422,13 @@ svg {
   padding: 16px;
   font-family: "VT323", monospace;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.2;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 /* Custom scrollbar for retro feel */
@@ -458,12 +464,15 @@ svg {
 }
 
 .terminal-message {
-  margin: 4px 0;
+  margin: 2px 0;
   opacity: 0;
   animation: typewriter 0.1s forwards;
   font-family: "VT323", monospace;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.2;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
 }
 
 .terminal-message::before {
@@ -472,10 +481,10 @@ svg {
   left: -2px;
   top: 0;
   bottom: 0;
-  width: 1px;
-  background: rgba(0, 0, 0, 0.1);
+  width: 0;
+  background: transparent;
   opacity: 0;
-  animation: cursorBlink 2s infinite;
+  animation: none;
 }
 
 @keyframes cursorBlink {
@@ -562,6 +571,9 @@ svg {
   font-weight: bold;
   font-family: var(--font-terminal), "IBM Plex Mono", "Courier Prime",
     "Courier New", "Courier", "Lucida Console", "Monaco", "Consolas", monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  text-rendering: optimizeSpeed;
 }
 
 .terminal-success {
