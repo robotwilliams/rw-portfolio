@@ -59,20 +59,7 @@ export const viewport: Viewport = {
   viewportFit: "cover", // Required for safe-area-inset to work on iOS
 };
 
-/**
- * Root Layout Component
- *
- * This is the root layout that wraps all pages in the application.
- * It provides:
- * - HTML document structure
- * - Font loading and configuration
- * - Global CSS styles
- * - RetroDesktop wrapper for the RobotOS interface
- *
- * The RetroDesktop component creates the desktop environment where
- * all content is displayed in draggable, resizable windows with
- * authentic RobotOS styling and interactions.
- */
+// Root layout - wraps everything with fonts, styles, and desktop interface
 export default function RootLayout() {
   return (
     <html lang="en">
