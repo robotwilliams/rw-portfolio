@@ -92,22 +92,6 @@ export default function RetroDesktop() {
     }
   };
 
-  // Icon text color based on time - dark for day, light for night
-  const getIconTextColor = (hour: number) => {
-    if (hour >= 6 && hour < 12) {
-      // Morning: Dark text for light background
-      return "#000000";
-    } else if (hour >= 12 && hour < 18) {
-      // Afternoon: Dark text for light background
-      return "#000000";
-    } else if (hour >= 18 && hour < 22) {
-      // Evening: Dark text for light background
-      return "#000000";
-    } else {
-      // Night: Light text for dark background
-      return "#ffffff";
-    }
-  };
 
   // Main nav items that show up as desktop icons
   const navigation = useMemo(() => [
@@ -731,7 +715,6 @@ export default function RetroDesktop() {
           className="start-menu"
           role="menu"
           aria-label="Start menu"
-          aria-expanded={startMenuOpen}
         >
           <div className="start-menu-content">
             <div className="start-menu-header-xp">
