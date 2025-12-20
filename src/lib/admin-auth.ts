@@ -1,25 +1,16 @@
 /**
  * Admin Authentication Utilities
  *
- * Client-side helpers for admin authentication. These functions handle communication
- * between React components and the server API routes.
+ * Client-side helpers for admin authentication. Handles communication between
+ * React components and server API routes.
  *
- * The flow works like this: user enters credentials, they're sent to the server
- * for validation against environment variables, and on success the server sets a
- * session cookie. The client then checks this cookie to determine auth status.
- *
- * Security: credentials never live in client code, session cookies are httpOnly
- * and secure in production, network errors are handled gracefully, and we don't
- * expose sensitive data in error messages.
+ * Flow: user enters credentials, sent to server for validation against env vars,
+ * server sets session cookie on success. Client checks cookie for auth status.
  */
 
 /**
- * Check Authentication Status
- *
- * Verifies if the user is authenticated by checking the session cookie. Called
- * on page load to decide whether to show the login form or the dashboard.
- *
- * @returns Promise resolving to true if authenticated, false otherwise
+ * Check if user is authenticated by checking session cookie.
+ * Called on page load to show login form or dashboard.
  */
 export async function checkAuth(): Promise<boolean> {
   try {
@@ -35,15 +26,8 @@ export async function checkAuth(): Promise<boolean> {
 }
 
 /**
- * Login Function
- *
- * Authenticates the user with provided credentials. Sends them to the server
- * for validation against environment variables. On success, the server sets a
- * session cookie used for subsequent requests.
- *
- * @param username - Admin username from environment variable
- * @param password - Admin password from environment variable
- * @returns Promise with success status and optional error message
+ * Authenticate user with credentials. Sends to server for validation.
+ * On success, server sets session cookie for subsequent requests.
  */
 export async function login(username: string, password: string): Promise<{ success: boolean; error?: string }> {
   try {
@@ -66,12 +50,8 @@ export async function login(username: string, password: string): Promise<{ succe
 }
 
 /**
- * Logout Function
- *
- * Clears the session cookie by calling the logout API endpoint. This ends the
- * user's session and requires them to log in again.
- *
- * Errors are silently ignored since the user is leaving anyway.
+ * Clear session cookie via logout API. Ends user session.
+ * Errors ignored since user is leaving anyway.
  */
 export async function logout(): Promise<void> {
   try {

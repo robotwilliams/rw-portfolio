@@ -9,22 +9,14 @@ import AdminDashboard from "@/components/AdminDashboard";
 /**
  * Admin Login Page
  *
- * Entry point for the admin dashboard. Handles authentication state and renders
- * either the login form or the dashboard.
+ * Entry point for admin dashboard. Handles auth state and renders login form
+ * or dashboard.
  *
- * Authentication flow: on mount, checks if user is already authenticated via
- * session cookie. Shows login form if not authenticated, shows dashboard on
- * successful login, handles logout by clearing session.
+ * On mount, checks if user is authenticated via session cookie. Shows login
+ * form if not, dashboard if yes. Handles logout by clearing session.
  *
- * State: authenticated (null/true/false), username/password for form inputs,
- * error message for display, loading flag to prevent double-submission.
- *
- * Security: credentials are never stored here. They're sent to the server API
- * route which validates against environment variables.
- *
- * This is a client component because it needs React hooks and user interactions.
- * Client components can't use Next.js route segment config like export const dynamic,
- * so we handle dynamic rendering in the layout file instead.
+ * Credentials sent to server API route for validation against env vars.
+ * Client component because it needs hooks and user interactions.
  */
 export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState<boolean | null>(null);

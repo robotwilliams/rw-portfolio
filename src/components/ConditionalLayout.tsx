@@ -9,19 +9,13 @@ import RetroDesktop from "./RetroDesktop";
 /**
  * Conditional Layout Wrapper
  *
- * Decides whether to show the full Windows 98 desktop interface or just render
- * the page content. The admin dashboard needs a clean interface without the
- * retro desktop UI, so this component checks the route and conditionally wraps content.
+ * Shows full Windows 98 desktop interface for regular routes, or just renders
+ * content for admin routes. Admin needs clean UI without retro desktop.
  *
- * How it works: uses Next.js usePathname() to get the current route, checks if
- * it starts with "/admin", and either renders children directly (admin) or wraps
- * them in RetroDesktop (regular routes).
+ * Uses usePathname() to check route. If it starts with "/admin", render children
+ * directly. Otherwise wrap in RetroDesktop.
  *
- * Performance: uses useMemo to memoize the route check and prevent unnecessary
- * re-renders when the pathname hasn't changed.
- *
- * This is a client component because usePathname() only works in client components.
- * The root layout is a server component, so this bridges server and client rendering.
+ * useMemo prevents unnecessary re-renders when pathname hasn't changed.
  */
 export default function ConditionalLayout({
   children,
