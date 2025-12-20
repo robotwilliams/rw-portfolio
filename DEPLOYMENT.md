@@ -104,7 +104,14 @@ Effective: for a single-admin portfolio site, this provides sufficient security.
 
 When you save content in the admin dashboard, it's sent to /api/admin/save-content. The server validates you're authenticated, then writes the markdown file to the file system. Next.js detects the change in development, or you redeploy in production. Frontend routes use force-dynamic so they always fetch fresh content.
 
-Note: in production, file system writes persist between deployments on Vercel, but for true persistence, consider using a database or Git-based workflow.
+**Important**: On Vercel, the file system is read-only. File writes will fail in production. For production content management, you need to use one of these approaches:
+
+1. **Database**: Use Vercel KV, Supabase, or another database to store content
+2. **Git-based workflow**: Use GitHub API to commit changes back to the repository
+3. **External storage**: Use Vercel Blob Storage or similar service
+4. **Development only**: Use the admin dashboard locally, then commit and push changes
+
+The current implementation works in development but will show an error in production on Vercel. This is a platform limitation, not a code issue.
 
 ### Performance Considerations
 
