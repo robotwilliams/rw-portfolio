@@ -30,7 +30,7 @@ export default function RetroLoading({
     "> System ready. Welcome to RobotOS!",
   ],
   onComplete,
-  duration = 2000,
+  duration = 1200,
 }: RetroLoadingProps) {
   const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
@@ -62,7 +62,7 @@ export default function RetroLoading({
           setTimeout(() => {
             setIsComplete(true);
             onComplete?.();
-          }, 1000);
+          }, 300);
           return prev;
         }
       });
@@ -100,7 +100,7 @@ export default function RetroLoading({
 
         return newCounts;
       });
-    }, 60); // Slower dot animation
+    }, 40); // Faster dot animation
 
     return () => clearInterval(dotsInterval);
   }, [currentMessageIndex, messages]);

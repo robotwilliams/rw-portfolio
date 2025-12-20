@@ -22,7 +22,7 @@ export default function PageLoadWrapper({ children }: PageLoadWrapperProps) {
     // Simulate a longer loading time for authentic feel
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 8000); // 8 seconds total loading time
+    }, 3500); // 3.5 seconds total loading time
 
     return () => clearTimeout(timer);
   }, []);
@@ -113,7 +113,7 @@ export default function PageLoadWrapper({ children }: PageLoadWrapperProps) {
               '<span class="terminal-prompt">$</span> <span class="terminal-command">whoami</span>',
               '<span class="terminal-prompt"><span class="terminal-user">robot</span>@<span class="terminal-host">robotos</span>:~$</span> {{dots}}',
             ]}
-            duration={8000}
+            duration={3000}
           />
         </div>
       </div>
