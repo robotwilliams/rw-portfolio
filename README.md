@@ -530,7 +530,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 For questions about this project or to discuss collaboration opportunities:
 
-- **Email**: hello@robw.dev
+- **Email**: robwilliamsdeveloper@gmail.com
 - **Website**: https://robw.dev
 - **GitHub**: https://github.com/robw
 
