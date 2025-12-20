@@ -381,8 +381,10 @@ npm start
   - Secure login with environment variables (`ADMIN_USERNAME`, `ADMIN_PASSWORD`)
   - Edit pages (About, Contact) with live preview
   - Edit portfolio projects with full metadata support
-  - Real-time updates - changes appear immediately on frontend
-  - No caching - all routes use `force-dynamic` for instant updates
+  - GitHub API integration for production (Vercel) - saves via commits
+  - File system writes for development - instant local updates
+  - Auto-deployment - Vercel redeploys when content is saved
+  - No caching - all routes use `force-dynamic` for fresh content
 
 ### Code Quality
 

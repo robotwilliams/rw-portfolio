@@ -257,7 +257,7 @@ Secure authentication with session-based auth and environment variables. Real-ti
 
 ### How It Works
 
-The admin system uses a straightforward architecture. React components handle the UI and user interactions on the client side. Next.js API routes handle authentication and content saving. Content is saved directly to markdown files, which are version controlled. All routes use force-dynamic to ensure fresh content.
+The admin system uses a straightforward architecture. React components handle the UI and user interactions on the client side. Next.js API routes handle authentication and content saving. In production (Vercel), content is saved via GitHub API commits, which trigger automatic deployments. In development, content is saved directly to markdown files for instant updates. All routes use force-dynamic to ensure fresh content.
 
 ### Security
 
