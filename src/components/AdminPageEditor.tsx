@@ -84,12 +84,17 @@ export default function AdminPageEditor({
       const data = await response.json();
 
       if (data.success) {
+        // Show success message
+        setError("");
+        alert(data.message || "Content saved successfully! Changes will appear on the site after Vercel redeploys (usually 1-2 minutes).");
         onSave();
       } else {
         setError(data.error || "Failed to save");
       }
-    } catch {
-      setError("Failed to save content");
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Failed to save content";
+      setError(errorMessage);
+      console.error("Save error:", err);
     } finally {
       setSaving(false);
     }

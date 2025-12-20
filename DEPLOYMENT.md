@@ -30,12 +30,14 @@ GITHUB_BRANCH=main
 ```
 
 **Admin Credentials:**
+
 - Use a strong, unique password with letters, numbers, and symbols
 - Don't use defaults like "admin" or "admin123"
 - These are case-sensitive
 - Set them for Production, Preview, and Development environments
 
 **GitHub Token (Required for Admin Dashboard):**
+
 - Go to GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)
 - Generate a new token with `repo` scope (full control of private repositories)
 - Copy the token and add it as `GITHUB_TOKEN` in Vercel

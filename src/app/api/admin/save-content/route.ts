@@ -29,16 +29,18 @@ async function saveContentViaGitHub(
   }
 
   try {
-    // Get current file SHA if it exists
-    const apiPath = filePath.replace(/^content\//, "");
+    // GitHub API expects the full path from repo root
+    // filePath is already in format: content/pages/about.md or content/portfolio/project.md
+    const apiPath = filePath;
     const getFileUrl = `https://api.github.com/repos/${githubRepo}/contents/${apiPath}`;
 
     let fileSha: string | undefined;
     try {
       const getResponse = await fetch(`${getFileUrl}?ref=${githubBranch}`, {
         headers: {
-          Authorization: `token ${githubToken}`,
+          Authorization: `Bearer ${githubToken}`,
           Accept: "application/vnd.github.v3+json",
+          "User-Agent": "rw-portfolio-admin",
         },
       });
 
@@ -54,13 +56,14 @@ async function saveContentViaGitHub(
     const encodedContent = Buffer.from(content, "utf8").toString("base64");
 
     // Commit file
-    const commitResponse = await fetch(getFileUrl, {
-      method: "PUT",
-      headers: {
-        Authorization: `token ${githubToken}`,
-        Accept: "application/vnd.github.v3+json",
-        "Content-Type": "application/json",
-      },
+      const commitResponse = await fetch(getFileUrl, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${githubToken}`,
+          Accept: "application/vnd.github.v3+json",
+          "Content-Type": "application/json",
+          "User-Agent": "rw-portfolio-admin",
+        },
       body: JSON.stringify({
         message: `Update ${type}: ${slug}`,
         content: encodedContent,
