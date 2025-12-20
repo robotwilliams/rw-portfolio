@@ -44,7 +44,7 @@ export default function PageLoadWrapper({ children }: PageLoadWrapperProps) {
             <div className="cloud-four"></div>
           </div>
         </div>
-        <div className="w-full max-w-2xl px-8 relative z-10">
+        <div className="w-full max-w-2xl px-8 loading-container relative z-10">
           <RetroLoading
             messages={[
               '<span class="terminal-prompt">$</span> <span class="terminal-command">sudo init robotOS</span>',

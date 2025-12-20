@@ -3,6 +3,24 @@ import { useEffect, useRef, useState } from "react";
 
 import { RetroLoadingProps } from "@/types";
 
+// Get responsive height for loading window
+const getLoadingHeight = () => {
+  if (typeof window === "undefined") return "400px";
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  if (screenWidth <= 360) {
+    return `${Math.min(screenHeight * 0.5, 300)}px`;
+  } else if (screenWidth <= 480) {
+    return `${Math.min(screenHeight * 0.55, 350)}px`;
+  } else if (screenWidth <= 600) {
+    return `${Math.min(screenHeight * 0.6, 380)}px`;
+  } else if (screenWidth <= 768) {
+    return `${Math.min(screenHeight * 0.65, 400)}px`;
+  }
+  return "400px";
+};
+
 export default function RetroLoading({
   messages = [
     "> Initializing retro interface {{dots}}",
@@ -18,6 +36,7 @@ export default function RetroLoading({
   const [isComplete, setIsComplete] = useState(false);
   const [spinnerChar, setSpinnerChar] = useState(0);
   const [dotCounts, setDotCounts] = useState<{ [index: number]: number }>({});
+  const [loadingHeight, setLoadingHeight] = useState("400px");
   const textRef = useRef<HTMLDivElement>(null);
   const spinnerChars = ["|", "/", "-", "\\"];
 
@@ -86,6 +105,16 @@ export default function RetroLoading({
     return () => clearInterval(dotsInterval);
   }, [currentMessageIndex, messages]);
 
+  // Set responsive height on mount and resize
+  useEffect(() => {
+    setLoadingHeight(getLoadingHeight());
+    const handleResize = () => {
+      setLoadingHeight(getLoadingHeight());
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Auto-scroll to bottom when new messages appear
   useEffect(() => {
     if (textRef.current) {
@@ -135,9 +164,9 @@ export default function RetroLoading({
 
       {/* Window Content */}
       <div
-        className="window-content"
+        className="window-content loading-window-content"
         style={{
-          height: "400px",
+          height: loadingHeight,
           padding: "6px",
           paddingTop: "16px",
           paddingBottom: "6px"
