@@ -1,11 +1,11 @@
 ---
 title: Robot Williams
-description: 'Frontend developer and designer creating intuitive digital experiences.'
+description: Frontend developer and designer creating intuitive digital experiences.
 ---
 
 # Hello
 
-Hi I'm Rob Williams, a frontend developer and designer dedicated to creating intuitive and engaging digital experiences. With years of experience in web development and design, I specialize in building websites and applications that are both visually appealing and highly functional.
+I'm Rob Williams, a frontend developer and designer dedicated to creating intuitive and engaging digital experiences. With years of experience in web development and design, I specialize in building websites and applications that are both visually appealing and highly functional.
 
 ## What I Do
 
