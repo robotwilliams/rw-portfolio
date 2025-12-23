@@ -175,9 +175,9 @@ export async function POST(request: NextRequest) {
           fs.mkdirSync(dir, { recursive: true });
         }
 
-        fs.writeFileSync(filePath, frontmatterString, "utf8");
+    fs.writeFileSync(filePath, frontmatterString, "utf8");
 
-        return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true });
       } catch (error) {
         const errorMessage = error instanceof Error
           ? error.message

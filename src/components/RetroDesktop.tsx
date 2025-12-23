@@ -52,6 +52,7 @@ export default function RetroDesktop() {
   const [hoveredTaskbarIcon, setHoveredTaskbarIcon] = useState<string | null>(
     null
   );
+  const [systemTrayMenuOpen, setSystemTrayMenuOpen] = useState(false);
 
   // Drag and resize state
   const [draggedWindow, setDraggedWindow] = useState<string | null>(null);
@@ -245,6 +246,27 @@ export default function RetroDesktop() {
       return () => document.removeEventListener("click", handleClickOutside);
     }
   }, [startMenuOpen]);
+
+  // Closes system tray menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Don't close if clicking inside the system tray menu or icon
+      if (
+        target.closest(".system-tray-menu") ||
+        target.closest(".system-tray-icon")
+      ) {
+        return;
+      }
+      setSystemTrayMenuOpen(false);
+    };
+
+    if (systemTrayMenuOpen) {
+      // Use capture phase to catch clicks before they bubble
+      document.addEventListener("click", handleClickOutside, true);
+      return () => document.removeEventListener("click", handleClickOutside, true);
+    }
+  }, [systemTrayMenuOpen]);
 
   // Handles mouse move for dragging and resizing windows
   useEffect(() => {
@@ -808,8 +830,74 @@ export default function RetroDesktop() {
           })}
         </div>
 
-        {/* Clock */}
-        <div className="ml-auto flex items-center">
+        {/* System Tray Area */}
+        <div className="ml-auto flex items-center relative">
+          {/* System Tray Icon */}
+          <div className="relative">
+            <button
+              type="button"
+              className={`system-tray-icon ${systemTrayMenuOpen ? "active" : ""}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSystemTrayMenuOpen(!systemTrayMenuOpen);
+                setStartMenuOpen(false);
+              }}
+              aria-label="System tray menu"
+              aria-expanded={systemTrayMenuOpen}
+              style={{ marginRight: "-60px" }}
+            >
+              <span className="text-xs">⚙</span>
+            </button>
+
+            {/* System Tray Popup Menu */}
+            {systemTrayMenuOpen && (
+              <div
+                className="system-tray-menu"
+                onClick={(e) => e.stopPropagation()}
+                role="menu"
+                aria-label="System tray menu"
+              >
+                <div className="system-tray-menu-content">
+                  <button
+                    type="button"
+                    className="system-tray-menu-item"
+                    onClick={() => {
+                      setSystemTrayMenuOpen(false);
+                      // Placeholder for Calculator app
+                    }}
+                    onMouseEnter={() => setHoveredStartMenuItem("calc")}
+                    onMouseLeave={() => setHoveredStartMenuItem(null)}
+                    role="menuitem"
+                    aria-label="Calculator"
+                  >
+                    <div className="system-tray-menu-icon">
+                      <span className="text-lg">🧮</span>
+                    </div>
+                    <span>Calculator</span>
+                  </button>
+                  <button
+                    type="button"
+                    className="system-tray-menu-item"
+                    onClick={() => {
+                      setSystemTrayMenuOpen(false);
+                      // Placeholder for Paint app
+                    }}
+                    onMouseEnter={() => setHoveredStartMenuItem("paint")}
+                    onMouseLeave={() => setHoveredStartMenuItem(null)}
+                    role="menuitem"
+                    aria-label="Paint"
+                  >
+                    <div className="system-tray-menu-icon">
+                      <span className="text-lg">🎨</span>
+                    </div>
+                    <span>Paint</span>
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Clock */}
           {hasMounted && (
             <div
               className="text-sm font-bold py-1 flex items-center h-15"
@@ -833,6 +921,7 @@ export default function RetroDesktop() {
               </span>
             </div>
           )}
+
         </div>
       </nav>
 

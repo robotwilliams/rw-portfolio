@@ -196,13 +196,13 @@ export default function WindowContent({ page }: WindowContentProps) {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Seattle Space Needle Location"
-                />
-              </div>
+                      />
+                    </div>
               <p className="text-sm mt-3" style={{ color: '#2F4F4F' }}>
                 Located in Seattle, Washington - near the Space Needle
               </p>
-            </div>
-          </div>
+                    </div>
+                  </div>
         )}
 
         {/* Display markdown content from API - this is what gets edited in admin */}

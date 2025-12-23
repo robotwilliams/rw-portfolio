@@ -38,7 +38,7 @@ export default function AdminProjectEditor({
             return;
           }
 
-          // Get raw markdown
+            // Get raw markdown
             const markdownResponse = await fetch(
               `/api/admin/get-raw-project/${slug}`,
               { credentials: "include" }
